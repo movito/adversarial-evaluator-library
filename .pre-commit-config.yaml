@@ -1,0 +1,80 @@
+# Pre-commit hooks configuration for Thematic Cuts
+# See https://pre-commit.com for more information
+
+repos:
+  # General file quality checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+        name: Trim trailing whitespace
+      - id: end-of-file-fixer
+        name: Fix end of files
+      - id: check-yaml
+        name: Check YAML syntax
+      - id: check-added-large-files
+        name: Check for large files
+        args: ['--maxkb=1000']
+      - id: check-merge-conflict
+        name: Check for merge conflicts
+      - id: check-toml
+        name: Check TOML syntax
+
+  # Python code formatting
+  - repo: https://github.com/psf/black
+    rev: 23.12.1  # Last version supporting Python 3.8
+    hooks:
+      - id: black
+        name: Format code with Black
+        args: ['--line-length=88']
+        language_version: python3
+
+  # Import sorting
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: Sort imports with isort
+        args: ['--profile=black', '--line-length=88']
+
+  # Linting (errors only - warnings excluded)
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.1.1
+    hooks:
+      - id: flake8
+        name: Check with flake8
+        args: [
+          '--max-line-length=88',
+          '--extend-ignore=E203,W503',
+          '--select=E9,F63,F7,F82'  # Critical errors only
+        ]
+
+  # Task validation (added 2025-11-22, THEMATIC-0106-D)
+  # Validates task file consistency before commit
+  # Catches status-folder mismatches, invalid status values, etc.
+  # Runtime: ~114ms for 60 tasks (5x faster than target)
+  # To skip: SKIP_TESTS=1 git commit -m "WIP"
+  - repo: local
+    hooks:
+      - id: validate-tasks
+        name: Validate task files
+        entry: bash scripts/pre-commit-validate-tasks.sh
+        language: system
+        pass_filenames: false
+        files: ^delegation/tasks/.*\.md$
+        stages: [pre-commit]
+
+  # Run fast test subset before commit (prevents broken code from being committed)
+  # Added 2025-11-01 (TASK-2025-045): Catches 80%+ of test failures before commit
+  # Fast tests run in ~2 seconds, slow tests (10s+) run in CI only
+  # To skip: SKIP_TESTS=1 git commit -m "WIP"
+  - repo: local
+    hooks:
+      - id: pytest-fast
+        name: Run fast tests (pre-commit guard)
+        entry: bash -c 'if [ "$SKIP_TESTS" = "1" ]; then echo "⚠️  Skipping tests (SKIP_TESTS=1)"; exit 0; fi; ./venv/bin/pytest tests/ -v --tb=short -x -m "not slow" --maxfail=3 || (echo ""; echo "❌ Fast tests failed! Fix before committing or use:"; echo "  SKIP_TESTS=1 git commit -m \"WIP\""; exit 1)'
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+        verbose: true

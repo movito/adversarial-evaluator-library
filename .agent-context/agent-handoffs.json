@@ -1,0 +1,30 @@
+{
+  "coordinator": {
+    "status": "idle",
+    "current_task": null,
+    "task_started": null,
+    "brief_note": "Ready for first task assignment",
+    "details_link": null
+  },
+  "feature-developer": {
+    "status": "idle",
+    "current_task": null,
+    "task_started": null,
+    "brief_note": "Ready for implementation tasks",
+    "details_link": null
+  },
+  "test-runner": {
+    "status": "idle",
+    "current_task": null,
+    "task_started": null,
+    "brief_note": "Ready for testing tasks",
+    "details_link": null
+  },
+  "document-reviewer": {
+    "status": "idle",
+    "current_task": null,
+    "task_started": null,
+    "brief_note": "Ready for documentation review",
+    "details_link": null
+  }
+}
