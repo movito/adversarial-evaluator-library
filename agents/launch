@@ -137,9 +137,25 @@ list_agents() {
     echo
 }
 
+# Check if Serena MCP is configured in Claude Code
+is_serena_configured() {
+    # Check if claude mcp list shows serena
+    if command -v claude &> /dev/null; then
+        if claude mcp list 2>/dev/null | grep -q "serena"; then
+            return 0  # true - Serena is configured
+        fi
+    fi
+    return 1  # false - Serena not configured
+}
+
 # Check if agent needs Serena auto-activation
 needs_serena_activation() {
     local name="$1"
+
+    # First check if Serena is even configured
+    if ! is_serena_configured; then
+        return 1  # false - Serena not available
+    fi
 
     # Agents that use Serena for code navigation
     local serena_agents=(
@@ -180,9 +196,19 @@ launch_agent() {
     echo -e "${GREEN}Launching agent: ${YELLOW}$name${NC}"
     echo -e "${BLUE}Model: ${NC}$model"
 
-    # Check if agent needs Serena activation
-    if needs_serena_activation "$name"; then
-        echo -e "${BLUE}Auto-activating Serena for semantic code navigation...${NC}"
+    # Check Serena status for code-focused agents
+    local serena_agents=("rem" "coordinator" "tycho" "feature-developer" "test-runner" "powertest-runner")
+    local is_code_agent=false
+    for sa in "${serena_agents[@]}"; do
+        [[ "$name" == "$sa" ]] && is_code_agent=true && break
+    done
+
+    if [[ "$is_code_agent" == true ]]; then
+        if is_serena_configured; then
+            echo -e "${BLUE}Serena: ${GREEN}configured${NC} (semantic navigation enabled)"
+        else
+            echo -e "${BLUE}Serena: ${YELLOW}not configured${NC} (run .serena/setup-serena.sh to enable)"
+        fi
     fi
     echo
 

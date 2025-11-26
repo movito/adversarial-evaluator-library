@@ -67,7 +67,66 @@ Select all that apply (you can add more later):
 
 After user responds:
 - Note selected languages for Serena configuration
-- Warn if LSP servers might need installation
+- Proceed to Serena setup
+
+### Serena Setup (Semantic Code Navigation)
+
+After language selection, set up Serena:
+
+```
+**ONBOARDING** | Phase: Serena Setup
+
+**Setting up Serena for semantic code navigation...**
+
+Serena provides intelligent code understanding:
+- Go to definition / Find references
+- Symbol search across codebase
+- Smart code editing
+
+Running setup script...
+```
+
+**Run the setup script:**
+```bash
+./.serena/setup-serena.sh "[project-name]"
+```
+
+The script will:
+1. Verify uvx or pipx is installed
+2. Add Serena to Claude Code's MCP configuration
+3. Create `.serena/project.yml` from template
+
+**Then update project.yml with selected languages:**
+```bash
+# Edit .serena/project.yml to enable selected languages
+# Uncomment the languages the user selected in Phase 2
+```
+
+**Verify Serena is configured:**
+```bash
+claude mcp list | grep serena
+```
+
+If setup fails, explain:
+```
+Serena setup requires either uvx or pipx.
+
+To install uvx (recommended):
+  curl -LsSf https://astral.sh/uv/install.sh | sh
+
+To install pipx:
+  brew install pipx && pipx ensurepath
+
+Then run: ./.serena/setup-serena.sh
+```
+
+**After successful setup:**
+```
+**Serena configured successfully!**
+
+Languages enabled: [Python, TypeScript, ...]
+Agents will auto-activate Serena for code navigation.
+```
 
 ---
 

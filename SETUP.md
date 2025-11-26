@@ -72,13 +72,31 @@ PROJECT_NAME=my-project
 TASK_PREFIX=TASK
 ```
 
-#### Step 2: Configure Serena
+#### Step 2: Install & Configure Serena
+
+Serena provides semantic code navigation (go-to-definition, find-references, symbol search).
+
+**Prerequisites**: You need either `uvx` (recommended) or `pipx`:
 
 ```bash
-cp .serena/project.yml.template .serena/project.yml
+# Install uv (includes uvx)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Or install pipx
+brew install pipx && pipx ensurepath
 ```
 
-Edit `.serena/project.yml`:
+**Run the setup script:**
+
+```bash
+./.serena/setup-serena.sh my-project
+```
+
+This will:
+1. Add Serena MCP to Claude Code configuration
+2. Create `.serena/project.yml` from template
+
+**Enable your languages** in `.serena/project.yml`:
 
 ```yaml
 project_name: "my-project"
@@ -87,6 +105,14 @@ languages:
   # - typescript
   # - swift
 ```
+
+**Verify Serena is configured:**
+
+```bash
+claude mcp list | grep serena
+```
+
+**Note**: If you skip Serena setup, agents will still work but without semantic code navigation.
 
 #### Step 3: Configure Adversarial Workflow
 
