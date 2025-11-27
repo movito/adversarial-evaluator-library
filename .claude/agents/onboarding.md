@@ -301,32 +301,18 @@ Guide them through creating a new agent file in `.claude/agents/`:
 
 1. **Ask for agent purpose**: "What will this agent specialize in?"
 2. **Ask for agent name**: "What should we call it? (lowercase, hyphenated)"
-3. **Ask for emoji**: "Pick an emoji for the agent header (e.g., for a data agent)"
+3. **Ask for emoji**: "Pick an emoji for the agent header"
 
-Create the agent file using the template structure:
-```markdown
----
-name: [agent-name]
-description: [One sentence description]
-model: claude-sonnet-4-5-20250514  # You can change this or comment out to use default
-tools:
-  - Read
-  - Write
-  - Edit
-  - Bash
-  - Glob
-  - Grep
-  - TodoWrite
----
-
-# [Agent Name] Agent
-
-[Description and responsibilities]
-
-## Response Format
-Always begin your responses with your identity header:
-[emoji] **[AGENT-NAME]** | Task: [current task]
+Then copy the template and customize it:
+```bash
+cp .claude/agents/AGENT-TEMPLATE.md .claude/agents/[agent-name].md
 ```
+
+Help the user edit the new file to set:
+- `name:` - the agent name (lowercase, hyphenated)
+- `description:` - one sentence description
+- The `# Agent` header and responsibilities
+- The emoji in the response format
 
 ### Verify Agent Launcher
 
