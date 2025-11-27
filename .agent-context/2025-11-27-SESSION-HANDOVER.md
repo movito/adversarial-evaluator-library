@@ -111,8 +111,26 @@ git merge upstream/main -m "Merge upstream updates"
 **Flow**:
 1. User completes onboarding → seed task created
 2. User launches planner → planner sees task in `2-todo/`
-3. Planner naturally starts with TDD infrastructure setup
+3. Planner assigns to **feature-developer** (implementation task)
 4. All subsequent work follows TDD practices
+
+### 9b. Seed Task v2.0 Improvements (commit `0e89d7d`)
+
+Based on feedback from agentive-lotion-2's planner:
+
+**Fixed Issues**:
+- ❌ Wrong agent (planner) → ✅ Correct agent (feature-developer)
+- ❌ Missing pyproject.toml → ✅ Full template included
+- ❌ Generic content → ✅ "Existing Assets" section references starter kit files
+- ❌ YAML tabs → ✅ Proper spacing
+- ❌ No customization guide → ✅ Detailed placeholder table for onboarding agent
+
+**Template v2.0 Key Sections**:
+- "Existing Assets to Leverage" - tells devs to adapt, not recreate
+- pyproject.toml with pytest, black, ruff config
+- Smoke test example
+- GitHub Actions CI workflow
+- Clear acceptance criteria
 
 ---
 
@@ -165,6 +183,8 @@ agentive-starter-kit/
 |--------|-------------|
 | `49fb4f1` | fix: Exclude TASK-STARTER-TEMPLATE.md from agent launcher |
 | `327ce17` | feat: Add TDD seed task to onboarding flow |
+| `8c0b6b6` | docs: Add session handover for 2025-11-27 |
+| `0e89d7d` | fix: Improve TDD seed task based on agentive-lotion-2 feedback |
 
 ---
 
