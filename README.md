@@ -279,6 +279,15 @@ Tasks work fine without Linear - they're just markdown files. Agents can create,
 
 ### Creating Tasks
 
+**The easy way:** Just tell `rem` what you want to build. The agent will create and manage tasks for you.
+
+```bash
+./agents/launch rem
+# Then: "I want to add user authentication to my app"
+```
+
+**Manual task creation** (if you prefer):
+
 1. Copy task template: `delegation/tasks/9-reference/templates/task-template.md`
 2. Create task file: `delegation/tasks/2-todo/TASK-0001-my-task.md`
 3. Run evaluation: `adversarial evaluate delegation/tasks/2-todo/TASK-0001-my-task.md`
