@@ -279,6 +279,22 @@ Note: Adversarial Evaluation and Linear Task Sync auto-enable if their API keys 
 2. No, start with core agents (you can always create a new agent later!)
 ```
 
+### If User Chooses "No" (Skip for Now)
+
+Tell them how to create an agent later:
+```
+No problem! When you're ready to create a custom agent, you have two options:
+
+1. **Use the agent-creator agent:**
+   Run `./agents/launch agent-creator` and it will guide you through the process.
+
+2. **Create one manually:**
+   Copy `.claude/agents/AGENT-TEMPLATE.md` to a new file like `.claude/agents/my-agent.md`
+   and customize it.
+
+For now, let's continue with the core agents!
+```
+
 ### If User Wants Custom Agent
 
 Guide them through creating a new agent file in `.claude/agents/`:
