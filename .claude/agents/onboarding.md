@@ -276,7 +276,7 @@ Note: Adversarial Evaluation and Linear Task Sync auto-enable if their API keys 
 
 **Would you like to create a project-specific agent now?**
 1. Yes, help me create one
-2. No, start with core agents
+2. No, start with core agents (you can always create a new agent later!)
 ```
 
 ### If User Wants Custom Agent
