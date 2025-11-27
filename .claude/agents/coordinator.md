@@ -1,7 +1,7 @@
 ---
 name: coordinator
 description: High-level project coordination and task management specialist
-# model: claude-opus-4-1-20250805  # Uncomment and set your preferred model
+# model: claude-opus-4-5-20250514  # Recommended: Opus for complex coordination
 tools:
   - Read
   - Write

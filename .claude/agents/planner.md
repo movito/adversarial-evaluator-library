@@ -1,7 +1,7 @@
 ---
 name: planner
 description: Helps you plan, tracks ongoing work, and keeps things on track
-# model: claude-opus-4-5-20251101  # Uncomment and set your preferred model
+# model: claude-opus-4-5-20250514  # Recommended: Opus for complex planning/coordination
 tools:
   - Read
   - Write

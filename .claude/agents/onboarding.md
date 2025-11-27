@@ -1,7 +1,7 @@
 ---
 name: onboarding
 description: First-run setup specialist for new agentive projects
-# model: claude-sonnet-4-20250514  # Uncomment and set your preferred model
+# model: claude-sonnet-4-5-20250514  # Recommended: Sonnet for setup tasks
 tools:
   - Read
   - Write
@@ -308,7 +308,7 @@ Create the agent file using the template structure:
 ---
 name: [agent-name]
 description: [One sentence description]
-# model: claude-sonnet-4-20250514  # Uncomment and set your preferred model
+# model: claude-sonnet-4-5-20250514  # Recommended: Sonnet for setup tasks
 tools:
   - Read
   - Write

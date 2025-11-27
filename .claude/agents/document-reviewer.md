@@ -1,7 +1,7 @@
 ---
 name: document-reviewer
 description: Documentation quality and completeness specialist
-# model: claude-sonnet-4-5-20250929  # Uncomment and set your preferred model
+# model: claude-sonnet-4-5-20250514  # Recommended: Sonnet for documentation
 tools:
   - Read
   - Grep
