@@ -1,7 +1,7 @@
 ---
 name: powertest-runner
 description: Comprehensive testing and validation specialist with advanced TDD and analysis capabilities
-# model: claude-sonnet-4-5-20250514  # Recommended: Sonnet for comprehensive testing
+model: claude-sonnet-4-5-20250514  # You can change this or comment out to use default
 tools:
   - Read
   - Write
