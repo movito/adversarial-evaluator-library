@@ -221,8 +221,13 @@ This keeps task IDs consistent between your codebase and Linear.
 
 **3. Get your Linear API key**
 
-Go to Settings → API → [Personal API keys](https://linear.app/settings/api)
+Go to Settings → API → [API settings](https://linear.app/settings/api)
+
+The page shows "OAuth applications" and "Webhooks" - **click "Webhooks"** on the left sidebar to find Personal API keys.
+
+- Scroll down to "Personal API keys"
 - Click "Create new API key"
+- Give it a name (e.g., "agentive-starter-kit")
 - Copy the key (starts with `lin_api_`)
 
 **4. Get your Team ID**
