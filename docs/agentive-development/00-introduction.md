@@ -194,7 +194,7 @@ Want to see real examples first? Jump to **[Examples](./examples/README.md)** to
 
 **Version:** 1.0.0
 **Last Updated:** 2025-11-14
-**Project:** thematic-cuts
+**Project:** agentive-starter-kit
 **Authors:** Your Project Development Team
 
 ---

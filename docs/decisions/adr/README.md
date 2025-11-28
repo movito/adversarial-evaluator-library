@@ -1,6 +1,6 @@
 # Architecture Decision Records (ADRs)
 
-This directory contains Architecture Decision Records (ADRs) documenting significant architectural and design decisions for thematic-cuts.
+This directory contains Architecture Decision Records (ADRs) documenting significant architectural and design decisions for this project.
 
 ## What are ADRs?
 
@@ -220,26 +220,26 @@ When a decision changes:
 
 ## Project-Specific Guidelines
 
-### thematic-cuts ADR Focus Areas
+### ADR Focus Areas
 
 This project's ADRs should particularly focus on:
 
-1. **Precision Engineering**: Decisions affecting frame-perfect accuracy (timecode arithmetic, frame calculations)
-2. **DaVinci Resolve Integration**: API integration patterns and workarounds
-3. **Multi-Speaker Workflows**: Architectural patterns for handling multiple audio sources
-4. **Validation & Quality**: Testing strategies and quality gates
-5. **User Experience**: CLI wizard design, workflow patterns
+1. **Agent Coordination**: Decisions affecting multi-agent workflows and handoffs
+2. **Task Management**: Patterns for task lifecycle, Linear sync, and status tracking
+3. **Evaluation Workflows**: Integration with external evaluators (GPT-4o, etc.)
+4. **Code Navigation**: Semantic tooling integration (Serena MCP, etc.)
+5. **Developer Experience**: CLI tools, agent launchers, onboarding flows
 
-### Examples from thematic-cuts
+### ADR Examples
 
 **Good ADR candidates:**
-- ✅ "Why we use Fraction arithmetic instead of floating-point for timecodes" → ADR-0001
-- ✅ "Two-phase assembly architecture for consistent track composition" → ADR-0002
-- ✅ "Multi-speaker workflow with sequential track assignment" → ADR-0003
+- ✅ "Why we use numbered folders for Linear-compatible task status" → Task management architecture
+- ✅ "Serena MCP integration for semantic code navigation" → ADR-0002
+- ✅ "Agent session initialization pattern for tool activation" → Workflow architecture
 
 **Not ADR candidates:**
-- ❌ "Fixed bug in timeline offset calculation" → Bug fix, not architectural
-- ❌ "Updated CLI help text" → Documentation improvement, not architecture
+- ❌ "Fixed typo in agent template" → Documentation fix, not architectural
+- ❌ "Updated agent emoji" → Cosmetic change, not architecture
 - ❌ "Bumped version to 1.0.3" → Version management, not architecture
 
 ---

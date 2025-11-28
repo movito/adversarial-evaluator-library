@@ -135,7 +135,7 @@ done
 
 ## Real-World Results
 
-**Before this decision (thematic-cuts project):**
+**Before this decision (prior implementation):**
 - Agents using Grep/Read/Glob for code navigation
 - High token usage for understanding codebase
 - No reference finding capability
@@ -145,7 +145,7 @@ done
 - Accurate symbol and reference finding
 - Works consistently across coordinator, feature-developer, test-runner agents
 
-**Key Discovery (from thematic-cuts ADR-0041):**
+**Key Discovery (from upstream project learnings):**
 - Agents didn't auto-activate Serena despite available tools
 - Required explicit "Session Initialization" pattern in agent definitions
 - Activation must be positioned as startup protocol, not optional guidance
@@ -153,8 +153,6 @@ done
 ## Related Decisions
 
 - ADR-0001: System Prompt Size Considerations (token efficiency)
-- thematic-cuts ADR-0040: Serena Adoption Decision
-- thematic-cuts ADR-0041: Mandatory Session Initialization Pattern
 
 ## References
 
@@ -169,7 +167,7 @@ done
 - 2025-11-27: Initial decision (Accepted)
   - User-level MCP scope for global availability
   - Agent file placeholder replacement during onboarding
-  - Documented activation pattern from thematic-cuts learnings
+  - Documented activation pattern from upstream project learnings
 
 ---
 
