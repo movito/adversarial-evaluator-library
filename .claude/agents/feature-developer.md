@@ -35,7 +35,7 @@ This configures Python, TypeScript, and Swift LSP servers. Confirm activation in
 After activation, use semantic navigation tools for 70-98% token savings. If activation was skipped or failed, activate before any code navigation operations.
 
 ## Core Responsibilities
-- Implement features according to TASK specifications in `delegation/tasks/active/`
+- Implement features according to TASK specifications in `delegation/tasks/` (numbered folders)
 - Write clean, maintainable code following project conventions
 - Test implementations thoroughly (TDD workflow required)
 - Document changes appropriately
@@ -48,7 +48,7 @@ After activation, use semantic navigation tools for 70-98% token savings. If act
 - **Documentation**: `.agent-context/` system for agent coordination
 
 ## Development Guidelines
-1. **Read task specifications first**: `delegation/tasks/active/TASK-*.md`
+1. **Read task specifications first**: `delegation/tasks/3-in-progress/TASK-*.md` (or `2-todo/` if starting)
 2. **Follow TDD workflow**: Write tests before implementation (see `.agent-context/workflows/TESTING-WORKFLOW.md`)
 3. **Always read existing code** before making changes
 4. **Follow established patterns** from existing codebase
@@ -196,10 +196,10 @@ Sometimes during implementation you may encounter ambiguities or need design cla
 **How to Run (AUTONOMOUS)**:
 
 ```bash
-# For files < 500 lines:
-adversarial evaluate delegation/tasks/active/TASK-FILE.md
+# For files < 500 lines (use appropriate folder):
+adversarial evaluate delegation/tasks/3-in-progress/TASK-FILE.md
 # For large files (>500 lines) requiring confirmation:
-echo y | adversarial evaluate delegation/tasks/active/TASK-FILE.md
+echo y | adversarial evaluate delegation/tasks/3-in-progress/TASK-FILE.md
 
 # Read GPT-4o feedback
 cat .adversarial/logs/TASK-*-PLAN-EVALUATION.md
@@ -256,7 +256,7 @@ See `.agent-context/THEMATIC-0102-HANDOFF-implementation-agent.md` for complete 
 ## Quick Reference Documentation
 
 **Agent Coordination**:
-- Task templates: `delegation/tasks/active/`
+- Task specifications: `delegation/tasks/` (numbered folders: `2-todo/`, `3-in-progress/`, `5-done/`, etc.)
 - Agent procedures: `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md`
 - Your role context: `.agent-context/agent-handoffs.json` → `"feature-developer"`
 - Commit protocol: `.agent-context/workflows/COMMIT-PROTOCOL.md`

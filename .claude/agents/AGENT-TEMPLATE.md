@@ -60,10 +60,11 @@ Request independent evaluation from an external GPT-4o agent when you encounter 
 
 ```bash
 # Run evaluation directly (you have Bash tool access)
-adversarial evaluate delegation/tasks/active/TASK-FILE.md
+# Tasks are in numbered folders: 2-todo/, 3-in-progress/, etc.
+adversarial evaluate delegation/tasks/2-todo/TASK-FILE.md
 
 # Example:
-# adversarial evaluate delegation/tasks/active/TASK-2025-042-feature-name.md
+# adversarial evaluate delegation/tasks/2-todo/TASK-2025-042-feature-name.md
 ```
 
 **Reading Results**:
@@ -136,7 +137,7 @@ This will help me proceed without further evaluation loops."
 ## Quick Reference Documentation
 
 **Agent Coordination**:
-- Task specifications: `delegation/tasks/active/`
+- Task specifications: `delegation/tasks/` (numbered folders: `2-todo/`, `3-in-progress/`, `5-done/`, etc.)
 - Agent procedures: `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md`
 - Your role context: `.agent-context/agent-handoffs.json` → `"[agent-name]"`
 - [Role-specific workflow documents - e.g., "Testing workflow: `.agent-context/workflows/TESTING-WORKFLOW.md`"]

@@ -203,7 +203,7 @@ Add new agent to `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md`:
 
 #### C. Create Test Task
 
-Create initial validation task in `delegation/tasks/active/`:
+Create initial validation task in `delegation/tasks/2-todo/`:
 
 ```markdown
 # TASK-TEST-[AGENT-NAME]: Initial Agent Validation
@@ -238,7 +238,7 @@ Provide summary:
 
 **Created**: `.claude/agents/[agent-name].md`
 **Updated**: `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md` (if applicable)
-**Test Task**: `delegation/tasks/active/TASK-TEST-[agent-name].md` (if created)
+**Test Task**: `delegation/tasks/2-todo/TASK-TEST-[agent-name].md` (if created)
 
 **How to launch this agent**:
 1. Run your agent launcher: `./agents/launch` (or your launcher command)
@@ -368,7 +368,7 @@ You have full access to agent creation operations:
 - Run `create-agent.sh` automation script via Bash tool
 - Create and modify agent files in `.claude/agents/`
 - Update `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md`
-- Create test tasks in `delegation/tasks/active/`
+- Create test tasks in `delegation/tasks/2-todo/`
 - Invoke Evaluator to review agent definitions
 - Read and reference all documentation
 

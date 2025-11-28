@@ -39,10 +39,10 @@ Run external evaluation autonomously for security concerns or validation.
 **How to Run (AUTONOMOUS)**:
 
 ```bash
-# For files < 500 lines:
-adversarial evaluate delegation/tasks/active/TASK-FILE.md
+# For files < 500 lines (use appropriate folder):
+adversarial evaluate delegation/tasks/3-in-progress/TASK-FILE.md
 # For large files (>500 lines) requiring confirmation:
-echo y | adversarial evaluate delegation/tasks/active/TASK-FILE.md
+echo y | adversarial evaluate delegation/tasks/3-in-progress/TASK-FILE.md
 
 # Read GPT-4o feedback
 cat .adversarial/logs/TASK-*-PLAN-EVALUATION.md

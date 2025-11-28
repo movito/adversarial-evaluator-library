@@ -141,13 +141,13 @@ Priority 3: Default to "Backlog"
 **How to Run Evaluation (AUTONOMOUS)**:
 
 ```bash
-# 1. Create or update task in delegation/tasks/active/TASK-*.md
+# 1. Create or update task in delegation/tasks/2-todo/TASK-*.md (or appropriate folder)
 
 # 2. Run evaluation directly via Bash tool
 # For files < 500 lines:
-adversarial evaluate delegation/tasks/active/TASK-FILE.md
+adversarial evaluate delegation/tasks/2-todo/TASK-FILE.md
 # For large files (>500 lines) requiring confirmation:
-echo y | adversarial evaluate delegation/tasks/active/TASK-FILE.md
+echo y | adversarial evaluate delegation/tasks/2-todo/TASK-FILE.md
 
 # 3. Read GPT-4o feedback
 cat .adversarial/logs/TASK-*-PLAN-EVALUATION.md
@@ -172,7 +172,7 @@ cat .adversarial/logs/TASK-*-PLAN-EVALUATION.md
 - After 2 iterations, proceed with best judgment + document decision
 
 ## Documentation Areas
-- Task specifications: `delegation/tasks/active/`, `delegation/tasks/completed/`
+- Task specifications: `delegation/tasks/` (numbered folders: `2-todo/`, `3-in-progress/`, `5-done/`, etc.)
 - Agent coordination: `.agent-context/agent-handoffs.json`
 - Procedural knowledge: `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md`
 - Evaluation logs: `.adversarial/logs/`
@@ -296,16 +296,16 @@ User will:
 **Key Files to Maintain**:
 - `.agent-context/agent-handoffs.json` (current agent status, task assignments)
 - `.agent-context/current-state.json` (project state, metrics, phase tracking)
-- `delegation/tasks/active/` (active task specifications)
+- `delegation/tasks/` (task specifications in numbered folders: `2-todo/`, `3-in-progress/`, `5-done/`, etc.)
 - `.adversarial/logs/` (evaluation results - read-only)
 
 **Evaluation Command** (run directly via Bash tool):
 ```bash
-# For files < 500 lines:
-adversarial evaluate delegation/tasks/active/TASK-FILE.md
+# For files < 500 lines (use appropriate folder):
+adversarial evaluate delegation/tasks/2-todo/TASK-FILE.md
 
 # For large files (>500 lines) requiring confirmation:
-echo y | adversarial evaluate delegation/tasks/active/TASK-FILE.md
+echo y | adversarial evaluate delegation/tasks/2-todo/TASK-FILE.md
 ```
 
 ## Allowed Operations
