@@ -171,7 +171,7 @@ ADR-0038 includes "Real-World Results" section (lines 213-235):
 
 **Status**: Accepted
 **Date**: 2025-11-14
-**Deciders**: tycho (coordinator), Fredrik Matheson (user)
+**Deciders**: tycho (coordinator), [Project Lead] (user)
 
 ## Context
 [53 lines explaining the problem, incident, and status chaos]
