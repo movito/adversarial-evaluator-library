@@ -391,7 +391,7 @@ git merge upstream/main
 
 **How merging works:**
 - Files **only you changed** → your changes preserved
-- Files **only upstream changed** → you get the updates  
+- Files **only upstream changed** → you get the updates
 - Files **both changed** → merge conflict (you decide what to keep)
 
 **Best practices for easy updates:**
