@@ -33,17 +33,9 @@ dev = [
     "ruff>=0.1.0",
     "isort>=5.13.0",
     "pre-commit>=3.5.0",
-]
-
-# Linear sync dependencies (for task management integration)
-linear = [
+    # Linear sync (included by default - most projects use it)
     "gql[requests]>=3.4.0",    # GraphQL client for Linear API
     "python-dotenv>=1.0.0",    # Load .env files
-]
-
-# All optional dependencies combined
-all = [
-    "agentive-starter-kit[dev,linear]",
 ]
 
 [tool.pytest.ini_options]
