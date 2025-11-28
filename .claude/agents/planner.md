@@ -123,7 +123,7 @@ Priority 3: Default to "Backlog"
 
 **Reference**: ADR-0038 (`docs/decisions/adr/ADR-0038-task-status-linear-alignment.md`)
 
-## Evaluation Workflow (Primary Coordinator Responsibility)
+## Evaluation Workflow (Primary Planner Responsibility)
 
 **📖 Complete Guide**: `.adversarial/docs/EVALUATION-WORKFLOW.md` (347 lines)
 
