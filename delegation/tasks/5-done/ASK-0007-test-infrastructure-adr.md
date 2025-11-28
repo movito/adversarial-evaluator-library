@@ -1,6 +1,6 @@
 # ASK-0007: Test Infrastructure Strategy ADR
 
-**Status**: Todo
+**Status**: Done
 **Priority**: high
 **Assigned To**: planner
 **Estimated Effort**: 1-2 hours
