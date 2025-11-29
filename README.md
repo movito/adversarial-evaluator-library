@@ -12,7 +12,7 @@ A complete starter kit for **agentive development** - a methodology for coordina
 
 This kit provides:
 
-- **10+ Specialized Agents** - Planner, feature-developer, test-runner, and more
+- **11 Specialized Agents** - Planner, feature-developer, test-runner, code-reviewer, and more
 - **Task Management System** - Linear-compatible workflow with numbered folders
 - **Adversarial Evaluation** - GPT-4o reviews your plans before implementation
 - **Serena Integration** - Semantic code navigation across multiple languages
@@ -119,6 +119,7 @@ Setup takes approximately 5-10 minutes.
 | `powertest-runner` | Comprehensive test suites |
 | `document-reviewer` | Documentation quality |
 | `security-reviewer` | Security analysis |
+| `code-reviewer` | Reviews implementations for quality |
 | `ci-checker` | CI/CD verification |
 | `agent-creator` | Create new specialized agents |
 
@@ -321,7 +322,8 @@ pytest tests/ --cov=your_project --cov-report=term-missing
 - **Agent Template**: `.claude/agents/AGENT-TEMPLATE.md`
 - **Task Template**: `delegation/tasks/9-reference/templates/task-template.md`
 - **Evaluation Workflow**: `.adversarial/docs/EVALUATION-WORKFLOW.md`
-- **ADR Template**: `docs/decisions/adr/TEMPLATE-FOR-ADR-FILES.md`
+- **Starter Kit ADRs**: `docs/decisions/starter-kit-adr/` (18 architectural decisions)
+- **Your Project ADRs**: `docs/decisions/adr/` (start fresh here)
 
 ---
 
@@ -349,7 +351,9 @@ your-project/
 │   └── handoffs/            # Agent handoff documents
 ├── docs/
 │   ├── agentive-development/# Complete methodology guide
-│   ├── decisions/adr/       # Architectural Decision Records
+│   ├── decisions/
+│   │   ├── starter-kit-adr/ # Starter kit ADRs (reference)
+│   │   └── adr/             # Your project ADRs
 │   └── prd/                 # Product Requirements Documents
 ├── agents/
 │   ├── launch               # Agent launcher (interactive menu)
@@ -438,5 +442,5 @@ Developed through real-world use on production projects. Special thanks to the C
 
 ---
 
-**Version**: 1.0.0
-**Last Updated**: 2025-11-25
+**Version**: 1.1.0
+**Last Updated**: 2025-11-29
