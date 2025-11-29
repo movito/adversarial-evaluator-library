@@ -333,6 +333,69 @@ git push origin main         # Push to GitHub ✅
 
 ---
 
+---
+
+## Post-Push Linear Sync Verification
+
+After pushing changes that affect task files (status changes, new tasks, completed tasks):
+
+### When to Verify
+
+- After completing tasks (moving to `5-done/`)
+- After creating new tasks
+- After any task status changes
+- After `./project linearsync` runs in CI
+
+### How to Verify
+
+```bash
+./project sync-status
+```
+
+**Expected Output (In Sync)**:
+```
+Linear Sync Status
+==================
+Team: Your Team
+Local tasks:   26
+Linear issues: 26
+
+Status: ✅ In sync
+
+Last sync: 2025-11-29 02:32:31 UTC
+```
+
+**Expected Output (Mismatch)**:
+```
+Linear Sync Status
+==================
+Team: Your Team
+Local tasks:   26
+Linear issues: 24
+
+Status: ⚠️  Mismatch detected (2 missing in Linear)
+
+Missing in Linear: ASK-0025, ASK-0026
+
+Run: ./project linearsync
+```
+
+### Handling Mismatches
+
+1. **If local > Linear**: Run `./project linearsync` to sync missing tasks
+2. **If Linear > local**: Normal if issues were created directly in Linear
+3. **Persistent mismatch**: Check `.env` for `LINEAR_API_KEY` and `LINEAR_TEAM_ID`
+
+### Integration with CI
+
+The GitHub Actions workflow runs `./project linearsync` on push. After CI passes:
+
+1. Wait ~30 seconds for Linear to update
+2. Run `./project sync-status` to verify
+3. If mismatch, investigate or re-run sync
+
+---
+
 **Related Workflows**:
 - [TESTING-WORKFLOW.md](./TESTING-WORKFLOW.md) - Run tests before committing
 - [TASK-COMPLETION-PROTOCOL.md](./TASK-COMPLETION-PROTOCOL.md) - Completing tasks with commits

@@ -123,6 +123,27 @@ Priority 3: Default to "Backlog"
 
 **Reference**: KIT-ADR-0012 (`docs/decisions/starter-kit-adr/KIT-ADR-0012-task-status-linear-alignment.md`)
 
+### Linear Sync Verification
+
+After completing task status changes, verify Linear is updated:
+
+```bash
+./project sync-status
+```
+
+**When to Verify**:
+- After completing tasks (moving to `5-done/`)
+- After creating new tasks
+- After any task status changes
+- After CI runs `./project linearsync`
+
+**If Mismatch Detected**:
+1. Run `./project linearsync` to sync missing tasks
+2. Re-verify with `./project sync-status`
+3. If persistent, check `.env` for `LINEAR_API_KEY` and `LINEAR_TEAM_ID`
+
+**Reference**: `.agent-context/workflows/COMMIT-PROTOCOL.md` → "Post-Push Linear Sync Verification"
+
 ## Evaluation Workflow (Primary Planner Responsibility)
 
 **📖 Complete Guide**: `.adversarial/docs/EVALUATION-WORKFLOW.md` (347 lines)

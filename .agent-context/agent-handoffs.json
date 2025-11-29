@@ -8,10 +8,10 @@
     "handoff_file": ".agent-context/ASK-0025-HANDOFF-feature-developer.md"
   },
   "feature-developer": {
-    "status": "pending_assignment",
+    "status": "in_progress",
     "current_task": "ASK-0025",
-    "task_started": null,
-    "brief_note": "Task ready: Linear Sync Verification - awaiting user invocation",
+    "task_started": "2025-11-29",
+    "brief_note": "Working on Linear Sync Verification - sync-status command + docs",
     "details_link": "delegation/tasks/2-todo/ASK-0025-linear-sync-verification.md"
   },
   "test-runner": {

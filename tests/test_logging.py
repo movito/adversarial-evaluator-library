@@ -27,7 +27,6 @@ import pytest
 
 from scripts.logging_config import performance_logged, setup_logging
 
-
 # =============================================================================
 # FIXTURES
 # =============================================================================
@@ -112,9 +111,7 @@ class TestSetupLogging:
         logger = setup_logging("test.logger")
 
         assert len(logger.handlers) >= 1
-        assert any(
-            isinstance(h, logging.StreamHandler) for h in logger.handlers
-        )
+        assert any(isinstance(h, logging.StreamHandler) for h in logger.handlers)
 
     def test_no_duplicate_handlers_on_multiple_calls(self):
         """Multiple calls to setup_logging don't add duplicate handlers."""
@@ -150,9 +147,7 @@ class TestFileLogging:
 
         from logging.handlers import RotatingFileHandler
 
-        assert any(
-            isinstance(h, RotatingFileHandler) for h in logger.handlers
-        )
+        assert any(isinstance(h, RotatingFileHandler) for h in logger.handlers)
 
     def test_creates_log_directory(self, monkeypatch, tmp_path):
         """LOG_FILE creates parent directory if needed."""
