@@ -65,6 +65,35 @@ We will **keep the custom Linear sync implementation** as the primary mechanism 
 ./project linearsync
 ```
 
+### Sync Execution Modes
+
+The sync can be triggered in two ways:
+
+**1. Local Sync (On-Demand)**
+```bash
+./project linearsync
+```
+- Reads task files directly from local filesystem
+- Syncs immediately to Linear via API
+- No commit/push required
+- Useful for verifying changes before commit
+- Agent-initiated during task completion
+
+**2. CI Sync (Automated)**
+- Triggers on push to main branch (GitHub Actions)
+- Reads files from committed state
+- Ensures Linear stays current with repository
+- Provides consistent baseline for team visibility
+- Configured in `.github/workflows/sync-to-linear.yml`
+
+**Key difference**: Local sync reads uncommitted files, CI sync reads committed files. Both use the same sync script and produce identical results for the same file content.
+
+**Recommended workflow**:
+1. Complete task, update Status field (or use `./project complete <id>`)
+2. Run `./project linearsync` to verify sync works
+3. Commit and push changes
+4. CI sync runs automatically as backup
+
 ## Consequences
 
 ### Positive
@@ -155,9 +184,13 @@ We will **keep the custom Linear sync implementation** as the primary mechanism 
 
 ## Revision History
 
+- 2025-11-29: Added Sync Execution Modes section (v1.1)
+  - Documented local sync vs CI sync distinction
+  - Added recommended workflow for task completion
 - 2025-11-28: Initial decision (Accepted)
 
 ---
 
 **Template Version**: 1.1.0
+**Last Updated**: 2025-11-29
 **Project**: agentive-starter-kit

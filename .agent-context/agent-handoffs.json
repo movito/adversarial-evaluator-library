@@ -1,17 +1,18 @@
 {
   "planner": {
     "status": "completed",
-    "current_task": "Backlog Clear",
+    "current_task": "ASK-0025",
     "task_started": "2025-11-29",
-    "brief_note": "✅ COMPLETE: Cleared backlog - ASK-0020, ASK-0018, ASK-0017, ASK-0014 → KIT-ADR-0015 through KIT-ADR-0018",
-    "details_link": "docs/decisions/starter-kit-adr/README.md"
+    "brief_note": "✅ COMPLETE: Task starter prepared for ASK-0025 - Linear Sync Verification",
+    "details_link": ".agent-context/ASK-0025-HANDOFF-feature-developer.md",
+    "handoff_file": ".agent-context/ASK-0025-HANDOFF-feature-developer.md"
   },
   "feature-developer": {
-    "status": "idle",
-    "current_task": null,
+    "status": "pending_assignment",
+    "current_task": "ASK-0025",
     "task_started": null,
-    "brief_note": "Ready for implementation tasks",
-    "details_link": null
+    "brief_note": "Task ready: Linear Sync Verification - awaiting user invocation",
+    "details_link": "delegation/tasks/2-todo/ASK-0025-linear-sync-verification.md"
   },
   "test-runner": {
     "status": "idle",
