@@ -82,6 +82,7 @@ omit = [
     ".venv/*",
     # CLI entry points are hard to unit test - focus coverage on utility modules
     "scripts/sync_tasks_to_linear.py",
+    "scripts/validate_task_status.py",
 ]
 
 [tool.coverage.report]
