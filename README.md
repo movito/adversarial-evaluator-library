@@ -1,29 +1,30 @@
 # Agentive Starter Kit
 
-**Production-ready infrastructure for agentive AI development**
+**A structured setup for building software with agents**
 
-Build software with specialized AI agents, adversarial evaluation, and structured task management.
+In this kit, you'll find a set of tools, approaches, and scaffolds for more effective agent-augmented software development. These grew out of our own agentive projects, and eventually became the repo we clone when starting a new project. You can use these as you wish, and tweak or delete things to suit your preferences. We mostly use Claude Opus 4.5 and Claude Sonnet 4.5 for agent work. You can use other models if you like, manually, or with help from the agents.
+
+## What's inside?
+
+1. An **onboarding agent** to help you get started. 
+
+2. A selection of **specialized agents** that have specific tasks, instructions, and tools. Some of them create and track plans, others write code, and so on.
+
+3. A package we created called `adversarial-evaluation` which lets agents get a "second opinion" from an `Evaluator`; a specialized Open AI GPT-4o agent. We found that constructive critique among agents can give a big productivity boost.
+
+4. A **task management setup** with task templates, a task tracking system, and an optional Linear sync.
+
+5. Infrastructure for **test-driven development** (TDD), with test templates, quality gates, pre-commit hooks, and more.
+
+6. A system for creating and maintaining **architectural decision records**; think of it as a knowledgebase for agents – and humans.
+
+7. Integration with Serena, by Oraios, for helping agents work more effectively with the codebase.
+
+8. Detailed documentation on how to select the right agent, size tasks correctly, write good tests, and more
 
 ---
 
-## What Is This?
-
-A complete starter kit for **agentive development** - a methodology for coordinating specialized AI agents to build high-quality software at scale.
-
-This kit provides:
-
-- **11 Specialized Agents** - Planner, feature-developer, test-runner, code-reviewer, and more
-- **Task Management System** - Linear-compatible workflow with numbered folders
-- **Adversarial Evaluation** - GPT-4o reviews your plans before implementation
-- **Serena Integration** - Semantic code navigation across multiple languages
-- **TDD Infrastructure** - Pre-commit hooks, test templates, quality gates
-- **Comprehensive Documentation** - Agentive development guide included
-
-**Source**: Extracted from a production project with 90+ completed tasks and 85%+ test pass rate.
-
----
-
-## Prerequisites
+## Requirements
 
 Before you begin, verify you have the following:
 
@@ -31,10 +32,11 @@ Before you begin, verify you have the following:
 
 | Requirement | How to Check | How to Get |
 |-------------|--------------|------------|
-| **Claude Account** | You can log into [claude.ai](https://claude.ai) | [Sign up](https://claude.ai) |
-| **Claude Code** | `claude --version` | [Download](https://claude.ai/download) or install VS Code/Cursor extension |
-| **GitHub Account** | You can log into [github.com](https://github.com) | [Sign up](https://github.com/signup) |
-| **Git Configured** | `git config user.name && git config user.email` | [Setup guide](https://docs.github.com/en/get-started/quickstart/set-up-git) |
+| **A code editor with a terminal | | |
+| **A Claude account** | You can log into [claude.ai](https://claude.ai) | [Sign up](https://claude.ai) |
+| **Claude Code installed** | `claude --version` | [Download](https://claude.ai/download) or install VS Code/Cursor extension |
+| **GitHub account** | You can log into [github.com](https://github.com) | [Sign up](https://github.com/signup) |
+| **Git configured** | `git config user.name && git config user.email` | [Setup guide](https://docs.github.com/en/get-started/quickstart/set-up-git) |
 
 > **New to Git?** Check out [GitHub's Git Handbook](https://guides.github.com/introduction/git-handbook/) for a quick introduction.
 
@@ -49,7 +51,7 @@ Before you begin, verify you have the following:
 
 | Requirement | Purpose | How to Get |
 |-------------|---------|------------|
-| **OpenAI API Key** | Adversarial evaluation (~$0.04/eval) | [platform.openai.com](https://platform.openai.com/api-keys) |
+| **OpenAI API Key** | Adversarial evaluation (~$0.04 per evaluation) | [platform.openai.com](https://platform.openai.com/api-keys) |
 | **Linear Integration** | Task sync with Linear issues | See [Linear Integration](#linear-integration) section below |
 
 ### Quick Preflight Check
