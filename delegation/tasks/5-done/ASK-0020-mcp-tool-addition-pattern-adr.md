@@ -1,6 +1,6 @@
 # ASK-0020: MCP Tool Addition Pattern ADR
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: medium
 **Assigned To**: planner
 **Estimated Effort**: 1-2 hours

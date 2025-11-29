@@ -39,6 +39,7 @@ This folder contains ADRs inherited from the **agentive-starter-kit** template. 
 | KIT-ADR-0012 | Task Status Linear Alignment | Accepted |
 | KIT-ADR-0013 | Real-Time Task Monitoring | Accepted |
 | KIT-ADR-0014 | Code Review Workflow | Accepted |
+| KIT-ADR-0015 | MCP Tool Addition Pattern | Accepted |
 
 ## When to Reference These
 
