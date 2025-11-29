@@ -1,6 +1,6 @@
 # ASK-0002: Fix Pre-commit Configuration
 
-**Status**: Todo
+**Status**: Done
 **Priority**: Critical
 **Assigned To**: feature-developer
 **Estimated Effort**: 45 minutes

@@ -1,6 +1,6 @@
 # ASK-0003: Fix GitHub CLI Default Repository Issue
 
-**Status**: Todo
+**Status**: Done
 **Priority**: High
 **Assigned To**: feature-developer
 **Estimated Effort**: 1 hour

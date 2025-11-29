@@ -1,6 +1,6 @@
 # ASK-0001: Add Generic pyproject.toml
 
-**Status**: Todo
+**Status**: Done
 **Priority**: Critical
 **Assigned To**: feature-developer
 **Estimated Effort**: 30 minutes

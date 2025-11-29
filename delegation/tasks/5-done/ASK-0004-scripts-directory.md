@@ -1,6 +1,6 @@
 # ASK-0004: Add Scripts Directory with Starter Scripts
 
-**Status**: Todo
+**Status**: Done
 **Priority**: Medium
 **Assigned To**: feature-developer
 **Estimated Effort**: 30 minutes
