@@ -8,12 +8,164 @@ Simple memorable command interface for common project operations.
 Usage:
     ./project linearsync     - Sync tasks to Linear
     ./project sync           - Alias for linearsync
+    ./project move <id> <status> - Move task and update Status field
+    ./project complete <id>  - Move task to done
+    ./project validate       - Validate all task statuses
     ./project help           - Show help
 """
 
+import re
+import shutil
 import subprocess
 import sys
 from pathlib import Path
+
+# Status to folder mapping
+STATUS_FOLDER_MAP = {
+    "backlog": "1-backlog",
+    "todo": "2-todo",
+    "in-progress": "3-in-progress",
+    "in-review": "4-in-review",
+    "done": "5-done",
+    "canceled": "6-canceled",
+    "blocked": "7-blocked",
+}
+
+# Folder to Linear-native status mapping
+FOLDER_STATUS_MAP = {
+    "1-backlog": "Backlog",
+    "2-todo": "Todo",
+    "3-in-progress": "In Progress",
+    "4-in-review": "In Review",
+    "5-done": "Done",
+    "6-canceled": "Canceled",
+    "7-blocked": "Blocked",
+}
+
+
+def find_task_file(task_id: str, project_dir: Path) -> Path | None:
+    """Find a task file by ID across all workflow folders."""
+    tasks_dir = project_dir / "delegation" / "tasks"
+
+    # Normalize task ID (handle ASK-0001 or ASK-1)
+    task_id_upper = task_id.upper()
+
+    for folder in tasks_dir.iterdir():
+        if not folder.is_dir():
+            continue
+        for file in folder.glob("*.md"):
+            if task_id_upper in file.name.upper():
+                return file
+    return None
+
+
+def update_status_in_file(file_path: Path, new_status: str) -> bool:
+    """Update the Status field in a task file."""
+    try:
+        content = file_path.read_text()
+        # Replace Status field
+        new_content = re.sub(
+            r"(\*\*Status\*\*:\s*)(\w+(?:\s+\w+)?)",
+            f"\\1{new_status}",
+            content,
+            count=1
+        )
+        if new_content != content:
+            file_path.write_text(new_content)
+            return True
+        return False
+    except Exception as e:
+        print(f"❌ Error updating file: {e}")
+        return False
+
+
+def move_task(task_id: str, target_status: str, project_dir: Path) -> bool:
+    """Move a task to a new folder and update its Status field."""
+    # Normalize target status
+    target_lower = target_status.lower().replace("_", "-").replace(" ", "-")
+
+    if target_lower not in STATUS_FOLDER_MAP:
+        print(f"❌ Unknown status: {target_status}")
+        print(f"   Valid statuses: {', '.join(STATUS_FOLDER_MAP.keys())}")
+        return False
+
+    target_folder = STATUS_FOLDER_MAP[target_lower]
+    linear_status = FOLDER_STATUS_MAP[target_folder]
+
+    # Find the task file
+    task_file = find_task_file(task_id, project_dir)
+    if not task_file:
+        print(f"❌ Task not found: {task_id}")
+        return False
+
+    # Get current folder
+    current_folder = task_file.parent.name
+
+    if current_folder == target_folder:
+        print(f"ℹ️  Task already in {target_folder}")
+        # Still update status field if needed
+        update_status_in_file(task_file, linear_status)
+        return True
+
+    # Move file
+    target_dir = project_dir / "delegation" / "tasks" / target_folder
+    target_path = target_dir / task_file.name
+
+    try:
+        shutil.move(str(task_file), str(target_path))
+        print(f"📁 Moved: {current_folder} → {target_folder}")
+    except Exception as e:
+        print(f"❌ Error moving file: {e}")
+        return False
+
+    # Update status field
+    if update_status_in_file(target_path, linear_status):
+        print(f"✏️  Updated: **Status**: {linear_status}")
+
+    print(f"✅ Task {task_id} is now {linear_status}")
+    return True
+
+
+def validate_all_tasks(project_dir: Path) -> bool:
+    """Validate all task files have matching Status and folder."""
+    tasks_dir = project_dir / "delegation" / "tasks"
+    errors = []
+    checked = 0
+
+    for folder in tasks_dir.iterdir():
+        if not folder.is_dir():
+            continue
+        if folder.name in ["8-archive", "9-reference"]:
+            continue
+        if folder.name not in FOLDER_STATUS_MAP:
+            continue
+
+        expected_status = FOLDER_STATUS_MAP[folder.name]
+
+        for file in folder.glob("*.md"):
+            checked += 1
+            content = file.read_text()
+            match = re.search(r"\*\*Status\*\*:\s*(\w+(?:\s+\w+)?)", content)
+
+            if not match:
+                errors.append(f"{file.name}: No Status field found")
+                continue
+
+            actual_status = match.group(1).strip()
+            if actual_status != expected_status:
+                errors.append(
+                    f"{file.name}: Status '{actual_status}' != folder '{expected_status}'"
+                )
+
+    if errors:
+        print(f"❌ Found {len(errors)} status mismatches:\n")
+        for error in errors:
+            print(f"  • {error}")
+        print(f"\nTo fix, use: ./project move <task-id> <status>")
+        return False
+
+    print(f"✅ All {checked} tasks have matching Status and folder")
+    return True
 
 
 def main():
@@ -119,9 +271,53 @@ except Exception as e:
         sys.exit(0)
 
     elif command == "version":
-        print("Project CLI v1.0.0")
+        print("Project CLI v1.1.0")
         print("Part of Agentive Starter Kit")
         sys.exit(0)
+
+    elif command == "move":
+        # Move task to new status folder
+        if len(sys.argv) < 4:
+            print("Usage: ./project move <task-id> <status>")
+            print("       ./project move ASK-0001 done")
+            print(f"       Valid statuses: {', '.join(STATUS_FOLDER_MAP.keys())}")
+            sys.exit(1)
+        task_id = sys.argv[2]
+        target_status = sys.argv[3]
+        success = move_task(task_id, target_status, project_dir)
+        sys.exit(0 if success else 1)
+
+    elif command == "complete":
+        # Shorthand for moving to done
+        if len(sys.argv) < 3:
+            print("Usage: ./project complete <task-id>")
+            sys.exit(1)
+        task_id = sys.argv[2]
+        success = move_task(task_id, "done", project_dir)
+        sys.exit(0 if success else 1)
+
+    elif command == "start":
+        # Shorthand for moving to in-progress
+        if len(sys.argv) < 3:
+            print("Usage: ./project start <task-id>")
+            sys.exit(1)
+        task_id = sys.argv[2]
+        success = move_task(task_id, "in-progress", project_dir)
+        sys.exit(0 if success else 1)
+
+    elif command == "block":
+        # Shorthand for moving to blocked
+        if len(sys.argv) < 3:
+            print("Usage: ./project block <task-id>")
+            sys.exit(1)
+        task_id = sys.argv[2]
+        success = move_task(task_id, "blocked", project_dir)
+        sys.exit(0 if success else 1)
+
+    elif command == "validate":
+        # Validate all task statuses match folders
+        success = validate_all_tasks(project_dir)
+        sys.exit(0 if success else 1)
 
     else:
         print(f"❌ Unknown command: {command}")
@@ -154,33 +350,29 @@ Project CLI - Agentive Starter Kit
 
 Usage: ./project <command> [options]
 
-Commands:
-  linearsync, sync   Sync task files to Linear
-  teams              List all Linear teams (KEY, UUID, name)
-  help               Show this help message
-  version            Show version information
+Task Management:
+  move <id> <status>   Move task to folder and update Status field
+  complete <id>        Move task to done (shorthand)
+  start <id>           Move task to in-progress (shorthand)
+  block <id>           Move task to blocked (shorthand)
+  validate             Validate all task statuses match folders
+
+Linear Sync:
+  linearsync, sync     Sync task files to Linear
+  teams                List all Linear teams
+
+Other:
+  help                 Show this help message
+  version              Show version information
 
 Examples:
+  ./project complete ASK-0001    Move task to done, update Status
+  ./project move ASK-0002 todo   Move task to todo folder
+  ./project validate             Check all statuses match folders
   ./project linearsync           Sync all tasks to Linear
-  ./project teams                List available Linear teams
-  ./project sync                 Alias for linearsync
 
-Setup:
-  1. Create a virtual environment:
-     python3 -m venv venv && source venv/bin/activate
-
-  2. Install dependencies:
-     pip install -e ".[dev,linear]"
-
-  3. Configure Linear API:
-     cp .env.template .env
-     # Edit .env and add your LINEAR_API_KEY
-
-  4. List teams (if you have multiple):
-     ./project teams
-
-  5. Sync tasks:
-     ./project linearsync
+Valid statuses for 'move':
+  backlog, todo, in-progress, in-review, done, canceled, blocked
 
 For more information, see README.md
 """

@@ -250,17 +250,65 @@ def should_sync_task(task_file: Path) -> bool:
 - ❌ Requires manual updates for migration
 - ❌ Poor user experience
 
+## Tooling Support
+
+### Helper Commands
+
+The `./project` CLI provides commands to maintain status/folder alignment:
+
+```bash
+# Move task and update Status field atomically
+./project move ASK-0001 done
+./project move ASK-0002 in-progress
+
+# Shorthand commands
+./project complete ASK-0001    # → 5-done, Status: Done
+./project start ASK-0001       # → 3-in-progress, Status: In Progress
+./project block ASK-0001       # → 7-blocked, Status: Blocked
+
+# Validate all tasks
+./project validate             # Check all statuses match folders
+```
+
+### Pre-commit Validation
+
+A pre-commit hook validates Status field matches folder location:
+
+```yaml
+# .pre-commit-config.yaml
+- repo: local
+  hooks:
+    - id: validate-task-status
+      name: Validate task status matches folder
+      entry: python scripts/validate_task_status.py
+      language: python
+      files: ^delegation/tasks/.*\.md$
+```
+
+**Behavior:**
+- Blocks commits if Status doesn't match folder
+- Shows specific files and expected values
+- Suggests fix: `./project move <task-id> <status>`
+
+### Recommended Workflow
+
+1. **Moving tasks**: Use `./project complete ASK-0001` instead of `git mv`
+2. **Bulk fixes**: Run `./project validate` to find mismatches
+3. **Pre-commit**: Automatically catches misaligned status before commit
+
 ## Real-World Results
 
 **Current implementation:**
 - `scripts/linear_sync_utils.py` - Status mapping utilities
 - `scripts/sync_tasks_to_linear.py` - Sync orchestration
-- 50+ tests covering status resolution
+- `scripts/validate_task_status.py` - Pre-commit validation
+- `./project` CLI - Helper commands (move, complete, start, block, validate)
 
 **Observed behavior:**
 - Tasks sync with correct status on push
 - Legacy statuses auto-migrate transparently
 - Archive folders excluded as expected
+- Pre-commit prevents misaligned commits
 
 ## Related Decisions
 
@@ -276,6 +324,11 @@ def should_sync_task(task_file: Path) -> bool:
 
 ## Revision History
 
+- 2025-11-29: Added tooling support (v1.1)
+  - Added `./project move/complete/start/block` commands
+  - Added `./project validate` command
+  - Added pre-commit hook for status validation
+  - Updated References section
 - 2025-11-28: Initial decision (Accepted)
   - Documented 3-level priority system
   - Defined folder → status mapping
@@ -284,5 +337,5 @@ def should_sync_task(task_file: Path) -> bool:
 ---
 
 **Template Version**: 1.1.0
-**Last Updated**: 2025-11-28
+**Last Updated**: 2025-11-29
 **Project**: agentive-starter-kit

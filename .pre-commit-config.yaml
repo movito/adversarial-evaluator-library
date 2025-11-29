@@ -53,6 +53,17 @@ repos:
           '--select=E9,F63,F7,F82'
         ]
 
+  # Validate task status matches folder
+  - repo: local
+    hooks:
+      - id: validate-task-status
+        name: Validate task status matches folder
+        entry: python scripts/validate_task_status.py
+        language: python
+        files: ^delegation/tasks/.*\.md$
+        pass_filenames: true
+        stages: [pre-commit]
+
   # Run fast tests before commit (optional - skips if no tests)
   # To skip: SKIP_TESTS=1 git commit -m "WIP"
   - repo: local
