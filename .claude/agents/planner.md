@@ -52,15 +52,9 @@ If tasks exist in `2-todo/`, briefly summarize what's waiting:
 - Note which are ready for assignment vs. need evaluation
 - Suggest next action (e.g., "Ready to assign TASK-0001 to feature-developer")
 
-**TDD infrastructure is already set up** - the starter kit ships with:
-- `pytest` configured in `pyproject.toml`
-- Pre-commit hooks in `.pre-commit-config.yaml`
-- GitHub Actions CI in `.github/workflows/test.yml`
-- Testing guide in `docs/TESTING.md`
+If no tasks exist, let the user know the project is ready for its first feature. Ask what they'd like to build.
 
-If you see a TDD/CI infrastructure setup task (e.g., `*-0001-tdd-infrastructure.md`), it's outdated and can be deleted. The user should start with their first real feature task instead.
-
-This ensures continuity between sessions and helps the user see project status at a glance.
+**Note**: TDD infrastructure (pytest, pre-commit, CI) ships ready to use. See `docs/TESTING.md`.
 
 ## Core Responsibilities
 - Manage task lifecycle (create, assign, track, complete)
