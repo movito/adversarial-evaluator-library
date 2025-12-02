@@ -229,11 +229,13 @@ Linear integration provides:
 - Team visibility into task progress
 
 To get a Linear API key:
-1. Go to Linear Settings > API > Personal API keys
-2. Create a new key
-3. Copy the key
+1. Go to: https://linear.app/{your-workspace}/settings/account/security
+   (Replace {your-workspace} with your Linear workspace name in lowercase)
+2. Scroll to "Personal API keys"
+3. Create a new key and copy it (starts with `lin_api_`)
 
-You'll also need your Team ID (found in team settings URL).
+Your Team ID is the short identifier for your team (e.g., "TC2", "PROJ").
+You can find it in the URL when viewing your team, or just use your task prefix.
 ```
 
 ---
