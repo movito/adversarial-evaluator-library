@@ -61,7 +61,7 @@ If you'd like to try this kit, here are the tools you'll need:
 Clone the repo and run this script to validate your environment:
 
 ```bash
-./agents/preflight
+agents/preflight
 ```
 
 It will check all requirements and tell you what's missing.
@@ -92,7 +92,7 @@ Then open the folder in your IDE (VS Code, Cursor, etc.).
 ### 2. Run First-Time Onboarding
 
 ```bash
-./agents/onboarding
+agents/onboarding
 ```
 
 ### 3. Follow Interactive Setup
@@ -268,19 +268,19 @@ Tasks work fine without Linear - they're just markdown files. Agents can create,
 
 ```bash
 # Run onboarding (first time only)
-./agents/onboarding
+agents/onboarding
 ```
 
 ### Launching Agents (After Setup)
 
 ```bash
 # Interactive menu
-./agents/launch
+agents/launch
 
 # Launch specific agent
-./agents/launch planner
-./agents/launch feature-developer
-./agents/launch test-runner
+agents/launch planner
+agents/launch feature-developer
+agents/launch test-runner
 ```
 
 ### Creating Tasks
@@ -288,7 +288,7 @@ Tasks work fine without Linear - they're just markdown files. Agents can create,
 **The easy way:** Just tell `planner` what you want to build. The agent will create and manage tasks for you.
 
 ```bash
-./agents/launch planner
+agents/launch planner
 # Then: "I want to add user authentication to my app"
 ```
 
