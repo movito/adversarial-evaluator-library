@@ -173,33 +173,23 @@ Reduces token consumption by 70-98% for code navigation tasks.
 
 ## Configuration
 
-### Environment Variables (`.env`)
-
-Copy `.env.template` to `.env` and configure:
+The **onboarding agent** handles all configuration automatically:
 
 ```bash
-# For adversarial evaluation (optional)
-OPENAI_API_KEY=sk-your-key
-
-# For Linear task sync (optional) - see Linear Integration section
-LINEAR_API_KEY=lin_api_your-key
-LINEAR_TEAM_ID=ABC
+agents/onboarding
 ```
 
-### Serena (`.serena/project.yml`)
+This guides you through setting up:
+- Project name and task prefix
+- Programming languages (for Serena)
+- API keys (OpenAI, Linear)
+- GitHub repository
+- First task creation
 
-Copy `.serena/project.yml.template` to `.serena/project.yml`:
-
-```yaml
-project_name: "my-project"
-languages:
-  - python
-  - typescript
-```
-
-### Adversarial (`.adversarial/config.yml`)
-
-Copy `.adversarial/config.yml.template` to `.adversarial/config.yml`.
+For manual configuration or reference, see the template files:
+- `.env.template` → `.env`
+- `.serena/project.yml.template` → `.serena/project.yml`
+- `.adversarial/config.yml.template` → `.adversarial/config.yml`
 
 ---
 
