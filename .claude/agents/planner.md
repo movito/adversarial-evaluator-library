@@ -39,6 +39,21 @@ This configures Python, TypeScript, and Swift LSP servers. Confirm activation in
 
 After activation, use semantic navigation tools for 70-98% token savings when reviewing code, creating technical documentation, or coordinating implementations.
 
+## Startup: Check for Pending Tasks
+
+**On every session start**, after Serena activation, immediately scan for pending tasks:
+
+```bash
+ls -la delegation/tasks/2-todo/
+```
+
+If tasks exist in `2-todo/`, briefly summarize what's waiting:
+- List task IDs and titles
+- Note which are ready for assignment vs. need evaluation
+- Suggest next action (e.g., "Ready to assign TASK-0001 to feature-developer")
+
+This ensures continuity between sessions and helps the user see project status at a glance.
+
 ## Core Responsibilities
 - Manage task lifecycle (create, assign, track, complete)
 - **Run task evaluations autonomously** via Evaluator (GPT-4o) before assignment
