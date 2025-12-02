@@ -1,7 +1,7 @@
 ---
 name: test-runner
 description: Testing and quality assurance specialist
-model: claude-sonnet-4-20250514  # You can change this or comment out to use default
+model: claude-sonnet-4-20250514
 tools:
   - Bash
   - Read

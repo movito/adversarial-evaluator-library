@@ -1,7 +1,7 @@
 ---
 name: feature-developer
 description: Feature implementation specialist for this project
-model: claude-opus-4-5-20251101  # You can change this or comment out to use default
+model: claude-opus-4-5-20251101
 tools:
   - Bash
   - Glob

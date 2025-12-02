@@ -1,7 +1,7 @@
 ---
 name: ci-checker
 description: CI/CD pipeline status verification specialist
-model: claude-3-5-haiku-20241022  # You can change this or comment out to use default
+model: claude-3-5-haiku-20241022
 tools:
   - Bash
 ---

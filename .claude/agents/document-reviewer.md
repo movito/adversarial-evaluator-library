@@ -1,7 +1,7 @@
 ---
 name: document-reviewer
 description: Documentation quality and completeness specialist
-model: claude-sonnet-4-20250514  # You can change this or comment out to use default
+model: claude-sonnet-4-20250514
 tools:
   - Read
   - Grep
