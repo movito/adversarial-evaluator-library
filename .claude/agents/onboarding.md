@@ -392,59 +392,35 @@ This step is needed even if Serena wasn't set up, because:
 - User might set up Serena later
 - Agents will already have the correct project name configured
 
-### Create First Task: TDD Infrastructure Setup
+### Update pyproject.toml with Project Name
 
-**IMPORTANT**: Create a seed task to establish TDD practices from day one.
+Update `pyproject.toml` with the user's project name and description:
 
-1. Copy the template:
 ```bash
-cp delegation/tasks/9-reference/templates/SETUP-0001-testing-infrastructure.md \
-   delegation/tasks/2-todo/[PREFIX]-0001-tdd-infrastructure.md
+# Replace placeholder project name
+sed -i '' "s/name = \"your-project-name\"/name = \"[project-name]\"/" pyproject.toml 2>/dev/null || \
+sed -i "s/name = \"your-project-name\"/name = \"[project-name]\"/" pyproject.toml
+
+# Replace placeholder description
+sed -i '' "s/description = \"Your project description\"/description = \"[user's description or generic]\"/" pyproject.toml 2>/dev/null || \
+sed -i "s/description = \"Your project description\"/description = \"[user's description or generic]\"/" pyproject.toml
 ```
 
-2. **Customize the task file** (required replacements):
+**Ask the user** for a brief project description (one sentence) to put in pyproject.toml, or use a generic default like "A project built with the Agentive Starter Kit".
 
-| Placeholder | Replace With | Example |
-|-------------|--------------|---------|
-| `[PREFIX]` | Task prefix from Phase 1 | `AL2`, `PROJ` |
-| `[DATE]` | Today's date | `2025-11-27` |
-| `[PROJECT-NAME]` | Project name from Phase 1 | `agentive-lotion-2` |
-
-3. **Customize for selected languages** (Phase 2):
-
-**If Python selected**:
-- Keep all Python sections (pyproject.toml, pytest, etc.)
-- Update dependencies in pyproject.toml based on project needs
-
-**If TypeScript/JavaScript selected**:
-- Add vitest/jest configuration section
-- Add frontend test setup to "Should Have" requirements
-
-**If both Python + TypeScript**:
-- Keep Python as primary (backend)
-- Add "Frontend Testing (Phase 1)" section for TypeScript
-
-4. **Remove the HTML comment block** at the top (lines 3-10) - it's instructions for you, not the task.
-
-5. Tell the user:
+Tell the user:
 ```
-**First Task Created!**
+**Project configured!**
 
-I've created your first task: `[PREFIX]-0001: CI/CD and TDD Infrastructure Setup`
+Updated pyproject.toml with:
+- Project name: [project-name]
+- Description: [description]
 
-This task is assigned to **feature-developer** (not planner) and includes:
-- Creating pyproject.toml for Python configuration
-- Setting up pytest with coverage
-- Adapting the existing pre-commit hooks
-- Creating GitHub Actions CI workflow
-- Writing a smoke test to verify project structure
-
-**Important**: This task blocks all feature development. The planner will
-assign it to feature-developer as the very first implementation work.
-
-It leverages existing starter kit assets:
-- `tests/test_template.py` - Test pattern reference
-- `.pre-commit-config.yaml` - Adapt, don't replace
+The TDD infrastructure is already set up and ready to use:
+- `pytest` for testing (run: `pytest tests/ -v`)
+- `pre-commit` hooks for code quality
+- GitHub Actions CI workflow
+- See `docs/TESTING.md` for the full testing guide
 ```
 
 ---
@@ -561,13 +537,14 @@ Configuration Summary:
 - Pre-commit Hooks: [Enabled / Not configured]
 
 **Next Steps:**
-1. Run `agents/launch planner` to start working with your planner
-2. Planner will see your first task: **[PREFIX]-0001: CI/CD and TDD Infrastructure**
-3. Planner assigns it to **feature-developer** (it's implementation work)
-4. Once TDD infrastructure is complete, you're ready for feature development!
+1. Run `agents/launch planner` to start planning your first feature
+2. Create a task in `delegation/tasks/2-todo/` describing what you want to build
+3. Planner will evaluate and assign it to the appropriate agent
 
-**Tip**: The first task leverages existing starter kit files. Don't recreate
-what already exists - adapt it for your project.
+**TDD is ready out of the box:**
+- Run tests: `pytest tests/ -v`
+- Testing guide: `docs/TESTING.md`
+- Pre-commit hooks are installed and active
 
 Happy building!
 ```
