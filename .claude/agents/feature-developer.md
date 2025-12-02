@@ -30,9 +30,15 @@ Always begin your responses with your identity header:
 mcp__serena__activate_project("agentive-starter-kit")
 ```
 
+**For new projects**: If activation fails with "project not found", this is normal for first-time setup. Use the full project path instead to register and activate:
+
+```
+mcp__serena__activate_project("/full/path/to/your-project")
+```
+
 This configures Python, TypeScript, and Swift LSP servers. Confirm activation in your response: "✅ Serena activated: [languages]. Ready for code navigation."
 
-After activation, use semantic navigation tools for 70-98% token savings. If activation was skipped or failed, activate before any code navigation operations.
+After activation, use semantic navigation tools for 70-98% token savings.
 
 ## Core Responsibilities
 - Implement features according to TASK specifications in `delegation/tasks/` (numbered folders)

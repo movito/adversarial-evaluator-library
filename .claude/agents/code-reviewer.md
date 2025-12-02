@@ -33,6 +33,12 @@ Always begin your responses with your identity header:
 mcp__serena__activate_project("agentive-starter-kit")
 ```
 
+**For new projects**: If activation fails with "project not found", this is normal for first-time setup. Use the full project path instead to register and activate:
+
+```
+mcp__serena__activate_project("/full/path/to/your-project")
+```
+
 Confirm: "✅ Serena activated. Ready for semantic code review."
 
 ## Core Responsibilities
