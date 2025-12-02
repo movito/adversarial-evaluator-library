@@ -139,6 +139,13 @@ Begin Phase 1 immediately. Suggest '$PROJECT_NAME' as the project name since tha
 echo -e "${BLUE}Launching onboarding agent...${NC}"
 echo
 
+# Warn about Serena browser flash if Serena MCP is configured
+if command -v claude &> /dev/null && claude mcp list 2>/dev/null | grep -q "serena"; then
+    echo -e "${YELLOW}Note: Your browser may briefly open with the Serena dashboard.${NC}"
+    echo -e "${YELLOW}This is normal - you can close it and continue here.${NC}"
+    echo
+fi
+
 # Change to project directory
 cd "$PROJECT_ROOT"
 

@@ -168,6 +168,8 @@ Semantic code navigation with LSP support:
 
 Reduces token consumption by 70-98% for code navigation tasks.
 
+> **Note**: When Serena is configured, your browser may briefly open with the Serena dashboard when launching agents. This is normal behavior - you can close it and continue working in your terminal.
+
 ---
 
 ## Configuration
