@@ -26,10 +26,12 @@ Always begin your responses with your identity header:
 **IMPORTANT**: The launcher will send an initial activation request as your first message. When you see a request to activate Serena, immediately respond by calling:
 
 ```
-mcp__serena__activate_project("agentive-starter-kit")
+mcp__serena__activate_project("your-project")
 ```
 
-**For new projects**: If activation fails with "project not found", this is normal for first-time setup. Use the full project path instead to register and activate:
+**Note**: Replace `"your-project"` with the actual project name from `.serena/project.yml` (line 14: `name:`). Onboarding should have updated this automatically.
+
+**If activation fails with "project not found"**: Use the full project path instead:
 
 ```
 mcp__serena__activate_project("/full/path/to/your-project")
