@@ -168,10 +168,85 @@ def validate_all_tasks(project_dir: Path) -> bool:
     return True
 
 
+def reconfigure_project(project_dir: Path) -> bool:
+    """Reconfigure agent files with the correct project name.
+
+    This updates .claude/agents/*.md files, replacing the 'your-project'
+    placeholder with the actual project name from .serena/project.yml.
+
+    Useful after fetching upstream updates that introduce placeholder values.
+    """
+    serena_config = project_dir / ".serena" / "project.yml"
+    agents_dir = project_dir / ".claude" / "agents"
+
+    # Check .serena/project.yml exists
+    if not serena_config.exists():
+        print("Error: .serena/project.yml not found")
+        print("Run 'agents/launch onboarding' first to configure your project")
+        return False
+
+    # Extract project name (supports both 'name:' and 'project_name:')
+    project_name = None
+    try:
+        content = serena_config.read_text()
+        for line in content.splitlines():
+            # Match top-level name or project_name (no leading whitespace)
+            if line.startswith("name:") or line.startswith("project_name:"):
+                # Extract value after colon, strip quotes and whitespace
+                value = line.split(":", 1)[1].strip().strip("\"'")
+                if value:
+                    project_name = value
+                    break
+    except Exception as e:
+        print(f"Error reading .serena/project.yml: {e}")
+        return False
+
+    if not project_name:
+        print("Error: Could not find 'name:' or 'project_name:' in .serena/project.yml")
+        print("Check your Serena configuration.")
+        return False
+
+    print(f"\n🔧 Reconfiguring project: {project_name}\n")
+    print("Checking agent files...")
+
+    # Check if agents directory exists
+    if not agents_dir.exists():
+        print("Warning: No agent files found in .claude/agents/")
+        return True  # Success - nothing to do
+
+    # Find and update agent files
+    agent_files = list(agents_dir.glob("*.md"))
+    if not agent_files:
+        print("Warning: No .md files found in .claude/agents/")
+        return True  # Success - nothing to do
+
+    updated = 0
+    skipped = 0
+    placeholder = 'activate_project("your-project")'
+    replacement = f'activate_project("{project_name}")'
+
+    for agent_file in sorted(agent_files):
+        try:
+            content = agent_file.read_text()
+            if placeholder in content:
+                new_content = content.replace(placeholder, replacement)
+                agent_file.write_text(new_content)
+                print(f"  ✓ {agent_file.name} - updated")
+                updated += 1
+            else:
+                print(f"  · {agent_file.name} - already configured")
+                skipped += 1
+        except Exception as e:
+            print(f"  ✗ {agent_file.name} - error: {e}")
+
+    print(f"\n✅ Reconfigured {updated} files ({skipped} already correct)")
+    return True
+
+
 def main():
     """Launch project commands."""
-    # Get the project directory
-    project_dir = Path(__file__).parent
+    # Get the project directory (parent of scripts/)
+    project_dir = Path(__file__).resolve().parent.parent
 
     # Use venv Python if available, otherwise system Python
     venv_python = project_dir / "venv" / "bin" / "python3"
@@ -317,6 +392,11 @@ except Exception as e:
     elif command == "validate":
         # Validate all task statuses match folders
         success = validate_all_tasks(project_dir)
+        sys.exit(0 if success else 1)
+
+    elif command == "reconfigure":
+        # Reconfigure agent files with project name
+        success = reconfigure_project(project_dir)
         sys.exit(0 if success else 1)
 
     elif command == "sync-status":
@@ -542,6 +622,9 @@ Task Management:
   block <id>           Move task to blocked (shorthand)
   validate             Validate all task statuses match folders
 
+Configuration:
+  reconfigure          Update agent files with project name after upstream merge
+
 Linear Sync:
   linearsync, sync     Sync task files to Linear
   sync-status          Check if local tasks match Linear issues
@@ -555,6 +638,7 @@ Examples:
   ./project complete ASK-0001    Move task to done, update Status
   ./project move ASK-0002 todo   Move task to todo folder
   ./project validate             Check all statuses match folders
+  ./project reconfigure          Update agents after pulling upstream
   ./project linearsync           Sync all tasks to Linear
 
 Valid statuses for 'move':

@@ -30,7 +30,7 @@ Always begin your responses with your identity header:
 **IMPORTANT**: Activate Serena before any code navigation:
 
 ```
-mcp__serena__activate_project("your-project")
+mcp__serena__activate_project("agentive-starter-kit")
 ```
 
 **Note**: Replace `"your-project"` with the actual project name from `.serena/project.yml` (line 14: `name:`). Onboarding should have updated this automatically.

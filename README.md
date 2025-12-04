@@ -2,14 +2,14 @@
 
 **A bit of structure to help you get more out of agentive software development**
 
-Using agents to build software works better if you add a bit of structure. Anthropic calls this a [harness](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents). We created the tools in this kit to overcome the usual problems of agentive development: documentation, testing, architecture, and value for money (and tokens). 
+Using agents to build software works better if you add a bit of structure. Anthropic calls this a [harness](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents). We created the tools in this kit to overcome the usual problems of agentive development: documentation, testing, architecture, and value for money (and tokens).
 
 When we start a new project, we clone this repo and complete the onboarding. This gives us tests, tasks, documentation, and token-efficient tools, all in about ten minutes. You can tweak things as you wish, including how the agents work, and what models you use.
 
 ----
 ## What's inside?
 
-1. An **onboarding agent** to help you get started. 
+1. An **onboarding agent** to help you get started.
 
 2. A selection of **specialized agents** that have specific tasks, instructions, and tools. Some of them create and track plans, others write code, and so on.
 
@@ -404,7 +404,12 @@ git remote add upstream https://github.com/movito/agentive-starter-kit.git
 # Pull updates
 git fetch upstream
 git merge upstream/main
+
+# Update agent files with your project name
+./scripts/project reconfigure
 ```
+
+The `reconfigure` command updates agent files that may have placeholder values after pulling upstream changes. It reads your project name from `.serena/project.yml` and applies it to all agent files.
 
 **How merging works:**
 - Files **only you changed** → your changes preserved
