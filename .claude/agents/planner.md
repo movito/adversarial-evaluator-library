@@ -34,7 +34,7 @@ mcp__serena__activate_project("agentive-starter-kit")
 **If activation fails with "project not found"**: Use the full project path instead:
 
 ```
-mcp__serena__activate_project("/full/path/to/your-project")
+mcp__serena__activate_project("agentive-starter-kit")
 ```
 
 This configures Python, TypeScript, and Swift LSP servers. Confirm activation in your response: "✅ Serena activated: [languages]. Ready for code navigation."
@@ -324,6 +324,44 @@ Review may be skipped for:
 - **Review Reports**: `.agent-context/reviews/ASK-XXXX-review.md`
 - **Agent**: `.claude/agents/code-reviewer.md`
 
+### Knowledge Extraction (On Task Completion)
+
+**Reference**: KIT-ADR-0019 (Review Knowledge Extraction)
+
+After code review is APPROVED and task moves to `5-done/`:
+
+1. **Read the review file(s)** for the completed task
+2. **Identify extractable insights**:
+   - Module-specific patterns or gotchas
+   - Integration requirements
+   - Recommended/anti-patterns
+   - Architectural decisions (→ consider ADR)
+3. **Append to `.agent-context/REVIEW-INSIGHTS.md`** under appropriate sections
+4. **If architectural decision warrants it**, create ADR in `docs/decisions/adr/`
+5. **Commit** knowledge artifacts with task completion
+
+**Extraction Prompt**:
+```
+Review `.agent-context/reviews/[TASK-ID]-review.md` and extract:
+
+1. **Module insights**: Patterns or gotchas specific to modules touched
+2. **Integration notes**: Requirements for other systems
+3. **Patterns**: Reusable approaches that worked well
+4. **Anti-patterns**: Approaches to avoid
+5. **ADR candidates**: Decisions significant enough to formalize
+
+Format as entries for REVIEW-INSIGHTS.md index with task ID.
+```
+
+**Example Entry**:
+```markdown
+### CLI (`src/cli/`)
+- **ASK-0005**: Click framework with lazy imports recommended for startup performance
+- **ASK-0005**: Use CLIOutput helper class for consistent JSON/text output
+```
+
+**Note**: Not every review produces insights. Extract only what's reusable for future tasks.
+
 ## Documentation Areas
 - Task specifications: `delegation/tasks/` (numbered folders: `2-todo/`, `3-in-progress/`, `5-done/`, etc.)
 - Agent coordination: `.agent-context/agent-handoffs.json`
@@ -473,13 +511,14 @@ User will:
 2. **Task Creation**: `delegation/templates/TASK-TEMPLATE.md`
 3. **Agent Assignment**: `.agent-context/agent-handoffs.json` updates
 4. **Code Review Workflow**: `docs/decisions/starter-kit-adr/KIT-ADR-0014-code-review-workflow.md`
-5. **Commit Protocol**: `.agent-context/workflows/COMMIT-PROTOCOL.md`
-6. **Procedural Index**: `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md`
+5. **Knowledge Extraction**: `docs/decisions/starter-kit-adr/KIT-ADR-0019-review-knowledge-extraction.md`
+6. **Commit Protocol**: `.agent-context/workflows/COMMIT-PROTOCOL.md`
 
 **Key Files to Maintain**:
 - `.agent-context/agent-handoffs.json` (current agent status, task assignments)
 - `.agent-context/current-state.json` (project state, metrics, phase tracking)
 - `.agent-context/reviews/` (code review reports)
+- `.agent-context/REVIEW-INSIGHTS.md` (distilled knowledge from reviews - KIT-ADR-0019)
 - `delegation/tasks/` (task specifications in numbered folders: `2-todo/`, `3-in-progress/`, `5-done/`, etc.)
 - `.adversarial/logs/` (evaluation results - read-only)
 
