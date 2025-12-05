@@ -592,30 +592,87 @@ echo y | adversarial evaluate delegation/tasks/2-todo/TASK-FILE.md
 - Read evaluation results from `.adversarial/logs/`
 - Update agent-handoffs.json with task assignments and status
 
-## CI/CD Verification (When Making Commits)
+## CI/CD Verification (MANDATORY)
 
-**⚠️ CRITICAL: When making git commits, verify CI/CD passes before task completion**
+**⚠️ CRITICAL: Do NOT mark work complete until GitHub Actions CI/CD passes**
 
-If you push code changes to GitHub (coordination commits, documentation updates, etc.):
+Planner commits (documentation, coordination, upstream merges, formatting fixes) can break CI too. After pushing to GitHub, you **MUST** verify CI passes.
 
-1. **Push your changes**: `git push origin <branch>`
-2. **Verify CI**: Use `/check-ci` slash command or run `./scripts/verify-ci.sh <branch>`
-3. **Wait for result**: Check CI passes before marking coordination work complete
-4. **Handle failures**: If CI fails, fix issues and repeat
+### Verification Process
 
-**Verification Pattern**:
+1. **Run local checks first**: `./scripts/ci-check.sh` before pushing
+2. **Push your changes**: `git push origin <branch>`
+3. **Invoke ci-checker agent**: Request CI verification (DO NOT proceed until response)
+4. **Wait for result**: ci-checker monitors GitHub Actions and reports back
+5. **Handle failures**: If CI fails, fix issues and repeat
 
-```bash
-# Option 1: Slash command (preferred)
-/check-ci main
+### Invocation Pattern
 
-# Option 2: Direct script
-./scripts/verify-ci.sh <branch-name>
+After pushing, invoke the ci-checker agent using the Task tool:
+
+```
+Use the Task tool with these parameters:
+- subagent_type: "ci-checker"
+- description: "Verify CI for branch <branch-name>"
+- prompt: "Please verify CI status for branch '<branch-name>' after my recent push. Check the latest workflow runs and report PASS/FAIL/TIMEOUT status."
 ```
 
-**Proactive CI Fix**: When CI fails, offer to analyze logs and implement fix. Report failure clearly to user and ask if you should fix it.
+The ci-checker agent will:
+- Monitor GitHub Actions workflows
+- Report ✅ PASS / ❌ FAIL / ⏱️ TIMEOUT status
+- Provide failure summaries if workflows fail
+- Return control to you with recommendations
 
-**Soft Block**: Fix CI failures before completing task, but use judgment for timeout situations.
+**Cost**: ~$0.001-0.003 per check (Haiku-powered ci-checker agent)
+**Duration**: 20 seconds to 10 minutes (depending on workflow)
+
+### Why This Is Critical
+
+Even if `ci-check.sh` passes locally, CI can still fail due to:
+- Environment differences (Python versions, OS, dependencies)
+- Formatting issues (Black, isort) from merged upstream code
+- Race conditions in tests
+- GitHub Actions-specific issues
+
+**Common planner scenarios that break CI**:
+- Upstream merges bringing unformatted code
+- Documentation commits touching Python files
+- Coordination commits with new files
+
+### Soft Block Policy
+
+- If CI **PASSES**: ✅ Proceed with work
+- If CI **FAILS**: ❌ **Offer to fix automatically** (see below)
+- If CI **TIMEOUT**: ⏱️ Check manually, use judgment (document decision)
+
+**Never skip CI verification** - it prevents broken code in repository.
+
+### Proactive CI Fix Workflow
+
+**When CI fails, you MUST offer to fix it:**
+
+1. **Report failure clearly**:
+   ```markdown
+   ❌ CI/CD failed on GitHub:
+
+   Failed check: [Black/isort/tests/etc.]
+   Error summary: [brief description]
+
+   Root cause appears to be: [your analysis]
+
+   Should I fix this?
+   ```
+
+2. **If user approves**:
+   - Read logs: `gh run view <run-id> --log-failed`
+   - Analyze failure
+   - Implement fix (run `black .`, `isort .`, fix tests, etc.)
+   - Commit and push
+   - **Recursively verify CI again** (repeat until pass)
+
+3. **If user declines**:
+   - Document failure in notes
+   - Pause, await instructions
 
 **Reference**: See `.agent-context/workflows/COMMIT-PROTOCOL.md` for full protocol.
 
