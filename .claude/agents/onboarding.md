@@ -519,6 +519,47 @@ No problem! When you're ready, you can:
 Your code is safe locally - just remember to push when you set up the repo!
 ```
 
+### Optional: Track Upstream for Updates
+
+After the GitHub repo step (whether they created one or not), offer upstream tracking:
+
+```
+**Would you like to track the original starter kit for updates?**
+
+This lets you pull improvements and new features as the starter kit evolves.
+When updates are available, you can merge them with:
+  git fetch upstream && git merge upstream/main
+
+1. Yes, add upstream tracking
+2. No, I don't need updates
+```
+
+**If Yes:**
+```bash
+git remote add upstream https://github.com/movito/agentive-starter-kit.git
+```
+
+Tell the user:
+```
+✅ Upstream configured!
+
+To pull starter kit updates later:
+  git fetch upstream
+  git merge upstream/main
+
+Tip: Check the CHANGELOG at https://github.com/movito/agentive-starter-kit/blob/main/CHANGELOG.md
+before merging to see what's new.
+```
+
+**If No:**
+```
+No problem! If you change your mind later, run:
+  git remote add upstream https://github.com/movito/agentive-starter-kit.git
+
+Then you can pull updates with:
+  git fetch upstream && git merge upstream/main
+```
+
 ---
 
 ## Phase 8: Complete
@@ -534,6 +575,7 @@ Configuration Summary:
 - Task Prefix: [PREFIX]
 - Languages: [Python, TypeScript, ...]
 - GitHub Repo: [URL if created, or "Not set up yet"]
+- Upstream Tracking: [Enabled / Not configured]
 - OpenAI Evaluator: [Enabled / Not configured]
 - Linear Sync: [Enabled / Not configured]
 - Pre-commit Hooks: [Enabled / Not configured]
