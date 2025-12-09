@@ -427,6 +427,96 @@ The TDD infrastructure is already set up and ready to use:
 
 ---
 
+## Phase 6.5: Project README
+
+The starter kit README contains documentation about the kit itself. Replace it with the user's project info.
+
+```
+**ONBOARDING** | Phase: README
+
+**Let's set up your project's README.**
+
+The current README describes the Agentive Starter Kit. Let's replace it with info about your project.
+
+**What is [project-name] about?** (1-2 sentences)
+
+(Press Enter to skip and add a description later)
+```
+
+### If user provides a description:
+Create a minimal README:
+
+```markdown
+# [project-name]
+
+[user's description]
+
+---
+
+Built with [Agentive Starter Kit](https://github.com/movito/agentive-starter-kit)
+```
+
+### If user skips:
+Use a placeholder:
+
+```markdown
+# [project-name]
+
+*Add your project description here.*
+
+---
+
+Built with [Agentive Starter Kit](https://github.com/movito/agentive-starter-kit)
+```
+
+### Create backlog task for comprehensive README
+
+Create `delegation/tasks/1-backlog/[PREFIX]-0001-write-project-readme.md`:
+
+```markdown
+# [PREFIX]-0001: Write Project README
+
+**Status**: Backlog
+**Priority**: Medium
+**Type**: Documentation
+
+---
+
+## Summary
+
+Write comprehensive documentation for [project-name].
+
+## Suggested Sections
+
+- [ ] Project overview and purpose
+- [ ] Features list
+- [ ] Installation instructions
+- [ ] Usage examples
+- [ ] Configuration options
+- [ ] Contributing guidelines
+- [ ] License
+
+## Notes
+
+This task was auto-generated during onboarding. Update when ready to document your project.
+
+---
+
+**Created**: [today's date]
+```
+
+Tell the user:
+```
+**README updated!**
+
+- Created minimal README with your project info
+- Added task to backlog: [PREFIX]-0001-write-project-readme.md
+
+You can expand the README anytime - there's a task waiting in the backlog.
+```
+
+---
+
 ## Phase 7: GitHub Repository Setup
 
 The project is currently connected to the original agentive-starter-kit repository. Help the user create their own repo.
@@ -574,6 +664,7 @@ Configuration Summary:
 - Project: [project-name]
 - Task Prefix: [PREFIX]
 - Languages: [Python, TypeScript, ...]
+- README: [Updated with project description / Placeholder added]
 - GitHub Repo: [URL if created, or "Not set up yet"]
 - Upstream Tracking: [Enabled / Not configured]
 - OpenAI Evaluator: [Enabled / Not configured]
