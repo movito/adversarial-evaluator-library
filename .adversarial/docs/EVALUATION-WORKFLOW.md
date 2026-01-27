@@ -1,10 +1,10 @@
-# Adversarial Evaluation & Proofreading Workflow
+# Adversarial Evaluation Workflow
 
 **Created**: 2025-11-01
-**Updated**: 2025-11-14 (added proofreading)
-**Purpose**: Complete guide to using the adversarial evaluation and proofreading workflow with GPT-4o
+**Updated**: 2025-01-27 (added review evaluator, list-evaluators, custom evaluators)
+**Purpose**: Complete guide to using the adversarial evaluation workflow with GPT-4o
 **Audience**: All agents (especially Planner)
-**Tool**: `adversarial` CLI
+**Tool**: `adversarial` CLI (v0.6.2+)
 **Evaluator**: GPT-4o via Aider (external agent)
 
 ---
@@ -12,13 +12,18 @@
 ## Table of Contents
 
 - [Overview](#overview)
-- [Two Modes: Evaluate vs Proofread](#two-modes-evaluate-vs-proofread)
+- [Available Evaluators](#available-evaluators)
+- [Three Modes: Evaluate, Proofread, Review](#three-modes-evaluate-proofread-review)
+- [Discovering Evaluators](#discovering-evaluators)
+- [Custom Evaluators](#custom-evaluators)
 - [What It Is (and Isn't)](#what-it-is-and-isnt)
 - [When to Use Each Mode](#when-to-use-each-mode)
 - [Plan Evaluation Workflow](#plan-evaluation-workflow)
 - [Proofreading Workflow](#proofreading-workflow)
+- [Code Review Workflow](#code-review-workflow)
 - [Evaluation Criteria (Code Plans)](#evaluation-criteria-code-plans)
 - [Proofreading Criteria (Teaching Content)](#proofreading-criteria-teaching-content)
+- [Code Review Criteria](#code-review-criteria)
 - [Verdict Types](#verdict-types)
 - [Cost Expectations](#cost-expectations)
 - [Iteration Guidance](#iteration-guidance)
@@ -32,16 +37,34 @@
 
 ## Overview
 
-The adversarial workflow provides independent quality assurance using **GPT-4o** (via Aider CLI) for two types of content:
+The adversarial workflow provides independent quality assurance using **GPT-4o** (via Aider CLI) for three types of content:
 
 1. **Plan Evaluation** (`adversarial evaluate`) - Review implementation plans and architectural decisions
 2. **Proofreading** (`adversarial proofread`) - Review teaching/documentation content quality
+3. **Code Review** (`adversarial review`) - Review implemented code for quality and correctness
 
-**Key Benefit**: Catch issues early—design flaws in code plans, or clarity problems in teaching content—before wasting implementation or publication time.
+**Key Benefit**: Catch issues early—design flaws in plans, clarity problems in teaching content, or bugs in code—before they compound.
 
 ---
 
-## Two Modes: Evaluate vs Proofread
+## Available Evaluators
+
+As of adversarial-workflow v0.6.2, three built-in evaluators are available:
+
+| Command | Purpose | Best For |
+|---------|---------|----------|
+| `adversarial evaluate` | Plan evaluation | Task specs, architecture docs, implementation plans |
+| `adversarial proofread` | Teaching content review | Concepts, guides, tutorials, documentation |
+| `adversarial review` | Code review | Implemented code, PRs, refactoring validation |
+
+**Discover evaluators:**
+```bash
+adversarial list-evaluators
+```
+
+---
+
+## Three Modes: Evaluate, Proofread, Review
 
 ### `adversarial evaluate` - For Implementation Plans
 
@@ -79,6 +102,26 @@ The adversarial workflow provides independent quality assurance using **GPT-4o**
 
 ---
 
+### `adversarial review` - For Implemented Code
+
+**Use for:**
+- Completed implementations before merge
+- Pull request validation
+- Refactoring verification
+- Code quality audits
+
+**Evaluates:**
+- Code correctness and logic
+- Error handling completeness
+- Security considerations
+- Performance implications
+- Test coverage adequacy
+- Code style and maintainability
+
+**Output:** `.adversarial/logs/<identifier>-CODE-REVIEW.md`
+
+---
+
 ### Quick Decision Guide
 
 | Content Type | Command | Why |
@@ -90,8 +133,106 @@ The adversarial workflow provides independent quality assurance using **GPT-4o**
 | Practice exercise | `proofread` | Educational effectiveness |
 | API documentation | `proofread` | User-facing clarity |
 | README or guide | `proofread` | Teaching/explaining |
+| Completed feature implementation | `review` | Needs code correctness review |
+| Bug fix before merge | `review` | Verify fix is correct |
+| Refactored code | `review` | Verify behavior preserved |
+| Pull request changes | `review` | Pre-merge quality check |
 
-**Rule of thumb:** If it teaches someone how to think or work, use `proofread`. If it plans how to implement code, use `evaluate`.
+**Rule of thumb:**
+- **Planning code?** → `evaluate`
+- **Teaching someone?** → `proofread`
+- **Code already written?** → `review`
+
+---
+
+## Discovering Evaluators
+
+Use the `list-evaluators` command to see all available evaluators:
+
+```bash
+adversarial list-evaluators
+```
+
+**Example output:**
+```
+Built-in Evaluators:
+  evaluate       Plan evaluation (GPT-4o)
+  proofread      Teaching content review (GPT-4o)
+  review         Code review (GPT-4o)
+
+Local Evaluators:
+  security       Security-focused code review
+  performance    Performance analysis
+
+Create .adversarial/evaluators/*.yml to add custom evaluators.
+```
+
+This command shows:
+- **Built-in evaluators**: Shipped with adversarial-workflow
+- **Local evaluators**: Custom evaluators defined in your project
+
+---
+
+## Custom Evaluators
+
+You can create project-specific evaluators by adding YAML files to `.adversarial/evaluators/`.
+
+### Creating a Custom Evaluator
+
+**1. Create the evaluator file:**
+```bash
+mkdir -p .adversarial/evaluators
+```
+
+**2. Define the evaluator (e.g., `.adversarial/evaluators/security.yml`):**
+```yaml
+name: security
+description: Security-focused code review
+model: gpt-4o
+
+prompt: |
+  You are a security expert reviewing code for vulnerabilities.
+  
+  Focus on:
+  - OWASP Top 10 vulnerabilities
+  - Input validation and sanitization
+  - Authentication and authorization flaws
+  - Secrets and credential exposure
+  - Injection vulnerabilities (SQL, command, XSS)
+  
+  For each issue found, provide:
+  - Severity (CRITICAL/HIGH/MEDIUM/LOW)
+  - Location (file:line)
+  - Description of the vulnerability
+  - Recommended fix
+  
+  End with a verdict: APPROVED, NEEDS_REVISION, or REJECT
+
+output_suffix: SECURITY-REVIEW
+```
+
+**3. Use the custom evaluator:**
+```bash
+adversarial security src/auth/login.py
+```
+
+### Custom Evaluator Schema
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `name` | Yes | Command name (lowercase, no spaces) |
+| `description` | Yes | Short description shown in `list-evaluators` |
+| `model` | No | AI model to use (default: gpt-4o) |
+| `prompt` | Yes | System prompt for the evaluator |
+| `output_suffix` | No | Suffix for output files (default: EVALUATION) |
+
+### Example Use Cases
+
+- **Security review**: Focus on vulnerabilities and exploits
+- **Performance review**: Analyze algorithmic complexity and bottlenecks
+- **Accessibility review**: Check for WCAG compliance
+- **API review**: Validate REST/GraphQL design patterns
+- **Database review**: Check query efficiency and schema design
 
 ---
 
@@ -157,32 +298,48 @@ Skip `proofread` for:
 
 ---
 
+### Use `adversarial review` for:
+
+- ✅ **Completed implementations** before merge
+- ✅ **Bug fixes** to verify correctness
+- ✅ **Refactored code** to ensure behavior preserved
+- ✅ **Pull request changes** for pre-merge validation
+- ✅ **Critical path code** requiring extra scrutiny
+
+Skip `review` for:
+- ❌ Planning documents (use `evaluate` instead)
+- ❌ Teaching content (use `proofread` instead)
+- ❌ Configuration files (usually not worth the cost)
+- ❌ Trivial changes (<10 lines)
+
+---
+
 ## Plan Evaluation Workflow
 
 ### Step-by-Step Process:
 
 **1. Planner creates task specification**
 ```bash
-# Create in delegation/tasks/active/
-delegation/tasks/active/TASK-2025-XXXX-description.md
+# Create in delegation/tasks/2-todo/
+delegation/tasks/2-todo/TASK-XXXX-description.md
 ```
 
 **2. Planner runs evaluation directly via Bash tool**
 ```bash
 # For files < 500 lines:
-adversarial evaluate delegation/tasks/active/TASK-2025-XXXX-description.md
+adversarial evaluate delegation/tasks/2-todo/TASK-XXXX-description.md
 
 # For large files (>500 lines) requiring interactive confirmation:
-echo y | adversarial evaluate delegation/tasks/active/TASK-2025-XXXX-description.md
+echo y | adversarial evaluate delegation/tasks/2-todo/TASK-XXXX-description.md
 ```
 - This invokes Aider with GPT-4o model
 - GPT-4o analyzes plan using evaluation criteria
-- Output saved to `.adversarial/logs/TASK-2025-XXXX-PLAN-EVALUATION.md`
+- Output saved to `.adversarial/logs/TASK-XXXX-PLAN-EVALUATION.md`
 
 **3. Planner reads GPT-4o evaluation output**
 ```bash
 # Read evaluation results
-cat .adversarial/logs/TASK-2025-XXXX-PLAN-EVALUATION.md
+cat .adversarial/logs/TASK-XXXX-PLAN-EVALUATION.md
 ```
 
 **4. Planner addresses CRITICAL and HIGH priority feedback**
@@ -192,7 +349,7 @@ cat .adversarial/logs/TASK-2025-XXXX-PLAN-EVALUATION.md
 - Address risk concerns
 
 **5. Planner updates task file based on recommendations**
-- Edit task specification in `delegation/tasks/active/`
+- Edit task specification in `delegation/tasks/2-todo/`
 - Incorporate GPT-4o's suggestions
 - Improve clarity and completeness
 
@@ -257,6 +414,60 @@ cat .adversarial/logs/concept-PROOFREADING.md
 - Teaching content is ready for readers
 - Commit to repository
 - Share with learners
+
+---
+
+## Code Review Workflow
+
+### Step-by-Step Process:
+
+**1. Implementation is complete**
+```bash
+# Code is written and tests pass locally
+pytest tests/ -v
+```
+
+**2. Run code review via Bash tool**
+```bash
+# Review specific files:
+adversarial review src/feature/new_module.py
+
+# Review multiple files:
+adversarial review src/feature/
+
+# Review with context from task spec:
+adversarial review src/feature/ --context delegation/tasks/3-in-progress/TASK-0001.md
+```
+- This invokes Aider with GPT-4o model
+- GPT-4o analyzes code using review criteria
+- Output saved to `.adversarial/logs/<identifier>-CODE-REVIEW.md`
+
+**3. Read GPT-4o code review output**
+```bash
+# Read review results
+cat .adversarial/logs/new_module-CODE-REVIEW.md
+```
+
+**4. Address CRITICAL and HIGH priority findings**
+- Fix bugs and logic errors
+- Address security vulnerabilities
+- Improve error handling
+- Add missing edge case handling
+
+**5. Update code based on recommendations**
+- Implement suggested fixes
+- Run tests to verify changes
+- Ensure no regressions
+
+**6. If NEEDS_REVISION: Repeat steps 2-5**
+- Typical: 1-2 review rounds for code
+- Code reviews often surface concrete bugs
+- Focus on CRITICAL/HIGH issues
+
+**7. If APPROVED: Proceed to merge**
+- Code is ready for integration
+- Create PR or merge to main
+- Move task to done
 
 ---
 
@@ -355,6 +566,48 @@ GPT-4o proofreads teaching content using these criteria:
 
 ---
 
+## Code Review Criteria
+
+GPT-4o reviews implemented code using these criteria:
+
+### 1. **Correctness**
+- Does the code do what it's supposed to do?
+- Are there logic errors or off-by-one bugs?
+- Are edge cases handled correctly?
+- Does it match the specification/requirements?
+
+### 2. **Error Handling**
+- Are errors caught and handled appropriately?
+- Are error messages helpful for debugging?
+- Is there proper cleanup on failure?
+- Are exceptions used correctly (not for flow control)?
+
+### 3. **Security**
+- Are inputs validated and sanitized?
+- Is there protection against injection attacks?
+- Are secrets/credentials handled safely?
+- Are permissions checked appropriately?
+
+### 4. **Performance**
+- Are there obvious inefficiencies (N+1 queries, unnecessary loops)?
+- Is memory usage reasonable?
+- Are there potential bottlenecks?
+- Is caching used where appropriate?
+
+### 5. **Maintainability**
+- Is the code readable and well-structured?
+- Are functions/methods appropriately sized?
+- Is there unnecessary complexity?
+- Are names descriptive and consistent?
+
+### 6. **Test Coverage**
+- Are critical paths tested?
+- Are edge cases covered?
+- Are tests meaningful (not just for coverage)?
+- Are test failures informative?
+
+---
+
 ## Verdict Types
 
 GPT-4o will provide one of three verdicts (applies to both `evaluate` and `proofread`):
@@ -410,6 +663,21 @@ GPT-4o will provide one of three verdicts (applies to both `evaluate` and `proof
 - Same as evaluation: ~988 lines may hit rate limits
 - Files >500 lines require interactive confirmation
 - Most teaching documents are <300 lines, well within limits
+
+---
+
+### Code Review (`adversarial review`)
+
+**Per Review:**
+- $0.02-0.05 (GPT-4o via OpenAI API, depends on code size)
+
+**Typical Workflow:**
+- $0.04-0.10 (1-2 review rounds, code often has concrete fixes)
+
+**File Size Limit:**
+- Same as evaluation: ~988 lines may hit rate limits
+- Review directories to batch related files
+- Can provide task context for better review accuracy
 
 ---
 
@@ -608,22 +876,32 @@ Markdown with structured sections:
 
 ```bash
 # Plan Evaluation (for code/architecture)
-adversarial evaluate delegation/tasks/active/TASK-FILE.md
+adversarial evaluate delegation/tasks/2-todo/TASK-FILE.md
 cat .adversarial/logs/TASK-*-PLAN-EVALUATION.md
 
 # Proofreading (for teaching content)
 adversarial proofread docs/guide/concept.md
 cat .adversarial/logs/concept-PROOFREADING.md
 
+# Code Review (for implemented code)
+adversarial review src/feature/module.py
+adversarial review src/feature/ --context delegation/tasks/3-in-progress/TASK-0001.md
+cat .adversarial/logs/module-CODE-REVIEW.md
+
+# Discovery & Custom Evaluators
+adversarial list-evaluators              # Show all available evaluators
+# Custom evaluators: .adversarial/evaluators/*.yml
+
 # System Commands
 adversarial --version                    # Check CLI version
 adversarial check                        # Validate setup and dependencies
 adversarial evaluate --help              # Get evaluation help
 adversarial proofread --help             # Get proofreading help
+adversarial review --help                # Get code review help
 ```
 
 ---
 
-**Last Updated**: 2025-11-18
+**Last Updated**: 2025-01-27
 **Maintained By**: Planner and feature-developer agents
 **Questions?** See PROCEDURAL-KNOWLEDGE-INDEX.md or ask user

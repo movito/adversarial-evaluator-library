@@ -13,7 +13,7 @@ When we start a new project, we clone this repo and complete the onboarding. Thi
 
 2. A selection of **specialized agents** that have specific tasks, instructions, and tools. Some of them create and track plans, others write code, and so on.
 
-3. A package we created called `adversarial-evaluation` which lets agents get a "second opinion" from an `Evaluator`; a specialized Open AI GPT-4o agent. We found that constructive critique among agents can give a big productivity boost.
+3. A package we created called `adversarial-workflow` which lets agents get a "second opinion" from specialized **Evaluators**. Built-in evaluators handle plan review, code review, and documentation proofreading. You can also create custom evaluators for security audits, performance analysis, and more. We found that constructive critique among agents gives a big productivity boost.
 
 4. A **task management setup** with task templates, a task tracking system, and an optional Linear sync.
 
@@ -153,16 +153,23 @@ delegation/tasks/
 
 ### Adversarial Evaluation (`.adversarial/`)
 
-GPT-4o reviews your task specifications before implementation:
+Independent AI review of your plans, code, and documentation:
 
 ```bash
-# Run evaluation on a task
+# Review a task plan before implementation
 adversarial evaluate delegation/tasks/2-todo/TASK-0001-my-task.md
 
-# Results saved to .adversarial/logs/
+# Review implemented code before merge
+adversarial review src/feature/
+
+# Proofread documentation
+adversarial proofread docs/guide.md
+
+# Discover all available evaluators
+adversarial list-evaluators
 ```
 
-Cost: ~$0.04-0.08 per evaluation.
+Cost: ~$0.02-0.10 per evaluation. Results saved to `.adversarial/logs/`.
 
 ### Serena Integration (`.serena/`)
 
@@ -383,7 +390,7 @@ your-project/
 
 ### Multi-Model Collaboration
 - Claude for implementation
-- GPT-4o for evaluation/critique
+- Evaluators for independent review (plans, code, docs)
 - Planner for orchestration
 
 ### Context Management

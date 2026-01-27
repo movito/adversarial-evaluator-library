@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **Upgraded adversarial-workflow to v0.6.2** - Now requires `>=0.6.2` with support for multiple evaluators, `list-evaluators` command, and custom evaluator definitions
+- **Updated README evaluator documentation** - Replaced GPT-4o-specific language with evaluator-agnostic descriptions; added examples for `evaluate`, `review`, `proofread`, and `list-evaluators` commands
+
+### Added
+
+- **Code review evaluator documentation** - Added `adversarial review` workflow for reviewing implemented code before merge
+- **Evaluator discovery** - Documented `adversarial list-evaluators` command to discover built-in and custom evaluators
+- **Custom evaluators guide** - Added documentation for creating project-specific evaluators via `.adversarial/evaluators/*.yml`
+
 ## [0.2.2] - 2025-12-06
 
 ### Added
