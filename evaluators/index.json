@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "updated": "2025-01-31",
+  "version": "1.1.0",
+  "updated": "2026-02-01",
   "evaluators": [
     {
       "name": "gemini-flash",
@@ -51,6 +51,30 @@
       "description": "Fast validation for formatting and basic issues"
     },
     {
+      "name": "o1-code-review",
+      "provider": "openai",
+      "path": "openai/o1-code-review/evaluator.yml",
+      "model": "o1",
+      "category": "code-review",
+      "description": "Deep reasoning code review for security and correctness"
+    },
+    {
+      "name": "o1-mini-code",
+      "provider": "openai",
+      "path": "openai/o1-mini-code/evaluator.yml",
+      "model": "o1-mini",
+      "category": "code-review",
+      "description": "Cost-effective reasoning-based code review"
+    },
+    {
+      "name": "gpt4o-code",
+      "provider": "openai",
+      "path": "openai/gpt4o-code/evaluator.yml",
+      "model": "gpt-4o",
+      "category": "code-review",
+      "description": "Fast comprehensive code quality review"
+    },
+    {
       "name": "mistral-content",
       "provider": "mistral",
       "path": "mistral/mistral-content/evaluator.yml",
@@ -90,7 +114,7 @@
     },
     "openai": {
       "api_key_env": "OPENAI_API_KEY",
-      "evaluators": ["gpt52-reasoning", "o3-chain", "fast-check"]
+      "evaluators": ["gpt52-reasoning", "o3-chain", "fast-check", "o1-code-review", "o1-mini-code", "gpt4o-code"]
     },
     "mistral": {
       "api_key_env": "MISTRAL_API_KEY",
