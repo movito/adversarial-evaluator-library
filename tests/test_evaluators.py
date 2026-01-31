@@ -63,7 +63,9 @@ class TestEvaluatorYAML:
             config = yaml.safe_load(f)
 
         prompt = config.get("prompt", "")
-        assert "{content}" in prompt, f"Prompt missing {{content}} placeholder in {yaml_path}"
+        assert (
+            "{content}" in prompt
+        ), f"Prompt missing {{content}} placeholder in {yaml_path}"
 
 
 class TestIndex:
@@ -91,7 +93,9 @@ class TestIndex:
 
         for evaluator in index["evaluators"]:
             path = EVALUATORS_DIR / evaluator["path"]
-            assert path.exists(), f"Index references non-existent path: {evaluator['path']}"
+            assert (
+                path.exists()
+            ), f"Index references non-existent path: {evaluator['path']}"
 
 
 class TestDocumentation:
@@ -130,37 +134,37 @@ class TestEvaluatorExecution:
         return bool(os.environ.get(env_var))
 
     @pytest.mark.skipif(
-        not os.environ.get("OPENAI_API_KEY"),
-        reason="OPENAI_API_KEY not set"
+        not os.environ.get("OPENAI_API_KEY"), reason="OPENAI_API_KEY not set"
     )
     def test_fast_check_runs(self):
         """fast-check evaluator should run successfully."""
         result = subprocess.run(
             [
-                "adversarial", "evaluate",
+                "adversarial",
+                "evaluate",
                 str(EVALUATORS_DIR / "openai/fast-check/evaluator.yml"),
-                str(self.TEST_FILE)
+                str(self.TEST_FILE),
             ],
             capture_output=True,
             text=True,
-            timeout=60
+            timeout=60,
         )
         assert result.returncode == 0, f"fast-check failed: {result.stderr}"
 
     @pytest.mark.skipif(
-        not os.environ.get("GEMINI_API_KEY"),
-        reason="GEMINI_API_KEY not set"
+        not os.environ.get("GEMINI_API_KEY"), reason="GEMINI_API_KEY not set"
     )
     def test_gemini_flash_runs(self):
         """gemini-flash evaluator should run successfully."""
         result = subprocess.run(
             [
-                "adversarial", "evaluate",
+                "adversarial",
+                "evaluate",
                 str(EVALUATORS_DIR / "google/gemini-flash/evaluator.yml"),
-                str(self.TEST_FILE)
+                str(self.TEST_FILE),
             ],
             capture_output=True,
             text=True,
-            timeout=60
+            timeout=60,
         )
         assert result.returncode == 0, f"gemini-flash failed: {result.stderr}"

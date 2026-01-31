@@ -528,7 +528,8 @@ def main():
     for folder in workflow_folders:
         folder_path = base_dir / folder
         if folder_path.exists():
-            # Match any task format: PREFIX-NNNN-description.md (e.g., TASK-0001, ASK-0001, TC2-0001)
+            # Match any task format: PREFIX-NNNN-description.md
+            # (e.g., TASK-0001, ASK-0001, TC2-0001)
             task_files = list(folder_path.glob("*-[0-9]*.md"))
             all_files.extend(task_files)
 
