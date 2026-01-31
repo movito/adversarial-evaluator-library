@@ -1,0 +1,45 @@
+# Adversarial Trio
+# Three different model families for maximum blind-spot coverage
+#
+# Use case: When you need to be absolutely sure no issues are missed
+# Principle: Same training data = same blind spots
+# Cost: ~$0.08-0.15 per document
+# Time: 2-3 minutes
+
+name: adversarial-trio
+description: Three model families for cognitive diversity
+
+evaluators:
+  - openai/gpt52-reasoning   # OpenAI family
+  - mistral/mistral-content  # Mistral family (European)
+  - google/gemini-deep       # Google family
+
+rationale: |
+  Each model family has different:
+  - Training data sources
+  - Fine-tuning approaches
+  - Cognitive patterns
+
+  By using all three, you minimize the chance that a systematic
+  blind spot in one family causes you to miss an issue.
+
+when_to_use:
+  - Final review before publication
+  - High-stakes policy documents
+  - Documents that will face hostile scrutiny
+  - When previous single-model reviews missed issues
+
+synthesis_approach: |
+  1. Weight consensus heavily (2+ models agree = real issue)
+  2. Investigate contradictions (may reveal nuanced issues)
+  3. Don't dismiss unique findings (may be valid insight)
+  4. Look for patterns in what each model catches
+
+example_usage: |
+  # Run all three
+  for eval in openai/gpt52-reasoning mistral/mistral-content google/gemini-deep; do
+    adversarial evaluate evaluators/$eval/evaluator.yml important-doc.md
+  done
+
+  # Compare outputs
+  ls -la .adversarial/logs/*important-doc*

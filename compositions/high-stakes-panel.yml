@@ -1,0 +1,50 @@
+# High-Stakes Multi-Model Panel
+# Run multiple evaluators for maximum cognitive diversity
+#
+# Use case: Final review of important documents before publication
+# Cost: ~$0.10-0.20 per document
+# Time: 2-3 minutes total (parallel execution recommended)
+
+name: high-stakes-panel
+description: Multi-model adversarial review for critical documents
+
+evaluators:
+  - openai/gpt52-reasoning   # Primary adversarial review
+  - mistral/mistral-content  # European/alternative perspective
+  - google/gemini-deep       # Extended reasoning check
+
+workflow: |
+  1. Run all three evaluators (can be parallel)
+  2. Collect outputs from .adversarial/logs/
+  3. Synthesize findings:
+     - Issues found by multiple models = HIGH priority
+     - Issues found by single model = review for validity
+     - Contradictions between models = investigate further
+  4. Address all HIGH priority issues
+  5. Use judgment on single-model findings
+
+synthesis_prompt: |
+  Review the three evaluation outputs and synthesize:
+
+  ## Consensus Issues (found by 2+ models)
+  [List issues mentioned by multiple evaluators - these are HIGH priority]
+
+  ## Unique Findings
+  [List issues found by only one model - review for validity]
+
+  ## Contradictions
+  [Note any disagreements between models]
+
+  ## Recommended Actions
+  1. [Priority 1 - consensus issue]
+  2. [Priority 2]
+  3. [Priority 3]
+
+example_usage: |
+  # Run panel (sequential)
+  adversarial evaluate evaluators/openai/gpt52-reasoning/evaluator.yml doc.md
+  adversarial evaluate evaluators/mistral/mistral-content/evaluator.yml doc.md
+  adversarial evaluate evaluators/google/gemini-deep/evaluator.yml doc.md
+
+  # Review outputs
+  ls .adversarial/logs/*doc*

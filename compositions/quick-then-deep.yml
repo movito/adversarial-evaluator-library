@@ -1,0 +1,39 @@
+# Quick-Then-Deep Pipeline
+# Fast check first, deep analysis only if needed
+#
+# Use case: Efficient review that saves cost on clean documents
+# Cost: ~$0.005 if clean, ~$0.05-0.10 if issues found
+# Time: 15 seconds if clean, 1-2 minutes if deep review needed
+
+name: quick-then-deep
+description: Fast check first, deep analysis only if issues found
+
+stages:
+  - name: quick-check
+    evaluator: openai/fast-check
+    gate: |
+      If output contains "✅ PASSED":
+        → STOP (document is clean)
+      Else:
+        → Continue to deep review
+
+  - name: deep-review
+    evaluator: openai/gpt52-reasoning
+    condition: "Only if quick-check found issues"
+
+workflow: |
+  1. Run fast-check evaluator
+  2. Check output for "✅ PASSED"
+  3. If passed: Document is ready, stop here
+  4. If issues found: Run deep review
+  5. Address findings from deep review
+
+example_usage: |
+  # Step 1: Quick check
+  adversarial evaluate evaluators/openai/fast-check/evaluator.yml doc.md
+
+  # Step 2: Check result
+  grep -l "PASSED" .adversarial/logs/*fast-check* && echo "Clean!" || echo "Needs deep review"
+
+  # Step 3: If needed, run deep review
+  adversarial evaluate evaluators/openai/gpt52-reasoning/evaluator.yml doc.md
