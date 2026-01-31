@@ -1,16 +1,16 @@
 {
   "project": {
-    "name": "${PROJECT_NAME}",
+    "name": "adversarial-evaluator-library",
     "version": "0.1.0",
     "description": "Project description here",
-    "created": "${CREATED_DATE}",
-    "languages": []
+    "created": "2026-01-31",
+    "languages": ["python"]
   },
   "configuration": {
-    "serena_enabled": false,
-    "evaluator_enabled": false,
+    "serena_enabled": true,
+    "evaluator_enabled": true,
     "linear_enabled": false,
-    "task_prefix": "TASK"
+    "task_prefix": "AEL"
   },
   "metrics": {
     "tasks_created": 0,
