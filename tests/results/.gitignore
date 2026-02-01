@@ -1,0 +1,4 @@
+# Ignore test output files but keep README
+*.json
+*_output.md
+!README.md
