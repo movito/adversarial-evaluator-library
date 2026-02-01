@@ -63,6 +63,7 @@ Use `TEMPLATE-FOR-ADR-FILES.md` in this directory. Key sections:
 | ADR | Title | Date | Status |
 |-----|-------|------|--------|
 | [ADR-0001](ADR-0001-evaluator-testing-strategy.md) | Evaluator Testing Strategy | 2026-02-01 | Accepted |
+| [ADR-0002](ADR-0002-evaluator-expansion-strategy.md) | Evaluator Expansion Strategy | 2026-02-01 | Proposed |
 
 ## When to Write an ADR
 
