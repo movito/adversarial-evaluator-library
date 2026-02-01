@@ -185,6 +185,13 @@ pre-commit autoupdate
 6. **Mock External Calls**: Don't hit real APIs or file systems in unit tests
 7. **Use Fixtures**: Reuse test setup via pytest fixtures
 
+## Evaluator Testing
+
+For testing evaluators specifically (adding new models, validating configurations, behavioral testing), see:
+
+- [Evaluator Testing Guide](EVALUATOR-TESTING-GUIDE.md) - Comprehensive guide for evaluator testing
+- [ADR-0001: Evaluator Testing Strategy](decisions/adr/ADR-0001-evaluator-testing-strategy.md) - Architectural decision
+
 ## Resources
 
 - [Pytest Documentation](https://docs.pytest.org/)

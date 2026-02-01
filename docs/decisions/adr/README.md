@@ -62,7 +62,7 @@ Use `TEMPLATE-FOR-ADR-FILES.md` in this directory. Key sections:
 
 | ADR | Title | Date | Status |
 |-----|-------|------|--------|
-| *Start with ADR-0001* | | | |
+| [ADR-0001](ADR-0001-evaluator-testing-strategy.md) | Evaluator Testing Strategy | 2026-02-01 | Accepted |
 
 ## When to Write an ADR
 
@@ -105,5 +105,5 @@ We need JSON-structured logs for our cloud monitoring system...
 ---
 
 **Template**: agentive-starter-kit
-**Your Project**: [Your project name]
-**Started**: [Date you cloned the starter kit]
+**Your Project**: adversarial-evaluator-library
+**Started**: 2026-01-31
