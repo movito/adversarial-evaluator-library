@@ -35,14 +35,33 @@ The adversarial-evaluator-library provides pre-configured AI evaluators for docu
 
 ### Forces at Play
 
-**Technical Requirements:**
+#### Technical Requirements
+
 - Each category should demonstrate cognitive diversity (multiple providers)
 - Evaluators must use pinned model versions for reproducibility
 - New evaluators should follow established patterns
 
+#### Constraints
+
+- Library should remain a "starter kit", not exhaustive catalog
+- Maintenance burden scales with evaluator count
+- API costs for testing all evaluators
+- Model deprecation requires ongoing updates
+
+#### Assumptions
+
+- Projects will add their own specialized evaluators
+- Major providers (OpenAI, Anthropic, Google, Mistral) are essential for broad coverage
+- Emerging providers add valuable diversity
+- Model behavior drifts; pinned versions provide stability
+
+---
+
 **Definition: Cognitive Diversity**
 
-"Cognitive diversity" means evaluators that produce meaningfully different outputs on the same input. This is measured by:
+"Cognitive diversity" means evaluators that produce meaningfully different outputs on the same input—like having multiple reviewers with different expertise examine the same document. A security specialist, a performance engineer, and a UX designer will each catch different issues. Similarly, AI models from different providers have different training data, safety policies, and reasoning patterns, leading them to flag different concerns.
+
+This is measured by:
 
 1. **Disagreement Rate**: On a benchmark set of 20 test documents, evaluators from different providers should disagree on at least 15% of findings (one flags an issue the other doesn't)
 2. **Different Failure Modes**: Documented cases where each provider catches issues the other misses
@@ -50,17 +69,24 @@ The adversarial-evaluator-library provides pre-configured AI evaluators for docu
 
 Provider diversity is a *proxy* for cognitive diversity, not a guarantee. Empirical validation (disagreement testing) is required before claiming cognitive diversity benefits.
 
-**Constraints:**
-- Library should remain a "starter kit", not exhaustive catalog
-- Maintenance burden scales with evaluator count
-- API costs for testing all evaluators
-- Model deprecation requires ongoing updates
+**Empirical Validation Framework**
 
-**Assumptions:**
-- Projects will add their own specialized evaluators
-- Major providers (OpenAI, Anthropic, Google, Mistral) are essential
-- Emerging providers add valuable diversity
-- Model behavior drifts; pinned versions provide stability
+Before claiming cognitive diversity benefits for a category, we will:
+
+1. **Run disagreement testing**: Evaluate 20 sample documents with each provider's evaluator
+2. **Measure disagreement rate**: Count findings where one evaluator flags an issue the other doesn't
+3. **Document failure modes**: Record specific examples where each evaluator caught unique issues
+4. **Publish results**: Include disagreement metrics in evaluator README files
+
+Example validation results (to be populated):
+```
+Category: code-review
+Evaluators compared: gpt5-code vs claude-code
+Sample size: 20 code files
+Disagreement rate: TBD%
+Unique findings by gpt5-code: TBD
+Unique findings by claude-code: TBD
+```
 
 ## Decision
 
@@ -282,20 +308,24 @@ Examples:
 
 ## Consequences
 
-### Positive
+### Expected Benefits
 
-- ✅ **Meaningful diversity**: Every category has multiple perspectives
-- ✅ **Reproducible results**: Pinned versions prevent drift
-- ✅ **Clear extension path**: Projects know how to add their own
-- ✅ **Managed scope**: ~20-30 evaluators, not hundreds
-- ✅ **Cost options**: Budget to premium in each category
+Adding evaluators following this strategy provides:
 
-### Negative
+- ✅ **Meaningful diversity**: Every category has multiple perspectives, catching issues that single-provider coverage would miss
+- ✅ **Reproducible results**: Pinned versions prevent unexpected behavior changes between runs
+- ✅ **Clear extension path**: Projects know exactly how to add their own evaluators
+- ✅ **Managed scope**: ~20-30 evaluators keeps the library usable without overwhelming users
+- ✅ **Cost options**: Budget to premium tiers let users choose based on their needs
 
-- ⚠️ **Version maintenance**: Pinned versions require updates when deprecated
-- ⚠️ **API key complexity**: More providers = more keys to manage
-- ⚠️ **Testing cost**: Each new evaluator adds to test matrix
-- ⚠️ **Anthropic dependency**: Adding Tier 1 provider increases critical dependencies
+### Potential Drawbacks
+
+However, this approach has trade-offs:
+
+- ⚠️ **Version maintenance**: Pinned versions require updates when providers deprecate models
+- ⚠️ **API key complexity**: More providers = more API keys to manage and secure
+- ⚠️ **Testing cost**: Each new evaluator adds ~$0.05 to the CI test cost and ~30s to runtime
+- ⚠️ **Provider dependencies**: Adding Tier 1 providers increases critical external dependencies
 
 ### Neutral
 
@@ -360,3 +390,8 @@ Examples:
   - Updated Phase 1 model versions to 2025/2026 era (was using deprecated 2024 models)
   - Updated Phase 2/3 model versions for consistency
   - Fixed temporal inconsistency between document date and model versions
+- 2026-02-01: Revision based on Mistral Large content review:
+  - Added plain-language explanation of "cognitive diversity" concept
+  - Restructured "Forces at Play" into clear subsections (Requirements, Constraints, Assumptions)
+  - Added empirical validation framework for measuring cognitive diversity
+  - Clarified expected benefits and potential drawbacks in Consequences section

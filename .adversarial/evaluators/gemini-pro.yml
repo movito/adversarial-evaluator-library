@@ -11,7 +11,7 @@
 
 name: gemini-pro
 description: Large-context knowledge synthesis using Gemini 3 Pro (1M tokens)
-model: gemini/gemini-3-pro
+model: gemini/gemini-3-pro-preview
 api_key_env: GEMINI_API_KEY
 output_suffix: -gemini-pro.md
 timeout: 400  # Extended for large context processing
