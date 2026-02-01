@@ -28,18 +28,10 @@ The adversarial-evaluator-library provides pre-configured AI evaluators for docu
 | Mistral | 3 | quick-check, code-review, cognitive-diversity |
 
 **Coverage gaps:**
-- Anthropic/Claude: 0 evaluators (intentional—see rationale below)
+- Anthropic/Claude: 0 evaluators (major provider missing)
 - adversarial category: 1 evaluator (OpenAI only)
 - cognitive-diversity: 1 evaluator (Mistral only)
 - knowledge-synthesis: 1 evaluator (Google only)
-
-**Why no Anthropic evaluators?**
-
-This library is designed to work with [agentive-starter-kit](https://github.com/movito/agentive-starter-kit), where Claude (Anthropic) serves as the primary planning and authoring agent. All plans, documents, and code originate from Claude. 
-
-To achieve genuine cognitive diversity, we deliberately use *other* model families (OpenAI, Google, Mistral) as adversarial critics. Having Claude evaluate Claude's own output would reduce the diversity benefit—the same training biases, safety policies, and reasoning patterns that shaped the original content would also shape its critique.
-
-This is analogous to peer review: you don't ask the author to review their own paper. The evaluator library provides the "other voices" that challenge Claude-authored work.
 
 ### Forces at Play
 
@@ -128,9 +120,8 @@ Organize providers into tiers based on selection criteria:
 
 **Tier 1 (Essential)** - Must have comprehensive coverage:
 - OpenAI: Highest enterprise adoption, stable versioned APIs
+- Anthropic: Strong reasoning benchmarks, safety-focused design
 - Google: Gemini API, large context windows (1M+ tokens)
-
-*Note: Anthropic is excluded from evaluator tiers because Claude serves as the authoring agent in agentive-starter-kit. Evaluators come from other providers to ensure genuine cognitive diversity.*
 
 **Tier 2 (Important)** - Should have representative coverage:
 - Mistral: EU data residency option, competitive pricing
@@ -226,12 +217,12 @@ The library is a **starter kit**. Design for extension:
 
 | Evaluator | Provider | Category | Model | Rationale |
 |-----------|----------|----------|-------|-----------|
-| `gemini-adversarial` | Google | adversarial | gemini-3-pro-20260101 | Fill single-provider gap |
-| `gemini-code` | Google | code-review | gemini-3-pro-20260101 | Add Tier 1 provider to code-review |
+| `claude-adversarial` | Anthropic | adversarial | claude-4-opus-20260115 | Fill single-provider gap, strong reasoning |
+| `claude-code` | Anthropic | code-review | claude-4-sonnet-20260115 | Add Tier 1 provider |
+| `claude-quick` | Anthropic | quick-check | claude-4-haiku-20260115 | Budget option |
+| `gemini-code` | Google | code-review | gemini-3-pro-20260101 | Fill provider gap |
 | `gpt5-diversity` | OpenAI | cognitive-diversity | gpt-5-turbo-2025-11-01 | Fill single-provider gap |
 | `gpt5-synthesis` | OpenAI | knowledge-synthesis | gpt-5-turbo-2025-11-01 | Fill single-provider gap |
-
-*Note: Anthropic/Claude evaluators are intentionally excluded—see "Why no Anthropic evaluators?" above.*
 
 **Phase 2: Expand Tier 2** (Secondary)
 
@@ -251,17 +242,15 @@ The library is a **starter kit**. Design for extension:
 
 After Phase 1:
 
-| Category | OpenAI | Google | Mistral | Total | Multi-Provider? |
-|----------|--------|--------|---------|-------|-----------------|
-| quick-check | 1 | 1 | 1 | 3 | ✅ Yes (3) |
-| code-review | 3 | 2 | 1 | 6 | ✅ Yes (3) |
-| deep-reasoning | 1 | 1 | 0 | 2 | ✅ Yes (2) |
-| adversarial | 1 | 1 | 0 | 2 | ✅ Yes (2) |
-| cognitive-diversity | 1 | 0 | 1 | 2 | ✅ Yes (2) |
-| knowledge-synthesis | 1 | 1 | 0 | 2 | ✅ Yes (2) |
-| **Total** | 8 | 6 | 3 | **17** | **All categories ≥2** |
-
-*Anthropic intentionally excluded—Claude is the authoring agent, other models provide critique.*
+| Category | OpenAI | Anthropic | Google | Mistral | Total | Multi-Provider? |
+|----------|--------|-----------|--------|---------|-------|-----------------|
+| quick-check | 1 | 1 | 1 | 1 | 4 | ✅ Yes (4) |
+| code-review | 3 | 1 | 1 | 1 | 6 | ✅ Yes (4) |
+| deep-reasoning | 1 | 0 | 1 | 0 | 2 | ✅ Yes (2) |
+| adversarial | 1 | 1 | 0 | 0 | 2 | ✅ Yes (2) |
+| cognitive-diversity | 1 | 0 | 0 | 1 | 2 | ✅ Yes (2) |
+| knowledge-synthesis | 1 | 0 | 1 | 0 | 2 | ✅ Yes (2) |
+| **Total** | 8 | 3 | 4 | 3 | **18** | **All categories ≥2** |
 
 ### Principle 6: Acceptance Criteria for New Evaluators
 
@@ -340,7 +329,7 @@ However, this approach has trade-offs:
 
 ### Neutral
 
-- 📊 **Evaluator count grows**: 12 → 16 (Phase 1), potentially ~22 (all phases)
+- 📊 **Evaluator count grows**: 12 → 18 (Phase 1), potentially ~25 (all phases)
 - 📊 **Index structure unchanged**: Same YAML format, same categories
 
 ## Alternatives Considered
@@ -406,8 +395,8 @@ However, this approach has trade-offs:
   - Restructured "Forces at Play" into clear subsections (Requirements, Constraints, Assumptions)
   - Added empirical validation framework for measuring cognitive diversity
   - Clarified expected benefits and potential drawbacks in Consequences section
-- 2026-02-01: Added Anthropic exclusion rationale:
-  - Explained why Anthropic/Claude is intentionally excluded (Claude is authoring agent)
-  - Updated Phase 1 to use Google/OpenAI instead of Anthropic
-  - Updated coverage matrix to reflect 3-provider strategy (OpenAI, Google, Mistral)
-  - Revised target from 18 to 16 evaluators
+- 2026-02-01: Restored Anthropic as Tier 1 provider:
+  - Reverted Anthropic exclusion to avoid tight coupling to specific agent implementations
+  - Added claude-adversarial, claude-code, claude-quick to Phase 1
+  - Restored 4-provider strategy (OpenAI, Anthropic, Google, Mistral)
+  - Target: 18 evaluators

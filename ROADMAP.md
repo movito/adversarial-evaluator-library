@@ -14,24 +14,25 @@ A **starter kit** of adversarial evaluators that demonstrates cognitive diversit
 - Mistral: 3 evaluators
 
 **Coverage gaps**:
+- Anthropic/Claude: Missing entirely
 - Several categories have single-provider coverage
-
-**Why no Anthropic?** Claude serves as the authoring agent in agentive-starter-kit. We use other model families (OpenAI, Google, Mistral) as adversarial critics to ensure genuine cognitive diversity.
 
 ## Phases
 
 ### Phase 1: Fill Critical Gaps (Next)
 
-Ensure each category has 2+ providers for cognitive diversity.
+Add Anthropic as Tier 1 provider and ensure each category has 2+ providers.
 
 | Evaluator | Provider | Category | Priority |
 |-----------|----------|----------|----------|
-| `gemini-adversarial` | Google | adversarial | High |
-| `gemini-code` | Google | code-review | High |
+| `claude-adversarial` | Anthropic | adversarial | High |
+| `claude-code` | Anthropic | code-review | High |
+| `claude-quick` | Anthropic | quick-check | High |
+| `gemini-code` | Google | code-review | Medium |
 | `gpt5-diversity` | OpenAI | cognitive-diversity | Medium |
 | `gpt5-synthesis` | OpenAI | knowledge-synthesis | Medium |
 
-**Target**: 16 evaluators, 3 providers
+**Target**: 18 evaluators, 4 providers
 
 ### Phase 2: Tier 2 Providers
 
