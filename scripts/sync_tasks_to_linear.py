@@ -61,13 +61,20 @@ except ImportError:
     pass
 
 # Import gql for GraphQL operations
+# Note: gql is optional - tests can run without it using mocks
+GQL_AVAILABLE = False
+Client = None
+gql = None
+RequestsHTTPTransport = None
+
 try:
     from gql import Client, gql
     from gql.transport.requests import RequestsHTTPTransport
+
+    GQL_AVAILABLE = True
 except ImportError:
-    logger.error("❌ Error: gql package not installed")
-    logger.error("   Run: pip install gql[requests]")
-    sys.exit(1)
+    # gql not installed - will be checked at runtime
+    pass
 
 # Import local utilities - support both direct script execution and package import
 try:
@@ -144,7 +151,15 @@ class LinearClient:
     """Client for Linear GraphQL API."""
 
     def __init__(self, api_key: str):
-        """Initialize Linear client."""
+        """Initialize Linear client.
+
+        Raises:
+            ImportError: If gql package is not installed.
+        """
+        if not GQL_AVAILABLE:
+            raise ImportError(
+                "gql package not installed. Run: pip install gql[requests]"
+            )
         transport = RequestsHTTPTransport(
             url="https://api.linear.app/graphql",
             headers={"Authorization": api_key},
@@ -566,4 +581,8 @@ def main():
 
 
 if __name__ == "__main__":
+    if not GQL_AVAILABLE:
+        logger.error("❌ Error: gql package not installed")
+        logger.error("   Run: pip install gql[requests]")
+        sys.exit(1)
     main()

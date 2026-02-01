@@ -22,7 +22,7 @@ authors = [
     {name = "Your Name", email = "you@example.com"},  # TODO: Update author
 ]
 dependencies = [
-    # Linear sync (included by default - most projects use it)
+    # Linear sync (optional at runtime - tests skip gracefully if not installed)
     "gql[requests]>=3.4.0",    # GraphQL client for Linear API
     "python-dotenv>=1.0.0",    # Load .env files
 ]
@@ -55,6 +55,7 @@ markers = [
     "slow: marks tests as slow (>1s runtime, deselect with '-m \"not slow\"')",
     "integration: integration tests requiring external services",
     "unit: fast unit tests (default)",
+    "requires_api: tests requiring API keys (skip with '-m \"not requires_api\"')",
 ]
 
 [tool.black]

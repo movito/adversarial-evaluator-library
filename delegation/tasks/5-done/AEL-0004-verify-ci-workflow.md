@@ -1,6 +1,6 @@
 # AEL-0004: Verify CI Workflow Runs on GitHub
 
-**Status**: Todo
+**Status**: Done
 **Priority**: high
 **Assigned To**: ci-checker
 **Estimated Effort**: 15 minutes

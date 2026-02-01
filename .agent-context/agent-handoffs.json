@@ -1,38 +1,37 @@
 {
   "planner": {
-    "status": "active",
-    "current_task": "AEL-0002, AEL-0004",
-    "task_started": "2026-01-31",
-    "brief_note": "Preparing task starters for smoke tests and CI verification",
-    "details_link": "delegation/tasks/2-todo/",
-    "handoff_file": ".agent-context/AEL-0002-HANDOFF-test-runner.md"
-  },
-  "test-runner": {
-    "status": "awaiting_assignment",
-    "current_task": "AEL-0002",
-    "task_started": null,
-    "brief_note": "Ready for AEL-0002 - Run Smoke Tests to Validate Evaluators",
-    "details_link": "delegation/tasks/2-todo/AEL-0002-run-smoke-tests.md"
-  },
-  "ci-checker": {
-    "status": "awaiting_assignment",
-    "current_task": "AEL-0004",
-    "task_started": null,
-    "brief_note": "Ready for AEL-0004 - Verify CI Workflow Runs on GitHub",
-    "details_link": "delegation/tasks/2-todo/AEL-0004-verify-ci-workflow.md"
-  },
-  "feature-developer": {
     "status": "idle",
     "current_task": null,
     "task_started": null,
-    "brief_note": "Ready - AEL-0001 (README) pending after smoke tests pass",
+    "brief_note": "Project initialization complete. Ready for next task.",
     "details_link": null
+  },
+  "test-runner": {
+    "status": "completed",
+    "current_task": "AEL-0002",
+    "task_started": "2026-01-31",
+    "brief_note": "✅ COMPLETE: 48/48 tests passed, all 9 evaluators validated, CI clean",
+    "details_link": "delegation/tasks/5-done/AEL-0002-run-smoke-tests.md"
+  },
+  "ci-checker": {
+    "status": "completed",
+    "current_task": "AEL-0004",
+    "task_started": "2026-01-31",
+    "brief_note": "✅ COMPLETE: CI verified - all workflows passing",
+    "details_link": "delegation/tasks/5-done/AEL-0004-verify-ci-workflow.md"
+  },
+  "feature-developer": {
+    "status": "completed",
+    "current_task": "AEL-0001",
+    "task_started": "2026-01-31",
+    "brief_note": "✅ COMPLETE: README written (259 lines), all evaluators documented",
+    "details_link": "delegation/tasks/5-done/AEL-0001-write-project-readme.md"
   },
   "document-reviewer": {
     "status": "idle",
     "current_task": null,
     "task_started": null,
-    "brief_note": "Ready for documentation review",
+    "brief_note": "Ready for documentation review tasks",
     "details_link": null
   }
 }

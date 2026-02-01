@@ -1,6 +1,6 @@
 # AEL-0001: Write Project README
 
-**Status**: Todo
+**Status**: Done
 **Priority**: medium
 **Assigned To**: feature-developer
 **Estimated Effort**: 2-3 hours

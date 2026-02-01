@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **gql dependency handling in Linear sync tests** - The `sync_tasks_to_linear.py` script no longer calls `sys.exit(1)` at import time when gql is not installed. Tests that require gql are now skipped with a clear message instead of failing during collection. Added `requires_gql` skip marker for 11 tests and `requires_api` marker for evaluator API tests.
+
 ### Changed
 
 - **Upgraded adversarial-workflow to v0.6.2** - Now requires `>=0.6.2` with support for multiple evaluators, `list-evaluators` command, and custom evaluator definitions

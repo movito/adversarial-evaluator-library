@@ -1,6 +1,6 @@
 # AEL-0002: Run Smoke Tests to Validate Evaluators
 
-**Status**: In Progress
+**Status**: Done
 **Priority**: high
 **Assigned To**: test-runner
 **Estimated Effort**: 30 minutes
