@@ -29,8 +29,8 @@ Add Anthropic as Tier 1 provider and ensure each category has 2+ providers.
 | `claude-code` | Anthropic | code-review | High |
 | `claude-quick` | Anthropic | quick-check | High |
 | `gemini-code` | Google | code-review | Medium |
-| `gpt4o-diversity` | OpenAI | cognitive-diversity | Medium |
-| `gpt4o-synthesis` | OpenAI | knowledge-synthesis | Medium |
+| `gpt5-diversity` | OpenAI | cognitive-diversity | Medium |
+| `gpt5-synthesis` | OpenAI | knowledge-synthesis | Medium |
 
 **Target**: 18 evaluators, 4 providers
 

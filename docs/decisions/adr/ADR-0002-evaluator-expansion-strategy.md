@@ -112,10 +112,10 @@ All evaluators MUST use pinned model versions to improve reproducibility:
 
 ```yaml
 # Good - pinned version
-model: gpt-4o-2024-08-06
+model: gpt-5-turbo-2025-11-01
 
 # Bad - floating reference
-model: gpt-4o
+model: gpt-5-turbo
 ```
 
 **Reproducibility Limitations:**
@@ -141,7 +141,7 @@ Pinned versions *improve* but do not *guarantee* reproducibility due to:
 **Timeline Rationale**: 6-month target based on typical provider deprecation windows (OpenAI ~6-12mo, Anthropic ~6mo). If provider announces shorter sunset, we follow their timeline. Exception handling documented in evaluator's CHANGELOG.
 
 **When models are updated:**
-1. Create new evaluator with new version (e.g., `gpt4o-code-2024-11`)
+1. Create new evaluator with new version (e.g., `gpt5-code-2026-03`)
 2. Keep old evaluator marked as `deprecated: true` in YAML
 3. Update documentation recommending new version
 4. Monitor provider deprecation announcements
@@ -191,26 +191,26 @@ The library is a **starter kit**. Design for extension:
 
 | Evaluator | Provider | Category | Model | Rationale |
 |-----------|----------|----------|-------|-----------|
-| `claude-adversarial` | Anthropic | adversarial | claude-3-opus-20240229 | Fill single-provider gap |
-| `claude-code` | Anthropic | code-review | claude-3-sonnet-20240229 | Add Tier 1 provider |
-| `claude-quick` | Anthropic | quick-check | claude-3-haiku-20240307 | Budget option |
-| `gemini-code` | Google | code-review | gemini-1.5-pro-002 | Fill provider gap |
-| `gpt4o-diversity` | OpenAI | cognitive-diversity | gpt-4o-2024-08-06 | Fill single-provider gap |
-| `gpt4o-synthesis` | OpenAI | knowledge-synthesis | gpt-4o-2024-08-06 | Fill single-provider gap |
+| `claude-adversarial` | Anthropic | adversarial | claude-4-opus-20260115 | Fill single-provider gap |
+| `claude-code` | Anthropic | code-review | claude-4-sonnet-20260115 | Add Tier 1 provider |
+| `claude-quick` | Anthropic | quick-check | claude-4-haiku-20260115 | Budget option |
+| `gemini-code` | Google | code-review | gemini-3-pro-20260101 | Fill provider gap |
+| `gpt5-diversity` | OpenAI | cognitive-diversity | gpt-5-turbo-2025-11-01 | Fill single-provider gap |
+| `gpt5-synthesis` | OpenAI | knowledge-synthesis | gpt-5-turbo-2025-11-01 | Fill single-provider gap |
 
 **Phase 2: Expand Tier 2** (Secondary)
 
 | Evaluator | Provider | Category | Model |
 |-----------|----------|----------|-------|
-| `cohere-reasoning` | Cohere | deep-reasoning | command-r-plus-08-2024 |
-| `cohere-synthesis` | Cohere | knowledge-synthesis | command-r-plus-08-2024 |
+| `cohere-reasoning` | Cohere | deep-reasoning | command-r-plus-2025-10 |
+| `cohere-synthesis` | Cohere | knowledge-synthesis | command-r-plus-2025-10 |
 
 **Phase 3: Tier 3 Specialists** (Optional)
 
 | Evaluator | Provider | Category | Model |
 |-----------|----------|----------|-------|
-| `deepseek-code` | DeepSeek | code-review | deepseek-coder-v2 |
-| `llama-baseline` | Groq | quick-check | llama-3.1-70b |
+| `deepseek-code` | DeepSeek | code-review | deepseek-coder-v3-2025-09 |
+| `llama-baseline` | Groq | quick-check | llama-4-70b-2025-08 |
 
 ### Target Coverage Matrix
 
@@ -276,7 +276,7 @@ Evaluator output must be parseable markdown with:
 
 Examples:
 - `claude-code` (Anthropic code review)
-- `gpt4o-code-2024-11` (versioned update)
+- `gpt5-code-2026-03` (versioned update)
 - `deepseek-code` (specialist)
 - `llama-baseline` (open source reference)
 
@@ -351,8 +351,12 @@ Examples:
   - Clarified "additive only" to allow deprecation metadata updates
   - Added token budget assumptions and pricing date for cost ladder
   - Specified test pass/fail rubric with output schema requirements
-  - Added gpt4o-synthesis to Phase 1 (18 total evaluators)
+  - Added gpt5-synthesis to Phase 1 (18 total evaluators)
   - Added reproducibility limitations and mitigation controls
   - Added rationale for 20-30 evaluator cap
   - Made provider tier criteria objective (removed marketing language)
   - Clarified lifecycle timeline with provider dependency
+- 2026-02-01: Revision based on Gemini 3 Pro synthesis review:
+  - Updated Phase 1 model versions to 2025/2026 era (was using deprecated 2024 models)
+  - Updated Phase 2/3 model versions for consistency
+  - Fixed temporal inconsistency between document date and model versions
