@@ -73,7 +73,9 @@ class EvaluationResult:
         }
 
 
-def run_evaluator(evaluator_path: str, sample_path: Path, timeout: int = 300) -> EvaluationResult:
+def run_evaluator(
+    evaluator_path: str, sample_path: Path, timeout: int = 300
+) -> EvaluationResult:
     """
     Run an evaluator on a code sample and return the result.
 
@@ -150,7 +152,10 @@ def save_result(result: EvaluationResult, results_dir: Path = RESULTS_DIR):
     results_dir.mkdir(parents=True, exist_ok=True)
 
     # Save individual result
-    result_file = results_dir / f"{result.evaluator}_{result.sample}_{result.timestamp.replace(':', '-')}.json"
+    result_file = (
+        results_dir
+        / f"{result.evaluator}_{result.sample}_{result.timestamp.replace(':', '-')}.json"
+    )
     with open(result_file, "w") as f:
         json.dump(result.to_dict(), f, indent=2)
 
@@ -200,7 +205,9 @@ class TestCodeEvaluatorFixtures:
                 [python_cmd, "-m", "py_compile", str(sample)],
                 capture_output=True,
             )
-            assert result.returncode == 0, f"Invalid Python in {sample.name}: {result.stderr}"
+            assert (
+                result.returncode == 0
+            ), f"Invalid Python in {sample.name}: {result.stderr}"
 
 
 @pytest.mark.requires_api
@@ -214,7 +221,9 @@ class TestCodeEvaluatorExecution:
             pytest.skip("OPENAI_API_KEY not set")
 
     @pytest.mark.parametrize("evaluator_name,evaluator_path,timeout", CODE_EVALUATORS)
-    def test_evaluator_runs_on_secure_sample(self, evaluator_name, evaluator_path, timeout):
+    def test_evaluator_runs_on_secure_sample(
+        self, evaluator_name, evaluator_path, timeout
+    ):
         """Each code evaluator should run successfully on clean code."""
         result = run_evaluator(evaluator_path, SAMPLE_SECURE, timeout)
         save_result(result)
@@ -224,7 +233,9 @@ class TestCodeEvaluatorExecution:
 
     @pytest.mark.slow
     @pytest.mark.parametrize("evaluator_name,evaluator_path,timeout", CODE_EVALUATORS)
-    def test_evaluator_runs_on_vulnerable_sample(self, evaluator_name, evaluator_path, timeout):
+    def test_evaluator_runs_on_vulnerable_sample(
+        self, evaluator_name, evaluator_path, timeout
+    ):
         """Each code evaluator should run on vulnerable code."""
         result = run_evaluator(evaluator_path, SAMPLE_VULNERABLE, timeout)
         save_result(result)
@@ -295,7 +306,13 @@ class TestSecurityDetection:
         assert result.success, f"Evaluator failed: {result.stderr}"
 
         output_lower = result.output.lower()
-        injection_terms = ["command injection", "shell", "subprocess", "os.system", "injection"]
+        injection_terms = [
+            "command injection",
+            "shell",
+            "subprocess",
+            "os.system",
+            "injection",
+        ]
         found_terms = [term for term in injection_terms if term in output_lower]
 
         assert len(found_terms) > 0, (
@@ -415,7 +432,9 @@ class TestCleanCodeApproval:
             pytest.skip("OPENAI_API_KEY not set")
 
     @pytest.mark.parametrize("evaluator_name,evaluator_path,timeout", CODE_EVALUATORS)
-    def test_evaluator_approves_secure_code(self, evaluator_name, evaluator_path, timeout):
+    def test_evaluator_approves_secure_code(
+        self, evaluator_name, evaluator_path, timeout
+    ):
         """Code evaluators should approve clean, secure code."""
         result = run_evaluator(evaluator_path, SAMPLE_SECURE, timeout)
         save_result(result)
@@ -431,9 +450,9 @@ class TestCleanCodeApproval:
 
         # Allow verdict to be APPROVED or CHANGES_REQUESTED (for minor style issues)
         # But should not be REJECT
-        assert result.verdict != "REJECT", (
-            f"{evaluator_name} rejected clean code. Verdict: {result.verdict}"
-        )
+        assert (
+            result.verdict != "REJECT"
+        ), f"{evaluator_name} rejected clean code. Verdict: {result.verdict}"
 
 
 @pytest.mark.requires_api
@@ -451,20 +470,33 @@ class TestPerformanceBenchmark:
         results = []
 
         for evaluator_name, evaluator_path, timeout in CODE_EVALUATORS:
-            for sample in [SAMPLE_SECURE, SAMPLE_VULNERABLE, SAMPLE_BUGGY, SAMPLE_MESSY]:
+            for sample in [
+                SAMPLE_SECURE,
+                SAMPLE_VULNERABLE,
+                SAMPLE_BUGGY,
+                SAMPLE_MESSY,
+            ]:
                 result = run_evaluator(evaluator_path, sample, timeout)
                 save_result(result)
                 results.append(result.to_dict())
 
         # Save benchmark summary
         RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-        summary_file = RESULTS_DIR / f"benchmark_summary_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.json"
+        summary_file = (
+            RESULTS_DIR
+            / f"benchmark_summary_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.json"
+        )
         with open(summary_file, "w") as f:
             json.dump(
                 {
                     "timestamp": datetime.utcnow().isoformat(),
                     "evaluators": [e[0] for e in CODE_EVALUATORS],
-                    "samples": ["sample_secure.py", "sample_vulnerable.py", "sample_buggy.py", "sample_messy.py"],
+                    "samples": [
+                        "sample_secure.py",
+                        "sample_vulnerable.py",
+                        "sample_buggy.py",
+                        "sample_messy.py",
+                    ],
                     "results": results,
                 },
                 f,
@@ -474,7 +506,9 @@ class TestPerformanceBenchmark:
         # Print summary
         print("\n\n=== BENCHMARK SUMMARY ===")
         for r in results:
-            print(f"{r['evaluator']:20} | {r['sample']:25} | {r['duration_seconds']:6.2f}s | {r['verdict'] or 'N/A'}")
+            print(
+                f"{r['evaluator']:20} | {r['sample']:25} | {r['duration_seconds']:6.2f}s | {r['verdict'] or 'N/A'}"
+            )
         print(f"\nResults saved to: {summary_file}")
 
         # All evaluators should complete

@@ -36,7 +36,8 @@ class UserManager:
 
     def _create_tables(self):
         """Create the users table."""
-        self.conn.execute("""
+        self.conn.execute(
+            """
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY,
                 username TEXT,
@@ -44,7 +45,8 @@ class UserManager:
                 email TEXT,
                 role TEXT
             )
-        """)
+        """
+        )
 
     def create_user(self, username, password, email, role="user"):
         """
@@ -111,7 +113,9 @@ class UserManager:
         VULNERABILITY: SQL injection via LIKE clause
         """
         # VULNERABILITY: SQL injection in LIKE clause
-        query = f"SELECT username, email FROM users WHERE username LIKE '%{search_term}%'"
+        query = (
+            f"SELECT username, email FROM users WHERE username LIKE '%{search_term}%'"
+        )
         return self.conn.execute(query).fetchall()
 
     def export_user_data(self, user_id, output_dir):
@@ -199,7 +203,9 @@ class UserManager:
         ).fetchone()
 
         if user:
-            print(f"Password reset token for {email}: {token}")  # VULNERABILITY: Logging sensitive data
+            print(
+                f"Password reset token for {email}: {token}"
+            )  # VULNERABILITY: Logging sensitive data
             return token
         else:
             raise Exception(f"No account found for email: {email}")

@@ -105,7 +105,8 @@ class DataProcessor:
         # BUG: KeyError if 'name' or 'age' don't exist
         processed = {
             "full_name": user["name"].upper(),  # BUG: KeyError if 'name' missing
-            "birth_year": 2024 - user["age"],  # BUG: KeyError if 'age' missing, TypeError if not int
+            "birth_year": 2024
+            - user["age"],  # BUG: KeyError if 'age' missing, TypeError if not int
             "active": user["status"] == "active",  # BUG: KeyError if 'status' missing
         }
         return processed
@@ -171,7 +172,9 @@ class DataProcessor:
         BUG: Off-by-one in page calculation
         """
         # BUG: page=0 and page=1 return the same result (off-by-one)
-        start = page * page_size  # BUG: Should be (page - 1) * page_size for 1-indexed pages
+        start = (
+            page * page_size
+        )  # BUG: Should be (page - 1) * page_size for 1-indexed pages
         end = start + page_size
         return items[start:end]
 

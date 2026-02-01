@@ -21,7 +21,6 @@ import sys
 import time
 from datetime import datetime
 
-
 # TODO: fix this later
 # FIXME: this is broken
 # XXX: temporary hack
@@ -38,7 +37,16 @@ def f(a, b, c, d, e, f, g, h):  # QUALITY: Too many parameters, unclear names
     return a + b + c + d + e + f + g + h
 
 
-def processData(userData, processFlag, outputPath, debugMode, verboseMode, strictMode, legacyMode, experimentalMode):  # QUALITY: Too many params, camelCase inconsistent with Python
+def processData(
+    userData,
+    processFlag,
+    outputPath,
+    debugMode,
+    verboseMode,
+    strictMode,
+    legacyMode,
+    experimentalMode,
+):  # QUALITY: Too many params, camelCase inconsistent with Python
     # QUALITY: No docstring for complex function
     # QUALITY: Very long function (should be split up)
 
@@ -156,7 +164,9 @@ class DataHandler:  # QUALITY: No docstring
             return len(input) > 0
         return True
 
-    def format_output(self, data, format, type):  # QUALITY: 'format' and 'type' shadow builtins
+    def format_output(
+        self, data, format, type
+    ):  # QUALITY: 'format' and 'type' shadow builtins
         """formats the output"""
         if format == "json":
             return json.dumps(data)
@@ -213,7 +223,7 @@ def increment():  # QUALITY: Modifies global state
 
 
 def add_data(item):  # QUALITY: Modifies global state
-    global GLOBAL_DATA
+    global GLOBAL_DATA  # noqa: F824 - intentional bad practice for testing
     GLOBAL_DATA.append(item)
 
 
