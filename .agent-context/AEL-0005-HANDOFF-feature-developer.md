@@ -1,8 +1,10 @@
 # AEL-0005 Handoff: Phase 1 Evaluator Implementation
 
-**Task**: Implement 6 evaluators per ADR-0002 Phase 1
+**Task**: `delegation/tasks/2-todo/AEL-0005-phase1-evaluator-implementation.md`
 **Agent**: feature-developer
 **Created**: 2026-02-01
+**Updated**: 2026-02-02
+**Evaluation**: 2 rounds with GPT-5.2 adversarial evaluator ($0.07 total)
 
 ## Quick Context
 
@@ -43,6 +45,36 @@ evaluators/
 | Anthropic | `ANTHROPIC_API_KEY` |
 | Google | `GEMINI_API_KEY` |
 | OpenAI | `OPENAI_API_KEY` |
+
+## Output Format Invariants (CRITICAL)
+
+All prompts MUST produce output matching this schema for downstream parser compatibility:
+
+```markdown
+## Findings
+
+### [CRITICAL/HIGH/MEDIUM/LOW]: [Finding Title]
+- **Location**: [file:line or code reference]
+- **Issue**: [Description]
+- **Remediation**: [How to fix]
+
+## Overall Assessment
+[Risk summary and verdict]
+```
+
+## Behavioral Test Requirements
+
+**sample_secure.py**:
+- Returns non-empty markdown
+- No false critical issues
+
+**sample_vulnerable.py**:
+- Detects at least 2 of 4 seeded vulnerabilities:
+  - SQL injection
+  - XSS (cross-site scripting)
+  - Hardcoded secrets
+  - Path traversal
+- Each finding includes: severity, line reference, remediation
 
 ## Prompt References
 
@@ -118,16 +150,13 @@ pytest tests/test_evaluators.py -v
 }
 ```
 
-## Timeout Guidelines
+## Timeout Tiers (Revised)
 
-| Category | Timeout | Rationale |
-|----------|---------|-----------|
-| quick-check | 60s | Fast validation |
-| code-review | 120-180s | Detailed analysis |
-| adversarial | 180s | Deep critique |
-| cognitive-diversity | 180s | Alternative perspectives |
-| knowledge-synthesis | 300-400s | Large context processing |
-| deep-reasoning | 300-600s | Extended analysis |
+| Category | Target | Hard Timeout |
+|----------|--------|--------------|
+| quick-check | <60s | 90s |
+| standard (code-review, adversarial, cognitive-diversity, knowledge-synthesis) | <120s | 180s |
+| deep-reasoning | <180s | 300s |
 
 ## Completion Checklist
 
@@ -139,8 +168,21 @@ pytest tests/test_evaluators.py -v
 - [ ] Tested at least one evaluator from each provider against fixtures
 - [ ] Updated main README.md evaluator count (12 → 18)
 
+## Refinements from Evaluation (Nice-to-Have)
+
+The following were noted in GPT-5.2 evaluation but deferred to implementation:
+
+1. **Model IDs are "proposed until validated"** - Verify each works before committing
+2. **Behavioral test scoring** - Define pass/fail clearly when implementing tests
+3. **Schema validation** - Consider adding test that parses output for required sections
+
 ## Resources
 
 - ADR-0002: `docs/decisions/adr/ADR-0002-evaluator-expansion-strategy.md`
 - Testing Guide: `docs/EVALUATOR-TESTING-GUIDE.md`
 - Test Fixtures: `tests/fixtures/code_samples/`
+- Task File: `delegation/tasks/2-todo/AEL-0005-phase1-evaluator-implementation.md`
+
+---
+
+**Ready for implementation. Run `./scripts/project start AEL-0005` to begin.**
