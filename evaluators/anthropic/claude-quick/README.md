@@ -14,7 +14,7 @@ Fast validation using Claude 4 Haiku for rapid initial screening.
 ## Performance
 
 | Metric | Value |
-|--------|-------|
+| -------- | ----- |
 | Typical response time | 5-15 seconds |
 | Timeout setting | 90 seconds |
 | Cost | ~$0.001-0.005 per evaluation |
@@ -54,7 +54,7 @@ model: claude-4-haiku-20260115
 ## Example Usage
 
 ```bash
-adversarial claude-quick draft-document.md
+adversarial evaluate --evaluator claude-quick draft-document.md
 ```
 
 ## Output Format

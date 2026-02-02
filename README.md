@@ -1,7 +1,7 @@
 # adversarial-evaluator-library
 
 [![CI](https://github.com/movito/adversarial-evaluator-library/actions/workflows/ci.yml/badge.svg)](https://github.com/movito/adversarial-evaluator-library/actions/workflows/ci.yml)
-[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/movito/adversarial-evaluator-library/releases)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/movito/adversarial-evaluator-library/releases)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 **A library of adversarial evaluators for AI-assisted document review.**

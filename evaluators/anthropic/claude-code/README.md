@@ -14,7 +14,7 @@ Security-focused code analysis using Claude 4 Sonnet for balanced thoroughness a
 ## Performance
 
 | Metric | Value |
-|--------|-------|
+| -------- | ----- |
 | Typical response time | 20-40 seconds |
 | Timeout setting | 180 seconds |
 | Cost | ~$0.01-0.04 per evaluation |
@@ -57,7 +57,7 @@ model: claude-4-sonnet-20260115
 ## Example Usage
 
 ```bash
-adversarial claude-code src/api/handler.py
+adversarial evaluate --evaluator claude-code src/api/handler.py
 ```
 
 ## Output Format

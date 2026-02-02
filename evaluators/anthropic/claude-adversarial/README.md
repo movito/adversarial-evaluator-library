@@ -13,7 +13,7 @@ Rigorous adversarial review using Claude 4 Opus for critical analysis and stress
 ## Performance
 
 | Metric | Value |
-|--------|-------|
+| -------- | ----- |
 | Typical response time | 30-60 seconds |
 | Timeout setting | 180 seconds |
 | Cost | ~$0.03-0.10 per evaluation |
@@ -46,7 +46,7 @@ model: claude-4-opus-20260115
 ## Example Usage
 
 ```bash
-adversarial claude-adversarial policy-doc.md
+adversarial evaluate --evaluator claude-adversarial policy-doc.md
 ```
 
 ## Output Format

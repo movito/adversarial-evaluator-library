@@ -14,7 +14,7 @@ Code-focused security and quality review using Google's Gemini 3 Pro.
 ## Performance
 
 | Metric | Value |
-|--------|-------|
+| -------- | ----- |
 | Typical response time | 20-45 seconds |
 | Timeout setting | 180 seconds |
 | Cost | ~$0.01-0.04 per evaluation |
@@ -57,7 +57,7 @@ model: gemini-3-pro-20260101
 ## Example Usage
 
 ```bash
-adversarial gemini-code src/api/handler.py
+adversarial evaluate --evaluator gemini-code src/api/handler.py
 ```
 
 ## Output Format

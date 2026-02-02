@@ -14,7 +14,7 @@ Cross-reference and completeness validation using GPT-5 Turbo for comprehensive 
 ## Performance
 
 | Metric | Value |
-|--------|-------|
+| -------- | ----- |
 | Typical response time | 25-50 seconds |
 | Timeout setting | 180 seconds |
 | Cost | ~$0.02-0.06 per evaluation |
@@ -56,7 +56,7 @@ model: gpt-5-turbo-2025-11-01
 ## Example Usage
 
 ```bash
-adversarial gpt5-synthesis research-report.md
+adversarial evaluate --evaluator gpt5-synthesis research-report.md
 ```
 
 ## Output Format

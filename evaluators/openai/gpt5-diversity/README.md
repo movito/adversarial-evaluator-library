@@ -14,7 +14,7 @@ Alternative perspective analysis using GPT-5 Turbo to surface blind spots and ch
 ## Performance
 
 | Metric | Value |
-|--------|-------|
+| -------- | ----- |
 | Typical response time | 25-45 seconds |
 | Timeout setting | 180 seconds |
 | Cost | ~$0.02-0.06 per evaluation |
@@ -56,7 +56,7 @@ model: gpt-5-turbo-2025-11-01
 ## Example Usage
 
 ```bash
-adversarial gpt5-diversity proposal-document.md
+adversarial evaluate --evaluator gpt5-diversity proposal-document.md
 ```
 
 ## Output Format

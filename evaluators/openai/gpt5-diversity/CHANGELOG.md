@@ -5,6 +5,7 @@ All notable changes to the gpt5-diversity evaluator will be documented in this f
 ## [1.0.0] - 2026-02-02
 
 ### Added
+
 - Initial release of GPT-5 Turbo cognitive diversity evaluator
 - Alternative perspective prompt adapted from mistral-content
 - Focus on assumption auditing and blind spot detection
@@ -13,5 +14,6 @@ All notable changes to the gpt5-diversity evaluator will be documented in this f
 - 180-second timeout (standard category)
 
 ### Notes
+
 - Part of AEL-0005: Phase 1 Evaluator Implementation
 - Provides OpenAI coverage for cognitive-diversity category (2nd provider)
