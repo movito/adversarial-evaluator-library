@@ -1,13 +1,10 @@
 {
   "planner": {
-    "status": "completed",
-    "current_task": "AEL-0005",
-    "task_started": "2026-02-01",
-    "brief_note": "✅ COMPLETE: AEL-0005 evaluated (2 rounds GPT-5.2), revised, ready for assignment",
-    "details_link": "delegation/tasks/2-todo/AEL-0005-phase1-evaluator-implementation.md",
-    "handoff_file": ".agent-context/AEL-0005-HANDOFF-feature-developer.md",
-    "evaluation_rounds": 2,
-    "evaluation_cost": "$0.07"
+    "status": "idle",
+    "current_task": null,
+    "task_started": null,
+    "brief_note": "Ready for next task. Last: AEL-0005 completed (Phase 1 evaluators)",
+    "details_link": null
   },
   "test-runner": {
     "status": "completed",
@@ -25,10 +22,11 @@
   },
   "feature-developer": {
     "status": "completed",
-    "current_task": "AEL-0001",
-    "task_started": "2026-01-31",
-    "brief_note": "✅ COMPLETE: README written (259 lines), all evaluators documented",
-    "details_link": "delegation/tasks/5-done/AEL-0001-write-project-readme.md"
+    "current_task": "AEL-0005",
+    "task_started": "2026-02-02",
+    "brief_note": "✅ COMPLETE: 6 evaluators added (18 total), 4 providers, 93/93 tests passing",
+    "details_link": "delegation/tasks/5-done/AEL-0005-phase1-evaluator-implementation.md",
+    "pr_url": "https://github.com/movito/adversarial-evaluator-library/pull/2"
   },
   "document-reviewer": {
     "status": "idle",
