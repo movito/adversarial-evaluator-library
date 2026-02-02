@@ -1,7 +1,7 @@
 # adversarial-evaluator-library
 
 [![CI](https://github.com/movito/adversarial-evaluator-library/actions/workflows/ci.yml/badge.svg)](https://github.com/movito/adversarial-evaluator-library/actions/workflows/ci.yml)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/movito/adversarial-evaluator-library/releases)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/movito/adversarial-evaluator-library/releases)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 **A library of adversarial evaluators for AI-assisted document review.**
@@ -10,7 +10,7 @@
 
 Adversarial evaluation is the practice of using AI models to critically review documents, code, and specifications *before* they're finalized. Rather than waiting for bugs or issues to surface in production, adversarial evaluators stress-test your content by looking for gaps, inconsistencies, and potential problems.
 
-This library provides **9 pre-configured evaluators** across **3 providers** (Google, OpenAI, Mistral), organized into **6 categories**. Each evaluator is tuned for specific review tasks—from quick formatting checks to deep reasoning analysis.
+This library provides **18 pre-configured evaluators** across **4 providers** (Anthropic, Google, OpenAI, Mistral), organized into **6 categories**. Each evaluator is tuned for specific review tasks—from quick formatting checks to deep reasoning analysis.
 
 **Why use this library?**
 
@@ -40,9 +40,10 @@ cp .env.template .env
 Edit `.env` with your keys:
 
 ```bash
-OPENAI_API_KEY=sk-...      # For OpenAI evaluators
-GEMINI_API_KEY=...         # For Google evaluators
-MISTRAL_API_KEY=...        # For Mistral evaluators
+ANTHROPIC_API_KEY=sk-ant-...  # For Anthropic evaluators
+OPENAI_API_KEY=sk-...         # For OpenAI evaluators
+GEMINI_API_KEY=...            # For Google evaluators
+MISTRAL_API_KEY=...           # For Mistral evaluators
 ```
 
 ### 3. Run Your First Evaluation
@@ -59,14 +60,23 @@ adversarial evaluate your-document.md
 
 | Evaluator | Provider | Model | Category | Description |
 |-----------|----------|-------|----------|-------------|
+| `claude-quick` | Anthropic | claude-4-haiku | quick-check | Fast validation using Claude 4 Haiku |
 | `fast-check` | OpenAI | gpt-4o-mini | quick-check | Fast validation for formatting and basic issues |
 | `gemini-flash` | Google | gemini-2.5-flash | quick-check | Fast, cost-effective document assessment |
 | `mistral-fast` | Mistral | mistral-small-2409 | quick-check | Fast Mistral review for large documents |
 | `gemini-deep` | Google | gemini-2.5-flash | deep-reasoning | Extended reasoning for complex analysis |
 | `o3-chain` | OpenAI | o3 | deep-reasoning | Chain-of-thought for numerical verification |
+| `claude-adversarial` | Anthropic | claude-4-opus | adversarial | Adversarial review for critical analysis |
 | `gpt52-reasoning` | OpenAI | gpt-5.2 | adversarial | Deep adversarial reasoning for critical review |
 | `gemini-pro` | Google | gemini-3-pro | knowledge-synthesis | Large-context knowledge synthesis (1M tokens) |
+| `gpt5-synthesis` | OpenAI | gpt-5-turbo | knowledge-synthesis | Knowledge synthesis for cross-referencing |
+| `gpt5-diversity` | OpenAI | gpt-5-turbo | cognitive-diversity | Alternative perspectives and assumption auditing |
 | `mistral-content` | Mistral | mistral-large-2411 | cognitive-diversity | Content review with European perspective |
+| `claude-code` | Anthropic | claude-4-sonnet | code-review | Security-focused code review |
+| `gemini-code` | Google | gemini-3-pro | code-review | Code review for security and quality |
+| `o1-code-review` | OpenAI | o1 | code-review | Deep reasoning code review |
+| `o1-mini-code` | OpenAI | o1-mini | code-review | Cost-effective reasoning-based code review |
+| `gpt4o-code` | OpenAI | gpt-4o | code-review | Fast comprehensive code quality review |
 | `codestral-code` | Mistral | codestral-latest | code-review | Code-focused review for scripts and configs |
 
 ## Categories
@@ -76,7 +86,7 @@ Fast, cost-effective evaluators for initial review. Use these for:
 - Pre-commit sanity checks
 - Formatting validation
 - Spelling and grammar review
-- **Evaluators**: `fast-check`, `gemini-flash`, `mistral-fast`
+- **Evaluators**: `claude-quick`, `fast-check`, `gemini-flash`, `mistral-fast`
 
 ### deep-reasoning
 Extended analysis for complex content requiring careful thought:
@@ -90,28 +100,29 @@ Stress-testing and critical review to find edge cases:
 - Security review
 - Specification completeness
 - Assumption validation
-- **Evaluators**: `gpt52-reasoning`
+- **Evaluators**: `claude-adversarial`, `gpt52-reasoning`
 
 ### knowledge-synthesis
 Large-context cross-referencing for comprehensive analysis:
 - Documentation consistency
 - Cross-document references
 - Knowledge base review
-- **Evaluators**: `gemini-pro`
+- **Evaluators**: `gemini-pro`, `gpt5-synthesis`
 
 ### cognitive-diversity
 Alternative model perspectives for broader coverage:
 - Second-opinion reviews
 - Cultural/regional considerations
 - Bias detection
-- **Evaluators**: `mistral-content`
+- **Evaluators**: `gpt5-diversity`, `mistral-content`
 
 ### code-review
 Specialized code and configuration analysis:
 - Code quality review
+- Security vulnerability detection
 - Configuration validation
 - Script analysis
-- **Evaluators**: `codestral-code`
+- **Evaluators**: `claude-code`, `gemini-code`, `o1-code-review`, `o1-mini-code`, `gpt4o-code`, `codestral-code`
 
 ## Usage Examples
 
@@ -199,6 +210,7 @@ prompt: |
 
 | Provider | Environment Variable | Get Key |
 |----------|---------------------|---------|
+| Anthropic | `ANTHROPIC_API_KEY` | [console.anthropic.com](https://console.anthropic.com/settings/keys) |
 | OpenAI | `OPENAI_API_KEY` | [platform.openai.com](https://platform.openai.com/api-keys) |
 | Google | `GEMINI_API_KEY` | [aistudio.google.com](https://aistudio.google.com/app/apikey) |
 | Mistral | `MISTRAL_API_KEY` | [console.mistral.ai](https://console.mistral.ai/codestral) |
@@ -228,13 +240,23 @@ pytest tests/test_evaluators.py -v
 ```
 evaluators/
 ├── index.json           # Evaluator registry
+├── anthropic/           # Anthropic/Claude evaluators
+│   ├── claude-adversarial/
+│   ├── claude-code/
+│   └── claude-quick/
 ├── google/              # Google/Gemini evaluators
 │   ├── gemini-flash/
 │   ├── gemini-pro/
-│   └── gemini-deep/
+│   ├── gemini-deep/
+│   └── gemini-code/
 ├── openai/              # OpenAI evaluators
 │   ├── fast-check/
 │   ├── gpt52-reasoning/
+│   ├── gpt5-diversity/
+│   ├── gpt5-synthesis/
+│   ├── o1-code-review/
+│   ├── o1-mini-code/
+│   ├── gpt4o-code/
 │   └── o3-chain/
 └── mistral/             # Mistral evaluators
     ├── mistral-fast/

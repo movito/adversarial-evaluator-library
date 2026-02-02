@@ -1,6 +1,6 @@
 # AEL-0005: Phase 1 Evaluator Implementation
 
-**Status**: Todo
+**Status**: In Progress
 **Priority**: high
 **Assigned To**: feature-developer
 **Estimated Effort**: 8-10 hours
