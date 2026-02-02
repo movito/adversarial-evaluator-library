@@ -1,6 +1,6 @@
 {
-  "version": "1.1.0",
-  "updated": "2026-02-01",
+  "version": "1.2.0",
+  "updated": "2026-02-02",
   "evaluators": [
     {
       "name": "gemini-flash",
@@ -25,6 +25,14 @@
       "model": "gemini/gemini-2.5-flash",
       "category": "deep-reasoning",
       "description": "Extended reasoning for complex analysis"
+    },
+    {
+      "name": "gemini-code",
+      "provider": "google",
+      "path": "google/gemini-code/evaluator.yml",
+      "model": "gemini-3-pro-20260101",
+      "category": "code-review",
+      "description": "Code review using Gemini 3 Pro for security and quality"
     },
     {
       "name": "gpt52-reasoning",
@@ -75,6 +83,22 @@
       "description": "Fast comprehensive code quality review"
     },
     {
+      "name": "gpt5-diversity",
+      "provider": "openai",
+      "path": "openai/gpt5-diversity/evaluator.yml",
+      "model": "gpt-5-turbo-2025-11-01",
+      "category": "cognitive-diversity",
+      "description": "Cognitive diversity review for alternative perspectives"
+    },
+    {
+      "name": "gpt5-synthesis",
+      "provider": "openai",
+      "path": "openai/gpt5-synthesis/evaluator.yml",
+      "model": "gpt-5-turbo-2025-11-01",
+      "category": "knowledge-synthesis",
+      "description": "Knowledge synthesis for cross-referencing and completeness"
+    },
+    {
       "name": "mistral-content",
       "provider": "mistral",
       "path": "mistral/mistral-content/evaluator.yml",
@@ -97,6 +121,30 @@
       "model": "mistral/codestral-latest",
       "category": "code-review",
       "description": "Code-focused review for scripts and configs"
+    },
+    {
+      "name": "claude-adversarial",
+      "provider": "anthropic",
+      "path": "anthropic/claude-adversarial/evaluator.yml",
+      "model": "claude-4-opus-20260115",
+      "category": "adversarial",
+      "description": "Adversarial review using Claude 4 Opus for critical analysis"
+    },
+    {
+      "name": "claude-code",
+      "provider": "anthropic",
+      "path": "anthropic/claude-code/evaluator.yml",
+      "model": "claude-4-sonnet-20260115",
+      "category": "code-review",
+      "description": "Security-focused code review using Claude 4 Sonnet"
+    },
+    {
+      "name": "claude-quick",
+      "provider": "anthropic",
+      "path": "anthropic/claude-quick/evaluator.yml",
+      "model": "claude-4-haiku-20260115",
+      "category": "quick-check",
+      "description": "Fast validation using Claude 4 Haiku for rapid checks"
     }
   ],
   "categories": {
@@ -108,13 +156,17 @@
     "code-review": "Code and configuration analysis"
   },
   "providers": {
+    "anthropic": {
+      "api_key_env": "ANTHROPIC_API_KEY",
+      "evaluators": ["claude-adversarial", "claude-code", "claude-quick"]
+    },
     "google": {
       "api_key_env": "GEMINI_API_KEY",
-      "evaluators": ["gemini-flash", "gemini-pro", "gemini-deep"]
+      "evaluators": ["gemini-flash", "gemini-pro", "gemini-deep", "gemini-code"]
     },
     "openai": {
       "api_key_env": "OPENAI_API_KEY",
-      "evaluators": ["gpt52-reasoning", "o3-chain", "fast-check", "o1-code-review", "o1-mini-code", "gpt4o-code"]
+      "evaluators": ["gpt52-reasoning", "o3-chain", "fast-check", "o1-code-review", "o1-mini-code", "gpt4o-code", "gpt5-diversity", "gpt5-synthesis"]
     },
     "mistral": {
       "api_key_env": "MISTRAL_API_KEY",
