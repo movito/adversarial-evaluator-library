@@ -13,6 +13,10 @@ name: gpt52-reasoning
 description: Deep adversarial reasoning using GPT-5.2
 model: gpt-5.2
 api_key_env: OPENAI_API_KEY
+model_requirement:
+  family: gpt
+  tier: flagship
+  min_version: "5.2"
 output_suffix: -gpt52-reasoning.md
 timeout: 180  # Validated: typical 30-45s
 

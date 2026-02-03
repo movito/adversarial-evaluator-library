@@ -13,6 +13,10 @@ name: o3-chain
 description: Chain-of-thought reasoning using OpenAI o3
 model: o3
 api_key_env: OPENAI_API_KEY
+model_requirement:
+  family: o
+  tier: flagship
+  min_version: "3"
 output_suffix: -o3-chain.md
 timeout: 180  # Validated: typical 30-40s
 

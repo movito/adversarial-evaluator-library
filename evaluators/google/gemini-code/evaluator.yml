@@ -13,6 +13,10 @@ name: gemini-code
 description: Code review using Gemini 3 Pro for security and quality analysis
 model: gemini-3-pro-20260101
 api_key_env: GEMINI_API_KEY
+model_requirement:
+  family: gemini
+  tier: pro
+  min_version: "3"
 output_suffix: -gemini-code.md
 timeout: 180  # Standard category timeout
 

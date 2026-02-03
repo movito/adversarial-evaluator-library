@@ -13,6 +13,10 @@ name: gpt4o-code
 description: Fast code quality review using GPT-4o
 model: gpt-4o
 api_key_env: OPENAI_API_KEY
+model_requirement:
+  family: gpt
+  tier: standard
+  min_version: "4o"
 output_suffix: -gpt4o-code.md
 timeout: 180
 

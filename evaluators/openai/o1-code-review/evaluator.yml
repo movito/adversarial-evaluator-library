@@ -13,6 +13,10 @@ name: o1-code-review
 description: Deep reasoning code review using OpenAI o1
 model: o1
 api_key_env: OPENAI_API_KEY
+model_requirement:
+  family: o
+  tier: flagship
+  min_version: "1"
 output_suffix: -o1-code-review.md
 timeout: 600  # o1 reasoning can take longer
 
