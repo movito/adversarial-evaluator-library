@@ -1,10 +1,11 @@
 {
   "project": {
     "name": "adversarial-evaluator-library",
-    "version": "0.1.0",
-    "description": "Project description here",
+    "version": "0.3.0",
+    "description": "Library of evaluator definitions and provider registry for adversarial-workflow",
     "created": "2026-01-31",
-    "languages": ["python"]
+    "languages": ["python"],
+    "last_updated": "2026-02-03"
   },
   "configuration": {
     "serena_enabled": true,
@@ -13,11 +14,65 @@
     "task_prefix": "AEL"
   },
   "metrics": {
-    "tasks_created": 0,
-    "tasks_completed": 0,
+    "tasks_created": 6,
+    "tasks_completed": 6,
     "agents_active": 0,
-    "test_pass_rate": null,
-    "coverage": null
+    "test_pass_rate": "93/93 (100%)",
+    "evaluator_count": 18
   },
-  "recent_activity": []
+  "current_phase": {
+    "name": "Phase 2 Interface Complete",
+    "description": "Library-side work for model resolution is complete. Waiting for adversarial-workflow v0.8.0 implementation.",
+    "completed": [
+      "ADR-0005 Interface Contract (Accepted)",
+      "providers/registry.yml (Published)",
+      "All 18 evaluators have model_requirement field"
+    ],
+    "next_steps": [
+      "Workflow team implements ADV-0015 resolution engine",
+      "Integration testing when workflow v0.8.0 ready",
+      "Phase 2 evaluators (Llama, Codestral v2) after integration verified"
+    ]
+  },
+  "architecture_decisions": {
+    "accepted": [
+      "ADR-0001: Evaluator Testing Strategy",
+      "ADR-0005: Library-Workflow Interface Contract"
+    ],
+    "proposed": [
+      "ADR-0002: Evaluator Expansion Strategy (direct API)",
+      "ADR-0003: Vertex AI Expansion Strategy",
+      "ADR-0004: Evaluator Definition / Model Routing Separation"
+    ]
+  },
+  "cross_project": {
+    "adversarial_workflow": {
+      "status": "awaiting_implementation",
+      "interface_contract": "ADR-0005",
+      "their_tasks": ["ADV-0013", "ADV-0015"],
+      "target_version": "0.8.0"
+    }
+  },
+  "recent_activity": [
+    {
+      "date": "2026-02-03",
+      "action": "AEL-0006 merged",
+      "details": "Added model_requirement to all 18 evaluators, PR #3"
+    },
+    {
+      "date": "2026-02-03",
+      "action": "ADR-0005 accepted",
+      "details": "Interface contract finalized with workflow team"
+    },
+    {
+      "date": "2026-02-03",
+      "action": "Registry published",
+      "details": "providers/registry.yml with 7 families, schema v1.0"
+    },
+    {
+      "date": "2026-02-02",
+      "action": "AEL-0005 completed",
+      "details": "Phase 1 evaluators: 6 new evaluators added (18 total)"
+    }
+  ]
 }
