@@ -13,6 +13,10 @@ name: gpt5-diversity
 description: Cognitive diversity review using GPT-5 Turbo for alternative perspectives
 model: gpt-5-turbo-2025-11-01
 api_key_env: OPENAI_API_KEY
+model_requirement:
+  family: gpt
+  tier: flagship
+  min_version: "5"
 output_suffix: -gpt5-diversity.md
 timeout: 180  # Standard category timeout
 

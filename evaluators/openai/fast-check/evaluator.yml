@@ -13,6 +13,10 @@ name: fast-check
 description: Fast validation using GPT-4o-mini
 model: gpt-4o-mini
 api_key_env: OPENAI_API_KEY
+model_requirement:
+  family: gpt
+  tier: mini
+  min_version: "4o-mini"
 output_suffix: -fast-check.md
 timeout: 180  # Validated: typical 10-15s
 

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **model_requirement field for Phase 2 resolution** (AEL-0006) - All 18 evaluators now include `model_requirement` block with `family`, `tier`, and `min_version` fields. Enables adversarial-workflow v0.8.0 resolution engine while maintaining backwards compatibility with legacy `model` and `api_key_env` fields. See ADR-0005 for interface contract.
+
 ### Fixed
 
 - **gql dependency handling in Linear sync tests** - The `sync_tasks_to_linear.py` script no longer calls `sys.exit(1)` at import time when gql is not installed. Tests that require gql are now skipped with a clear message instead of failing during collection. Added `requires_gql` skip marker for 11 tests and `requires_api` marker for evaluator API tests.

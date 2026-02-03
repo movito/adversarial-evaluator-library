@@ -13,6 +13,10 @@ name: claude-code
 description: Security-focused code review using Claude 4 Sonnet
 model: claude-4-sonnet-20260115
 api_key_env: ANTHROPIC_API_KEY
+model_requirement:
+  family: claude
+  tier: sonnet
+  min_version: "4"
 output_suffix: -claude-code.md
 timeout: 180  # Standard category timeout
 

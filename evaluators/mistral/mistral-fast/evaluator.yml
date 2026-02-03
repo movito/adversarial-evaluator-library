@@ -11,6 +11,10 @@ name: mistral-fast
 description: Fast content review using Mistral Small
 model: mistral/mistral-small-2409
 api_key_env: MISTRAL_API_KEY
+model_requirement:
+  family: mistral
+  tier: small
+  min_version: "small-2409"
 output_suffix: -mistral-fast.md
 timeout: 300
 

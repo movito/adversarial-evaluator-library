@@ -12,6 +12,10 @@ name: gemini-flash
 description: Fast evaluation using Gemini 2.5 Flash
 model: gemini/gemini-2.5-flash
 api_key_env: GEMINI_API_KEY
+model_requirement:
+  family: gemini
+  tier: flash
+  min_version: "2.5"
 output_suffix: -gemini-flash.md
 timeout: 180  # Fast model, 3 minutes sufficient
 

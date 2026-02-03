@@ -1,6 +1,6 @@
 # AEL-0006: Add model_requirement to Existing Evaluators
 
-**Status**: Todo
+**Status**: Done
 **Priority**: high
 **Assigned To**: feature-developer
 **Estimated Effort**: 2-3 hours

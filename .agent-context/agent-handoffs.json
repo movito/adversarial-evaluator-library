@@ -1,11 +1,10 @@
 {
   "planner": {
-    "status": "completed",
-    "current_task": "AEL-0006",
-    "task_started": "2026-02-03",
-    "brief_note": "✅ COMPLETE: Task starter prepared for model_requirement updates",
-    "details_link": "delegation/tasks/2-todo/AEL-0006-add-model-requirement-to-evaluators.md",
-    "handoff_file": ".agent-context/AEL-0006-HANDOFF-feature-developer.md"
+    "status": "idle",
+    "current_task": null,
+    "task_started": null,
+    "brief_note": "Ready for next task. Last: AEL-0006 completed (model_requirement updates)",
+    "details_link": null
   },
   "test-runner": {
     "status": "completed",
@@ -23,11 +22,11 @@
   },
   "feature-developer": {
     "status": "completed",
-    "current_task": "AEL-0005",
-    "task_started": "2026-02-02",
-    "brief_note": "✅ COMPLETE: 6 evaluators added (18 total), 4 providers, 93/93 tests passing",
-    "details_link": "delegation/tasks/5-done/AEL-0005-phase1-evaluator-implementation.md",
-    "pr_url": "https://github.com/movito/adversarial-evaluator-library/pull/2"
+    "current_task": "AEL-0006",
+    "task_started": "2026-02-03",
+    "brief_note": "✅ COMPLETE: 18 evaluators updated with model_requirement, code review APPROVED",
+    "details_link": "delegation/tasks/5-done/AEL-0006-add-model-requirement-to-evaluators.md",
+    "pr_url": "https://github.com/movito/adversarial-evaluator-library/pull/3"
   },
   "document-reviewer": {
     "status": "idle",

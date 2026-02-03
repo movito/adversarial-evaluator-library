@@ -12,6 +12,10 @@ name: codestral-code
 description: Code-focused review using Mistral Codestral
 model: mistral/codestral-latest
 api_key_env: MISTRAL_API_KEY
+model_requirement:
+  family: codestral
+  tier: latest
+  min_version: "latest"
 output_suffix: -codestral-code.md
 timeout: 300
 
