@@ -1,0 +1,288 @@
+# Provider Registry for adversarial-evaluator-library
+# Schema Version: 1.0
+#
+# This registry maps model families to their available models and
+# provider-specific identifiers. Used by adversarial-workflow to
+# resolve model requirements to actual API endpoints.
+#
+# See ADR-0005 for the interface contract specification.
+
+schema_version: "1.0"
+
+providers:
+  # ============================================================================
+  # OPENAI
+  # ============================================================================
+  gpt:
+    vendor: OpenAI
+    vendor_url: https://openai.com
+    litellm_prefix: ""  # OpenAI is default, no prefix needed
+    auth_env_default: OPENAI_API_KEY
+    tiers:
+      flagship:
+        capability_level: 5
+        typical_use: "Most capable reasoning and analysis"
+        models:
+          - id: gpt-5.2
+            version: "5.2"
+            context_window: 128000
+            released: 2025-09-01
+            status: active
+
+          - id: gpt-5-turbo-2025-11-01
+            version: "5"
+            context_window: 128000
+            released: 2025-11-01
+            status: active
+
+      standard:
+        capability_level: 4
+        typical_use: "Balanced performance and cost"
+        models:
+          - id: gpt-4o
+            version: "4o"
+            context_window: 128000
+            released: 2024-05-13
+            status: active
+            vertex_ai_id: gpt-4o
+            azure_id: gpt-4o
+
+          - id: gpt-4o-2024-08-06
+            version: "4o"
+            context_window: 128000
+            released: 2024-08-06
+            status: active
+
+      mini:
+        capability_level: 3
+        typical_use: "Fast, cost-effective"
+        models:
+          - id: gpt-4o-mini
+            version: "4o-mini"
+            context_window: 128000
+            released: 2024-07-18
+            status: active
+
+  # OpenAI reasoning models (o-series)
+  o:
+    vendor: OpenAI
+    vendor_url: https://openai.com
+    litellm_prefix: ""
+    auth_env_default: OPENAI_API_KEY
+    tiers:
+      flagship:
+        capability_level: 5
+        typical_use: "Extended reasoning, complex analysis"
+        models:
+          - id: o3
+            version: "3"
+            context_window: 200000
+            released: 2025-12-01
+            status: active
+
+          - id: o1
+            version: "1"
+            context_window: 200000
+            released: 2024-12-01
+            status: active
+
+      mini:
+        capability_level: 4
+        typical_use: "Reasoning at lower cost"
+        models:
+          - id: o1-mini
+            version: "1-mini"
+            context_window: 128000
+            released: 2024-09-12
+            status: active
+
+  # ============================================================================
+  # ANTHROPIC
+  # ============================================================================
+  claude:
+    vendor: Anthropic
+    vendor_url: https://anthropic.com
+    litellm_prefix: "anthropic/"
+    auth_env_default: ANTHROPIC_API_KEY
+    tiers:
+      opus:
+        capability_level: 5
+        typical_use: "Most capable, complex reasoning"
+        models:
+          - id: claude-4-opus-20260115
+            version: "4"
+            context_window: 200000
+            released: 2026-01-15
+            status: active
+            vertex_ai_id: claude-4-opus@20260115
+            bedrock_id: anthropic.claude-4-opus-20260115-v1:0
+
+          - id: claude-opus-4-5-20251101
+            version: "4.5"
+            context_window: 200000
+            released: 2025-11-01
+            status: active
+            vertex_ai_id: claude-opus-4-5@20251101
+
+      sonnet:
+        capability_level: 4
+        typical_use: "Balanced performance/cost, coding"
+        models:
+          - id: claude-4-sonnet-20260115
+            version: "4"
+            context_window: 200000
+            released: 2026-01-15
+            status: active
+            vertex_ai_id: claude-4-sonnet@20260115
+            bedrock_id: anthropic.claude-4-sonnet-20260115-v1:0
+
+      haiku:
+        capability_level: 3
+        typical_use: "Fast, cost-effective"
+        models:
+          - id: claude-4-haiku-20260115
+            version: "4"
+            context_window: 200000
+            released: 2026-01-15
+            status: active
+            vertex_ai_id: claude-4-haiku@20260115
+            bedrock_id: anthropic.claude-4-haiku-20260115-v1:0
+
+  # ============================================================================
+  # GOOGLE
+  # ============================================================================
+  gemini:
+    vendor: Google
+    vendor_url: https://deepmind.google/technologies/gemini/
+    litellm_prefix: "gemini/"
+    auth_env_default: GEMINI_API_KEY
+    tiers:
+      pro:
+        capability_level: 5
+        typical_use: "Most capable, large context"
+        models:
+          - id: gemini-3-pro
+            version: "3"
+            context_window: 1000000
+            released: 2026-01-01
+            status: active
+            vertex_ai_id: gemini-3.0-pro
+
+          - id: gemini-3-pro-20260101
+            version: "3"
+            context_window: 1000000
+            released: 2026-01-01
+            status: active
+            vertex_ai_id: gemini-3.0-pro-001
+
+      flash:
+        capability_level: 4
+        typical_use: "Fast, cost-effective, extended thinking"
+        models:
+          - id: gemini-2.5-flash
+            version: "2.5"
+            context_window: 1000000
+            released: 2025-06-01
+            status: active
+            vertex_ai_id: gemini-2.5-flash
+
+  # ============================================================================
+  # MISTRAL
+  # ============================================================================
+  mistral:
+    vendor: Mistral AI
+    vendor_url: https://mistral.ai
+    litellm_prefix: "mistral/"
+    auth_env_default: MISTRAL_API_KEY
+    tiers:
+      large:
+        capability_level: 5
+        typical_use: "Most capable Mistral model"
+        models:
+          - id: mistral-large-2411
+            version: "large-2411"
+            context_window: 128000
+            released: 2024-11-01
+            status: active
+            vertex_ai_id: mistral-large@2411
+
+          - id: mistral-medium-3
+            version: "medium-3"
+            context_window: 128000
+            released: 2025-10-01
+            status: active
+            vertex_ai_id: mistral-medium-3
+
+      small:
+        capability_level: 3
+        typical_use: "Fast, efficient"
+        models:
+          - id: mistral-small-2409
+            version: "small-2409"
+            context_window: 32000
+            released: 2024-09-01
+            status: active
+
+          - id: mistral-small-3-1-25-03
+            version: "small-3.1"
+            context_window: 128000
+            released: 2025-03-01
+            status: active
+            vertex_ai_id: mistral-small-3-1-25-03
+
+  # Mistral code-specialized models
+  codestral:
+    vendor: Mistral AI
+    vendor_url: https://mistral.ai
+    litellm_prefix: "mistral/"
+    auth_env_default: MISTRAL_API_KEY
+    tiers:
+      latest:
+        capability_level: 4
+        typical_use: "Code generation and review"
+        models:
+          - id: codestral-latest
+            version: "latest"
+            context_window: 32000
+            released: 2024-05-29
+            status: active
+
+          - id: codestral-2
+            version: "2"
+            context_window: 128000
+            released: 2025-11-01
+            status: active
+            vertex_ai_id: codestral-2
+
+  # ============================================================================
+  # META (via Vertex AI, Together AI, etc.)
+  # ============================================================================
+  llama:
+    vendor: Meta
+    vendor_url: https://llama.meta.com
+    litellm_prefix: null  # Varies by hosting provider
+    auth_env_default: null  # Varies by hosting provider
+    tiers:
+      large:
+        capability_level: 5
+        typical_use: "Most capable Llama, multimodal"
+        models:
+          - id: llama-4-maverick-17b-128e
+            version: "4"
+            context_window: 1000000
+            released: 2025-04-01
+            status: active
+            vertex_ai_id: llama-4-maverick-17b-128e-instruct-maas
+            together_ai_id: meta-llama/Llama-4-Maverick-17B-128E-Instruct
+
+      medium:
+        capability_level: 4
+        typical_use: "Reasoning, retrieval, long context"
+        models:
+          - id: llama-4-scout-17b-16e
+            version: "4"
+            context_window: 10000000
+            released: 2025-04-01
+            status: active
+            vertex_ai_id: llama-4-scout-17b-16e-instruct-maas
+            together_ai_id: meta-llama/Llama-4-Scout-17B-16E-Instruct

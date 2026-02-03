@@ -66,6 +66,7 @@ Use `TEMPLATE-FOR-ADR-FILES.md` in this directory. Key sections:
 | [ADR-0002](ADR-0002-evaluator-expansion-strategy.md) | Evaluator Expansion Strategy | 2026-02-01 | Proposed |
 | [ADR-0003](ADR-0003-vertex-ai-expansion-strategy.md) | Vertex AI Expansion Strategy | 2026-02-03 | Proposed |
 | [ADR-0004](ADR-0004-evaluator-definition-model-routing-separation.md) | Evaluator Definition / Model Routing Separation | 2026-02-03 | Proposed |
+| [ADR-0005](ADR-0005-library-workflow-interface-contract.md) | Library-Workflow Interface Contract | 2026-02-03 | Accepted |
 
 ## When to Write an ADR
 
