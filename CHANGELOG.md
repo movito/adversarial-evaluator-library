@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the Agentive Starter Kit will be documented in this file.
+All notable changes to the Adversarial Evaluator Library will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -9,96 +9,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **model_requirement field for Phase 2 resolution** (AEL-0006) - All 18 evaluators now include `model_requirement` block with `family`, `tier`, and `min_version` fields. Enables adversarial-workflow v0.8.0 resolution engine while maintaining backwards compatibility with legacy `model` and `api_key_env` fields. See ADR-0005 for interface contract.
-
-### Fixed
-
-- **gql dependency handling in Linear sync tests** - The `sync_tasks_to_linear.py` script no longer calls `sys.exit(1)` at import time when gql is not installed. Tests that require gql are now skipped with a clear message instead of failing during collection. Added `requires_gql` skip marker for 11 tests and `requires_api` marker for evaluator API tests.
-
-### Changed
-
-- **Upgraded adversarial-workflow to v0.6.2** - Now requires `>=0.6.2` with support for multiple evaluators, `list-evaluators` command, and custom evaluator definitions
-- **Updated README evaluator documentation** - Replaced GPT-4o-specific language with evaluator-agnostic descriptions; added examples for `evaluate`, `review`, `proofread`, and `list-evaluators` commands
-
-### Added
-
-- **Code review evaluator documentation** - Added `adversarial review` workflow for reviewing implemented code before merge
-- **Evaluator discovery** - Documented `adversarial list-evaluators` command to discover built-in and custom evaluators
-- **Custom evaluators guide** - Added documentation for creating project-specific evaluators via `.adversarial/evaluators/*.yml`
-
-## [0.2.2] - 2025-12-06
-
-### Added
-
-- **Upstream tracking option in onboarding** - Users can now opt to add the original starter kit as an upstream remote during onboarding, making it easy to pull future updates with `git fetch upstream && git merge upstream/main`.
+- **Workflow v0.9.2 integration verified** - Full end-to-end testing with OpenAI, Google, and Mistral evaluators. All providers return exit code 0 on successful evaluation.
+- **Testing procedure documentation** - Added `docs/verification/TESTING-PROCEDURE.md` with step-by-step guide for verifying evaluator functionality.
+- **Verification reports** - Added `docs/verification/` directory with workflow integration reports and feedback.
+- **Knowledge system updates** - Updated `current-state.json` with `workflow_integration` and `quick_reference` sections for future planners.
 
 ### Changed
 
-- **Simplified Serena activation instructions** - Removed confusing placeholder references and redundant fallback sections from all 6 agent files. Activation section is now consistent and minimal across all agents.
-- **Enhanced CI verification script** - `verify-ci.sh` now uses jq for proper JSON parsing, filters to push events only, reports on latest commit SHA, and provides clear verdicts (PASS/FAIL/IN PROGRESS/MIXED). Added `--wait` flag to block until workflows complete. Exit codes: 0 for pass, 1 for fail.
-- **CI-checker model upgraded to Sonnet** - Switched from Haiku to Sonnet (`claude-sonnet-4-20250514`) for more reliable tool invocation behavior.
+- **Upgraded adversarial-workflow to v0.9.2** - Now requires `>=0.9.2` with `--evaluator` flag, clean output (no `_meta` warnings), and correct exit codes.
 
 ### Fixed
 
-- **CI-checker agent tool execution** - Added explicit CRITICAL instruction requiring use of Bash tool to execute gh commands, fixing issue where Haiku would sometimes show commands in markdown without actually running them.
-- **Code-reviewer Serena activation** - Removed explicit Serena MCP tools from frontmatter (caused activation to be skipped) and added code-reviewer to launcher's serena_agents list. Agents should discover Serena tools after activation, not via frontmatter listing.
+- **Exit code now 0 for successful evaluations** - Workflow v0.9.2 fixes the exit code 1 issue reported in our feedback.
 
-## [0.2.1] - 2025-12-04
+## [0.3.0] - 2026-02-03
 
 ### Added
 
-- **Structured knowledge capture from code reviews** (KIT-ADR-0019) - Code review insights are now captured in `.agent-context/REVIEW-INSIGHTS.md`, organized by module with recommended patterns and anti-patterns. Future agents can learn from past reviews.
-- **Mandatory code review workflow** (KIT-ADR-0014) - Implementation agents now create review starters and request code review before task completion. Reviews are versioned (round 1, round 2) to preserve history.
-- **Review fix workflow** - Streamlined process for handling CHANGES_REQUESTED verdicts with lightweight fix prompts instead of full task starters.
+- **model_requirement field for Phase 2 resolution** (AEL-0006) - All 18 evaluators now include `model_requirement` block with `family`, `tier`, and `min_version` fields. Enables adversarial-workflow resolution engine while maintaining backwards compatibility with legacy `model` and `api_key_env` fields. See ADR-0005 for interface contract.
+- **Provider registry** - Added `providers/registry.yml` with 7 model families (gpt, o, claude, gemini, mistral, codestral, llama) and capability tiers.
+- **ADR-0005 Interface Contract** - Formalized library-workflow interface with schema specification, resolution algorithm, and version compatibility.
 
 ### Changed
 
-- **Removed Thematic project-specific content** - Cleaned DaVinci Resolve, SMPTE, Electron references from agent templates for cleaner starter kit experience.
-- **Improved Serena activation instructions** - Code-reviewer and other agents now have clearer, more direct activation instructions.
+- **18 evaluators across 4 providers** - OpenAI (8), Anthropic (3), Google (4), Mistral (3)
 
-### Fixed
-
-- **Reconfigure command handles upstream project name** - `./scripts/project reconfigure` now uses regex to replace any `activate_project()` call, not just the `"your-project"` placeholder. This fixes the case where downstream projects merge upstream and get `"agentive-starter-kit"` in their agent files instead of their configured project name.
-- **Code-reviewer no longer overwrites existing reviews** - Reviews are now versioned (`-round2.md` suffix) to preserve review history.
-
-## [0.2.0] - 2025-12-03
+## [0.2.0] - 2026-02-02
 
 ### Added
 
-- **Task lifecycle management** - Agents now run `./scripts/project start <TASK-ID>` when picking up tasks, automatically moving them to `3-in-progress/` and updating status headers for visibility
-- **TDD infrastructure out of the box** - pytest, pre-commit hooks, and test workflows ship ready to use
-- **Startup task scanning** - Planner agent checks `delegation/tasks/2-todo/` on session start and summarizes pending work
-- **CI verification script** - `./scripts/ci-check.sh` for local pre-push validation
-- **Browser warning for Serena** - Dashboard flash warning added to prevent confusion during LSP initialization
+- **Phase 1 evaluator implementation** (AEL-0005) - Added 6 new evaluators bringing total to 18
+- **Evaluator categories** - quick-check, deep-reasoning, adversarial, knowledge-synthesis, cognitive-diversity, code-review
 
-### Changed
-
-- **Project CLI location** - Moved from `./project` to `./scripts/project` for cleaner root directory
-- **Simplified planner startup** - Planner now asks what to build when no tasks exist, recognizes TDD is pre-configured
-- **Improved onboarding** - Clearer Linear API key instructions, better Serena activation guidance for new projects
-- **Updated adversarial-workflow** - Upgraded to v0.5.0
-
-### Fixed
-
-- Custom task prefix support in glob patterns (e.g., `ASK-*`, `TASK-*`)
-- Invalid model ID `claude-sonnet-4-5` corrected to `claude-sonnet-4`
-- Dependencies `gql` and `python-dotenv` moved to main dependencies (were missing)
-- Various path inconsistencies in documentation and agent instructions
-
-## [0.1.0] - 2025-11-25
+## [0.1.0] - 2026-01-31
 
 ### Added
 
-- Initial release of the Agentive Starter Kit
-- Multi-agent coordination system with specialized agents (planner, feature-developer, test-runner, etc.)
-- Linear task synchronization with bidirectional status updates
-- Serena MCP integration for semantic code navigation
-- Adversarial evaluation workflow with GPT-4o
-- Task delegation system with numbered folder workflow
-- Agent handoff protocol via `.agent-context/`
-- Pre-configured Claude Code settings and permissions
+- Initial release of adversarial-evaluator-library
+- 12 evaluators across 4 providers
+- CI/CD workflow with pytest and pre-commit
+- Project structure based on Agentive Starter Kit
 
-[0.2.2]: https://github.com/movito/agentive-starter-kit/compare/v0.2.1...v0.2.2
-[0.2.1]: https://github.com/movito/agentive-starter-kit/compare/v0.2.0...v0.2.1
-[0.2.0]: https://github.com/movito/agentive-starter-kit/compare/v0.1.0...v0.2.0
-[0.1.0]: https://github.com/movito/agentive-starter-kit/releases/tag/v0.1.0
+[Unreleased]: https://github.com/movito/adversarial-evaluator-library/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/movito/adversarial-evaluator-library/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/movito/adversarial-evaluator-library/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/movito/adversarial-evaluator-library/releases/tag/v0.1.0
