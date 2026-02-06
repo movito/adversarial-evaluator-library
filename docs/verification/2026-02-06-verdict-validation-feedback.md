@@ -5,6 +5,10 @@
 **Workflow Version**: 0.9.1
 **Severity**: Low (non-blocking, cosmetic)
 
+> **✅ RESOLVED in v0.9.2** (2026-02-06)
+> Exit code now returns 0 for successful evaluations.
+> Message changed to: `Evaluation complete (verdict: None)`
+
 ---
 
 ## Summary
