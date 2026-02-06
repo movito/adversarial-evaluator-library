@@ -5,7 +5,7 @@
     "description": "Library of evaluator definitions and provider registry for adversarial-workflow",
     "created": "2026-01-31",
     "languages": ["python"],
-    "last_updated": "2026-02-03"
+    "last_updated": "2026-02-06"
   },
   "configuration": {
     "serena_enabled": true,
@@ -21,18 +21,27 @@
     "evaluator_count": 18
   },
   "current_phase": {
-    "name": "Phase 2 Interface Complete",
-    "description": "Library-side work for model resolution is complete. Waiting for adversarial-workflow v0.8.0 implementation.",
+    "name": "Integration Complete",
+    "description": "Library fully integrated with adversarial-workflow v0.9.2. All evaluators runnable via CLI.",
     "completed": [
       "ADR-0005 Interface Contract (Accepted)",
       "providers/registry.yml (Published)",
-      "All 18 evaluators have model_requirement field"
+      "All 18 evaluators have model_requirement field",
+      "Workflow v0.9.2 integration verified"
     ],
     "next_steps": [
-      "Workflow team implements ADV-0015 resolution engine",
-      "Integration testing when workflow v0.8.0 ready",
-      "Phase 2 evaluators (Llama, Codestral v2) after integration verified"
+      "Phase 2 evaluators (Llama 4, Codestral 2) when model_requirement resolution ready",
+      "Workflow v1.0.0 for full model_requirement support"
     ]
+  },
+  "workflow_integration": {
+    "status": "verified",
+    "min_version": "0.9.2",
+    "tested_version": "0.9.2",
+    "test_date": "2026-02-06",
+    "providers_verified": ["openai", "google", "mistral"],
+    "testing_procedure": "docs/verification/TESTING-PROCEDURE.md",
+    "verification_reports": "docs/verification/"
   },
   "architecture_decisions": {
     "accepted": [
@@ -47,13 +56,24 @@
   },
   "cross_project": {
     "adversarial_workflow": {
-      "status": "awaiting_implementation",
+      "status": "integrated",
+      "min_version": "0.9.2",
       "interface_contract": "ADR-0005",
-      "their_tasks": ["ADV-0013", "ADV-0015"],
-      "target_version": "0.8.0"
+      "phase2_tasks": ["ADV-0015 (model_requirement resolution)"],
+      "target_version": "1.0.0"
     }
   },
   "recent_activity": [
+    {
+      "date": "2026-02-06",
+      "action": "Workflow v0.9.2 verified",
+      "details": "All 3 providers tested, exit code 0, testing procedure documented"
+    },
+    {
+      "date": "2026-02-06",
+      "action": "Testing procedure created",
+      "details": "docs/verification/TESTING-PROCEDURE.md"
+    },
     {
       "date": "2026-02-03",
       "action": "AEL-0006 merged",
@@ -63,16 +83,12 @@
       "date": "2026-02-03",
       "action": "ADR-0005 accepted",
       "details": "Interface contract finalized with workflow team"
-    },
-    {
-      "date": "2026-02-03",
-      "action": "Registry published",
-      "details": "providers/registry.yml with 7 families, schema v1.0"
-    },
-    {
-      "date": "2026-02-02",
-      "action": "AEL-0005 completed",
-      "details": "Phase 1 evaluators: 6 new evaluators added (18 total)"
     }
-  ]
+  ],
+  "quick_reference": {
+    "run_evaluator": "adversarial evaluate --evaluator <name> <file>",
+    "list_evaluators": "adversarial list-evaluators",
+    "install_evaluator": "adversarial library install <provider>/<name> --yes",
+    "test_procedure": "docs/verification/TESTING-PROCEDURE.md"
+  }
 }
