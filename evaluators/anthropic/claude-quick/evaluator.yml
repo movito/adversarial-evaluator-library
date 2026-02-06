@@ -1,5 +1,5 @@
-# Claude 4 Haiku Quick Check Evaluator
-# Fast validation using Claude's most efficient model
+# Claude Haiku 4.5 Quick Check Evaluator
+# Fast validation using Claude's fastest model with near-frontier intelligence
 #
 # Provider: anthropic
 # Use cases:
@@ -10,13 +10,13 @@
 #   - High-volume screening
 
 name: claude-quick
-description: Fast validation using Claude 4 Haiku for rapid checks
-model: anthropic/claude-4-haiku-20260115
+description: Fast validation using Claude Haiku 4.5 for rapid checks
+model: anthropic/claude-haiku-4-5
 api_key_env: ANTHROPIC_API_KEY
 model_requirement:
   family: claude
   tier: haiku
-  min_version: "4"
+  min_version: "4.5"
 output_suffix: -claude-quick.md
 timeout: 90  # Quick-check category timeout
 

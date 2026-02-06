@@ -1,5 +1,5 @@
-# Claude 4 Opus Adversarial Evaluator
-# Rigorous adversarial review using Claude's strongest reasoning
+# Claude Opus 4.6 Adversarial Evaluator
+# Rigorous adversarial review using Claude's most intelligent model
 #
 # Provider: anthropic
 # Use cases:
@@ -9,13 +9,13 @@
 #   - Adversarial red-teaming
 
 name: claude-adversarial
-description: Adversarial review using Claude 4 Opus for critical analysis
-model: anthropic/claude-4-opus-20260115
+description: Adversarial review using Claude Opus 4.6 for critical analysis
+model: anthropic/claude-opus-4-6
 api_key_env: ANTHROPIC_API_KEY
 model_requirement:
   family: claude
   tier: opus
-  min_version: "4"
+  min_version: "4.6"
 output_suffix: -claude-adversarial.md
 timeout: 180  # Standard category timeout
 
