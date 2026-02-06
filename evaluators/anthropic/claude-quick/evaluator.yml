@@ -11,7 +11,7 @@
 
 name: claude-quick
 description: Fast validation using Claude 4 Haiku for rapid checks
-model: claude-4-haiku-20260115
+model: anthropic/claude-4-haiku-20260115
 api_key_env: ANTHROPIC_API_KEY
 model_requirement:
   family: claude

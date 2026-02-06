@@ -10,7 +10,7 @@
 
 name: claude-adversarial
 description: Adversarial review using Claude 4 Opus for critical analysis
-model: claude-4-opus-20260115
+model: anthropic/claude-4-opus-20260115
 api_key_env: ANTHROPIC_API_KEY
 model_requirement:
   family: claude
