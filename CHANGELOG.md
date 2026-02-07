@@ -16,11 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- **Upgraded adversarial-workflow to v0.9.2** - Now requires `>=0.9.2` with `--evaluator` flag, clean output (no `_meta` warnings), and correct exit codes.
+- **Upgraded adversarial-workflow to v0.9.3** - Now requires `>=0.9.3` with ADV-0032 fix ensuring explicit `model` field takes priority over `model_requirement` resolution. This enables library evaluators with updated model IDs (e.g., `anthropic/claude-opus-4-6`) to work correctly.
 
 ### Fixed
 
 - **Exit code now 0 for successful evaluations** - Workflow v0.9.2 fixes the exit code 1 issue reported in our feedback.
+- **Model field priority** (ADV-0032) - Workflow v0.9.3 ensures explicit `model` field in evaluator YAML takes priority over `model_requirement` resolution. Previously, `model_requirement` was incorrectly taking precedence even when an explicit model was specified.
 
 ## [0.3.0] - 2026-02-03
 

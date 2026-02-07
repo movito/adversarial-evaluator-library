@@ -115,12 +115,21 @@ During Phase 1-2 transition, evaluators include BOTH:
 
 ### 3. Resolution Algorithm
 
-**Implemented by**: adversarial-workflow
+**Implemented by**: adversarial-workflow (v0.9.3+)
+
+> **Note**: As of ADV-0032 (v0.9.3), explicit `model` field takes priority over `model_requirement`. This allows library maintainers to specify exact model IDs while still providing `model_requirement` for future resolution flexibility.
 
 ```
 RESOLVE(evaluator, user_config, registry):
 
-  # Step 1: Try model_requirement (Phase 2)
+  # Step 1: Use explicit model field if present (Priority - ADV-0032)
+  IF evaluator.model EXISTS AND evaluator.model IS NOT EMPTY:
+    RETURN {
+      model: evaluator.model,
+      auth: evaluator.api_key_env
+    }
+
+  # Step 2: Try model_requirement resolution (Phase 2)
   IF evaluator.model_requirement EXISTS:
     family = evaluator.model_requirement.family
     tier = evaluator.model_requirement.tier
@@ -132,7 +141,7 @@ RESOLVE(evaluator, user_config, registry):
       IF user_config.resolution.strict:
         ERROR "No matching model for {family}/{tier} >= {min_version}"
       ELSE:
-        GOTO Step 2  # Fallback to legacy
+        ERROR "Resolution failed and no explicit model field"
 
     # Apply user routing
     routing = user_config.routing[family] OR user_config.routing.default
@@ -141,15 +150,8 @@ RESOLVE(evaluator, user_config, registry):
 
     RETURN resolve_endpoint(model, routing)
 
-  # Step 2: Fallback to legacy model field
-  IF evaluator.model EXISTS:
-    RETURN {
-      model: evaluator.model,
-      auth: evaluator.api_key_env
-    }
-
   # Step 3: Error
-  ERROR "Evaluator has neither model_requirement nor model field"
+  ERROR "Evaluator has neither model nor model_requirement field"
 ```
 
 ### 4. User Routing Configuration
@@ -303,6 +305,7 @@ providers:
 
 ## Revision History
 
+- 2026-02-07: Clarified resolution priority (ADV-0032) - explicit `model` field takes precedence over `model_requirement`
 - 2026-02-03: Initial contract (Accepted by both teams)
 
 ---

@@ -1,6 +1,6 @@
 {
-  "version": "1.2.0",
-  "updated": "2026-02-02",
+  "version": "1.3.0",
+  "updated": "2026-02-06",
   "evaluators": [
     {
       "name": "gemini-flash",
@@ -30,7 +30,7 @@
       "name": "gemini-code",
       "provider": "google",
       "path": "google/gemini-code/evaluator.yml",
-      "model": "gemini-3-pro-20260101",
+      "model": "gemini/gemini-3-pro-20260101",
       "category": "code-review",
       "description": "Code review using Gemini 3 Pro for security and quality"
     },
@@ -126,25 +126,25 @@
       "name": "claude-adversarial",
       "provider": "anthropic",
       "path": "anthropic/claude-adversarial/evaluator.yml",
-      "model": "claude-4-opus-20260115",
+      "model": "anthropic/claude-opus-4-6",
       "category": "adversarial",
-      "description": "Adversarial review using Claude 4 Opus for critical analysis"
+      "description": "Adversarial review using Claude Opus 4.6 for critical analysis"
     },
     {
       "name": "claude-code",
       "provider": "anthropic",
       "path": "anthropic/claude-code/evaluator.yml",
-      "model": "claude-4-sonnet-20260115",
+      "model": "anthropic/claude-sonnet-4-5",
       "category": "code-review",
-      "description": "Security-focused code review using Claude 4 Sonnet"
+      "description": "Security-focused code review using Claude Sonnet 4.5"
     },
     {
       "name": "claude-quick",
       "provider": "anthropic",
       "path": "anthropic/claude-quick/evaluator.yml",
-      "model": "claude-4-haiku-20260115",
+      "model": "anthropic/claude-haiku-4-5",
       "category": "quick-check",
-      "description": "Fast validation using Claude 4 Haiku for rapid checks"
+      "description": "Fast validation using Claude Haiku 4.5 for rapid checks"
     }
   ],
   "categories": {
