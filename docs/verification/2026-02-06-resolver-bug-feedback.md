@@ -60,7 +60,7 @@ model = evaluator.model  # Use what the file says
 
 ## Workaround
 
-None available. The resolver mappings are in the installed package.
+**Fixed in v0.9.3** (ADV-0032, released 2026-02-07). Upgrade to `adversarial-workflow>=0.9.3`. The resolver now respects the explicit `model` field in evaluator files.
 
 ## Suggested Fix
 

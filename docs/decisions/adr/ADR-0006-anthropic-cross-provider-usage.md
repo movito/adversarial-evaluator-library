@@ -24,20 +24,22 @@ We have 3 Anthropic evaluators:
 
 | Evaluator | Model | Use Case |
 |-----------|-------|----------|
-| claude-adversarial | Claude 4 Opus | Critical adversarial review |
-| claude-code | Claude 4 Sonnet | Security-focused code review |
-| claude-quick | Claude 4 Haiku | Fast validation checks |
+| claude-adversarial | Claude Opus 4.6 | Critical adversarial review |
+| claude-code | Claude Sonnet 4.5 | Security-focused code review |
+| claude-quick | Claude Haiku 4.5 | Fast validation checks |
 
 ### Issues Identified
 
 **1. Model ID Format Inconsistency**
 
 Current Anthropic evaluators use native model IDs:
+
 ```yaml
 model: claude-4-opus-20260115
 ```
 
 But litellm (used by adversarial-workflow) requires the `anthropic/` prefix:
+
 ```yaml
 model: anthropic/claude-4-opus-20260115
 ```
@@ -112,11 +114,11 @@ Use Claude evaluators for:
 - `claude-adversarial` - Rigorous adversarial challenge
 
 ### API Key Setup
+
 ```bash
 # .env file
 OPENAI_API_KEY=sk-...      # For your main agent
 ANTHROPIC_API_KEY=sk-ant-... # For Claude evaluators
-```
 ```
 
 ### Phase 3: Testing
@@ -145,7 +147,7 @@ echo $?  # Should be 0
 
 ### Neutral
 
-- 📊 Anthropic API costs apply (~$0.015/1K input for Opus, less for Sonnet/Haiku)
+- 📊 Anthropic API costs apply (Opus 4.5: $0.005/1K input, Sonnet 4.5: $0.003/1K, Haiku 4.5: $0.001/1K)
 
 ## Alternatives Considered
 

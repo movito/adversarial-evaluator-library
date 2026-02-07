@@ -124,13 +124,15 @@ done
 
 **Cross-provider quick check (4 evaluators)**: ~$0.003 total
 
+*Prices are approximate and may change. Verify current rates at provider pricing pages.*
+
 ## Troubleshooting
 
 ### "Model not found" Error
 
 Ensure the model ID includes the provider prefix:
-- ✅ `anthropic/claude-4-opus-20260115`
-- ❌ `claude-4-opus-20260115`
+- ✅ `anthropic/claude-opus-4-6`
+- ❌ `claude-opus-4-6`
 
 ### API Key Not Working
 
