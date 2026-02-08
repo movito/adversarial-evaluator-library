@@ -49,11 +49,13 @@ If your main agent runs on GPT-4, Gemini, or another model, Claude evaluators pr
 
 ### Recommended Claude Evaluators
 
-| Evaluator | Model | Best For | Cost |
-|-----------|-------|----------|------|
+| Evaluator | Model | Best For | Cost/eval |
+|-----------|-------|----------|-----------|
 | `claude-quick` | Haiku | Fast validation, quick checks | ~$0.001 |
 | `claude-code` | Sonnet | Security-focused code review | ~$0.005 |
 | `claude-adversarial` | Opus | Critical adversarial analysis | ~$0.015 |
+
+*Costs are per-evaluation estimates based on typical token usage (~1,000-3,000 tokens).*
 
 ### Example: GPT-4 Agent + Claude Evaluators
 
