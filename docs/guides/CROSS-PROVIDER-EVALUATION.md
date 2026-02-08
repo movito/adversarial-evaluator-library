@@ -55,7 +55,7 @@ If your main agent runs on GPT-4, Gemini, or another model, Claude evaluators pr
 | `claude-code` | Sonnet | Security-focused code review | ~$0.005 |
 | `claude-adversarial` | Opus | Critical adversarial analysis | ~$0.015 |
 
-*Costs are per-evaluation estimates based on typical token usage (~1,000-3,000 tokens).*
+*Costs are per-evaluation estimates based on typical token usage (~1,000-3,000 tokens). Verify current rates at [anthropic.com/pricing](https://anthropic.com/pricing).*
 
 ### Example: GPT-4 Agent + Claude Evaluators
 

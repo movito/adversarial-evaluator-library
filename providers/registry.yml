@@ -7,7 +7,7 @@
 #
 # See ADR-0005 for the interface contract specification.
 
-schema_version: "1.0"
+schema_version: "1.0.1"  # 1.0.1: Added Claude 4.5/4.6 models (2026-02-08)
 
 providers:
   # ============================================================================
