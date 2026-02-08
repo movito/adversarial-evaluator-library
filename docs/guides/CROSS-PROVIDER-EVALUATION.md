@@ -139,6 +139,7 @@ Ensure the model ID includes the provider prefix:
 ### API Key Not Working
 
 Check your `.env` file:
+
 ```bash
 # Verify key is set
 cat .env | grep ANTHROPIC_API_KEY
@@ -147,6 +148,7 @@ cat .env | grep ANTHROPIC_API_KEY
 ### Rate Limits
 
 If hitting rate limits, add delays between evaluations:
+
 ```bash
 adversarial evaluate --evaluator claude-quick doc.md
 sleep 2
