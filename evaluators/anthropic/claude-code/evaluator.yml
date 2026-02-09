@@ -1,5 +1,5 @@
-# Claude 4 Sonnet Code Review Evaluator
-# Security-focused code analysis using Claude's balanced model
+# Claude Sonnet 4.5 Code Review Evaluator
+# Security-focused code analysis using Claude's best speed/intelligence balance
 #
 # Provider: anthropic
 # Use cases:
@@ -10,13 +10,13 @@
 #   - Configuration file analysis
 
 name: claude-code
-description: Security-focused code review using Claude 4 Sonnet
-model: claude-4-sonnet-20260115
+description: Security-focused code review using Claude Sonnet 4.5
+model: anthropic/claude-sonnet-4-5
 api_key_env: ANTHROPIC_API_KEY
 model_requirement:
   family: claude
   tier: sonnet
-  min_version: "4"
+  min_version: "4.5"
 output_suffix: -claude-code.md
 timeout: 180  # Standard category timeout
 
