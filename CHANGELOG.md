@@ -7,21 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-02-08
+
 ### Added
 
-- **Workflow v0.9.2 integration verified** - Full end-to-end testing with OpenAI, Google, and Mistral evaluators. All providers return exit code 0 on successful evaluation.
-- **Testing procedure documentation** - Added `docs/verification/TESTING-PROCEDURE.md` with step-by-step guide for verifying evaluator functionality.
-- **Verification reports** - Added `docs/verification/` directory with workflow integration reports and feedback.
-- **Knowledge system updates** - Updated `current-state.json` with `workflow_integration` and `quick_reference` sections for future planners.
+- **Cross-provider evaluation support** - Anthropic evaluators now work seamlessly with litellm for multi-provider workflows
+- **ADR-0006 Cross-Provider Usage** - Decision record documenting Anthropic cross-provider support
+- **Cross-provider evaluation guide** - New `docs/guides/CROSS-PROVIDER-EVALUATION.md` with setup instructions and best practices
+- **Claude 4.5/4.6 models in registry** - Added `claude-opus-4-6`, `claude-sonnet-4-5`, `claude-haiku-4-5` to provider registry
+- **Workflow v0.9.2 integration verified** - Full end-to-end testing with OpenAI, Google, and Mistral evaluators
 
 ### Changed
 
-- **Upgraded adversarial-workflow to v0.9.3** - Now requires `>=0.9.3` with ADV-0032 fix ensuring explicit `model` field takes priority over `model_requirement` resolution. This enables library evaluators with updated model IDs (e.g., `anthropic/claude-opus-4-6`) to work correctly.
+- **Anthropic evaluators updated to current models** - claude-adversarial (Opus 4.6), claude-code (Sonnet 4.5), claude-quick (Haiku 4.5)
+- **litellm-compatible model IDs** - All Anthropic evaluators now use `anthropic/` prefix, Google uses `gemini/` prefix
+- **Upgraded adversarial-workflow to v0.9.3** - Now requires `>=0.9.3` with ADV-0032 fix ensuring explicit `model` field takes priority over `model_requirement` resolution
+- **Registry schema version 1.0.1** - Bumped for new Claude model additions per ADR-0005
 
 ### Fixed
 
-- **Exit code now 0 for successful evaluations** - Workflow v0.9.2 fixes the exit code 1 issue reported in our feedback.
-- **Model field priority** (ADV-0032) - Workflow v0.9.3 ensures explicit `model` field in evaluator YAML takes priority over `model_requirement` resolution. Previously, `model_requirement` was incorrectly taking precedence even when an explicit model was specified.
+- **Model field priority** (ADV-0032) - Workflow v0.9.3 ensures explicit `model` field in evaluator YAML takes priority over `model_requirement` resolution
+- **ADR-0005 resolution algorithm** - Clarified that explicit model takes precedence over model_requirement
 
 ## [0.3.0] - 2026-02-03
 
@@ -51,7 +57,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI/CD workflow with pytest and pre-commit
 - Project structure based on Agentive Starter Kit
 
-[Unreleased]: https://github.com/movito/adversarial-evaluator-library/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/movito/adversarial-evaluator-library/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/movito/adversarial-evaluator-library/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/movito/adversarial-evaluator-library/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/movito/adversarial-evaluator-library/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/movito/adversarial-evaluator-library/releases/tag/v0.1.0
