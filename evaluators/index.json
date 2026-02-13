@@ -1,6 +1,6 @@
 {
-  "version": "1.3.0",
-  "updated": "2026-02-06",
+  "version": "1.4.0",
+  "updated": "2026-02-13",
   "evaluators": [
     {
       "name": "gemini-flash",
@@ -35,6 +35,14 @@
       "description": "Code review using Gemini 3 Pro for security and quality"
     },
     {
+      "name": "arch-review-fast",
+      "provider": "google",
+      "path": "google/arch-review-fast/evaluator.yml",
+      "model": "gemini/gemini-2.5-flash",
+      "category": "arch-review",
+      "description": "Fast architectural review using Gemini 2.5 Flash extended reasoning"
+    },
+    {
       "name": "gpt52-reasoning",
       "provider": "openai",
       "path": "openai/gpt52-reasoning/evaluator.yml",
@@ -57,6 +65,14 @@
       "model": "gpt-4o-mini",
       "category": "quick-check",
       "description": "Fast validation for formatting and basic issues"
+    },
+    {
+      "name": "arch-review",
+      "provider": "openai",
+      "path": "openai/arch-review/evaluator.yml",
+      "model": "o1",
+      "category": "arch-review",
+      "description": "Deep architectural review using OpenAI o1 reasoning"
     },
     {
       "name": "o1-code-review",
@@ -153,7 +169,8 @@
     "adversarial": "Stress-testing and critical review",
     "knowledge-synthesis": "Large-context cross-referencing",
     "cognitive-diversity": "Alternative model perspectives",
-    "code-review": "Code and configuration analysis"
+    "code-review": "Code and configuration analysis",
+    "arch-review": "Structural and architectural code analysis"
   },
   "providers": {
     "anthropic": {
@@ -162,11 +179,11 @@
     },
     "google": {
       "api_key_env": "GEMINI_API_KEY",
-      "evaluators": ["gemini-flash", "gemini-pro", "gemini-deep", "gemini-code"]
+      "evaluators": ["gemini-flash", "gemini-pro", "gemini-deep", "gemini-code", "arch-review-fast"]
     },
     "openai": {
       "api_key_env": "OPENAI_API_KEY",
-      "evaluators": ["gpt52-reasoning", "o3-chain", "fast-check", "o1-code-review", "o1-mini-code", "gpt4o-code", "gpt5-diversity", "gpt5-synthesis"]
+      "evaluators": ["gpt52-reasoning", "o3-chain", "fast-check", "arch-review", "o1-code-review", "o1-mini-code", "gpt4o-code", "gpt5-diversity", "gpt5-synthesis"]
     },
     "mistral": {
       "api_key_env": "MISTRAL_API_KEY",
