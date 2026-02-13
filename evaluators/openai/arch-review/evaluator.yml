@@ -105,7 +105,7 @@ prompt: |
   - **Medium risk**: [aspects that may need attention at 2-3x complexity]
   - **High risk**: [aspects that will break under growth]
 
-  ## Verdict
+  ### Verdict
 
   - **APPROVED**: Architecture is sound, no structural concerns blocking progress
   - **REVISION_SUGGESTED**: Minor structural improvements recommended (non-blocking)

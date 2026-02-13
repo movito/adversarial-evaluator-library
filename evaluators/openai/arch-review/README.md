@@ -48,7 +48,7 @@ The evaluator produces:
 2. **Design Adherence Table** — ratings for concept independence, API quality, coupling, cohesion, pattern consistency
 3. **Architectural Findings** — categorized as STRUCTURAL, COUPLING, API, or PATTERN
 4. **Positive Decisions** — structural choices worth preserving
-5. **Growth Risk Assessment** — low/medium/high risk areas
+5. **Growth Risk Assessment** — low/medium/high-risk areas
 6. **Verdict**: APPROVED, REVISION_SUGGESTED, or RESTRUCTURE_NEEDED
 
 ## When to Use
