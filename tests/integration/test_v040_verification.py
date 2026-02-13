@@ -22,7 +22,6 @@ import pytest
 import yaml
 from pathlib import Path
 
-
 # =============================================================================
 # Test Configuration
 # =============================================================================
@@ -46,6 +45,7 @@ GOOGLE_EVALUATORS = [
 # Unit Tests - No API Required
 # =============================================================================
 
+
 class TestModelIDFormat:
     """Verify evaluator model IDs use correct litellm prefix format."""
 
@@ -59,7 +59,9 @@ class TestModelIDFormat:
             config = yaml.safe_load(f)
 
         model = config.get("model", "")
-        assert model.startswith("anthropic/"), f"Expected anthropic/ prefix, got: {model}"
+        assert model.startswith(
+            "anthropic/"
+        ), f"Expected anthropic/ prefix, got: {model}"
         assert model == expected_model, f"Expected {expected_model}, got: {model}"
 
     @pytest.mark.parametrize("eval_path,expected_model,_", GOOGLE_EVALUATORS)
@@ -85,7 +87,9 @@ class TestMinVersionAlignment:
             return yaml.safe_load(f)
 
     @pytest.mark.parametrize("eval_path,_,expected_min_version", ANTHROPIC_EVALUATORS)
-    def test_min_version_matches_registry(self, registry, eval_path, _, expected_min_version):
+    def test_min_version_matches_registry(
+        self, registry, eval_path, _, expected_min_version
+    ):
         """Evaluator min_version should match a registry entry version."""
         evaluator_file = EVALUATORS_DIR / eval_path / "evaluator.yml"
 
@@ -95,8 +99,9 @@ class TestMinVersionAlignment:
         model_req = config.get("model_requirement", {})
         min_version = model_req.get("min_version")
 
-        assert min_version == expected_min_version, \
-            f"Expected min_version {expected_min_version}, got: {min_version}"
+        assert (
+            min_version == expected_min_version
+        ), f"Expected min_version {expected_min_version}, got: {min_version}"
 
         # Verify this version exists in registry
         family = model_req.get("family")
@@ -108,8 +113,9 @@ class TestMinVersionAlignment:
         tier_models = claude_tiers[tier]["models"]
         versions_in_registry = [m["version"] for m in tier_models]
 
-        assert min_version in versions_in_registry, \
-            f"min_version {min_version} not found in registry. Available: {versions_in_registry}"
+        assert (
+            min_version in versions_in_registry
+        ), f"min_version {min_version} not found in registry. Available: {versions_in_registry}"
 
 
 class TestRegistrySchema:
@@ -122,31 +128,39 @@ class TestRegistrySchema:
 
     def test_schema_version_is_1_0_1(self, registry):
         """Registry should be at schema version 1.0.1 after v0.4.0."""
-        assert registry["schema_version"] == "1.0.1", \
-            f"Expected schema_version 1.0.1, got: {registry['schema_version']}"
+        assert (
+            registry["schema_version"] == "1.0.1"
+        ), f"Expected schema_version 1.0.1, got: {registry['schema_version']}"
 
     def test_claude_opus_4_6_exists(self, registry):
         """Registry should contain Claude Opus 4.6."""
         opus_models = registry["providers"]["claude"]["tiers"]["opus"]["models"]
         model_ids = [m["id"] for m in opus_models]
-        assert "claude-opus-4-6" in model_ids, f"claude-opus-4-6 not in registry: {model_ids}"
+        assert (
+            "claude-opus-4-6" in model_ids
+        ), f"claude-opus-4-6 not in registry: {model_ids}"
 
     def test_claude_sonnet_4_5_exists(self, registry):
         """Registry should contain Claude Sonnet 4.5."""
         sonnet_models = registry["providers"]["claude"]["tiers"]["sonnet"]["models"]
         model_ids = [m["id"] for m in sonnet_models]
-        assert "claude-sonnet-4-5" in model_ids, f"claude-sonnet-4-5 not in registry: {model_ids}"
+        assert (
+            "claude-sonnet-4-5" in model_ids
+        ), f"claude-sonnet-4-5 not in registry: {model_ids}"
 
     def test_claude_haiku_4_5_exists(self, registry):
         """Registry should contain Claude Haiku 4.5."""
         haiku_models = registry["providers"]["claude"]["tiers"]["haiku"]["models"]
         model_ids = [m["id"] for m in haiku_models]
-        assert "claude-haiku-4-5" in model_ids, f"claude-haiku-4-5 not in registry: {model_ids}"
+        assert (
+            "claude-haiku-4-5" in model_ids
+        ), f"claude-haiku-4-5 not in registry: {model_ids}"
 
 
 # =============================================================================
 # ADV-0032 Verification Tests
 # =============================================================================
+
 
 class TestADV0032ModelPriority:
     """Verify ADV-0032 fix: explicit model field takes priority."""
@@ -155,7 +169,10 @@ class TestADV0032ModelPriority:
         """ModelResolver should use explicit model field over model_requirement."""
         try:
             from adversarial_workflow.evaluators.resolver import ModelResolver
-            from adversarial_workflow.evaluators.config import EvaluatorConfig, ModelRequirement
+            from adversarial_workflow.evaluators.config import (
+                EvaluatorConfig,
+                ModelRequirement,
+            )
         except ImportError:
             pytest.skip("adversarial-workflow not installed")
 
@@ -174,14 +191,18 @@ class TestADV0032ModelPriority:
         )
 
         model_id, _ = resolver.resolve(config)
-        assert model_id == "explicit-model-id", \
-            f"ADV-0032 FAIL: Expected explicit-model-id, got {model_id}"
+        assert (
+            model_id == "explicit-model-id"
+        ), f"ADV-0032 FAIL: Expected explicit-model-id, got {model_id}"
 
     def test_empty_model_falls_back_to_requirement(self):
         """Empty model field should fall back to model_requirement resolution."""
         try:
             from adversarial_workflow.evaluators.resolver import ModelResolver
-            from adversarial_workflow.evaluators.config import EvaluatorConfig, ModelRequirement
+            from adversarial_workflow.evaluators.config import (
+                EvaluatorConfig,
+                ModelRequirement,
+            )
         except ImportError:
             pytest.skip("adversarial-workflow not installed")
 
@@ -201,15 +222,19 @@ class TestADV0032ModelPriority:
 
         model_id, _ = resolver.resolve(config)
         assert model_id != "", "Empty model should resolve via model_requirement"
-        assert "claude" in model_id.lower() or "anthropic" in model_id.lower(), \
-            f"Expected Claude model from requirement, got: {model_id}"
+        assert (
+            "claude" in model_id.lower() or "anthropic" in model_id.lower()
+        ), f"Expected Claude model from requirement, got: {model_id}"
 
     @pytest.mark.parametrize("eval_path,expected_model,_", ANTHROPIC_EVALUATORS)
     def test_anthropic_evaluator_resolves_correctly(self, eval_path, expected_model, _):
         """Real Anthropic evaluator configs should resolve to their explicit model."""
         try:
             from adversarial_workflow.evaluators.resolver import ModelResolver
-            from adversarial_workflow.evaluators.config import EvaluatorConfig, ModelRequirement
+            from adversarial_workflow.evaluators.config import (
+                EvaluatorConfig,
+                ModelRequirement,
+            )
         except ImportError:
             pytest.skip("adversarial-workflow not installed")
 
@@ -234,13 +259,15 @@ class TestADV0032ModelPriority:
         resolver = ModelResolver()
         model_id, _ = resolver.resolve(config)
 
-        assert model_id == expected_model, \
-            f"ADV-0032: Expected {expected_model}, got {model_id}"
+        assert (
+            model_id == expected_model
+        ), f"ADV-0032: Expected {expected_model}, got {model_id}"
 
 
 # =============================================================================
 # Live API Tests (require API keys)
 # =============================================================================
+
 
 @pytest.mark.requires_api
 class TestLiveEvaluation:
@@ -261,25 +288,32 @@ Just a basic test to verify the evaluator runs successfully.
         return doc
 
     @pytest.mark.skipif(
-        not os.environ.get("ANTHROPIC_API_KEY"),
-        reason="ANTHROPIC_API_KEY not set"
+        not os.environ.get("ANTHROPIC_API_KEY"), reason="ANTHROPIC_API_KEY not set"
     )
     def test_claude_quick_evaluator(self, test_document):
         """Run claude-quick evaluator on test document."""
         result = subprocess.run(
-            ["adversarial", "evaluate", str(test_document), "--evaluator", "claude-quick"],
+            [
+                "adversarial",
+                "evaluate",
+                str(test_document),
+                "--evaluator",
+                "claude-quick",
+            ],
             capture_output=True,
             text=True,
             timeout=120,
         )
 
-        assert result.returncode == 0, \
-            f"claude-quick failed with exit code {result.returncode}\nstderr: {result.stderr}"
+        assert (
+            result.returncode == 0
+        ), f"claude-quick failed with exit code {result.returncode}\nstderr: {result.stderr}"
 
 
 # =============================================================================
 # CLI Verification Tests
 # =============================================================================
+
 
 class TestCLIIntegration:
     """Verify CLI commands work with new evaluators."""
@@ -321,6 +355,7 @@ class TestCLIIntegration:
 # Quick Smoke Test (run standalone)
 # =============================================================================
 
+
 def test_quick_smoke():
     """
     Quick smoke test that can be run standalone.
@@ -329,7 +364,10 @@ def test_quick_smoke():
     """
     try:
         from adversarial_workflow.evaluators.resolver import ModelResolver
-        from adversarial_workflow.evaluators.config import EvaluatorConfig, ModelRequirement
+        from adversarial_workflow.evaluators.config import (
+            EvaluatorConfig,
+            ModelRequirement,
+        )
     except ImportError:
         pytest.skip("adversarial-workflow not installed")
 
