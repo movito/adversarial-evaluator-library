@@ -18,9 +18,10 @@ Run with:
 
 import os
 import subprocess
+from pathlib import Path
+
 import pytest
 import yaml
-from pathlib import Path
 
 # =============================================================================
 # Test Configuration
@@ -168,11 +169,11 @@ class TestADV0032ModelPriority:
     def test_resolver_uses_explicit_model(self):
         """ModelResolver should use explicit model field over model_requirement."""
         try:
-            from adversarial_workflow.evaluators.resolver import ModelResolver
             from adversarial_workflow.evaluators.config import (
                 EvaluatorConfig,
                 ModelRequirement,
             )
+            from adversarial_workflow.evaluators.resolver import ModelResolver
         except ImportError:
             pytest.skip("adversarial-workflow not installed")
 
@@ -198,11 +199,11 @@ class TestADV0032ModelPriority:
     def test_empty_model_falls_back_to_requirement(self):
         """Empty model field should fall back to model_requirement resolution."""
         try:
-            from adversarial_workflow.evaluators.resolver import ModelResolver
             from adversarial_workflow.evaluators.config import (
                 EvaluatorConfig,
                 ModelRequirement,
             )
+            from adversarial_workflow.evaluators.resolver import ModelResolver
         except ImportError:
             pytest.skip("adversarial-workflow not installed")
 
@@ -230,11 +231,11 @@ class TestADV0032ModelPriority:
     def test_anthropic_evaluator_resolves_correctly(self, eval_path, expected_model, _):
         """Real Anthropic evaluator configs should resolve to their explicit model."""
         try:
-            from adversarial_workflow.evaluators.resolver import ModelResolver
             from adversarial_workflow.evaluators.config import (
                 EvaluatorConfig,
                 ModelRequirement,
             )
+            from adversarial_workflow.evaluators.resolver import ModelResolver
         except ImportError:
             pytest.skip("adversarial-workflow not installed")
 
@@ -363,11 +364,11 @@ def test_quick_smoke():
     Run with: python -m pytest tests/integration/test_v0.4.0_verification.py::test_quick_smoke -v
     """
     try:
-        from adversarial_workflow.evaluators.resolver import ModelResolver
         from adversarial_workflow.evaluators.config import (
             EvaluatorConfig,
             ModelRequirement,
         )
+        from adversarial_workflow.evaluators.resolver import ModelResolver
     except ImportError:
         pytest.skip("adversarial-workflow not installed")
 
