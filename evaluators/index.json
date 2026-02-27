@@ -1,6 +1,6 @@
 {
-  "version": "1.4.0",
-  "updated": "2026-02-13",
+  "version": "1.5.0",
+  "updated": "2026-02-27",
   "evaluators": [
     {
       "name": "gemini-flash",
@@ -33,6 +33,14 @@
       "model": "gemini/gemini-3-pro-20260101",
       "category": "code-review",
       "description": "Code review using Gemini 3 Pro for security and quality"
+    },
+    {
+      "name": "code-reviewer-fast",
+      "provider": "google",
+      "path": "google/code-reviewer-fast/evaluator.yml",
+      "model": "gemini/gemini-2.5-flash",
+      "category": "code-review",
+      "description": "Fast adversarial correctness check using Gemini Flash"
     },
     {
       "name": "arch-review-fast",
@@ -97,6 +105,14 @@
       "model": "gpt-4o",
       "category": "code-review",
       "description": "Fast comprehensive code quality review"
+    },
+    {
+      "name": "code-reviewer",
+      "provider": "openai",
+      "path": "openai/code-reviewer/evaluator.yml",
+      "model": "o1",
+      "category": "code-review",
+      "description": "Adversarial correctness review — finds edge-case bugs that checklist reviews miss"
     },
     {
       "name": "gpt5-diversity",
@@ -179,11 +195,11 @@
     },
     "google": {
       "api_key_env": "GEMINI_API_KEY",
-      "evaluators": ["gemini-flash", "gemini-pro", "gemini-deep", "gemini-code", "arch-review-fast"]
+      "evaluators": ["gemini-flash", "gemini-pro", "gemini-deep", "gemini-code", "code-reviewer-fast", "arch-review-fast"]
     },
     "openai": {
       "api_key_env": "OPENAI_API_KEY",
-      "evaluators": ["gpt52-reasoning", "o3-chain", "fast-check", "arch-review", "o1-code-review", "o1-mini-code", "gpt4o-code", "gpt5-diversity", "gpt5-synthesis"]
+      "evaluators": ["gpt52-reasoning", "o3-chain", "fast-check", "arch-review", "o1-code-review", "o1-mini-code", "gpt4o-code", "code-reviewer", "gpt5-diversity", "gpt5-synthesis"]
     },
     "mistral": {
       "api_key_env": "MISTRAL_API_KEY",
