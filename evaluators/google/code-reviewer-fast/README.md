@@ -46,7 +46,7 @@ Use this for small changes, iteration cycles, or as a pre-push sanity check. Use
 adversarial code-reviewer-fast .adversarial/inputs/TASK-001-code-review-input.md
 
 # Read findings
-cat .adversarial/logs/TASK-001-code-review-input--code-reviewer-fast.md.md
+cat .adversarial/logs/TASK-001-code-review-input--code-reviewer-fast.md
 ```
 
 ## Output

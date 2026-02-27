@@ -50,11 +50,11 @@ human review. It complements bots by finding semantic issues that line-level ana
 adversarial code-reviewer .adversarial/inputs/TASK-001-code-review-input.md
 
 # Read findings
-cat .adversarial/logs/TASK-001-code-review-input--code-reviewer.md.md
+cat .adversarial/logs/TASK-001-code-review-input--code-reviewer.md
 ```
 
 **Important**: Include FULL file content in the input, not diffs or excerpts. The evaluator
-needs imports, error handling context, and module-level state to reason correctly.
+needs imports, error-handling context, and module-level state to reason correctly.
 
 ## Output
 
