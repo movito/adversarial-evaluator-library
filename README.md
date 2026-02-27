@@ -1,7 +1,7 @@
 # adversarial-evaluator-library
 
 [![CI](https://github.com/movito/adversarial-evaluator-library/actions/workflows/ci.yml/badge.svg)](https://github.com/movito/adversarial-evaluator-library/actions/workflows/ci.yml)
-[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/movito/adversarial-evaluator-library/releases)
+[![Version](https://img.shields.io/badge/version-1.5.0-blue.svg)](https://github.com/movito/adversarial-evaluator-library/releases)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 **A library of adversarial evaluators for AI-assisted document review.**
@@ -10,7 +10,7 @@
 
 Adversarial evaluation is the practice of using AI models to critically review documents, code, and specifications *before* they're finalized. Rather than waiting for bugs or issues to surface in production, adversarial evaluators stress-test your content by looking for gaps, inconsistencies, and potential problems.
 
-This library provides **22 pre-configured evaluators** across **4 providers** (Anthropic, Google, OpenAI, Mistral), organized into **6 categories**. Each evaluator is tuned for specific review tasks—from quick formatting checks to deep reasoning analysis.
+This library provides **22 pre-configured evaluators** across **4 providers** (Anthropic, Google, OpenAI, Mistral), organized into **7 categories**. Each evaluator is tuned for specific review tasks—from quick formatting checks to deep reasoning analysis.
 
 **Why use this library?**
 
@@ -80,6 +80,8 @@ adversarial evaluate your-document.md
 | `code-reviewer` | OpenAI | o1 | code-review | Adversarial correctness review — edge cases, boundary conditions |
 | `code-reviewer-fast` | Google | gemini-2.5-flash | code-review | Fast adversarial correctness check |
 | `codestral-code` | Mistral | codestral-latest | code-review | Code-focused review for scripts and configs |
+| `arch-review` | OpenAI | o1 | arch-review | Deep architectural review using o1 reasoning |
+| `arch-review-fast` | Google | gemini-2.5-flash | arch-review | Fast architectural review using Gemini Flash |
 
 ## Categories
 
@@ -117,6 +119,13 @@ Alternative model perspectives for broader coverage:
 - Cultural/regional considerations
 - Bias detection
 - **Evaluators**: `gpt5-diversity`, `mistral-content`
+
+### arch-review
+Structural and architectural code analysis:
+- Architecture document review
+- Design pattern validation
+- Dependency and coupling analysis
+- **Evaluators**: `arch-review`, `arch-review-fast`
 
 ### code-review
 Specialized code and configuration analysis:
@@ -247,20 +256,22 @@ evaluators/
 │   ├── claude-code/
 │   └── claude-quick/
 ├── google/              # Google/Gemini evaluators
-│   ├── gemini-flash/
-│   ├── gemini-pro/
-│   ├── gemini-deep/
+│   ├── arch-review-fast/
+│   ├── code-reviewer-fast/
 │   ├── gemini-code/
-│   └── code-reviewer-fast/
+│   ├── gemini-deep/
+│   ├── gemini-flash/
+│   └── gemini-pro/
 ├── openai/              # OpenAI evaluators
+│   ├── arch-review/
+│   ├── code-reviewer/
 │   ├── fast-check/
-│   ├── gpt52-reasoning/
+│   ├── gpt4o-code/
 │   ├── gpt5-diversity/
 │   ├── gpt5-synthesis/
+│   ├── gpt52-reasoning/
 │   ├── o1-code-review/
 │   ├── o1-mini-code/
-│   ├── gpt4o-code/
-│   ├── code-reviewer/
 │   └── o3-chain/
 └── mistral/             # Mistral evaluators
     ├── mistral-fast/

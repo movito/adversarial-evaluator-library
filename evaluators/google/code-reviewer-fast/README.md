@@ -26,7 +26,7 @@ Use this for small changes, iteration cycles, or as a pre-push sanity check. Use
 | Re-checking after fixes | ✅ Yes |
 | Pre-push sanity check | ✅ Yes |
 | Large feature PR (>100 lines) | ❌ Use code-reviewer |
-| Security-critical code | ❌ Use o1-code-review |
+| Security-critical code | ❌ No (use o1-code-review) |
 
 ## Model
 

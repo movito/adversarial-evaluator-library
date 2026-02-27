@@ -30,7 +30,7 @@ human review. It complements bots by finding semantic issues that line-level ana
 | Bug fix with edge cases | ✅ Yes |
 | Refactoring (no new logic) | ❌ Skip |
 | Docs-only changes | ❌ Skip |
-| Quick style fix | ❌ Use code-reviewer-fast |
+| Quick style fix | ❌ No (use code-reviewer-fast) |
 
 ## Model
 
