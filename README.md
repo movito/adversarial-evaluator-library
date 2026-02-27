@@ -10,7 +10,7 @@
 
 Adversarial evaluation is the practice of using AI models to critically review documents, code, and specifications *before* they're finalized. Rather than waiting for bugs or issues to surface in production, adversarial evaluators stress-test your content by looking for gaps, inconsistencies, and potential problems.
 
-This library provides **18 pre-configured evaluators** across **4 providers** (Anthropic, Google, OpenAI, Mistral), organized into **6 categories**. Each evaluator is tuned for specific review tasks—from quick formatting checks to deep reasoning analysis.
+This library provides **22 pre-configured evaluators** across **4 providers** (Anthropic, Google, OpenAI, Mistral), organized into **6 categories**. Each evaluator is tuned for specific review tasks—from quick formatting checks to deep reasoning analysis.
 
 **Why use this library?**
 
@@ -77,6 +77,8 @@ adversarial evaluate your-document.md
 | `o1-code-review` | OpenAI | o1 | code-review | Deep reasoning code review |
 | `o1-mini-code` | OpenAI | o1-mini | code-review | Cost-effective reasoning-based code review |
 | `gpt4o-code` | OpenAI | gpt-4o | code-review | Fast comprehensive code quality review |
+| `code-reviewer` | OpenAI | o1 | code-review | Adversarial correctness review — edge cases, boundary conditions |
+| `code-reviewer-fast` | Google | gemini-2.5-flash | code-review | Fast adversarial correctness check |
 | `codestral-code` | Mistral | codestral-latest | code-review | Code-focused review for scripts and configs |
 
 ## Categories
@@ -122,7 +124,7 @@ Specialized code and configuration analysis:
 - Security vulnerability detection
 - Configuration validation
 - Script analysis
-- **Evaluators**: `claude-code`, `gemini-code`, `o1-code-review`, `o1-mini-code`, `gpt4o-code`, `codestral-code`
+- **Evaluators**: `claude-code`, `gemini-code`, `o1-code-review`, `o1-mini-code`, `gpt4o-code`, `code-reviewer`, `code-reviewer-fast`, `codestral-code`
 
 ## Usage Examples
 
@@ -248,7 +250,8 @@ evaluators/
 │   ├── gemini-flash/
 │   ├── gemini-pro/
 │   ├── gemini-deep/
-│   └── gemini-code/
+│   ├── gemini-code/
+│   └── code-reviewer-fast/
 ├── openai/              # OpenAI evaluators
 │   ├── fast-check/
 │   ├── gpt52-reasoning/
@@ -257,6 +260,7 @@ evaluators/
 │   ├── o1-code-review/
 │   ├── o1-mini-code/
 │   ├── gpt4o-code/
+│   ├── code-reviewer/
 │   └── o3-chain/
 └── mistral/             # Mistral evaluators
     ├── mistral-fast/

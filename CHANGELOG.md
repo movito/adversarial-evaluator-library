@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **`code-reviewer` evaluator** (OpenAI o1) — Adversarial correctness review that finds edge-case bugs, boundary conditions, and logic errors that checklist reviews miss. 4-phase protocol: attack surface identification, execution path tracing, test cross-referencing, interaction analysis. Battle-tested on 7+ PRs in dispatch-kit.
+- **`code-reviewer-fast` evaluator** (Google Gemini Flash) — Fast variant of code-reviewer for small changes and iteration cycles. Same adversarial mindset, condensed protocol. ~$0.003-0.01/run.
+
 ## [0.4.0] - 2026-02-08
 
 ### Added
