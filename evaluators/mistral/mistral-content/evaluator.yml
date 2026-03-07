@@ -10,7 +10,7 @@
 #   - Alternative provider perspective (European-headquartered)
 
 name: mistral-content
-description: Content review using Mistral Large - European perspective
+description: Content review using Mistral Large - alternative provider perspective
 model: mistral/mistral-large-2411
 api_key_env: MISTRAL_API_KEY
 model_requirement:
@@ -62,14 +62,20 @@ prompt: |
 
   ## Specific Feedback
 
-  For each area needing improvement:
+  If no significant issues are found, output:
+
+  ### No Significant Issues
+  - **Result**: Content is clear, well-supported, and complete
+  - **Next step**: APPROVED
+
+  Otherwise, for each area needing improvement:
 
   ### [CRITICAL/HIGH/MEDIUM/LOW]: [Finding Title]
   - **Section**: [document section reference]
   - **Issue**: [description]
   - **Recommendation**: [actionable fix]
 
-  Prioritize the top 3 changes that would most improve the document.
+  If findings are present, prioritize the top 3 changes that would most improve the document.
 
   ## Overall Assessment
 

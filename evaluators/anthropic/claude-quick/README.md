@@ -59,11 +59,19 @@ adversarial evaluate --evaluator claude-quick draft-document.md
 
 ## Output Format
 
-Findings use standardized severity labels:
+When issues are found, findings use standardized severity labels:
 - **CRITICAL**: Blocking issues, must fix immediately
 - **HIGH**: Significant issues to address
 - **MEDIUM**: Should fix before proceeding
 - **LOW**: Minor improvements
+
+When no issues are found, output uses a neutral format:
+
+```
+### Clean Check
+- **Result**: No significant issues detected
+- **Next step**: Ready for detailed review
+```
 
 Optimized for quick scanning with brief, actionable feedback.
 

@@ -23,7 +23,7 @@ timeout: 180  # Standard category timeout
 prompt: |
   You are a senior security engineer and code reviewer.
   Analyze this code thoroughly for security vulnerabilities, correctness issues, and quality concerns.
-  Only report vulnerabilities directly supported by the provided code. If runtime or infrastructure context is missing, mark findings as "unverifiable / missing context" rather than assuming the worst case.
+  Only report vulnerabilities directly supported by the provided code. Do not assume worst-case runtime or infrastructure context.
 
   {content}
 
@@ -84,6 +84,9 @@ prompt: |
 
   ### Positive Observations
   [Note any security measures or patterns done well]
+
+  ### Context Required / Unverifiable
+  [List any potential concerns that cannot be confirmed without runtime, infrastructure, or deployment context. These notes must NOT appear under Findings or influence the verdict.]
 
   ## Overall Assessment
 
