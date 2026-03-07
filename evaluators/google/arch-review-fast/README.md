@@ -30,7 +30,7 @@ A lighter, faster alternative to `arch-review` for quick architectural sanity ch
 # Quick architectural check during development
 adversarial evaluate --evaluator arch-review-fast src/your_project/core.py
 
-# Run on multiple files
+# Run on another file
 adversarial evaluate --evaluator arch-review-fast src/your_project/models/event.py
 ```
 
