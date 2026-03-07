@@ -68,12 +68,12 @@ adversarial evaluate your-document.md
 | `o3-chain` | OpenAI | o3 | deep-reasoning | Chain-of-thought for numerical verification |
 | `claude-adversarial` | Anthropic | claude-opus-4-6 | adversarial | Adversarial review for critical analysis |
 | `gpt52-reasoning` | OpenAI | gpt-5.2 | adversarial | Deep adversarial reasoning for critical review |
-| `gemini-pro` | Google | gemini-3-pro | knowledge-synthesis | Large-context knowledge synthesis (1M tokens) |
+| `gemini-pro` | Google | gemini-3.1-pro-preview | knowledge-synthesis | Large-context knowledge synthesis (1M tokens) |
 | `gpt5-synthesis` | OpenAI | gpt-5-turbo | knowledge-synthesis | Knowledge synthesis for cross-referencing |
 | `gpt5-diversity` | OpenAI | gpt-5-turbo | cognitive-diversity | Alternative perspectives and assumption auditing |
 | `mistral-content` | Mistral | mistral-large-2411 | cognitive-diversity | Content review with alternative provider perspective |
 | `claude-code` | Anthropic | claude-sonnet-4-5 | code-review | Security-focused code review |
-| `gemini-code` | Google | gemini-3-pro | code-review | Code review for security and quality |
+| `gemini-code` | Google | gemini-3.1-pro-preview | code-review | Code review for security and quality |
 | `o1-code-review` | OpenAI | o1 | code-review | Deep reasoning code review |
 | `o1-mini-code` | OpenAI | o1-mini | code-review | Cost-effective reasoning-based code review |
 | `gpt4o-code` | OpenAI | gpt-4o | code-review | Fast comprehensive code quality review |
