@@ -1,6 +1,6 @@
-# Claude 4 Haiku Quick Check Evaluator
+# Claude Haiku 4.5 Quick Check Evaluator
 
-Fast validation using Claude 4 Haiku for rapid initial screening.
+Fast validation using Claude Haiku 4.5 for rapid initial screening.
 
 ## Use Cases
 
@@ -48,7 +48,7 @@ For comprehensive security analysis, use claude-code or o1-code-review.
 
 ```yaml
 api_key_env: ANTHROPIC_API_KEY
-model: claude-4-haiku-20260115
+model: anthropic/claude-haiku-4-5
 ```
 
 ## Example Usage
@@ -59,11 +59,19 @@ adversarial evaluate --evaluator claude-quick draft-document.md
 
 ## Output Format
 
-Findings use standardized severity labels:
+When issues are found, findings use standardized severity labels:
 - **CRITICAL**: Blocking issues, must fix immediately
 - **HIGH**: Significant issues to address
 - **MEDIUM**: Should fix before proceeding
 - **LOW**: Minor improvements
+
+When no issues are found, output uses a neutral format:
+
+```text
+### Clean Check
+- **Result**: No significant issues detected
+- **Next step**: Ready for detailed review
+```
 
 Optimized for quick scanning with brief, actionable feedback.
 

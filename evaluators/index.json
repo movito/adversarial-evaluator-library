@@ -22,7 +22,7 @@
       "name": "gemini-deep",
       "provider": "google",
       "path": "google/gemini-deep/evaluator.yml",
-      "model": "gemini/gemini-2.5-flash",
+      "model": "gemini/gemini-2.5-pro",
       "category": "deep-reasoning",
       "description": "Extended reasoning for complex analysis"
     },
@@ -136,13 +136,13 @@
       "path": "mistral/mistral-content/evaluator.yml",
       "model": "mistral/mistral-large-2411",
       "category": "cognitive-diversity",
-      "description": "Content review with European perspective"
+      "description": "Content review with alternative provider perspective"
     },
     {
       "name": "mistral-fast",
       "provider": "mistral",
       "path": "mistral/mistral-fast/evaluator.yml",
-      "model": "mistral/mistral-small-2409",
+      "model": "mistral/mistral-small-2503",
       "category": "quick-check",
       "description": "Fast Mistral review for large documents"
     },

@@ -60,19 +60,19 @@ adversarial evaluate your-document.md
 
 | Evaluator | Provider | Model | Category | Description |
 |-----------|----------|-------|----------|-------------|
-| `claude-quick` | Anthropic | claude-4-haiku | quick-check | Fast validation using Claude 4 Haiku |
+| `claude-quick` | Anthropic | claude-haiku-4-5 | quick-check | Fast validation using Claude Haiku 4.5 |
 | `fast-check` | OpenAI | gpt-4o-mini | quick-check | Fast validation for formatting and basic issues |
 | `gemini-flash` | Google | gemini-2.5-flash | quick-check | Fast, cost-effective document assessment |
-| `mistral-fast` | Mistral | mistral-small-2409 | quick-check | Fast Mistral review for large documents |
-| `gemini-deep` | Google | gemini-2.5-flash | deep-reasoning | Extended reasoning for complex analysis |
+| `mistral-fast` | Mistral | mistral-small-2503 | quick-check | Fast Mistral review for large documents |
+| `gemini-deep` | Google | gemini-2.5-pro | deep-reasoning | Extended reasoning for complex analysis |
 | `o3-chain` | OpenAI | o3 | deep-reasoning | Chain-of-thought for numerical verification |
-| `claude-adversarial` | Anthropic | claude-4-opus | adversarial | Adversarial review for critical analysis |
+| `claude-adversarial` | Anthropic | claude-opus-4-6 | adversarial | Adversarial review for critical analysis |
 | `gpt52-reasoning` | OpenAI | gpt-5.2 | adversarial | Deep adversarial reasoning for critical review |
 | `gemini-pro` | Google | gemini-3-pro | knowledge-synthesis | Large-context knowledge synthesis (1M tokens) |
 | `gpt5-synthesis` | OpenAI | gpt-5-turbo | knowledge-synthesis | Knowledge synthesis for cross-referencing |
 | `gpt5-diversity` | OpenAI | gpt-5-turbo | cognitive-diversity | Alternative perspectives and assumption auditing |
-| `mistral-content` | Mistral | mistral-large-2411 | cognitive-diversity | Content review with European perspective |
-| `claude-code` | Anthropic | claude-4-sonnet | code-review | Security-focused code review |
+| `mistral-content` | Mistral | mistral-large-2411 | cognitive-diversity | Content review with alternative provider perspective |
+| `claude-code` | Anthropic | claude-sonnet-4-5 | code-review | Security-focused code review |
 | `gemini-code` | Google | gemini-3-pro | code-review | Code review for security and quality |
 | `o1-code-review` | OpenAI | o1 | code-review | Deep reasoning code review |
 | `o1-mini-code` | OpenAI | o1-mini | code-review | Cost-effective reasoning-based code review |

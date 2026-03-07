@@ -8,14 +8,14 @@ Alternative perspective evaluator for document and content review.
 - Research synthesis validation
 - Argument structure analysis
 - Cross-checking outputs from other models
-- European regulatory perspective
+- Alternative provider perspective
 
 ## Cognitive Diversity Value
 
 Mistral models are trained on different data distributions than OpenAI or Anthropic models. This provides:
 - Different blind spots (catches what others miss)
-- European training data emphasis
 - Alternative framing of issues
+- Additional provider diversity from a different model family
 
 **Best practice**: Use alongside GPT-5.2 or Claude for maximum coverage.
 
@@ -31,7 +31,7 @@ Mistral models are trained on different data distributions than OpenAI or Anthro
 
 **Best for:**
 - Getting a second opinion on important docs
-- European regulatory content
+- Regulatory and policy content
 - Checking for blind spots in GPT/Claude reviews
 - Multi-model review panels
 
