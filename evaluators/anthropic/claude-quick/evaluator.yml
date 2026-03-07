@@ -51,10 +51,9 @@ prompt: |
 
   If NO issues found:
 
-  ### [LOW]: Clean Check
-  - **Location**: N/A
-  - **Issue**: No significant issues detected
-  - **Remediation**: Ready for detailed review
+  ### Clean Check
+  - **Result**: No significant issues detected
+  - **Next step**: Ready for detailed review
 
   If issues found, for each issue:
 

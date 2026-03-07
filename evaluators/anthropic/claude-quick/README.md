@@ -1,6 +1,6 @@
-# Claude 4 Haiku Quick Check Evaluator
+# Claude Haiku 4.5 Quick Check Evaluator
 
-Fast validation using Claude 4 Haiku for rapid initial screening.
+Fast validation using Claude Haiku 4.5 for rapid initial screening.
 
 ## Use Cases
 
@@ -48,7 +48,7 @@ For comprehensive security analysis, use claude-code or o1-code-review.
 
 ```yaml
 api_key_env: ANTHROPIC_API_KEY
-model: claude-4-haiku-20260115
+model: anthropic/claude-haiku-4-5
 ```
 
 ## Example Usage

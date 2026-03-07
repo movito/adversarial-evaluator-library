@@ -16,7 +16,7 @@ Extended reasoning evaluator for complex analysis and deep thinking.
 |--------|-------|
 | Typical response time | 90-300 seconds |
 | Timeout setting | 600 seconds |
-| Cost | ~$0.01-0.03 per evaluation |
+| Cost | Varies by input size (token-priced, see Google AI pricing) |
 
 ## When to Use
 

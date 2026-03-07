@@ -23,6 +23,7 @@ timeout: 180  # Standard category timeout
 prompt: |
   You are a senior security engineer and code reviewer.
   Analyze this code thoroughly for security vulnerabilities, correctness issues, and quality concerns.
+  Only report vulnerabilities directly supported by the provided code. If runtime or infrastructure context is missing, mark findings as "unverifiable / missing context" rather than assuming the worst case.
 
   {content}
 

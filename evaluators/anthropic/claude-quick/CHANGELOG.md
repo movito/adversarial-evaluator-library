@@ -6,7 +6,7 @@ All notable changes to the claude-quick evaluator will be documented in this fil
 
 ### Added
 
-- Initial release of Claude 4 Haiku quick check evaluator
+- Initial release of Claude Haiku 4.5 quick check evaluator
 - Fast validation prompt adapted from fast-check
 - Basic code and document checking
 - Standardized output format with severity labels (CRITICAL/HIGH/MEDIUM/LOW)

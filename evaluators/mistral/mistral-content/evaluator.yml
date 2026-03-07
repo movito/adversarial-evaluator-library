@@ -7,7 +7,7 @@
 #   - Research synthesis validation
 #   - Argument structure analysis
 #   - Cross-checking other model outputs
-#   - European regulatory perspective
+#   - Alternative provider perspective (European-headquartered)
 
 name: mistral-content
 description: Content review using Mistral Large - European perspective
@@ -61,5 +61,19 @@ prompt: |
   - Score: Appropriate / Mostly / Needs Adjustment / Inappropriate
 
   ## Specific Feedback
-  Provide actionable recommendations for each area needing improvement.
+
+  For each area needing improvement:
+
+  ### [CRITICAL/HIGH/MEDIUM/LOW]: [Finding Title]
+  - **Section**: [document section reference]
+  - **Issue**: [description]
+  - **Recommendation**: [actionable fix]
+
   Prioritize the top 3 changes that would most improve the document.
+
+  ## Overall Assessment
+
+  Verdict:
+  - **APPROVED**: Content is clear, well-supported, and complete
+  - **NEEDS_REVISION**: Issues found that should be addressed
+  - **REJECT**: Fundamental problems with argument or evidence

@@ -10,11 +10,11 @@
 
 name: gemini-deep
 description: Extended reasoning evaluation using Gemini Deep Think
-model: gemini/gemini-2.5-flash
+model: gemini/gemini-2.5-pro
 api_key_env: GEMINI_API_KEY
 model_requirement:
   family: gemini
-  tier: flash
+  tier: pro
   min_version: "2.5"
 output_suffix: -gemini-deep.md
 timeout: 600  # Extended for deep thinking (10 minutes)
