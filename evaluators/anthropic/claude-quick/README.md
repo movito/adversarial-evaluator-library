@@ -67,7 +67,7 @@ When issues are found, findings use standardized severity labels:
 
 When no issues are found, output uses a neutral format:
 
-```
+```text
 ### Clean Check
 - **Result**: No significant issues detected
 - **Next step**: Ready for detailed review

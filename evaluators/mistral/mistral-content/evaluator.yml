@@ -79,7 +79,11 @@ prompt: |
 
   ## Overall Assessment
 
-  Verdict:
+  You MUST output exactly one of these verdict values on a line starting with "**Verdict**:":
+
+  **Verdict**: APPROVED | NEEDS_REVISION | REJECT
+
+  Where:
   - **APPROVED**: Content is clear, well-supported, and complete
   - **NEEDS_REVISION**: Issues found that should be addressed
   - **REJECT**: Fundamental problems with argument or evidence
