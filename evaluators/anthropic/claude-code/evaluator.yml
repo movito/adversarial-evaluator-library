@@ -85,8 +85,8 @@ prompt: |
   ### Positive Observations
   [Note any security measures or patterns done well]
 
-  ### Context Required / Unverifiable
-  [List any potential concerns that cannot be confirmed without runtime, infrastructure, or deployment context. These notes must NOT appear under Findings or influence the verdict.]
+  ## Context Required / Unverifiable
+  [List any potential concerns that cannot be confirmed without runtime, infrastructure, or deployment context. These notes must NOT influence the verdict.]
 
   ## Overall Assessment
 

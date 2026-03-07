@@ -79,9 +79,8 @@ prompt: |
 
   ## Overall Assessment
 
-  You MUST output exactly one of these verdict values on a line starting with "**Verdict**:":
-
-  **Verdict**: APPROVED | NEEDS_REVISION | REJECT
+  You MUST output exactly one line starting with "**Verdict**:" followed by a single value.
+  Choose one of: APPROVED, NEEDS_REVISION, or REJECT. Do not list multiple options.
 
   Where:
   - **APPROVED**: Content is clear, well-supported, and complete
