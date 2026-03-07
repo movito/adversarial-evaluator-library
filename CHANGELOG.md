@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.1] - 2026-03-07
+
+### Fixed
+
+- **gemini-deep model mismatch** — Was using `gemini-2.5-flash` (identical to gemini-flash); upgraded to `gemini-2.5-pro` with correct pro tier
+- **mistral-fast retired model** — Updated from retired `mistral-small-2409` to `mistral-small-2503` (128k context)
+- **claude-code speculative findings** — Added `## Context Required / Unverifiable` section to separate missing-context notes from severity-graded findings
+- **claude-quick clean check as LOW finding** — Changed to neutral `### Clean Check` format with `Result`/`Next step` fields
+- **mistral-content output schema** — Added structured findings format, no-findings branch, and required `**Verdict**:` output field
+- **code-reviewer-fast Python-centric prompt** — Made language-agnostic (`file.py` → `file`, "function" → "function or method")
+- **gemini-code README** — Added missing `gemini/` prefix in config example
+- **claude-quick docs** — Fixed "Claude 4 Haiku" → "Claude Haiku 4.5" in README and CHANGELOG
+- **mistral-content regional claims** — Replaced unsupported "European training data emphasis" with vendor-neutral wording
+- **gemini-deep README cost estimate** — Replaced unsubstantiated fixed cost with reference to Google pricing
+- **Markdown formatting** — Fixed MD022 (blank line after heading) in 4 CHANGELOGs, MD040 (fenced code language tag) in claude-quick README
+
+### Changed
+
+- **Provider registry** — Added `gemini-2.5-pro` to pro tier, `mistral-small-2503` to small tier; marked `mistral-small-2409` as deprecated
+- **index.json** — Updated model references for gemini-deep, mistral-fast, and mistral-content description
+- **README.md evaluator table** — Corrected model names for claude-quick, claude-code, claude-adversarial, gemini-deep, mistral-fast, and mistral-content
+
 ## [0.5.0] - 2026-02-27
 
 ### Added
@@ -77,7 +99,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI/CD workflow with pytest and pre-commit
 - Project structure based on Agentive Starter Kit
 
-[Unreleased]: https://github.com/movito/adversarial-evaluator-library/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/movito/adversarial-evaluator-library/compare/v0.5.1...HEAD
+[0.5.1]: https://github.com/movito/adversarial-evaluator-library/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/movito/adversarial-evaluator-library/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/movito/adversarial-evaluator-library/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/movito/adversarial-evaluator-library/compare/v0.2.0...v0.3.0
