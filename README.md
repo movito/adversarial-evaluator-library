@@ -72,7 +72,7 @@ adversarial evaluate your-document.md
 | `gpt5-synthesis` | OpenAI | gpt-5-turbo | knowledge-synthesis | Knowledge synthesis for cross-referencing |
 | `gpt5-diversity` | OpenAI | gpt-5-turbo | cognitive-diversity | Alternative perspectives and assumption auditing |
 | `mistral-content` | Mistral | mistral-large-2411 | cognitive-diversity | Content review with alternative provider perspective |
-| `claude-code` | Anthropic | claude-4-sonnet | code-review | Security-focused code review |
+| `claude-code` | Anthropic | claude-sonnet-4-5 | code-review | Security-focused code review |
 | `gemini-code` | Google | gemini-3-pro | code-review | Code review for security and quality |
 | `o1-code-review` | OpenAI | o1 | code-review | Deep reasoning code review |
 | `o1-mini-code` | OpenAI | o1-mini | code-review | Cost-effective reasoning-based code review |
