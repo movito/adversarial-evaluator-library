@@ -13,7 +13,7 @@
 
 ## Overview
 
-GitHub issue #12 reports evaluator config issues found by bot reviews (CodeRabbit + BugBot) on adversarial-workflow PR #37. Many items were already fixed in v0.5.1 and v0.5.2. This task covers the **8 remaining items** (6 applied; Fixes 6 and 7 dropped after registry verification).
+GitHub issue #12 reports evaluator config issues found by bot reviews (CodeRabbit + BugBot) on adversarial-workflow PR #37. Many items were already fixed in v0.5.1 and v0.5.2. This task covers the **8 remaining items** (5 applied; Fixes 5, 6, 7 dropped after review).
 
 **Context**: Fixes originated from downstream adversarial-workflow PR #37. Some were fixed there; the rest need fixing at the source here.
 
@@ -48,10 +48,10 @@ GitHub issue #12 reports evaluator config issues found by bot reviews (CodeRabbi
 
 #### Open issues (from issue items 16, 18, 19, 21)
 
-**Fix 5: gemini-code verdict inconsistency**
+**Fix 5: gemini-code verdict inconsistency** *(dropped — CHANGES_REQUESTED is correct for code-review evaluators)*
 - File: `evaluators/google/gemini-code/evaluator.yml`
-- Line 90: `- **CHANGES_REQUESTED**: Issues found that must be addressed` → `- **NEEDS_REVISION**: Issues found that must be addressed`
-- Note: Most evaluators use NEEDS_REVISION. Code-review evaluators that use CHANGES_REQUESTED should be standardized.
+- Original plan: `CHANGES_REQUESTED` → `NEEDS_REVISION`
+- **Reverted**: All code-review evaluators (`claude-code`, `codestral-code`, `gpt4o-code`, `o1-code-review`) use `CHANGES_REQUESTED`. Only non-code evaluators use `NEEDS_REVISION`. Changing gemini-code alone created an inconsistency.
 
 **Fix 6: codestral-code min_version formatting** *(dropped — model uses `codestral-latest`)*
 - File: `evaluators/mistral/codestral-code/evaluator.yml`
@@ -107,7 +107,7 @@ All changes are 1-2 line edits. No tests needed (YAML/Markdown config only). Sin
 
 ### Must Have
 
-- [x] All 6 applicable fixes applied correctly (Fixes 6, 7 dropped — registry/model mismatch)
+- [x] All 5 applicable fixes applied correctly (Fixes 5, 6, 7 dropped after review)
 - [x] No regressions in existing evaluator configs
 - [x] CHANGELOG updated
 - [x] CI passes
@@ -116,7 +116,7 @@ All changes are 1-2 line edits. No tests needed (YAML/Markdown config only). Sin
 
 ### Quantitative
 
-- 6 fixes applied across 5 files (Fixes 6, 7 dropped after registry verification)
+- 5 fixes applied across 5 files (Fixes 5, 6, 7 dropped after review)
 - 0 tests broken
 
 ### Qualitative

@@ -89,7 +89,7 @@ prompt: |
 
   Provide a verdict:
   - **APPROVED**: No critical/high issues, code is production-ready
-  - **NEEDS_REVISION**: Issues found that must be addressed
+  - **CHANGES_REQUESTED**: Issues found that must be addressed
   - **REJECT**: Critical security flaws requiring significant rework
 
   Summarize the overall security posture and top concerns.
