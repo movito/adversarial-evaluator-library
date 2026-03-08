@@ -1,32 +1,33 @@
 {
   "planner": {
-    "status": "idle",
-    "current_task": null,
-    "task_started": null,
-    "brief_note": "Ready for next task. Last: AEL-0006 completed (model_requirement updates)",
-    "details_link": null
+    "status": "completed",
+    "current_task": "AEL-0011",
+    "task_started": "2026-03-08",
+    "brief_note": "COMPLETE: Task spec + handoff created for evaluator config fixes round 3 (GH#12)",
+    "details_link": "delegation/tasks/2-todo/AEL-0011-evaluator-config-fixes-round3.md",
+    "handoff_file": ".agent-context/AEL-0011-HANDOFF-feature-developer.md"
   },
   "test-runner": {
     "status": "completed",
     "current_task": "AEL-0002",
     "task_started": "2026-01-31",
-    "brief_note": "✅ COMPLETE: 48/48 tests passed, all 9 evaluators validated, CI clean",
+    "brief_note": "COMPLETE: 48/48 tests passed, all 9 evaluators validated, CI clean",
     "details_link": "delegation/tasks/5-done/AEL-0002-run-smoke-tests.md"
   },
   "ci-checker": {
     "status": "completed",
     "current_task": "AEL-0004",
     "task_started": "2026-01-31",
-    "brief_note": "✅ COMPLETE: CI verified - all workflows passing",
+    "brief_note": "COMPLETE: CI verified - all workflows passing",
     "details_link": "delegation/tasks/5-done/AEL-0004-verify-ci-workflow.md"
   },
   "feature-developer": {
-    "status": "completed",
-    "current_task": "AEL-0006",
-    "task_started": "2026-02-03",
-    "brief_note": "✅ COMPLETE: 18 evaluators updated with model_requirement, code review APPROVED",
-    "details_link": "delegation/tasks/5-done/AEL-0006-add-model-requirement-to-evaluators.md",
-    "pr_url": "https://github.com/movito/adversarial-evaluator-library/pull/3"
+    "status": "assigned",
+    "current_task": "AEL-0011",
+    "task_started": "2026-03-08",
+    "brief_note": "ASSIGNED: Evaluator config fixes round 3 — 8 items from GH#12",
+    "details_link": "delegation/tasks/2-todo/AEL-0011-evaluator-config-fixes-round3.md",
+    "handoff_file": ".agent-context/AEL-0011-HANDOFF-feature-developer.md"
   },
   "document-reviewer": {
     "status": "idle",
