@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **gemini-code untrusted-content guard** — Added prompt injection guardrail matching claude-adversarial pattern
+- **gemini-flash/gemini-pro README** — Replaced invalid `gpt52-reasoning` references with canonical evaluator names
+- **code-reviewer-fast docstring** — Removed hardcoded `openai/code-reviewer` path reference
+- **mistral-fast README** — Corrected evaluator name `mistral-large` → `mistral-content`
+
 ## [0.5.2] - 2026-03-08
 
 ### Fixed

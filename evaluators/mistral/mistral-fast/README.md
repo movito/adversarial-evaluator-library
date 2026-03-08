@@ -5,7 +5,7 @@ Fast review evaluator using Mistral Small.
 ## Use Cases
 
 - Fast review for larger documents
-- When mistral-large times out
+- When mistral-content times out
 - Quick cognitive diversity check
 - High-volume processing with Mistral perspective
 
@@ -20,7 +20,7 @@ Fast review evaluator using Mistral Small.
 ## When to Use
 
 **Best for:**
-- Large documents that timeout with mistral-large
+- Large documents that timeout with mistral-content
 - Quick Mistral-perspective check
 - Budget-conscious multi-model reviews
 
