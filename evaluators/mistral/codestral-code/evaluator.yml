@@ -15,7 +15,7 @@ api_key_env: MISTRAL_API_KEY
 model_requirement:
   family: codestral
   tier: latest
-  min_version: "latest"
+  min_version: "2"
 output_suffix: -codestral-code.md
 timeout: 300
 
