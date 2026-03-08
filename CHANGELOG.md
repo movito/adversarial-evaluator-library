@@ -13,7 +13,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **gemini-code verdict label** — Standardized `CHANGES_REQUESTED` → `NEEDS_REVISION` for cross-evaluator consistency
 - **gemini-flash/gemini-pro README** — Replaced invalid `gpt52-reasoning` references with canonical evaluator names
 - **code-reviewer-fast docstring** — Removed hardcoded `openai/code-reviewer` path reference
-- **codestral-code min_version** — Changed from semantically wrong `"latest"` to `"2"`
 - **mistral-fast README** — Corrected evaluator name `mistral-large` → `mistral-content`
 
 ## [0.5.2] - 2026-03-08

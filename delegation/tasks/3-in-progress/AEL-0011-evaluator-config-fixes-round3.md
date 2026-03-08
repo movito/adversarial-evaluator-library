@@ -13,7 +13,7 @@
 
 ## Overview
 
-GitHub issue #12 reports evaluator config issues found by bot reviews (CodeRabbit + BugBot) on adversarial-workflow PR #37. Many items were already fixed in v0.5.1 and v0.5.2. This task covers the **8 remaining items** (7 applied; Fix 7 dropped after registry verification).
+GitHub issue #12 reports evaluator config issues found by bot reviews (CodeRabbit + BugBot) on adversarial-workflow PR #37. Many items were already fixed in v0.5.1 and v0.5.2. This task covers the **8 remaining items** (6 applied; Fixes 6 and 7 dropped after registry verification).
 
 **Context**: Fixes originated from downstream adversarial-workflow PR #37. Some were fixed there; the rest need fixing at the source here.
 
@@ -53,9 +53,10 @@ GitHub issue #12 reports evaluator config issues found by bot reviews (CodeRabbi
 - Line 90: `- **CHANGES_REQUESTED**: Issues found that must be addressed` → `- **NEEDS_REVISION**: Issues found that must be addressed`
 - Note: Most evaluators use NEEDS_REVISION. Code-review evaluators that use CHANGES_REQUESTED should be standardized.
 
-**Fix 6: codestral-code min_version formatting**
+**Fix 6: codestral-code min_version formatting** *(dropped — model uses `codestral-latest`)*
 - File: `evaluators/mistral/codestral-code/evaluator.yml`
-- Line 18: `min_version: "latest"` → `min_version: "2"` (verified against `providers/registry.yml`: canonical version for `codestral-2`)
+- Original plan: `min_version: "latest"` → `"2"`
+- **Reverted**: The `model` field uses `codestral-latest` (version `"latest"`, 32k context), not `codestral-2` (version `"2"`, 128k context). Changing `min_version` without changing `model` creates a mismatch.
 
 **Fix 7: mistral-content min_version formatting** *(dropped — no change needed)*
 - File: `evaluators/mistral/mistral-content/evaluator.yml`
@@ -91,9 +92,7 @@ The following items from issue #12 were fixed in v0.5.1 or v0.5.2:
 2. `evaluators/google/gemini-flash/README.md` — Fix cross-reference (Fix 2)
 3. `evaluators/google/gemini-pro/README.md` — Fix cross-reference (Fix 3)
 4. `evaluators/google/code-reviewer-fast/evaluator.yml` — Fix docstring (Fix 4)
-5. `evaluators/mistral/codestral-code/evaluator.yml` — Fix min_version (Fix 6)
-6. `evaluators/mistral/mistral-content/evaluator.yml` — Fix min_version (Fix 7)
-7. `evaluators/mistral/mistral-fast/README.md` — Fix wording (Fix 8)
+5. `evaluators/mistral/mistral-fast/README.md` — Fix wording (Fix 8)
 
 ### Approach
 
@@ -108,7 +107,7 @@ All changes are 1-2 line edits. No tests needed (YAML/Markdown config only). Sin
 
 ### Must Have
 
-- [x] All 7 applicable fixes applied correctly (Fix 7 dropped — registry uses prefixed form)
+- [x] All 6 applicable fixes applied correctly (Fixes 6, 7 dropped — registry/model mismatch)
 - [x] No regressions in existing evaluator configs
 - [x] CHANGELOG updated
 - [x] CI passes
@@ -117,14 +116,14 @@ All changes are 1-2 line edits. No tests needed (YAML/Markdown config only). Sin
 
 ### Quantitative
 
-- 7 fixes applied across 7 files (Fix 7 dropped after registry verification)
+- 6 fixes applied across 5 files (Fixes 6, 7 dropped after registry verification)
 - 0 tests broken
 
 ### Qualitative
 
 - All evaluator verdict labels consistent (NEEDS_REVISION)
 - All cross-references use valid evaluator names
-- All model_requirement min_version fields use version-only format
+- All model_requirement min_version fields use registry-canonical format
 
 ## Time Estimate
 
