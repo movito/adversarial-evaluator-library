@@ -13,7 +13,7 @@
 
 ## Overview
 
-GitHub issue #12 reports evaluator config issues found by bot reviews (CodeRabbit + BugBot) on adversarial-workflow PR #37. Many items were already fixed in v0.5.1 and v0.5.2. This task covers the **8 remaining items**.
+GitHub issue #12 reports evaluator config issues found by bot reviews (CodeRabbit + BugBot) on adversarial-workflow PR #37. Many items were already fixed in v0.5.1 and v0.5.2. This task covers the **8 remaining items** (7 applied; Fix 7 dropped after registry verification).
 
 **Context**: Fixes originated from downstream adversarial-workflow PR #37. Some were fixed there; the rest need fixing at the source here.
 
@@ -55,13 +55,12 @@ GitHub issue #12 reports evaluator config issues found by bot reviews (CodeRabbi
 
 **Fix 6: codestral-code min_version formatting**
 - File: `evaluators/mistral/codestral-code/evaluator.yml`
-- Line 18: `min_version: "latest"` → `min_version: "2501"` (or the actual version identifier for codestral-latest)
-- Check providers/registry.yml for the canonical version
+- Line 18: `min_version: "latest"` → `min_version: "2"` (verified against `providers/registry.yml`: canonical version for `codestral-2`)
 
-**Fix 7: mistral-content min_version formatting**
+**Fix 7: mistral-content min_version formatting** *(dropped — no change needed)*
 - File: `evaluators/mistral/mistral-content/evaluator.yml`
-- Line 19: `min_version: "large-2411"` → `min_version: "2411"`
-- The family+tier already identify "mistral large"; min_version should just be the version suffix
+- Original plan: `min_version: "large-2411"` → `"2411"`
+- **Not applied**: Registry uses prefixed form `"large-2411"`, and sibling `mistral-fast` uses `"small-2503"`. The prefixed form is the correct convention.
 
 **Fix 8: mistral-fast README wording**
 - File: `evaluators/mistral/mistral-fast/README.md`
@@ -109,7 +108,7 @@ All changes are 1-2 line edits. No tests needed (YAML/Markdown config only). Sin
 
 ### Must Have
 
-- [x] All 8 fixes applied correctly
+- [x] All 7 applicable fixes applied correctly (Fix 7 dropped — registry uses prefixed form)
 - [x] No regressions in existing evaluator configs
 - [x] CHANGELOG updated
 - [x] CI passes
@@ -118,7 +117,7 @@ All changes are 1-2 line edits. No tests needed (YAML/Markdown config only). Sin
 
 ### Quantitative
 
-- 8 fixes applied across 7 files
+- 7 fixes applied across 7 files (Fix 7 dropped after registry verification)
 - 0 tests broken
 
 ### Qualitative
