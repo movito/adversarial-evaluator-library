@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.2] - 2026-03-08
+
+### Fixed
+
+- **URGENT: gemini-3-pro deprecation** — Migrated `gemini-pro` and `gemini-code` from deprecated `gemini-3-pro` to `gemini-3.1-pro-preview` before March 9 shutdown deadline
+- **claude-adversarial prompt injection** — Added untrusted-input guardrail to prevent reviewed content from hijacking evaluator behavior
+- **claude-adversarial APPROVED verdict** — Changed from subjective "arguments are sound, evidence is strong" to objective "no critical or high issues found"
+- **code-reviewer-fast non-code gap** — Added fallback for config, YAML, and markdown inputs; added `INTERACTION` finding label
+- **arch-review-fast header** — Corrected "Gemini Deep Think" → "Gemini Flash" in evaluator.yml
+- **arch-review-fast README** — Replaced project-specific example paths with generic `your_project`
+- **Markdown formatting** — Fixed heading blank lines and code block language tags across multiple READMEs and CHANGELOGs
+
+### Changed
+
+- **Provider registry** — Added `gemini-3.1-pro-preview` to pro tier; marked `gemini-3-pro` as deprecated
+- **index.json** — Updated model IDs and descriptions for gemini-pro and gemini-code
+- **README.md evaluator table** — Corrected model names for gemini-pro and gemini-code
+
 ## [0.5.1] - 2026-03-07
 
 ### Fixed
@@ -99,7 +117,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI/CD workflow with pytest and pre-commit
 - Project structure based on Agentive Starter Kit
 
-[Unreleased]: https://github.com/movito/adversarial-evaluator-library/compare/v0.5.1...HEAD
+[Unreleased]: https://github.com/movito/adversarial-evaluator-library/compare/v0.5.2...HEAD
+[0.5.2]: https://github.com/movito/adversarial-evaluator-library/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/movito/adversarial-evaluator-library/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/movito/adversarial-evaluator-library/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/movito/adversarial-evaluator-library/compare/v0.3.0...v0.4.0
