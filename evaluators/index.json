@@ -14,7 +14,7 @@
       "name": "gemini-pro",
       "provider": "google",
       "path": "google/gemini-pro/evaluator.yml",
-      "model": "gemini/gemini-3-pro",
+      "model": "gemini/gemini-3.1-pro-preview",
       "category": "knowledge-synthesis",
       "description": "Large-context knowledge synthesis (1M tokens)"
     },
@@ -30,9 +30,9 @@
       "name": "gemini-code",
       "provider": "google",
       "path": "google/gemini-code/evaluator.yml",
-      "model": "gemini/gemini-3-pro-20260101",
+      "model": "gemini/gemini-3.1-pro-preview",
       "category": "code-review",
-      "description": "Code review using Gemini 3 Pro for security and quality"
+      "description": "Code review using Gemini 3.1 Pro for security and quality"
     },
     {
       "name": "code-reviewer-fast",
