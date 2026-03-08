@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.3] - 2026-03-08
+
 ### Fixed
 
 - **gemini-code untrusted-content guard** — Added prompt injection guardrail matching claude-adversarial pattern
