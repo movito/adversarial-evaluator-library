@@ -524,7 +524,9 @@ class TestLinearClient:
             }
         }
 
-        with patch("scripts.optional.sync_tasks_to_linear.Client", return_value=mock_client):
+        with patch(
+            "scripts.optional.sync_tasks_to_linear.Client", return_value=mock_client
+        ):
             client = LinearClient("test-api-key")
             client.client = mock_client
 
@@ -543,7 +545,9 @@ class TestLinearClient:
         mock_client = MagicMock()
         mock_client.execute.return_value = {"issues": {"nodes": []}}
 
-        with patch("scripts.optional.sync_tasks_to_linear.Client", return_value=mock_client):
+        with patch(
+            "scripts.optional.sync_tasks_to_linear.Client", return_value=mock_client
+        ):
             client = LinearClient("test-api-key")
             client.client = mock_client
 
