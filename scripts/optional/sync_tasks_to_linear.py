@@ -41,7 +41,7 @@ from typing import Any, Dict, List, Optional
 
 # Import logging configuration - support both direct script execution and package import
 try:
-    from scripts.logging_config import setup_logging
+    from scripts.core.logging_config import setup_logging
 except ImportError:
     from logging_config import setup_logging
 
@@ -78,7 +78,7 @@ except ImportError:
 
 # Import local utilities - support both direct script execution and package import
 try:
-    from scripts.linear_sync_utils import (
+    from scripts.optional.linear_sync_utils import (
         determine_final_status,
         get_github_file_url,
         is_linear_native_status,
