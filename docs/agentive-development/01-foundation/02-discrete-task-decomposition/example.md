@@ -155,7 +155,7 @@ Each subtask got full task specification:
 
 **File structure:**
 ```
-delegation/tasks/active/
+.kit/tasks/active/
   TASK-0078-A-api-server-foundation.md (828 lines)
   TASK-0078-B-api-validation-error-handling.md (612 lines)
   TASK-0078-C-api-testing-validation.md (547 lines)
@@ -229,7 +229,7 @@ Total: 2,410 lines of specification across 4 subtasks.
 - **Parallelization:** 2 subtasks ran simultaneously (A+D)
 - **Rollback incidents:** 0 (each subtask independently mergeable)
 
-**Source:** Task completion summaries in `delegation/tasks/completed/TASK-0078-*.md`
+**Source:** Task completion summaries in `.kit/tasks/completed/TASK-0078-*.md`
 
 **Quality Benefits:**
 - Each subtask reviewed independently (smaller PRs, better reviews)

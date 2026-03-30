@@ -18,7 +18,7 @@ This template uses these terms from **agentive development** (a methodology trea
 - **Quality gate** - Objective pass/fail criteria before proceeding
 - **TDD (Test-Driven Development)** - Practice of writing tests before implementation
 
-See the [full glossary](../../../.agent-context/agentive-development-glossary.md) for complete terminology reference.
+See the [full glossary](../../../.kit/context/agentive-development-glossary.md) for complete terminology reference.
 
 ---
 
@@ -44,7 +44,7 @@ Use this template when:
 6. **Specify next steps** - Priority-ordered list of what should happen next
 7. **Check git state** - Ensure everything is committed or document uncommitted changes
 8. **Update agent-handoffs.json** - Keep brief_note in sync with this handoff document
-9. **Save handoff file** - Location: `.agent-context/YYYY-MM-DD-TASK-XXXX-HANDOFF.md`
+9. **Save handoff file** - Location: `.kit/context/YYYY-MM-DD-TASK-XXXX-HANDOFF.md`
 
 ---
 
@@ -110,7 +110,7 @@ Use for: Medium tasks, inter-agent handoffs, multi-session work
 
 **Date:** YYYY-MM-DD HH:MM
 **Agent:** [Agent name or developer name]
-**Task:** [Link to task file - e.g., delegation/tasks/active/TASK-XXXX.md]
+**Task:** [Link to task file - e.g., .kit/tasks/active/TASK-XXXX.md]
 **Branch:** [branch-name or "main"]
 **Session duration:** [X hours]
 **Progress:** [Percentage complete - e.g., "60% complete (3/5 subtasks)"]
@@ -238,7 +238,7 @@ Update the entry for [agent-name]:
     "current_task": "[TASK-ID]",
     "task_started": "YYYY-MM-DD",
     "brief_note": "[One sentence status]",
-    "details_link": ".agent-context/YYYY-MM-DD-TASK-XXXX-HANDOFF.md"
+    "details_link": ".kit/context/YYYY-MM-DD-TASK-XXXX-HANDOFF.md"
   }
 }
 ```
@@ -565,7 +565,7 @@ git diff origin/main...HEAD
     "current_task": "[TASK-ID]",
     "task_started": "YYYY-MM-DD",
     "brief_note": "[One sentence summary of current state]",
-    "details_link": ".agent-context/YYYY-MM-DD-TASK-XXXX-[HANDOFF|COMPLETION].md",
+    "details_link": ".kit/context/YYYY-MM-DD-TASK-XXXX-[HANDOFF|COMPLETION].md",
     "status_report": "[path to this file]"
   }
 }
@@ -614,19 +614,19 @@ git diff origin/main...HEAD
 
 This template was used for:
 
-1. **[TASK-2025-0083 Completion Report](.agent-context/2025-11-12-TASK-2025-0083-COMPLETION-REPORT.md)**
+1. **[TASK-2025-0083 Completion Report](.kit/context/2025-11-12-TASK-2025-0083-COMPLETION-REPORT.md)**
    - Format: Detailed form (395 lines)
    - Purpose: Document completion of API test bug fixes
    - Content: 11 bugs fixed, 17 tests passing, design decisions, lessons learned
    - Result: Clear completion handoff with all context for future reference
 
-2. **[agent-handoffs.json](../../../.agent-context/agent-handoffs.json)**
+2. **[agent-handoffs.json](../../../.kit/context/agent-handoffs.json)**
    - Format: Short form (embedded in JSON)
    - Purpose: Track current agent status across all agents
    - Pattern: `brief_note` provides 1-sentence status, `details_link` points to full handoff
    - Update frequency: After every significant status change
 
-3. **[TASK-0091 Multi-Agent Coordination](../../../delegation/tasks/completed/TASK-0091-align-tasks-with-tdd-enforcement.md)**
+3. **[TASK-0091 Multi-Agent Coordination](../../../.kit/tasks/completed/TASK-0091-align-tasks-with-tdd-enforcement.md)**
    - Format: Standard form with frequent status updates
    - Purpose: Track progress across 30 tasks in 5 groups
    - Pattern: Updated "Progress Summary" section at top as work progressed
@@ -663,4 +663,4 @@ This template was used for:
 - [Concept: Git Safety Practices](../../01-foundation/04-git-safety-practices/concept.md)
 - [Example: Session Handoff for Multi-Session Task](../../examples/F5-session-handoff-multi-session.md)
 - [Pattern: Handoff-Driven Development](../../01-foundation/05-context-management-basics/pattern.md)
-- [Workflow: COMMIT-PROTOCOL.md](../../../.agent-context/workflows/COMMIT-PROTOCOL.md)
+- [Workflow: COMMIT-PROTOCOL.md](../../../.kit/context/workflows/COMMIT-PROTOCOL.md)

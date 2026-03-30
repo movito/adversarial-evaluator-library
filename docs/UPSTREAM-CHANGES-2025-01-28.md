@@ -8,7 +8,7 @@ Two new agent standards were added to the starter kit:
 
 ### 1. File Location Standards (PR #7)
 
-**Problem solved**: Agents were creating ADRs and documentation in wrong locations (e.g., `.claude/` instead of `docs/decisions/adr/`).
+**Problem solved**: Agents were creating ADRs and documentation in wrong locations (e.g., `.claude/` instead of `docs/adr/`).
 
 **Files changed**:
 - `.claude/agents/AGENT-TEMPLATE.md` - New "File Location Standards" section
@@ -18,8 +18,8 @@ Two new agent standards were added to the starter kit:
 ```markdown
 | Document Type | Location | Example |
 |---------------|----------|---------|
-| ADRs | docs/decisions/adr/ | ADR-004-feature-name.md |
-| Tasks | delegation/tasks/1-backlog/ | TASK-0030-task-name.md |
+| ADRs | docs/adr/ | ADR-004-feature-name.md |
+| Tasks | .kit/tasks/1-backlog/ | TASK-0030-task-name.md |
 | Research | [project-specific]/research/ | analysis.md |
 ```
 
@@ -28,8 +28,8 @@ Two new agent standards were added to the starter kit:
 **Problem solved**: Research documents lacked citation integrity, reproducibility, and external validation.
 
 **Files added**:
-- `.agent-context/workflows/RESEARCH-QUALITY-STANDARDS.md` - Four Quality Gates workflow
-- `docs/decisions/starter-kit-adr/KIT-ADR-0020-research-quality-coupling-strategy.md`
+- `.kit/context/workflows/RESEARCH-QUALITY-STANDARDS.md` - Four Quality Gates workflow
+- `.kit/adr/KIT-ADR-0020-research-quality-coupling-strategy.md`
 
 **Files changed**:
 - `.claude/agents/AGENT-TEMPLATE.md` - New "Research Quality Standards" section (optional for implementation agents)
@@ -66,11 +66,11 @@ Copy these files from the upstream repo:
 
 ```bash
 # Research Quality Standards (new files)
-curl -o .agent-context/workflows/RESEARCH-QUALITY-STANDARDS.md \
-  https://raw.githubusercontent.com/movito/agentive-starter-kit/main/.agent-context/workflows/RESEARCH-QUALITY-STANDARDS.md
+curl -o .kit/context/workflows/RESEARCH-QUALITY-STANDARDS.md \
+  https://raw.githubusercontent.com/movito/agentive-starter-kit/main/.kit/context/workflows/RESEARCH-QUALITY-STANDARDS.md
 
-curl -o docs/decisions/starter-kit-adr/KIT-ADR-0020-research-quality-coupling-strategy.md \
-  https://raw.githubusercontent.com/movito/agentive-starter-kit/main/docs/decisions/starter-kit-adr/KIT-ADR-0020-research-quality-coupling-strategy.md
+curl -o .kit/adr/KIT-ADR-0020-research-quality-coupling-strategy.md \
+  https://raw.githubusercontent.com/movito/agentive-starter-kit/main/.kit/adr/KIT-ADR-0020-research-quality-coupling-strategy.md
 ```
 
 Then manually add the sections to your existing agents:
@@ -86,8 +86,8 @@ If you haven't customized agents much:
 git fetch upstream main
 git checkout upstream/main -- .claude/agents/AGENT-TEMPLATE.md
 git checkout upstream/main -- .claude/agents/OPERATIONAL-RULES.md
-git checkout upstream/main -- .agent-context/workflows/RESEARCH-QUALITY-STANDARDS.md
-git checkout upstream/main -- docs/decisions/starter-kit-adr/KIT-ADR-0020-research-quality-coupling-strategy.md
+git checkout upstream/main -- .kit/context/workflows/RESEARCH-QUALITY-STANDARDS.md
+git checkout upstream/main -- .kit/adr/KIT-ADR-0020-research-quality-coupling-strategy.md
 ```
 
 ---
@@ -105,10 +105,10 @@ git checkout upstream/main -- docs/decisions/starter-kit-adr/KIT-ADR-0020-resear
 grep -l "File Location Standards" .claude/agents/*.md
 
 # Check Research Quality workflow exists
-ls .agent-context/workflows/RESEARCH-QUALITY-STANDARDS.md
+ls .kit/context/workflows/RESEARCH-QUALITY-STANDARDS.md
 
 # Check KIT-ADR-0020 exists
-ls docs/decisions/starter-kit-adr/KIT-ADR-0020*.md
+ls .kit/adr/KIT-ADR-0020*.md
 ```
 
 ---

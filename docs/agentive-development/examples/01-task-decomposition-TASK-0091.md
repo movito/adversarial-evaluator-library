@@ -146,7 +146,7 @@ TASK-2025-0082-ci-test-remediation.md
 ```
 
 **Group E:** Maintenance tasks reviewed:
-- 6 archived to `delegation/tasks/completed/` (obsolete documents)
+- 6 archived to `.kit/tasks/completed/` (obsolete documents)
 - 3 updated with appropriate requirements
 - 2 kept as-is (reference documents, no changes needed)
 
@@ -269,10 +269,10 @@ TASK-2025-0082-ci-test-remediation.md
 ## Artifacts
 
 ### Task Files
-- **Main task:** `delegation/tasks/completed/TASK-0091-align-tasks-with-tdd-enforcement.md`
+- **Main task:** `.kit/tasks/completed/TASK-0091-align-tasks-with-tdd-enforcement.md`
 - **Task template:** `delegation/templates/TASK-TEMPLATE.md` (updated)
-- **Updated tasks:** 19 files in `delegation/tasks/active/`
-- **Archived tasks:** 6 files moved to `delegation/tasks/completed/`
+- **Updated tasks:** 19 files in `.kit/tasks/active/`
+- **Archived tasks:** 6 files moved to `.kit/tasks/completed/`
 
 ### Handoff Documents
 - **Session 1 handoff:** Groups B+C complete
@@ -287,9 +287,9 @@ TASK-2025-0082-ci-test-remediation.md
 - `[pending]` - Group E completion (6 archived, 3 updated)
 
 ### Workflows Referenced
-- `.agent-context/workflows/TESTING-WORKFLOW.md` (TDD section)
-- `.agent-context/workflows/COMMIT-PROTOCOL.md` (pre-push requirements)
-- `docs/decisions/adr/ADR-0035-separate-api-testing-infrastructure.md` (API testing)
+- `.kit/context/workflows/TESTING-WORKFLOW.md` (TDD section)
+- `.kit/context/workflows/COMMIT-PROTOCOL.md` (pre-push requirements)
+- `docs/adr/ADR-0035-separate-api-testing-infrastructure.md` (API testing)
 
 ---
 

@@ -72,7 +72,7 @@ Add emerging providers with specific strengths.
 
 ## Contributing
 
-See [ADR-0002](docs/decisions/adr/ADR-0002-evaluator-expansion-strategy.md) for expansion principles.
+See [ADR-0002](docs/adr/ADR-0002-evaluator-expansion-strategy.md) for expansion principles.
 
 To add an evaluator:
 1. Follow naming convention: `{model-family}-{category}`

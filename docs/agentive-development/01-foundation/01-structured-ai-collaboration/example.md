@@ -139,7 +139,7 @@ Instead of treating 30 tasks individually, we grouped them by type:
 ```
 
 **Group E (Maintenance):** Reviewed case-by-case:
-- 6 archived to `delegation/tasks/completed/` (obsolete)
+- 6 archived to `.kit/tasks/completed/` (obsolete)
 - 3 updated with appropriate requirements
 - 2 kept as-is (reference documents, no action needed)
 
@@ -199,7 +199,7 @@ Instead of treating 30 tasks individually, we grouped them by type:
 - **Quality:** Zero regressions (existing context preserved)
 - **Consistency:** All tasks reference same workflows (TESTING-WORKFLOW.md)
 
-**Source:** Task completion summary in `delegation/tasks/completed/TASK-0091-align-tasks-with-tdd-enforcement.md`
+**Source:** Task completion summary in `.kit/tasks/completed/TASK-0091-align-tasks-with-tdd-enforcement.md`
 
 **Impact:**
 

@@ -33,21 +33,21 @@ mcp__serena__activate_project("agentive-starter-kit")
 Confirm in your response: "✅ Serena activated: [languages]. Ready for code navigation."
 
 ## Core Responsibilities
-- Implement features according to TASK specifications in `delegation/tasks/` (numbered folders)
+- Implement features according to TASK specifications in `.kit/tasks/` (numbered folders)
 - Write clean, maintainable code following project conventions
 - Test implementations thoroughly (TDD workflow required)
 - Document changes appropriately
-- Update `.agent-context/agent-handoffs.json` with progress
+- Update `.kit/context/agent-handoffs.json` with progress
 
 ## Project Context
 - **Testing**: pytest-based TDD workflow (mandatory pre-commit hooks)
-- **Documentation**: `.agent-context/` system for agent coordination
-- **Task Management**: `delegation/tasks/` with Linear sync
+- **Documentation**: `.kit/context/` system for agent coordination
+- **Task Management**: `.kit/tasks/` with Linear sync
 
 ## Development Guidelines
 1. **Start the task properly**: Run `./scripts/project start <TASK-ID>` first (see Task Lifecycle below)
-2. **Read task specifications**: `delegation/tasks/3-in-progress/TASK-*.md` after starting
-3. **Follow TDD workflow**: Write tests before implementation (see `.agent-context/workflows/TESTING-WORKFLOW.md`)
+2. **Read task specifications**: `.kit/tasks/3-in-progress/TASK-*.md` after starting
+3. **Follow TDD workflow**: Write tests before implementation (see `.kit/context/workflows/TESTING-WORKFLOW.md`)
 4. **Always read existing code** before making changes
 5. **Follow established patterns** from existing codebase
 6. **Test after each change**: Run pytest, verify no regressions
@@ -248,7 +248,7 @@ After implementation is complete and CI passes, you **MUST** request code review
 1. **Complete implementation**: All acceptance criteria met, tests pass
 2. **Verify CI passes**: Use `/check-ci` or `./scripts/verify-ci.sh`
 3. **Move task to 4-in-review**: `./project move <TASK-ID> in-review`
-4. **Create review starter**: Write `.agent-context/<TASK-ID>-REVIEW-STARTER.md`
+4. **Create review starter**: Write `.kit/context/<TASK-ID>-REVIEW-STARTER.md`
 5. **Notify user**: Tell them to invoke code-reviewer in a new tab
 6. **Address feedback**: Fix any issues raised by reviewer
 7. **After approval**: Move to `5-done` with `./project complete <TASK-ID>`
@@ -257,13 +257,13 @@ After implementation is complete and CI passes, you **MUST** request code review
 
 **IMPORTANT**: Create a review starter file so code-reviewer has context:
 
-Copy template from `.agent-context/templates/review-starter-template.md` to `.agent-context/<TASK-ID>-REVIEW-STARTER.md` and fill in:
+Copy template from `.kit/context/templates/review-starter-template.md` to `.kit/context/<TASK-ID>-REVIEW-STARTER.md` and fill in:
 
 ```markdown
 # Review Starter: <TASK-ID>
 
 **Task**: <TASK-ID> - [Task Title]
-**Task File**: `delegation/tasks/4-in-review/<TASK-ID>-*.md`
+**Task File**: `.kit/tasks/4-in-review/<TASK-ID>-*.md`
 **Branch**: [feature-branch] → main
 **PR**: [URL if applicable]
 
@@ -298,11 +298,11 @@ Instead, tell the user:
 ```
 Implementation complete and CI passes. Ready for code review.
 
-Review starter: `.agent-context/<TASK-ID>-REVIEW-STARTER.md`
+Review starter: `.kit/context/<TASK-ID>-REVIEW-STARTER.md`
 
 To start review:
 1. Open new Claude Code tab
-2. Run: `agents/launch code-reviewer`
+2. Run: `.kit/launchers/launch code-reviewer`
 3. Reviewer will auto-detect the review starter
 ```
 
@@ -310,7 +310,7 @@ The code-reviewer agent will:
 - Auto-detect the review starter file
 - Review code changes for quality, patterns, edge cases
 - Check test coverage and documentation
-- Write report to `.agent-context/reviews/<TASK-ID>-review.md`
+- Write report to `.kit/context/reviews/<TASK-ID>-review.md`
 - Report verdict: APPROVED / CHANGES_REQUESTED / ESCALATE_TO_HUMAN
 
 ### Handling Review Feedback
@@ -323,7 +323,7 @@ The code-reviewer agent will:
 
 When you receive a **fix prompt** from the planner (after CHANGES_REQUESTED verdict), follow this streamlined process:
 
-**📖 Full workflow**: `.agent-context/workflows/REVIEW-FIX-WORKFLOW.md`
+**📖 Full workflow**: `.kit/context/workflows/REVIEW-FIX-WORKFLOW.md`
 
 ### Fix Prompt Structure
 
@@ -332,8 +332,8 @@ You'll receive something like:
 ```markdown
 ## Review Fix: [TASK-ID]
 
-**Review File**: `.agent-context/reviews/[TASK-ID]-review.md`
-**Task File**: `delegation/tasks/4-in-review/[TASK-ID]-*.md`
+**Review File**: `.kit/context/reviews/[TASK-ID]-review.md`
+**Task File**: `.kit/tasks/4-in-review/[TASK-ID]-*.md`
 
 ### Required Changes
 [HIGH severity findings to address]
@@ -366,7 +366,7 @@ You'll receive something like:
 - Knowledge sharing across agents
 - Documents design decisions in review comments
 
-**Reference**: `docs/decisions/starter-kit-adr/KIT-ADR-0014-code-review-workflow.md`
+**Reference**: `.kit/adr/KIT-ADR-0014-code-review-workflow.md`
 
 ## Evaluator Workflow (When You Need Design Clarification)
 
@@ -384,9 +384,9 @@ Sometimes during implementation you may encounter ambiguities or need design cla
 
 ```bash
 # For files < 500 lines (use appropriate folder):
-adversarial evaluate delegation/tasks/3-in-progress/TASK-FILE.md
+adversarial evaluate .kit/tasks/3-in-progress/TASK-FILE.md
 # For large files (>500 lines) requiring confirmation:
-echo y | adversarial evaluate delegation/tasks/3-in-progress/TASK-FILE.md
+echo y | adversarial evaluate .kit/tasks/3-in-progress/TASK-FILE.md
 
 # Read GPT-4o feedback
 cat .adversarial/logs/TASK-*-PLAN-EVALUATION.md
@@ -398,11 +398,11 @@ cat .adversarial/logs/TASK-*-PLAN-EVALUATION.md
 
 ## Task Starter Protocol (Multi-Session Workflows)
 
-**📖 Template**: `.claude/agents/TASK-STARTER-TEMPLATE.md`
+**📖 Template**: `.kit/templates/TASK-STARTER-TEMPLATE.md`
 
 When you receive task assignments, they come in a standardized format with:
-- Task file: Full specification in `delegation/tasks/[folder]/[TASK-ID].md`
-- Handoff file: Implementation guidance in `.agent-context/[TASK-ID]-HANDOFF-[agent-type].md`
+- Task file: Full specification in `.kit/tasks/[folder]/[TASK-ID].md`
+- Handoff file: Implementation guidance in `.kit/context/[TASK-ID]-HANDOFF-[agent-type].md`
 
 ### Step 1: Receive Task Assignment
 
@@ -431,23 +431,23 @@ For longer tasks requiring multiple agent sessions or handoffs:
 
 **How to create**:
 1. Read TASK-STARTER-TEMPLATE.md for format
-2. Create handoff file: `.agent-context/[TASK-ID]-HANDOFF-[next-agent].md`
+2. Create handoff file: `.kit/context/[TASK-ID]-HANDOFF-[next-agent].md`
 3. Update agent-handoffs.json with handoff details
 4. Write task starter message with 7 required sections (see template)
 5. Reference both task file and handoff file in starter
 
 **Example**: After completing implementation phase, create task starter for powertest-runner to handle validation phase.
 
-See `.claude/agents/TASK-STARTER-TEMPLATE.md` for complete example.
+See `.kit/templates/TASK-STARTER-TEMPLATE.md` for complete example.
 
 ## Quick Reference Documentation
 
 **Agent Coordination**:
-- Task specifications: `delegation/tasks/` (numbered folders: `2-todo/`, `3-in-progress/`, `5-done/`, etc.)
-- Agent procedures: `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md`
-- Your role context: `.agent-context/agent-handoffs.json` → `"feature-developer"`
-- Commit protocol: `.agent-context/workflows/COMMIT-PROTOCOL.md`
-- Testing workflow: `.agent-context/workflows/TESTING-WORKFLOW.md`
+- Task specifications: `.kit/tasks/` (numbered folders: `2-todo/`, `3-in-progress/`, `5-done/`, etc.)
+- Agent procedures: `.kit/context/PROCEDURAL-KNOWLEDGE-INDEX.md`
+- Your role context: `.kit/context/agent-handoffs.json` → `"feature-developer"`
+- Commit protocol: `.kit/context/workflows/COMMIT-PROTOCOL.md`
+- Testing workflow: `.kit/context/workflows/TESTING-WORKFLOW.md`
 
 **Evaluation Workflow**:
 - **Complete guide**: `.adversarial/docs/EVALUATION-WORKFLOW.md` (347 lines)

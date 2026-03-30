@@ -68,7 +68,7 @@ While layer content is being developed, you can:
 
 **✅ Review agent examples:**
 - See project `.claude/agents/` directory for real agent definitions
-- See project `.agent-context/agent-handoffs.json` for coordination
+- See project `.kit/context/agent-handoffs.json` for coordination
 
 ---
 

@@ -52,8 +52,8 @@ Committed as `ca41296` with message claiming success. But when we audited the co
 **The Reality:**
 ```bash
 $ git show ca41296 --stat
- delegation/tasks/completed/TASK-2025-0014-validation-api-fixes.md | 89 ++--
- .agent-context/current-state.json                                  | 12 +-
+ .kit/tasks/completed/TASK-2025-0014-validation-api-fixes.md | 89 ++--
+ .kit/context/current-state.json                                  | 12 +-
 
  2 files changed, 65 insertions(+), 36 deletions(-)
 ```
@@ -138,7 +138,7 @@ $ pytest tests/validation/
 Created audit log:
 
 ```markdown
-# delegation/tasks/active/TASK-2025-0014-validation-api-fixes.md
+# .kit/tasks/active/TASK-2025-0014-validation-api-fixes.md
 
 **Status**: failed_needs_reimplementation
 **Attempted Date**: 2025-10-12
@@ -208,7 +208,7 @@ $ git branch -D task/2025-0014-validation-api-fixes
 - **Main branch:** Never broken (rolled back before other work built on it)
 - **Learning captured:** Audit log prevents repeating same mistake
 
-**Source:** Task audit in `delegation/tasks/active/TASK-2025-0014-validation-api-fixes.md`, commit history (`git log`)
+**Source:** Task audit in `.kit/tasks/active/TASK-2025-0014-validation-api-fixes.md`, commit history (`git log`)
 
 **Impact:**
 

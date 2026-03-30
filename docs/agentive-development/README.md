@@ -300,10 +300,10 @@ Want to see real examples first? **[Explore the examples →](./examples/README.
 
 **From Your Project Project:**
 - Evaluation workflow: `.adversarial/docs/EVALUATION-WORKFLOW.md`
-- Testing workflow: `.agent-context/workflows/TESTING-WORKFLOW.md`
-- Commit protocol: `.agent-context/workflows/COMMIT-PROTOCOL.md`
-- Agent coordination: `.agent-context/agent-handoffs.json`
-- Procedural knowledge: `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md` (if exists)
+- Testing workflow: `.kit/context/workflows/TESTING-WORKFLOW.md`
+- Commit protocol: `.kit/context/workflows/COMMIT-PROTOCOL.md`
+- Agent coordination: `.kit/context/agent-handoffs.json`
+- Procedural knowledge: `.kit/context/PROCEDURAL-KNOWLEDGE-INDEX.md` (if exists)
 
 **External Resources:**
 - Claude Code: https://claude.com/claude-code

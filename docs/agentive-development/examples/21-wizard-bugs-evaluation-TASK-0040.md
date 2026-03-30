@@ -66,7 +66,7 @@ Instead of immediately starting implementation, the coordinator said:
 
 ### Evaluation Request
 
-**Created:** `delegation/tasks/active/TASK-2025-0040-BUGS-IDENTIFIED.md`
+**Created:** `.kit/tasks/active/TASK-2025-0040-BUGS-IDENTIFIED.md`
 
 **Sent to evaluator:**
 ```markdown
@@ -90,7 +90,7 @@ Is this diagnosis correct? Are we missing something simpler?
 
 **Ran evaluation:**
 ```bash
-$ adversarial evaluate delegation/tasks/active/TASK-2025-0040-BUGS-IDENTIFIED.md
+$ adversarial evaluate .kit/tasks/active/TASK-2025-0040-BUGS-IDENTIFIED.md
 ```
 
 **Cost:** $0.02 (2.8k tokens)

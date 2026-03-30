@@ -18,7 +18,7 @@ This template uses these terms from **agentive development** (a methodology trea
 - **Quality gate** - Objective pass/fail criteria before proceeding
 - **TDD (Test-Driven Development)** - Practice of writing tests before implementation
 
-See the [full glossary](../../../.agent-context/agentive-development-glossary.md) for complete terminology reference.
+See the [full glossary](../../../.kit/context/agentive-development-glossary.md) for complete terminology reference.
 
 ---
 
@@ -257,7 +257,7 @@ Before pushing to remote:
 
 This workflow was used for:
 
-1. **[TASK-2025-0012: Precision Timecode Fixes](../../../delegation/tasks/completed/TASK-2025-012-timeline-offset.md)**
+1. **[TASK-2025-0012: Precision Timecode Fixes](../../../.kit/tasks/completed/TASK-2025-012-timeline-offset.md)**
    - Feature: Fix 86-frame error at 23.976fps
    - Cycles: 4 RED-GREEN-REFACTOR cycles (happy path, edge cases, boundary conditions, error handling)
    - Result: 100% precision test pass rate (54/54 tests), zero cumulative error
@@ -305,5 +305,5 @@ This workflow was used for:
 - [Concept: Test-Driven Development Basics](../../01-foundation/03-test-driven-development-basics/concept.md)
 - [Example: F3 - TDD for Precision Timecode](../../examples/F3-tdd-precision-timecode-TASK-2025-012.md)
 - [Template: test_template.py](../../../tests/test_template.py) - AAA pattern examples
-- [Workflow: TESTING-WORKFLOW.md](../../../.agent-context/workflows/TESTING-WORKFLOW.md) - Project testing requirements
-- [Workflow: COMMIT-PROTOCOL.md](../../../.agent-context/workflows/COMMIT-PROTOCOL.md) - Pre-commit and pre-push requirements
+- [Workflow: TESTING-WORKFLOW.md](../../../.kit/context/workflows/TESTING-WORKFLOW.md) - Project testing requirements
+- [Workflow: COMMIT-PROTOCOL.md](../../../.kit/context/workflows/COMMIT-PROTOCOL.md) - Pre-commit and pre-push requirements

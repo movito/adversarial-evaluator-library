@@ -16,7 +16,7 @@ This document uses these terms from **agentive development** (a methodology trea
 - **TDD (Test-Driven Development)** - Practice of writing tests before implementation
 - **Template** - Reusable document structure with placeholders
 
-See the [full glossary](../../../../.agent-context/agentive-development-glossary.md) for complete terminology reference.
+See the [full glossary](../../../../.kit/context/agentive-development-glossary.md) for complete terminology reference.
 
 ---
 
@@ -210,7 +210,7 @@ This document uses these terms from **agentive development** (a methodology trea
 - **TDD (Test-Driven Development)** - Practice of writing tests before implementation
 - **Template** - Reusable document structure with placeholders
 
-See the [full glossary](../../../../.agent-context/agentive-development-glossary.md) for complete terminology reference.
+See the [full glossary](../../../../.kit/context/agentive-development-glossary.md) for complete terminology reference.
 
 ---
 

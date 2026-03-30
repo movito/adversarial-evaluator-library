@@ -108,21 +108,21 @@ mkdir -p "$LOG_DIR"
 
 # Check if style guide exists
 STYLE_GUIDE_CONTEXT=""
-if [ -f ".agent-context/documentation-style-guide.md" ]; then
+if [ -f ".kit/context/documentation-style-guide.md" ]; then
   STYLE_GUIDE_CONTEXT="
 
 **STYLE GUIDE REFERENCE:**
-The project uses a documentation style guide at .agent-context/documentation-style-guide.md
+The project uses a documentation style guide at .kit/context/documentation-style-guide.md
 Please consider these guidelines when evaluating consistency."
 fi
 
 # Check if glossary exists
 GLOSSARY_CONTEXT=""
-if [ -f ".agent-context/agentive-development-glossary.md" ]; then
+if [ -f ".kit/context/agentive-development-glossary.md" ]; then
   GLOSSARY_CONTEXT="
 
 **GLOSSARY REFERENCE:**
-The project maintains a glossary at .agent-context/agentive-development-glossary.md
+The project maintains a glossary at .kit/context/agentive-development-glossary.md
 Please check terminology consistency against this glossary."
 fi
 

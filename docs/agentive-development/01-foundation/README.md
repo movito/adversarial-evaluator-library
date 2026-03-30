@@ -79,9 +79,9 @@ This layer teaches the basics of structured AI-assisted work before delegating t
 - [TDD Workflow Checklist](../templates/foundation/tdd-workflow-checklist.md)
 
 **📖 Supporting Materials:**
-- [Glossary](../../.agent-context/agentive-development-glossary.md) - Complete terminology reference
-- [Style Guide](../../.agent-context/documentation-style-guide.md) - Writing conventions
-- Project workflows in `.agent-context/workflows/`
+- [Glossary](../../.kit/context/agentive-development-glossary.md) - Complete terminology reference
+- [Style Guide](../../.kit/context/documentation-style-guide.md) - Writing conventions
+- Project workflows in `.kit/context/workflows/`
 
 ---
 

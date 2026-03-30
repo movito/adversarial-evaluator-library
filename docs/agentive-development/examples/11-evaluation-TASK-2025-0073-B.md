@@ -40,7 +40,7 @@ Instead of starting implementation immediately, we:
 
 1. **Requested external evaluation:**
    ```bash
-   adversarial evaluate delegation/tasks/active/TASK-2025-0073-B-PART1-EVAL-SUMMARY.md
+   adversarial evaluate .kit/tasks/active/TASK-2025-0073-B-PART1-EVAL-SUMMARY.md
    ```
 
 2. **Used different model for evaluation:**
@@ -78,7 +78,7 @@ Created comprehensive task specification:
 ### Step 2: Run Evaluation
 
 ```bash
-adversarial evaluate delegation/tasks/active/TASK-2025-0073-B-PART1-EVAL-SUMMARY.md
+adversarial evaluate .kit/tasks/active/TASK-2025-0073-B-PART1-EVAL-SUMMARY.md
 ```
 
 **Technical details:**
@@ -304,8 +304,8 @@ After addressing evaluation feedback:
 ## Artifacts
 
 ### Task Files
-- **Task specification:** `delegation/tasks/active/TASK-2025-0073-B-PART2-FINAL-SUMMARY.md`
-- **Evaluation request:** `delegation/tasks/active/TASK-2025-0073-B-PART1-EVAL-SUMMARY.md`
+- **Task specification:** `.kit/tasks/active/TASK-2025-0073-B-PART2-FINAL-SUMMARY.md`
+- **Evaluation request:** `.kit/tasks/active/TASK-2025-0073-B-PART1-EVAL-SUMMARY.md`
 - **Evaluation output:** `.adversarial/logs/TASK-2025-0073-PLAN-EVALUATION.md`
 
 ### Evaluation Output (Actual)
@@ -344,7 +344,7 @@ Tokens: 4.6k sent, 421 received. Cost: $0.02 message, $0.02 session.
 
 ### Related Documents
 - **Evaluation workflow:** `.adversarial/docs/EVALUATION-WORKFLOW.md`
-- **ADR:** `docs/decisions/adr/ADR-0011-adversarial-workflow-integration.md`
+- **ADR:** `docs/adr/ADR-0011-adversarial-workflow-integration.md`
 
 ---
 
@@ -427,7 +427,7 @@ echo "OPENAI_API_KEY=sk-..." >> .env
 **Running evaluation:**
 ```bash
 # Basic usage
-adversarial evaluate delegation/tasks/active/TASK-FILE.md
+adversarial evaluate .kit/tasks/active/TASK-FILE.md
 
 # View results
 cat .adversarial/logs/TASK-*-PLAN-EVALUATION.md

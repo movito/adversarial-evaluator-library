@@ -143,7 +143,7 @@ At the end of each session, we created a handoff document capturing five key ele
 
 ### Step 2: Use agent-handoffs.json for Global State
 
-Updated `.agent-context/agent-handoffs.json`:
+Updated `.kit/context/agent-handoffs.json`:
 
 ```json
 {
@@ -152,7 +152,7 @@ Updated `.agent-context/agent-handoffs.json`:
     "current_task": "TASK-2025-0078-C",
     "task_started": "2025-11-08",
     "brief_note": "API testing implementation - 30% complete, async test blocker identified",
-    "details_link": "delegation/tasks/active/TASK-2025-0078-C-handoff-session1.md"
+    "details_link": ".kit/tasks/active/TASK-2025-0078-C-handoff-session1.md"
   }
 }
 ```
@@ -163,11 +163,11 @@ Updated `.agent-context/agent-handoffs.json`:
 
 ```bash
 # Read global state:
-$ cat .agent-context/agent-handoffs.json | grep -A 5 powertest-runner
+$ cat .kit/context/agent-handoffs.json | grep -A 5 powertest-runner
 # Status: in_progress, current_task: TASK-2025-0078-C
 
 # Read handoff document:
-$ cat delegation/tasks/active/TASK-2025-0078-C-handoff-session1.md
+$ cat .kit/tasks/active/TASK-2025-0078-C-handoff-session1.md
 
 # Understand state:
 # - 5 tests passing
@@ -254,7 +254,7 @@ $ pytest tests/api/ -xvs
 - **Context loss incidents:** 0 (no repeated experiments, no forgotten decisions)
 - **Handoff documents:** 2 created (Session 1→2, Session 2→3)
 
-**Source:** Handoff documents in `delegation/tasks/active/TASK-2025-0078-C-handoff-*.md`, agent-handoffs.json
+**Source:** Handoff documents in `.kit/tasks/active/TASK-2025-0078-C-handoff-*.md`, agent-handoffs.json
 
 **Impact:**
 
