@@ -34,7 +34,7 @@ When a repo is cloned, `gh` CLI determines the "default" repository based on var
 
 ## Implementation
 
-### 1. Update Onboarding Agent (`.claude/.kit/launchers/onboarding.md`)
+### 1. Update Onboarding Agent (`.kit/launchers/onboarding`)
 
 In Phase 7 (GitHub Repository Setup), after creating the repo, add:
 
@@ -136,6 +136,6 @@ gh run list   # Shows YOUR CI runs
 ## Related
 
 - ci-checker agent (`.claude/agents/ci-checker.md`)
-- Onboarding agent (`.claude/.kit/launchers/onboarding.md`)
+- Onboarding agent (`.kit/launchers/onboarding`)
 - `/check-ci` slash command
 - AL2 ADR-0001 (source of requirements)

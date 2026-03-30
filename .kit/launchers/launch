@@ -4,9 +4,9 @@
 # Reads Claude Code native agent definitions from .claude/agents/
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+PROJECT_ROOT="$(dirname "$(dirname "$SCRIPT_DIR")")"
 CLAUDE_AGENTS_DIR="$PROJECT_ROOT/.claude/agents"
-CONTEXT_DIR="$PROJECT_ROOT/.agent-context"
+CONTEXT_DIR="$PROJECT_ROOT/.kit/context"
 PROJECT_NAME=$(basename "$PROJECT_ROOT")
 
 # Colors

@@ -39,7 +39,7 @@
 
 | File | Change |
 |------|--------|
-| `.claude/.kit/launchers/onboarding.md` | NEW - Dedicated setup agent |
+| `.kit/launchers/onboarding` | NEW - Dedicated setup agent |
 | `.claude/agents/planner.md` | Reduced from 495 to 322 lines |
 | `.serena/setup-serena.sh` | NEW - Serena installation script |
 | `.kit/launchers/launch` | Added `is_serena_configured()` check |
@@ -118,7 +118,7 @@ A sibling project using this starter kit was also set up:
 
 3. **Review recent changes**:
    - Read ADR-0001 for context on agent sizing decisions
-   - Check `.claude/.kit/launchers/onboarding.md` for the new onboarding flow
+   - Check `.kit/launchers/onboarding` for the new onboarding flow
 
 4. **If user has tasks**:
    - Use standard coordination workflow

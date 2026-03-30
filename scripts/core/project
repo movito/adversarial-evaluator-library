@@ -923,7 +923,7 @@ def main():
         sync_args = sys.argv[2:] if len(sys.argv) > 2 else []
         cmd = [
             python_cmd,
-            str(project_dir / "scripts" / "sync_tasks_to_linear.py"),
+            str(project_dir / "scripts" / "optional" / "sync_tasks_to_linear.py"),
         ] + sync_args
 
     elif command in ["teams", "linearteams"]:

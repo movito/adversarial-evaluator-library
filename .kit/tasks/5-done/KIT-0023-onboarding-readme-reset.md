@@ -86,7 +86,7 @@ This task was auto-generated during onboarding. Update this file with project-sp
 
 ## Files to Modify
 
-- `.claude/.kit/launchers/onboarding.md` - Add new README phase
+- `.kit/launchers/onboarding` - Add new README phase
 
 ---
 

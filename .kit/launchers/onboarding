@@ -4,7 +4,7 @@
 # Launches planner with full context for new project setup
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+PROJECT_ROOT="$(dirname "$(dirname "$SCRIPT_DIR")")"
 CLAUDE_AGENTS_DIR="$PROJECT_ROOT/.claude/agents"
 PROJECT_NAME=$(basename "$PROJECT_ROOT")
 

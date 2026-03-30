@@ -1,6 +1,6 @@
 #!/bin/bash
 # Check bot review status for the current PR
-# Usage: ./scripts/check-bots.sh [PR_NUMBER] [--help]
+# Usage: ./scripts/core/check-bots.sh [PR_NUMBER] [--help]
 #
 # Metadata:
 #   version: 1.0.0
@@ -44,7 +44,7 @@ PR_NUMBER=""
 while [[ $# -gt 0 ]]; do
     case $1 in
         --help|-h)
-            echo "Usage: ./scripts/check-bots.sh [PR_NUMBER]"
+            echo "Usage: ./scripts/core/check-bots.sh [PR_NUMBER]"
             echo ""
             echo "Check bot review status for the current PR."
             echo ""
@@ -70,7 +70,7 @@ while [[ $# -gt 0 ]]; do
             ;;
         -*)
             echo "Unknown option: $1"
-            echo "Run: ./scripts/check-bots.sh --help"
+            echo "Run: ./scripts/core/check-bots.sh --help"
             exit 1
             ;;
         *)

@@ -1,6 +1,6 @@
 #!/bin/bash
 # Run all 7 preflight gates for a PR
-# Usage: ./scripts/preflight-check.sh [--pr PR_NUMBER] [--task TASK_ID] [--help]
+# Usage: ./scripts/core/preflight-check.sh [--pr PR_NUMBER] [--task TASK_ID] [--help]
 #
 # Metadata:
 #   version: 1.0.0
@@ -27,7 +27,7 @@ TASK_ID=""
 while [[ $# -gt 0 ]]; do
     case $1 in
         --help|-h)
-            echo "Usage: ./scripts/preflight-check.sh [--pr PR_NUMBER] [--task TASK_ID]"
+            echo "Usage: ./scripts/core/preflight-check.sh [--pr PR_NUMBER] [--task TASK_ID]"
             echo ""
             echo "Run all 7 preflight gates for a PR before human review."
             echo ""
@@ -68,12 +68,12 @@ while [[ $# -gt 0 ]]; do
             ;;
         -*)
             echo "Unknown option: $1"
-            echo "Run: ./scripts/preflight-check.sh --help"
+            echo "Run: ./scripts/core/preflight-check.sh --help"
             exit 1
             ;;
         *)
             echo "Unknown argument: $1"
-            echo "Run: ./scripts/preflight-check.sh --help"
+            echo "Run: ./scripts/core/preflight-check.sh --help"
             exit 1
             ;;
     esac
