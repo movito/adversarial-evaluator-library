@@ -278,16 +278,14 @@ class TestLiveEvaluation:
     def test_document(self, tmp_path):
         """Create a simple test document."""
         doc = tmp_path / "test-doc.md"
-        doc.write_text(
-            """# Test Document
+        doc.write_text("""# Test Document
 
 This is a simple test document for evaluator verification.
 
 ## Content
 
 Just a basic test to verify the evaluator runs successfully.
-"""
-        )
+""")
         return doc
 
     @pytest.mark.skipif(

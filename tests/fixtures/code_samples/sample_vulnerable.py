@@ -36,8 +36,7 @@ class UserManager:
 
     def _create_tables(self):
         """Create the users table."""
-        self.conn.execute(
-            """
+        self.conn.execute("""
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY,
                 username TEXT,
@@ -45,8 +44,7 @@ class UserManager:
                 email TEXT,
                 role TEXT
             )
-        """
-        )
+        """)
 
     def create_user(self, username, password, email, role="user"):
         """
