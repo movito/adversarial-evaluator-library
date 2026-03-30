@@ -502,7 +502,7 @@ class TestLinearClient:
         """LinearClient should initialize with API key."""
         from scripts.optional.sync_tasks_to_linear import LinearClient
 
-        with patch("scripts.sync_tasks_to_linear.Client"):
+        with patch("scripts.optional.sync_tasks_to_linear.Client"):
             client = LinearClient("test-api-key")
             assert client is not None
 
@@ -524,7 +524,7 @@ class TestLinearClient:
             }
         }
 
-        with patch("scripts.sync_tasks_to_linear.Client", return_value=mock_client):
+        with patch("scripts.optional.sync_tasks_to_linear.Client", return_value=mock_client):
             client = LinearClient("test-api-key")
             client.client = mock_client
 
@@ -543,7 +543,7 @@ class TestLinearClient:
         mock_client = MagicMock()
         mock_client.execute.return_value = {"issues": {"nodes": []}}
 
-        with patch("scripts.sync_tasks_to_linear.Client", return_value=mock_client):
+        with patch("scripts.optional.sync_tasks_to_linear.Client", return_value=mock_client):
             client = LinearClient("test-api-key")
             client.client = mock_client
 
@@ -664,7 +664,7 @@ class TestTeamResolution:
         """Should return UUID as-is when given a UUID."""
         from scripts.optional.sync_tasks_to_linear import LinearClient
 
-        with patch("scripts.sync_tasks_to_linear.Client"):
+        with patch("scripts.optional.sync_tasks_to_linear.Client"):
             client = LinearClient("test-api-key")
             uuid = "89b26800-e1e6-4998-bedf-04195e592cd9"
             result = client.resolve_team_id(uuid)
@@ -675,7 +675,7 @@ class TestTeamResolution:
         """Should look up UUID when given a team KEY."""
         from scripts.optional.sync_tasks_to_linear import LinearClient
 
-        with patch("scripts.sync_tasks_to_linear.Client"):
+        with patch("scripts.optional.sync_tasks_to_linear.Client"):
             client = LinearClient("test-api-key")
             mock_gql_client = MagicMock()
             client.client = mock_gql_client
@@ -699,7 +699,7 @@ class TestTeamResolution:
         """Should call get_default_team() when given None."""
         from scripts.optional.sync_tasks_to_linear import LinearClient
 
-        with patch("scripts.sync_tasks_to_linear.Client"):
+        with patch("scripts.optional.sync_tasks_to_linear.Client"):
             client = LinearClient("test-api-key")
             mock_gql_client = MagicMock()
             client.client = mock_gql_client
@@ -722,7 +722,7 @@ class TestTeamResolution:
         """Should raise ValueError when team KEY not found."""
         from scripts.optional.sync_tasks_to_linear import LinearClient
 
-        with patch("scripts.sync_tasks_to_linear.Client"):
+        with patch("scripts.optional.sync_tasks_to_linear.Client"):
             client = LinearClient("test-api-key")
             mock_gql_client = MagicMock()
             client.client = mock_gql_client
@@ -747,7 +747,7 @@ class TestTeamResolution:
         """Should treat empty string as None and use default team."""
         from scripts.optional.sync_tasks_to_linear import LinearClient
 
-        with patch("scripts.sync_tasks_to_linear.Client"):
+        with patch("scripts.optional.sync_tasks_to_linear.Client"):
             client = LinearClient("test-api-key")
             mock_gql_client = MagicMock()
             client.client = mock_gql_client
