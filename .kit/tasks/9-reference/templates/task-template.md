@@ -157,7 +157,7 @@ SKIP_TESTS=1 git commit -m "WIP: work in progress"
 ### Before Every Push (MANDATORY)
 ```bash
 # MANDATORY: Run full CI check locally
-./scripts/ci-check.sh
+./scripts/core/ci-check.sh
 
 # Only push if ci-check passes
 git push origin main
@@ -173,7 +173,7 @@ git push origin main
 
 **Recommended alias** (add to ~/.bashrc or ~/.zshrc):
 ```bash
-alias gpush="./scripts/ci-check.sh && git push origin main"
+alias gpush="./scripts/core/ci-check.sh && git push origin main"
 ```
 
 ## Implementation Plan
