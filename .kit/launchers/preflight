@@ -3,7 +3,7 @@
 # Preflight Check for Agentive Starter Kit
 # Validates that all required dependencies are installed before onboarding.
 #
-# Usage: ./agents/preflight
+# Usage: .kit/launchers/preflight
 #
 
 # Don't use set -e because arithmetic operations can return non-zero
@@ -232,13 +232,13 @@ elif [[ $WARN -gt 0 ]]; then
     echo -e "${YELLOW}${BOLD}Ready to proceed with warnings.${NC}"
     echo "Optional features may be limited. You can set these up later."
     echo ""
-    echo "Next step: ./agents/onboarding"
+    echo "Next step: .kit/launchers/onboarding"
     echo ""
     exit 0
 else
     echo -e "${GREEN}${BOLD}All checks passed! You're ready to go.${NC}"
     echo ""
-    echo "Next step: ./agents/onboarding"
+    echo "Next step: .kit/launchers/onboarding"
     echo ""
     exit 0
 fi
