@@ -23,7 +23,7 @@ This template uses these terms from **agentive development** (a methodology trea
 - **Quality gate** - Objective pass/fail criteria before proceeding
 - **TDD (Test-Driven Development)** - Practice of writing tests before implementation
 
-See the [full glossary](../../../.agent-context/agentive-development-glossary.md) for complete terminology reference.
+See the [full glossary](../../../.kit/context/agentive-development-glossary.md) for complete terminology reference.
 
 ---
 

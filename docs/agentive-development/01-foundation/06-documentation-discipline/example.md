@@ -23,7 +23,7 @@ This example uses these terms from **agentive development**:
 
 ## Context
 
-On November 14, 2025, we discovered a status label mismatch in TASK-2025-0093. The task file showed status `draft`, the file location was `delegation/tasks/active/` (implying active work), Linear displayed "Backlog" (mapped from `draft`), but the actual state was "completed and tested."
+On November 14, 2025, we discovered a status label mismatch in TASK-2025-0093. The task file showed status `draft`, the file location was `.kit/tasks/active/` (implying active work), Linear displayed "Backlog" (mapped from `draft`), but the actual state was "completed and tested."
 
 **The Discovery:**
 
@@ -113,7 +113,7 @@ Should we document this decision? It's "just status labels" - seems trivial. Won
 ```markdown
 **Example incident** (TASK-2025-0093):
 - Task file status: `draft`
-- File location: `delegation/tasks/active/` (implies active work)
+- File location: `.kit/tasks/active/` (implies active work)
 - Linear display: "Backlog" (mapped from `draft`)
 - Actual state: Completed and tested
 ```
@@ -154,11 +154,11 @@ ADR-0038 includes "Real-World Results" section (lines 213-235):
 
 ### Step 4: Make It Findable
 
-**File location:** `docs/decisions/adr/ADR-0038-task-status-linear-alignment.md`
+**File location:** `docs/adr/ADR-0038-task-status-linear-alignment.md`
 
 **Naming convention:** `ADR-{number}-{brief-description}.md`
 
-**ADR index:** Listed in `docs/decisions/adr/README.md` with one-line summary
+**ADR index:** Listed in `docs/adr/README.md` with one-line summary
 
 ---
 

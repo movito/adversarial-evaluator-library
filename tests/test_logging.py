@@ -23,7 +23,7 @@ from unittest.mock import patch
 
 import pytest
 
-from scripts.logging_config import performance_logged, setup_logging
+from scripts.core.logging_config import performance_logged, setup_logging
 
 # =============================================================================
 # FIXTURES

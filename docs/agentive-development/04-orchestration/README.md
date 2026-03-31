@@ -67,8 +67,8 @@ While layer content is being developed, you can:
 - [Example S4: TDD Enforcement (4 agents in parallel)](../examples/41-tdd-enforcement-cultural-shift-EPIC.md)
 
 **✅ Review coordination structures:**
-- See project `.agent-context/agent-handoffs.json`
-- See project `.agent-context/current-state.json`
+- See project `.kit/context/agent-handoffs.json`
+- See project `.kit/context/current-state.json`
 
 ---
 

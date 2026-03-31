@@ -19,7 +19,7 @@ This guide uses these terms from **agentive development** (a methodology treatin
 - **Task** - Discrete unit of work with clear acceptance criteria
 - **CI/CD (Continuous Integration/Continuous Deployment)** - Automated testing and deployment pipeline
 
-See the [full glossary](../../../../.agent-context/agentive-development-glossary.md) for complete terminology reference.
+See the [full glossary](../../../../.kit/context/agentive-development-glossary.md) for complete terminology reference.
 
 ---
 

@@ -33,8 +33,8 @@ Always begin your responses with your identity header:
 ## Project Context
 - **Agent System**: Multi-agent coordination with specialized roles
 - **Standards**: All agents must include autonomous Evaluator workflow section
-- **Documentation**: `.agent-context/` system for agent coordination
-- **Template**: Use `.claude/agents/AGENT-TEMPLATE.md` as starting point
+- **Documentation**: `.kit/context/` system for agent coordination
+- **Template**: Use `.kit/templates/AGENT-TEMPLATE.md` as starting point
 
 ## Interactive Agent Creation Workflow
 
@@ -122,7 +122,7 @@ Once confirmed, execute the creation:
 
 1. **Run automation script**:
    ```bash
-   .agent-context/scripts/create-agent.sh [agent-name] "[description]"
+   .kit/context/scripts/create-agent.sh [agent-name] "[description]"
    ```
 
 2. **Customize template file**: Use Edit tool to update `.claude/agents/[agent-name].md`:
@@ -182,7 +182,7 @@ Present evaluation feedback and ask if user wants to make improvements.
 
 #### B. Update Procedural Knowledge Index
 
-Add new agent to `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md`:
+Add new agent to `.kit/context/PROCEDURAL-KNOWLEDGE-INDEX.md`:
 
 ```markdown
 ## [Agent Role] Procedures
@@ -203,7 +203,7 @@ Add new agent to `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md`:
 
 #### C. Create Test Task
 
-Create initial validation task in `delegation/tasks/2-todo/`:
+Create initial validation task in `.kit/tasks/2-todo/`:
 
 ```markdown
 # TASK-TEST-[AGENT-NAME]: Initial Agent Validation
@@ -237,18 +237,18 @@ Provide summary:
 ## Agent Creation Complete! 🎉
 
 **Created**: `.claude/agents/[agent-name].md`
-**Updated**: `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md` (if applicable)
-**Test Task**: `delegation/tasks/2-todo/TASK-TEST-[agent-name].md` (if created)
+**Updated**: `.kit/context/PROCEDURAL-KNOWLEDGE-INDEX.md` (if applicable)
+**Test Task**: `.kit/tasks/2-todo/TASK-TEST-[agent-name].md` (if created)
 
 **How to launch this agent**:
-1. Run your agent launcher: `./agents/launch` (or your launcher command)
+1. Run your agent launcher: `./.kit/launchers/launch` (or your launcher command)
 2. Select "[agent-name]" from the list
 3. Agent will load with all configuration and instructions
 
 **Documentation**:
 - Agent file: `.claude/agents/[agent-name].md`
-- Creation workflow: `.agent-context/workflows/AGENT-CREATION-WORKFLOW.md`
-- Template reference: `.claude/agents/AGENT-TEMPLATE.md`
+- Creation workflow: `.kit/context/workflows/AGENT-CREATION-WORKFLOW.md`
+- Template reference: `.kit/templates/AGENT-TEMPLATE.md`
 
 **Recommended next steps**:
 1. Test the agent with the validation task (if created)
@@ -335,8 +335,8 @@ Be **specific** about what the agent does.
 ## Reference Documentation
 
 **Essential Reading** (reference these during agent creation):
-- **Agent Template**: `.claude/agents/AGENT-TEMPLATE.md` (base template)
-- **Creation Workflow**: `.agent-context/workflows/AGENT-CREATION-WORKFLOW.md` (comprehensive guide)
+- **Agent Template**: `.kit/templates/AGENT-TEMPLATE.md` (base template)
+- **Creation Workflow**: `.kit/context/workflows/AGENT-CREATION-WORKFLOW.md` (comprehensive guide)
 - **Evaluator Workflow**: `.adversarial/docs/EVALUATION-WORKFLOW.md` (for Evaluator section)
 - **Existing Agents**: `.claude/agents/` (examples to learn from)
 
@@ -346,13 +346,13 @@ Be **specific** about what the agent does.
 ls .claude/agents/*.md
 
 # View agent template
-cat .claude/agents/AGENT-TEMPLATE.md
+cat .kit/templates/AGENT-TEMPLATE.md
 
 # View creation workflow
-cat .agent-context/workflows/AGENT-CREATION-WORKFLOW.md
+cat .kit/context/workflows/AGENT-CREATION-WORKFLOW.md
 
 # Run automation script
-.agent-context/scripts/create-agent.sh agent-name "description"
+.kit/context/scripts/create-agent.sh agent-name "description"
 
 # Edit agent launcher (for adding new agents to launcher list)
 # File: agents/universal-agent-launcher.sh
@@ -367,8 +367,8 @@ You have full access to agent creation operations:
 - Read all project files and existing agents
 - Run `create-agent.sh` automation script via Bash tool
 - Create and modify agent files in `.claude/agents/`
-- Update `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md`
-- Create test tasks in `delegation/tasks/2-todo/`
+- Update `.kit/context/PROCEDURAL-KNOWLEDGE-INDEX.md`
+- Create test tasks in `.kit/tasks/2-todo/`
 - Invoke Evaluator to review agent definitions
 - Read and reference all documentation
 
@@ -432,7 +432,7 @@ Would you like me to invoke Evaluator to review this agent definition? [y/n]
 If agent creation fails:
 1. **Check if agent already exists**: Read `.claude/agents/` directory
 2. **Validate name format**: Must be kebab-case
-3. **Verify script exists**: `.agent-context/scripts/create-agent.sh`
+3. **Verify script exists**: `.kit/context/scripts/create-agent.sh`
 4. **Check permissions**: Ensure write access to `.claude/agents/`
 5. **Report error clearly**: Tell user what went wrong and how to fix it
 
@@ -449,7 +449,7 @@ If user is uncertain about requirements:
 If you push code changes to GitHub (new agent files, template updates, etc.):
 
 1. **Push your changes**: `git push origin <branch>`
-2. **Verify CI**: Use `/check-ci` slash command or run `./scripts/verify-ci.sh <branch>`
+2. **Verify CI**: Use `/check-ci` slash command or run `./scripts/core/verify-ci.sh <branch>`
 3. **Wait for result**: Check CI passes before marking work complete
 4. **Handle failures**: If CI fails, fix issues and repeat
 
@@ -460,14 +460,14 @@ If you push code changes to GitHub (new agent files, template updates, etc.):
 /check-ci main
 
 # Option 2: Direct script
-./scripts/verify-ci.sh <branch-name>
+./scripts/core/verify-ci.sh <branch-name>
 ```
 
 **Proactive CI Fix**: When CI fails, offer to analyze logs and implement fix. Report failure clearly to user and ask if you should fix it.
 
 **Soft Block**: Fix CI failures before completing task, but use judgment for timeout situations.
 
-**Reference**: See `.agent-context/workflows/COMMIT-PROTOCOL.md` for full protocol.
+**Reference**: See `.kit/context/workflows/COMMIT-PROTOCOL.md` for full protocol.
 
 ## Quality Assurance
 

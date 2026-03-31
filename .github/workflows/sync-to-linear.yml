@@ -3,14 +3,14 @@ name: Sync Tasks to Linear
 on:
   push:
     paths:
-      - 'delegation/tasks/1-backlog/*.md'
-      - 'delegation/tasks/2-todo/*.md'
-      - 'delegation/tasks/3-in-progress/*.md'
-      - 'delegation/tasks/4-in-review/*.md'
-      - 'delegation/tasks/5-done/*.md'
-      - 'delegation/tasks/6-canceled/*.md'
-      - 'delegation/tasks/7-blocked/*.md'
-      - 'scripts/sync_tasks_to_linear.py'
+      - '.kit/tasks/1-backlog/*.md'
+      - '.kit/tasks/2-todo/*.md'
+      - '.kit/tasks/3-in-progress/*.md'
+      - '.kit/tasks/4-in-review/*.md'
+      - '.kit/tasks/5-done/*.md'
+      - '.kit/tasks/6-canceled/*.md'
+      - '.kit/tasks/7-blocked/*.md'
+      - 'scripts/optional/sync_tasks_to_linear.py'
     branches:
       - main
       - develop
@@ -52,7 +52,7 @@ jobs:
       - name: Sync tasks to Linear
         if: steps.check-secret.outputs.skip != 'true'
         run: |
-          python scripts/sync_tasks_to_linear.py
+          python scripts/optional/sync_tasks_to_linear.py
         env:
           LINEAR_API_KEY: ${{ secrets.LINEAR_API_KEY }}
           LINEAR_TEAM_ID: ${{ secrets.LINEAR_TEAM_ID }}

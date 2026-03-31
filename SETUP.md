@@ -37,7 +37,7 @@ Before you begin, ensure you have:
 Run the onboarding script to launch `planner` with full setup context:
 
 ```bash
-./agents/onboarding
+./.kit/launchers/onboarding
 ```
 
 `planner` will help you:
@@ -141,7 +141,7 @@ pre-commit install
 
 ```bash
 # Test agent launcher
-./agents/launch help
+./.kit/launchers/launch help
 
 # Test pre-commit hooks
 git commit --allow-empty -m "Test hooks"
@@ -178,7 +178,7 @@ git commit --allow-empty -m "Test hooks"
 **Testing**:
 ```bash
 # Create a test task
-cat > delegation/tasks/2-todo/TASK-0001-test.md << 'EOF'
+cat > .kit/tasks/2-todo/TASK-0001-test.md << 'EOF'
 # TASK-0001: Test Task
 
 **Status**: Todo
@@ -193,7 +193,7 @@ Test task to verify evaluation system works.
 EOF
 
 # Run evaluation
-adversarial evaluate delegation/tasks/2-todo/TASK-0001-test.md
+adversarial evaluate .kit/tasks/2-todo/TASK-0001-test.md
 ```
 
 ### Linear API Key
@@ -259,13 +259,13 @@ xcrun sourcekit-lsp --help
 After setup, verify each component:
 
 ### Agents
-- [ ] `./agents/launch` shows agent menu
-- [ ] `./agents/launch planner` starts planner agent
+- [ ] `./.kit/launchers/launch` shows agent menu
+- [ ] `./.kit/launchers/launch planner` starts planner agent
 - [ ] Serena activates when agent starts
 
 ### Task Management
 - [ ] Task folders exist (1-backlog through 9-reference)
-- [ ] Task template is at `delegation/tasks/9-reference/templates/task-template.md`
+- [ ] Task template is at `.kit/tasks/9-reference/templates/task-template.md`
 
 ### Evaluation (if configured)
 - [ ] `.env` contains `OPENAI_API_KEY`
@@ -287,7 +287,7 @@ After setup, verify each component:
 claude --version
 
 # Verify launch scripts are executable
-chmod +x agents/launch agents/onboarding
+chmod +x .kit/launchers/launch .kit/launchers/onboarding
 ```
 
 ### Serena won't activate
@@ -332,12 +332,12 @@ pre-commit run --all-files
 After setup:
 
 1. **Create Your First Task**
-   - Copy `delegation/tasks/9-reference/templates/task-template.md`
-   - Save as `delegation/tasks/2-todo/TASK-0001-your-task.md`
+   - Copy `.kit/tasks/9-reference/templates/task-template.md`
+   - Save as `.kit/tasks/2-todo/TASK-0001-your-task.md`
    - Fill in the details
 
 2. **Run Evaluation** (if configured)
-   - `adversarial evaluate delegation/tasks/2-todo/TASK-0001-your-task.md`
+   - `adversarial evaluate .kit/tasks/2-todo/TASK-0001-your-task.md`
    - Review feedback in `.adversarial/logs/`
 
 3. **Assign to Agent**

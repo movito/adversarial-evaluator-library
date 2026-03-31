@@ -175,7 +175,7 @@
 
 **Communication Channels:**
 - [Channel 1 - e.g., "agent-handoffs.json (status updates)"]
-- [Channel 2 - e.g., "Task files in delegation/tasks/ (detailed work specs)"]
+- [Channel 2 - e.g., "Task files in .kit/tasks/ (detailed work specs)"]
 - [Channel 3 - e.g., "Test reports in docs/test-reports/ (results documentation)"]
 
 **Status Signaling:**
@@ -200,7 +200,7 @@
 
 **Evaluation Command:**
 ```bash
-adversarial evaluate delegation/tasks/active/TASK-FILE.md
+adversarial evaluate .kit/tasks/active/TASK-FILE.md
 ```
 
 **Iteration Limits:**
@@ -299,9 +299,9 @@ adversarial evaluate delegation/tasks/active/TASK-FILE.md
 <!-- INSTRUCTION: Link to relevant context for this agent. -->
 
 - **Detailed Instruction Prompt:** `[path-to-agent-instruction.md]`
-- **Procedural Knowledge:** `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md`
-- **Testing Workflow:** `.agent-context/workflows/TESTING-WORKFLOW.md`
-- **Agent Coordination:** `.agent-context/agent-handoffs.json`
+- **Procedural Knowledge:** `.kit/context/PROCEDURAL-KNOWLEDGE-INDEX.md`
+- **Testing Workflow:** `.kit/context/workflows/TESTING-WORKFLOW.md`
+- **Agent Coordination:** `.kit/context/agent-handoffs.json`
 - **Example Tasks:** [Links to completed tasks this agent handled]
 
 ---

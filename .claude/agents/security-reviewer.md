@@ -40,9 +40,9 @@ Run external evaluation autonomously for security concerns or validation.
 
 ```bash
 # For files < 500 lines (use appropriate folder):
-adversarial evaluate delegation/tasks/3-in-progress/TASK-FILE.md
+adversarial evaluate .kit/tasks/3-in-progress/TASK-FILE.md
 # For large files (>500 lines) requiring confirmation:
-echo y | adversarial evaluate delegation/tasks/3-in-progress/TASK-FILE.md
+echo y | adversarial evaluate .kit/tasks/3-in-progress/TASK-FILE.md
 
 # Read GPT-4o feedback
 cat .adversarial/logs/TASK-*-PLAN-EVALUATION.md
@@ -54,11 +54,11 @@ cat .adversarial/logs/TASK-*-PLAN-EVALUATION.md
 
 ## Task Starter Protocol (Multi-Session Workflows)
 
-**📖 Template**: `.claude/agents/TASK-STARTER-TEMPLATE.md`
+**📖 Template**: `.kit/templates/TASK-STARTER-TEMPLATE.md`
 
 When you receive task assignments, they come in a standardized format with:
-- Task file: Full specification in `delegation/tasks/[folder]/[TASK-ID].md`
-- Handoff file: Implementation guidance in `.agent-context/[TASK-ID]-HANDOFF-[agent-type].md`
+- Task file: Full specification in `.kit/tasks/[folder]/[TASK-ID].md`
+- Handoff file: Implementation guidance in `.kit/context/[TASK-ID]-HANDOFF-[agent-type].md`
 
 ### Step 1: Receive Task Assignment
 
@@ -87,14 +87,14 @@ For longer tasks requiring multiple agent sessions or handoffs:
 
 **How to create**:
 1. Read TASK-STARTER-TEMPLATE.md for format
-2. Create handoff file: `.agent-context/[TASK-ID]-HANDOFF-[next-agent].md`
+2. Create handoff file: `.kit/context/[TASK-ID]-HANDOFF-[next-agent].md`
 3. Update agent-handoffs.json with handoff details
 4. Write task starter message with 7 required sections (see template)
 5. Reference both task file and handoff file in starter
 
 **Example**: After completing security review, create task starter for feature-developer to implement recommended fixes.
 
-See `.claude/agents/TASK-STARTER-TEMPLATE.md` for complete example.
+See `.kit/templates/TASK-STARTER-TEMPLATE.md` for complete example.
 
 ## Security Focus Areas
 1. Input validation and sanitization
@@ -119,7 +119,7 @@ See `.claude/agents/TASK-STARTER-TEMPLATE.md` for complete example.
 If you push code changes to GitHub (security reports, review documentation, etc.):
 
 1. **Push your changes**: `git push origin <branch>`
-2. **Verify CI**: Use `/check-ci` slash command or run `./scripts/verify-ci.sh <branch>`
+2. **Verify CI**: Use `/check-ci` slash command or run `./scripts/core/verify-ci.sh <branch>`
 3. **Wait for result**: Check CI passes before marking work complete
 4. **Handle failures**: If CI fails, fix issues and repeat
 
@@ -130,14 +130,14 @@ If you push code changes to GitHub (security reports, review documentation, etc.
 /check-ci main
 
 # Option 2: Direct script
-./scripts/verify-ci.sh <branch-name>
+./scripts/core/verify-ci.sh <branch-name>
 ```
 
 **Proactive CI Fix**: When CI fails, offer to analyze logs and implement fix. Report failure clearly to user and ask if you should fix it.
 
 **Soft Block**: Fix CI failures before completing task, but use judgment for timeout situations.
 
-**Reference**: See `.agent-context/workflows/COMMIT-PROTOCOL.md` for full protocol.
+**Reference**: See `.kit/context/workflows/COMMIT-PROTOCOL.md` for full protocol.
 
 ## Allowed Operations
 - Read all source code

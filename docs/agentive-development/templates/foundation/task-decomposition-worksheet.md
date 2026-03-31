@@ -18,7 +18,7 @@ This template uses these terms from **agentive development** (a methodology trea
 - **Quality gate** - Objective pass/fail criteria before proceeding
 - **TDD (Test-Driven Development)** - Practice of writing tests before implementation
 
-See the [full glossary](../../../.agent-context/agentive-development-glossary.md) for complete terminology reference.
+See the [full glossary](../../../.kit/context/agentive-development-glossary.md) for complete terminology reference.
 
 ---
 
@@ -202,19 +202,19 @@ Before proceeding with task creation, verify:
 
 This template was used for:
 
-1. **[TASK-0091: TDD Enforcement Alignment](../../../delegation/tasks/completed/TASK-0091-align-tasks-with-tdd-enforcement.md)**
+1. **[TASK-0091: TDD Enforcement Alignment](../../../.kit/tasks/completed/TASK-0091-align-tasks-with-tdd-enforcement.md)**
    - Feature: Update 30 active tasks with new TDD requirements
    - Decomposition: 5 groups (A, B, C, D, E) with 30 tasks total
    - Result: Enabled parallel updates, 6 tasks archived, 19 updated, 5 kept as-is
    - Time savings: Completed in 3.5 hours (estimated 4-5 hours)
 
-2. **[TASK-2025-0078: API Server Foundation](../../../delegation/tasks/active/TASK-0078-api-server-foundation.md)**
+2. **[TASK-2025-0078: API Server Foundation](../../../.kit/tasks/active/TASK-0078-api-server-foundation.md)**
    - Feature: Build FastAPI server with 2 endpoints + monitoring
    - Decomposition: 4 phases broken into 24 tasks (6 tasks/phase)
    - Result: Completed in 3 days (estimated 4.5 days, 33% time savings)
    - Parallelization: Testing and documentation done concurrently
 
-3. **[EPIC-2025-TDD-ENFORCEMENT](../../../delegation/tasks/completed/EPIC-2025-TDD-ENFORCEMENT.md)**
+3. **[EPIC-2025-TDD-ENFORCEMENT](../../../.kit/tasks/completed/EPIC-2025-TDD-ENFORCEMENT.md)**
    - Feature: Cultural shift to mandatory testing
    - Decomposition: 4 parallel tasks (fix tests, add hooks, update docs, setup monitoring)
    - Result: 100% completion in 8 hours (estimated 14-18 hours, 44% time savings)

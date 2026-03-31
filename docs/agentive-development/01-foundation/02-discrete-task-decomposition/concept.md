@@ -21,7 +21,7 @@ This guide uses these terms from **agentive development** (a methodology treatin
 - **Delegation** - Assigning tasks to specialized agents with appropriate constraints
 - **TDD (Test-Driven Development)** - Practice of writing tests before implementation (RED-GREEN-REFACTOR cycle)
 
-See the [full glossary](../../../../.agent-context/agentive-development-glossary.md) for complete terminology reference.
+See the [full glossary](../../../../.kit/context/agentive-development-glossary.md) for complete terminology reference.
 
 ---
 
@@ -51,7 +51,7 @@ This approach enables experimentation. Small, reversible tasks let you try an ap
 
 Decomposition multiplies agent productivity. Independent tasks enable parallel work without conflicts. The coordinator assigns discrete tasks to specialized agents and integrates finished work without merge conflicts.
 
-**Real-world example:** In the this project, implementing an API server was decomposed into four independent tasks (TASK-0078-A through D): database models, endpoint implementations, request validation, and comprehensive testing. Four different agents worked on these tasks simultaneously, completing in 2 days what would have taken 4 days sequentially—a 44% time savings (source: `delegation/tasks/active/TASK-0078-api-server-foundation.md`). Because tasks were discrete, each agent could validate their work independently, and integration required no conflict resolution.
+**Real-world example:** In the this project, implementing an API server was decomposed into four independent tasks (TASK-0078-A through D): database models, endpoint implementations, request validation, and comprehensive testing. Four different agents worked on these tasks simultaneously, completing in 2 days what would have taken 4 days sequentially—a 44% time savings (source: `.kit/tasks/active/TASK-0078-api-server-foundation.md`). Because tasks were discrete, each agent could validate their work independently, and integration required no conflict resolution.
 
 ## How It Fits in Agentive Development
 

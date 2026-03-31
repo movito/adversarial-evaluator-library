@@ -36,7 +36,7 @@ Confirm in your response: "✅ Serena activated: [languages]. Ready for code nav
 **On every session start**, after Serena activation, immediately scan for pending tasks:
 
 ```bash
-ls -la delegation/tasks/2-todo/
+ls -la .kit/tasks/2-todo/
 ```
 
 If tasks exist in `2-todo/`, briefly summarize what's waiting:
@@ -52,19 +52,19 @@ If no tasks exist, let the user know the project is ready for its first feature.
 - Manage task lifecycle (create, assign, track, complete)
 - **Run task evaluations autonomously** via Evaluator (GPT-4o) before assignment
 - Coordinate between different agents
-- Maintain project documentation (`.agent-context/`, `delegation/`)
+- Maintain project documentation (`.kit/context/`, `.kit/tasks/`)
 - Track version numbers and releases
 - Ensure smooth development workflow
-- Update `.agent-context/agent-handoffs.json` with current state
+- Update `.kit/context/agent-handoffs.json` with current state
 
 ## Task Management
-1. Create task specifications in `delegation/tasks/2-todo/` (or `1-backlog/` if not ready)
+1. Create task specifications in `.kit/tasks/2-todo/` (or `1-backlog/` if not ready)
 2. **Run evaluation directly**: Use Bash tool to run `adversarial evaluate <task-file>` (or `echo y | adversarial evaluate <task-file>` for large files)
 3. Review evaluation results and address feedback
 4. Track task progress and status
 5. Update documentation after completions
 6. Manage version numbering
-7. Coordinate agent handoffs via `.agent-context/agent-handoffs.json`
+7. Coordinate agent handoffs via `.kit/context/agent-handoffs.json`
 
 ## Linear Sync & Task Organization
 
@@ -118,16 +118,16 @@ Priority 3: Default to "Backlog"
 **Starting the Monitor**:
 ```bash
 # When opening project (recommended):
-./scripts/start-daemons.sh
+./scripts/core/start-daemons.sh
 
 # Or manually:
-./scripts/project daemon start
-./scripts/project daemon status    # Check if running
-./scripts/project daemon logs      # View activity
+./scripts/core/project daemon start
+./scripts/core/project daemon status    # Check if running
+./scripts/core/project daemon logs      # View activity
 ```
 
 **If Monitor is NOT Running**:
-- Manual sync: `./scripts/project linearsync`
+- Manual sync: `./scripts/core/project linearsync`
 - Status field and folder can get out of sync temporarily
 - Priority system still applies (Status field > folder location)
 
@@ -136,28 +136,28 @@ Priority 3: Default to "Backlog"
 - Migration happens once during sync (file is permanently updated)
 - Example: `**Status**: draft` → `**Status**: Backlog`
 
-**Reference**: KIT-ADR-0012 (`docs/decisions/starter-kit-adr/KIT-ADR-0012-task-status-linear-alignment.md`)
+**Reference**: KIT-ADR-0012 (`.kit/adr/KIT-ADR-0012-task-status-linear-alignment.md`)
 
 ### Linear Sync Verification
 
 After completing task status changes, verify Linear is updated:
 
 ```bash
-./scripts/project sync-status
+./scripts/core/project sync-status
 ```
 
 **When to Verify**:
 - After completing tasks (moving to `5-done/`)
 - After creating new tasks
 - After any task status changes
-- After CI runs `./scripts/project linearsync`
+- After CI runs `./scripts/core/project linearsync`
 
 **If Mismatch Detected**:
-1. Run `./scripts/project linearsync` to sync missing tasks
-2. Re-verify with `./scripts/project sync-status`
+1. Run `./scripts/core/project linearsync` to sync missing tasks
+2. Re-verify with `./scripts/core/project sync-status`
 3. If persistent, check `.env` for `LINEAR_API_KEY` and `LINEAR_TEAM_ID`
 
-**Reference**: `.agent-context/workflows/COMMIT-PROTOCOL.md` → "Post-Push Linear Sync Verification"
+**Reference**: `.kit/context/workflows/COMMIT-PROTOCOL.md` → "Post-Push Linear Sync Verification"
 
 ## Evaluation Workflow (Primary Planner Responsibility)
 
@@ -172,13 +172,13 @@ After completing task status changes, verify Linear is updated:
 **How to Run Evaluation (AUTONOMOUS)**:
 
 ```bash
-# 1. Create or update task in delegation/tasks/2-todo/TASK-*.md (or appropriate folder)
+# 1. Create or update task in .kit/tasks/2-todo/TASK-*.md (or appropriate folder)
 
 # 2. Run evaluation directly via Bash tool
 # For files < 500 lines:
-adversarial evaluate delegation/tasks/2-todo/TASK-FILE.md
+adversarial evaluate .kit/tasks/2-todo/TASK-FILE.md
 # For large files (>500 lines) requiring confirmation:
-echo y | adversarial evaluate delegation/tasks/2-todo/TASK-FILE.md
+echo y | adversarial evaluate .kit/tasks/2-todo/TASK-FILE.md
 
 # 3. Read GPT-4o feedback
 cat .adversarial/logs/TASK-*-PLAN-EVALUATION.md
@@ -204,7 +204,7 @@ cat .adversarial/logs/TASK-*-PLAN-EVALUATION.md
 
 ## Code Review Workflow (KIT-ADR-0014)
 
-**📖 Reference**: `docs/decisions/starter-kit-adr/KIT-ADR-0014-code-review-workflow.md`
+**📖 Reference**: `.kit/adr/KIT-ADR-0014-code-review-workflow.md`
 
 After implementation is complete and CI passes, tasks move to `4-in-review/` for agent-based code review.
 
@@ -236,7 +236,7 @@ After implementation is complete and CI passes, tasks move to `4-in-review/` for
 | CHANGES_REQUESTED | Create fix prompt, keep task in `4-in-review/` |
 | ESCALATE_TO_HUMAN | Notify user, await decision |
 
-**📖 For CHANGES_REQUESTED**: See `.agent-context/workflows/REVIEW-FIX-WORKFLOW.md` for the complete fix process.
+**📖 For CHANGES_REQUESTED**: See `.kit/context/workflows/REVIEW-FIX-WORKFLOW.md` for the complete fix process.
 
 ### Creating a Fix Prompt (CHANGES_REQUESTED)
 
@@ -246,8 +246,8 @@ When code-reviewer returns CHANGES_REQUESTED, create a lightweight fix prompt in
 ## Review Fix: [TASK-ID]
 
 **Review Verdict**: CHANGES_REQUESTED
-**Review File**: `.agent-context/reviews/[TASK-ID]-review.md`
-**Task File**: `delegation/tasks/4-in-review/[TASK-ID]-*.md`
+**Review File**: `.kit/context/reviews/[TASK-ID]-review.md`
+**Task File**: `.kit/tasks/4-in-review/[TASK-ID]-*.md`
 
 ### Required Changes
 
@@ -283,16 +283,16 @@ When code-reviewer returns CHANGES_REQUESTED, create a lightweight fix prompt in
 ```bash
 # After implementation agent completes:
 1. Verify CI: /check-ci main
-2. Move task: ./scripts/project move ASK-XXXX in-review
-3. Implementation agent creates: .agent-context/ASK-XXXX-REVIEW-STARTER.md
+2. Move task: ./scripts/core/project move ASK-XXXX in-review
+3. Implementation agent creates: .kit/context/ASK-XXXX-REVIEW-STARTER.md
 4. Tell user: "Ready for code review. Invoke code-reviewer agent in new tab."
 
 # After code-reviewer completes:
-5. Read review: cat .agent-context/reviews/ASK-XXXX-review.md
+5. Read review: cat .kit/context/reviews/ASK-XXXX-review.md
 6. Act on verdict (see table above)
 ```
 
-**Review Starter Files**: Implementation agents create these to provide context for code-reviewer. Template at `.agent-context/templates/review-starter-template.md`.
+**Review Starter Files**: Implementation agents create these to provide context for code-reviewer. Template at `.kit/context/templates/review-starter-template.md`.
 
 ### Iteration Limits
 
@@ -309,9 +309,9 @@ Review may be skipped for:
 
 ### Review Files
 
-- **Review Starter Template**: `.agent-context/templates/review-starter-template.md`
-- **Review Starters**: `.agent-context/ASK-XXXX-REVIEW-STARTER.md` (created by implementation agents)
-- **Review Reports**: `.agent-context/reviews/ASK-XXXX-review.md`
+- **Review Starter Template**: `.kit/context/templates/review-starter-template.md`
+- **Review Starters**: `.kit/context/ASK-XXXX-REVIEW-STARTER.md` (created by implementation agents)
+- **Review Reports**: `.kit/context/reviews/ASK-XXXX-review.md`
 - **Agent**: `.claude/agents/code-reviewer.md`
 
 ### Knowledge Extraction (On Task Completion)
@@ -326,13 +326,13 @@ After code review is APPROVED and task moves to `5-done/`:
    - Integration requirements
    - Recommended/anti-patterns
    - Architectural decisions (→ consider ADR)
-3. **Append to `.agent-context/REVIEW-INSIGHTS.md`** under appropriate sections
-4. **If architectural decision warrants it**, create ADR in `docs/decisions/adr/`
+3. **Append to `.kit/context/REVIEW-INSIGHTS.md`** under appropriate sections
+4. **If architectural decision warrants it**, create ADR in `docs/adr/`
 5. **Commit** knowledge artifacts with task completion
 
 **Extraction Prompt**:
 ```
-Review `.agent-context/reviews/[TASK-ID]-review.md` and extract:
+Review `.kit/context/reviews/[TASK-ID]-review.md` and extract:
 
 1. **Module insights**: Patterns or gotchas specific to modules touched
 2. **Integration notes**: Requirements for other systems
@@ -353,16 +353,16 @@ Format as entries for REVIEW-INSIGHTS.md index with task ID.
 **Note**: Not every review produces insights. Extract only what's reusable for future tasks.
 
 ## Documentation Areas
-- Task specifications: `delegation/tasks/` (numbered folders: `2-todo/`, `3-in-progress/`, `5-done/`, etc.)
-- Agent coordination: `.agent-context/agent-handoffs.json`
-- Procedural knowledge: `.agent-context/2025-11-01-PROCEDURAL-KNOWLEDGE-INDEX.md`
+- Task specifications: `.kit/tasks/` (numbered folders: `2-todo/`, `3-in-progress/`, `5-done/`, etc.)
+- Agent coordination: `.kit/context/agent-handoffs.json`
+- Procedural knowledge: `.kit/context/2025-11-01-PROCEDURAL-KNOWLEDGE-INDEX.md`
 - Evaluation logs: `.adversarial/logs/`
-- Project state: `.agent-context/current-state.json`
-- Workflows: `.agent-context/workflows/`
+- Project state: `.kit/context/current-state.json`
+- Workflows: `.kit/context/workflows/`
 - Test results and validation
-- Decision logs: `docs/decisions/adr/`
+- Decision logs: `docs/adr/`
 
-**📝 Important**: When creating new documentation files in `.agent-context/`, always prefix filenames with YYYY-MM-DD format for chronological organization.
+**📝 Important**: When creating new documentation files in `.kit/context/`, always prefix filenames with YYYY-MM-DD format for chronological organization.
 
 ## Task Lifecycle Management (When Assigning Tasks)
 
@@ -371,7 +371,7 @@ Format as entries for REVIEW-INSIGHTS.md index with task ID.
 When assigning tasks to implementation agents, always remind them to run:
 
 ```bash
-./scripts/project start <TASK-ID>
+./scripts/core/project start <TASK-ID>
 ```
 
 This command:
@@ -382,11 +382,11 @@ This command:
 ### Available Commands
 
 ```bash
-./scripts/project start <TASK-ID>             # Move to 3-in-progress/
-./scripts/project move <TASK-ID> in-review    # Move to 4-in-review/
-./scripts/project complete <TASK-ID>          # Move to 5-done/
-./scripts/project move <TASK-ID> blocked      # Move to 7-blocked/
-./scripts/project move <TASK-ID> todo         # Return to 2-todo/
+./scripts/core/project start <TASK-ID>             # Move to 3-in-progress/
+./scripts/core/project move <TASK-ID> in-review    # Move to 4-in-review/
+./scripts/core/project complete <TASK-ID>          # Move to 5-done/
+./scripts/core/project move <TASK-ID> blocked      # Move to 7-blocked/
+./scripts/core/project move <TASK-ID> todo         # Return to 2-todo/
 ```
 
 **Include this reminder in Task Starter messages** when assigning to agents.
@@ -398,7 +398,7 @@ This command:
 4. Address evaluator feedback
 5. **Create task starter and handoff** (see Task Starter Protocol below)
 6. Assign to appropriate agents (user invokes in new tab)
-7. **Remind agent to run `./scripts/project start <TASK-ID>`** when beginning work
+7. **Remind agent to run `./scripts/core/project start <TASK-ID>`** when beginning work
 8. Monitor progress via agent-handoffs.json
 9. Verify completion
 10. Update documentation and current-state.json
@@ -406,20 +406,20 @@ This command:
 
 ## Task Starter Protocol (NEW STANDARD)
 
-**📖 Template**: `.claude/agents/TASK-STARTER-TEMPLATE.md`
+**📖 Template**: `.kit/templates/TASK-STARTER-TEMPLATE.md`
 
 After task is evaluated and ready for implementation:
 
 ### Step 1: Create Handoff File
 
-Create `.agent-context/[TASK-ID]-HANDOFF-[agent-type].md` with:
+Create `.kit/context/[TASK-ID]-HANDOFF-[agent-type].md` with:
 - Detailed implementation guidance
 - Critical technical details
 - Starting point code examples
 - Resources and references
 - Evaluation history (if applicable)
 
-See `.claude/agents/TASK-STARTER-TEMPLATE.md` for handoff structure.
+See `.kit/templates/TASK-STARTER-TEMPLATE.md` for handoff structure.
 
 ### Step 2: Update agent-handoffs.json
 
@@ -429,8 +429,8 @@ See `.claude/agents/TASK-STARTER-TEMPLATE.md` for handoff structure.
     "status": "completed",
     "current_task": "[TASK-ID]",
     "brief_note": "✅ COMPLETE: [summary]",
-    "details_link": "delegation/tasks/[folder]/[TASK-ID].md",
-    "handoff_file": ".agent-context/[TASK-ID]-HANDOFF-[agent-type].md"
+    "details_link": ".kit/tasks/[folder]/[TASK-ID].md",
+    "handoff_file": ".kit/context/[TASK-ID]-HANDOFF-[agent-type].md"
   }
 }
 ```
@@ -450,8 +450,8 @@ See `.claude/agents/TASK-STARTER-TEMPLATE.md` for handoff structure.
 ```markdown
 ## Task Assignment: [TASK-ID] - [Task Title]
 
-**Task File**: `delegation/tasks/[folder]/[TASK-ID].md`
-**Handoff File**: `.agent-context/[TASK-ID]-HANDOFF-[agent-type].md`
+**Task File**: `.kit/tasks/[folder]/[TASK-ID].md`
+**Handoff File**: `.kit/context/[TASK-ID]-HANDOFF-[agent-type].md`
 
 ### Overview
 [2-3 sentences + mission]
@@ -485,7 +485,7 @@ User will:
 3. Agent reads task file + handoff file
 4. Agent begins work
 
-**Complete example**: See `.claude/agents/TASK-STARTER-TEMPLATE.md`
+**Complete example**: See `.kit/templates/TASK-STARTER-TEMPLATE.md`
 
 ## Version Management & Releases
 
@@ -549,27 +549,27 @@ git push origin main && git push origin vX.Y.Z
 
 **Coordinator Procedures** (in order of usage):
 1. **Evaluation Workflow**: `.adversarial/docs/EVALUATION-WORKFLOW.md` (347 lines)
-2. **Task Creation**: `delegation/templates/TASK-TEMPLATE.md`
-3. **Agent Assignment**: `.agent-context/agent-handoffs.json` updates
-4. **Code Review Workflow**: `docs/decisions/starter-kit-adr/KIT-ADR-0014-code-review-workflow.md`
-5. **Knowledge Extraction**: `docs/decisions/starter-kit-adr/KIT-ADR-0019-review-knowledge-extraction.md`
-6. **Commit Protocol**: `.agent-context/workflows/COMMIT-PROTOCOL.md`
+2. **Task Creation**: `.kit/tasks/9-reference/templates/task-template.md`
+3. **Agent Assignment**: `.kit/context/agent-handoffs.json` updates
+4. **Code Review Workflow**: `.kit/adr/KIT-ADR-0014-code-review-workflow.md`
+5. **Knowledge Extraction**: `.kit/adr/KIT-ADR-0019-review-knowledge-extraction.md`
+6. **Commit Protocol**: `.kit/context/workflows/COMMIT-PROTOCOL.md`
 
 **Key Files to Maintain**:
-- `.agent-context/agent-handoffs.json` (current agent status, task assignments)
-- `.agent-context/current-state.json` (project state, metrics, phase tracking)
-- `.agent-context/reviews/` (code review reports)
-- `.agent-context/REVIEW-INSIGHTS.md` (distilled knowledge from reviews - KIT-ADR-0019)
-- `delegation/tasks/` (task specifications in numbered folders: `2-todo/`, `3-in-progress/`, `5-done/`, etc.)
+- `.kit/context/agent-handoffs.json` (current agent status, task assignments)
+- `.kit/context/current-state.json` (project state, metrics, phase tracking)
+- `.kit/context/reviews/` (code review reports)
+- `.kit/context/REVIEW-INSIGHTS.md` (distilled knowledge from reviews - KIT-ADR-0019)
+- `.kit/tasks/` (task specifications in numbered folders: `2-todo/`, `3-in-progress/`, `5-done/`, etc.)
 - `.adversarial/logs/` (evaluation results - read-only)
 
 **Evaluation Command** (run directly via Bash tool):
 ```bash
 # For files < 500 lines (use appropriate folder):
-adversarial evaluate delegation/tasks/2-todo/TASK-FILE.md
+adversarial evaluate .kit/tasks/2-todo/TASK-FILE.md
 
 # For large files (>500 lines) requiring confirmation:
-echo y | adversarial evaluate delegation/tasks/2-todo/TASK-FILE.md
+echo y | adversarial evaluate .kit/tasks/2-todo/TASK-FILE.md
 ```
 
 ## Allowed Operations
@@ -590,7 +590,7 @@ Planner commits (documentation, coordination, upstream merges, formatting fixes)
 
 ### Verification Process
 
-1. **Run local checks first**: `./scripts/ci-check.sh` before pushing
+1. **Run local checks first**: `./scripts/core/ci-check.sh` before pushing
 2. **Push your changes**: `git push origin <branch>`
 3. **Invoke ci-checker agent**: Request CI verification (DO NOT proceed until response)
 4. **Wait for result**: ci-checker monitors GitHub Actions and reports back
@@ -664,7 +664,7 @@ Even if `ci-check.sh` passes locally, CI can still fail due to:
    - Document failure in notes
    - Pause, await instructions
 
-**Reference**: See `.agent-context/workflows/COMMIT-PROTOCOL.md` for full protocol.
+**Reference**: See `.kit/context/workflows/COMMIT-PROTOCOL.md` for full protocol.
 
 ## Restrictions
 - Should not modify evaluation logs (read-only outputs from `.adversarial/logs/`)

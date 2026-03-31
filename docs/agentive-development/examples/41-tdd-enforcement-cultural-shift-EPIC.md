@@ -234,13 +234,13 @@ $ ./scripts/ci-check.sh
 
 **The work:**
 
-**Updated:** `.agent-context/workflows/TESTING-WORKFLOW.md`
+**Updated:** `.kit/context/workflows/TESTING-WORKFLOW.md`
 - Added "Pre-Commit Enforcement" section (+128 lines)
 - Added "TDD Workflow" (test-first) section
 - Added "Before Push (MANDATORY)" section
 - Created examples and failure handling guides
 
-**Updated:** `.agent-context/workflows/COMMIT-PROTOCOL.md`
+**Updated:** `.kit/context/workflows/COMMIT-PROTOCOL.md`
 - Replaced "Before Committing" with automated hook info (+58 lines)
 - Added pre-push ci-check.sh requirement
 - Added recommended bash aliases
@@ -251,10 +251,10 @@ $ ./scripts/ci-check.sh
 - Parameterized test examples
 - Error handling patterns
 
-**Updated:** `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md`
+**Updated:** `.kit/context/PROCEDURAL-KNOWLEDGE-INDEX.md`
 - Added "Testing Requirements (All Agents - MANDATORY)" section (+77 lines)
 
-**Updated:** `.agent-context/agent-handoffs.json`
+**Updated:** `.kit/context/agent-handoffs.json`
 - Added `git_workflow` field to all 8 agent roles (+72 lines)
 - Documented pre-commit and pre-push requirements
 

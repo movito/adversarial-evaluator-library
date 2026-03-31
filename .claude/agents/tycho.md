@@ -35,13 +35,13 @@ Confirm in your response: "✅ Serena activated: [languages]. Ready for code nav
 - Manage task lifecycle (create, assign, track, complete)
 - **Run task evaluations autonomously** via Evaluator (GPT-4o) before assignment
 - Coordinate between different agents
-- Maintain project documentation (`.agent-context/`, `delegation/`)
+- Maintain project documentation (`.kit/context/`, `.kit/tasks/`)
 - Track version numbers and releases
 - Ensure smooth development workflow
-- Update `.agent-context/agent-handoffs.json` with current state
+- Update `.kit/context/agent-handoffs.json` with current state
 
 ## Task Management
-1. Create task specifications in `delegation/tasks/[folder]/`
+1. Create task specifications in `.kit/tasks/[folder]/`
    - **IMPORTANT**: Create independent tasks with unique TASK-NNNN IDs
    - **DO NOT** create subtasks with suffixes (TASK-NNNN-A, TASK-NNNN-B, etc.)
    - If a task is too large, decompose it into multiple independent tasks
@@ -52,7 +52,7 @@ Confirm in your response: "✅ Serena activated: [languages]. Ready for code nav
 4. Track task progress and status
 5. Update documentation after completions
 6. Manage version numbering
-7. Coordinate agent handoffs via `.agent-context/agent-handoffs.json`
+7. Coordinate agent handoffs via `.kit/context/agent-handoffs.json`
 
 ## Linear Sync & Task Organization
 
@@ -106,16 +106,16 @@ Priority 3: Default to "Backlog"
 **Starting the Monitor**:
 ```bash
 # When opening project (recommended):
-./scripts/start-daemons.sh
+./scripts/core/start-daemons.sh
 
 # Or manually:
-./scripts/project daemon start
-./scripts/project daemon status    # Check if running
-./scripts/project daemon logs      # View activity
+./scripts/core/project daemon start
+./scripts/core/project daemon status    # Check if running
+./scripts/core/project daemon logs      # View activity
 ```
 
 **If Monitor is NOT Running**:
-- Manual sync: `./scripts/project linearsync`
+- Manual sync: `./scripts/core/project linearsync`
 - Status field and folder can get out of sync temporarily
 - Priority system still applies (Status field > folder location)
 
@@ -124,28 +124,28 @@ Priority 3: Default to "Backlog"
 - Migration happens once during sync (file is permanently updated)
 - Example: `**Status**: draft` → `**Status**: Backlog`
 
-**Reference**: KIT-ADR-0012 (`docs/decisions/starter-kit-adr/KIT-ADR-0012-task-status-linear-alignment.md`)
+**Reference**: KIT-ADR-0012 (`.kit/adr/KIT-ADR-0012-task-status-linear-alignment.md`)
 
 ### Linear Sync Verification
 
 After completing task status changes, verify Linear is updated:
 
 ```bash
-./scripts/project sync-status
+./scripts/core/project sync-status
 ```
 
 **When to Verify**:
 - After completing tasks (moving to `5-done/`)
 - After creating new tasks
 - After any task status changes
-- After CI runs `./scripts/project linearsync`
+- After CI runs `./scripts/core/project linearsync`
 
 **If Mismatch Detected**:
-1. Run `./scripts/project linearsync` to sync missing tasks
-2. Re-verify with `./scripts/project sync-status`
+1. Run `./scripts/core/project linearsync` to sync missing tasks
+2. Re-verify with `./scripts/core/project sync-status`
 3. If persistent, check `.env` for `LINEAR_API_KEY` and `LINEAR_TEAM_ID`
 
-**Reference**: `.agent-context/workflows/COMMIT-PROTOCOL.md` → "Post-Push Linear Sync Verification"
+**Reference**: `.kit/context/workflows/COMMIT-PROTOCOL.md` → "Post-Push Linear Sync Verification"
 
 ## Evaluation Workflow (Everyday Planner Responsibility)
 
@@ -160,13 +160,13 @@ After completing task status changes, verify Linear is updated:
 **How to Run Evaluation (AUTONOMOUS)**:
 
 ```bash
-# 1. Create or update task in delegation/tasks/2-todo/TASK-*.md (or appropriate folder)
+# 1. Create or update task in .kit/tasks/2-todo/TASK-*.md (or appropriate folder)
 
 # 2. Run evaluation directly via Bash tool
 # For files < 500 lines:
-adversarial evaluate delegation/tasks/2-todo/TASK-FILE.md
+adversarial evaluate .kit/tasks/2-todo/TASK-FILE.md
 # For large files (>500 lines) requiring confirmation:
-echo y | adversarial evaluate delegation/tasks/2-todo/TASK-FILE.md
+echo y | adversarial evaluate .kit/tasks/2-todo/TASK-FILE.md
 
 # 3. Read GPT-4o feedback
 cat .adversarial/logs/TASK-*-PLAN-EVALUATION.md
@@ -191,14 +191,14 @@ cat .adversarial/logs/TASK-*-PLAN-EVALUATION.md
 - After 2 iterations, proceed with best judgment + document decision
 
 ## Documentation Areas
-- Task specifications: `delegation/tasks/` (numbered folders: `2-todo/`, `3-in-progress/`, `5-done/`, etc.)
-- Agent coordination: `.agent-context/agent-handoffs.json`
-- Procedural knowledge: `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md`
+- Task specifications: `.kit/tasks/` (numbered folders: `2-todo/`, `3-in-progress/`, `5-done/`, etc.)
+- Agent coordination: `.kit/context/agent-handoffs.json`
+- Procedural knowledge: `.kit/context/PROCEDURAL-KNOWLEDGE-INDEX.md`
 - Evaluation logs: `.adversarial/logs/`
-- Project state: `.agent-context/current-state.json`
-- Workflows: `.agent-context/workflows/`
+- Project state: `.kit/context/current-state.json`
+- Workflows: `.kit/context/workflows/`
 - Test results and validation
-- Decision logs: `docs/decisions/adr/`
+- Decision logs: `docs/adr/`
 
 ## Task Lifecycle Management (When Assigning Tasks)
 
@@ -207,7 +207,7 @@ cat .adversarial/logs/TASK-*-PLAN-EVALUATION.md
 When assigning tasks to implementation agents, remind them to run:
 
 ```bash
-./scripts/project start <TASK-ID>
+./scripts/core/project start <TASK-ID>
 ```
 
 This command:
@@ -218,11 +218,11 @@ This command:
 ### Available Commands
 
 ```bash
-./scripts/project start <TASK-ID>             # Move to 3-in-progress/
-./scripts/project move <TASK-ID> in-review    # Move to 4-in-review/
-./scripts/project complete <TASK-ID>          # Move to 5-done/
-./scripts/project move <TASK-ID> blocked      # Move to 7-blocked/
-./scripts/project move <TASK-ID> todo         # Return to 2-todo/
+./scripts/core/project start <TASK-ID>             # Move to 3-in-progress/
+./scripts/core/project move <TASK-ID> in-review    # Move to 4-in-review/
+./scripts/core/project complete <TASK-ID>          # Move to 5-done/
+./scripts/core/project move <TASK-ID> blocked      # Move to 7-blocked/
+./scripts/core/project move <TASK-ID> todo         # Return to 2-todo/
 ```
 
 ### Why This Matters
@@ -240,7 +240,7 @@ This command:
 4. Address evaluator feedback
 5. **Create task starter and handoff** (see Task Starter Protocol below)
 6. Assign to appropriate agents (user invokes in new tab)
-7. **Remind agent to run `./scripts/project start <TASK-ID>`** when beginning work
+7. **Remind agent to run `./scripts/core/project start <TASK-ID>`** when beginning work
 8. Monitor progress via agent-handoffs.json
 9. Verify completion
 10. Update documentation and current-state.json
@@ -255,13 +255,13 @@ This command:
 
 ## Task Starter Protocol (NEW STANDARD)
 
-**📖 Template**: `.claude/agents/TASK-STARTER-TEMPLATE.md`
+**📖 Template**: `.kit/templates/TASK-STARTER-TEMPLATE.md`
 
 After task is evaluated and ready for implementation:
 
 ### Step 1: Create Handoff File
 
-Create `.agent-context/[TASK-ID]-HANDOFF-[agent-type].md`:
+Create `.kit/context/[TASK-ID]-HANDOFF-[agent-type].md`:
 - Detailed implementation guidance
 - Critical technical details
 - Starting point code examples
@@ -278,8 +278,8 @@ See template example in TASK-STARTER-TEMPLATE.md
     "status": "completed",
     "current_task": "[TASK-ID]",
     "brief_note": "✅ COMPLETE: [summary]",
-    "details_link": "delegation/tasks/[folder]/[TASK-ID].md",
-    "handoff_file": ".agent-context/[TASK-ID]-HANDOFF-[agent-type].md"
+    "details_link": ".kit/tasks/[folder]/[TASK-ID].md",
+    "handoff_file": ".kit/context/[TASK-ID]-HANDOFF-[agent-type].md"
   }
 }
 ```
@@ -299,8 +299,8 @@ See template example in TASK-STARTER-TEMPLATE.md
 ```markdown
 ## Task Assignment: [TASK-ID] - [Task Title]
 
-**Task File**: `delegation/tasks/[folder]/[TASK-ID].md`
-**Handoff File**: `.agent-context/[TASK-ID]-HANDOFF-[agent-type].md`
+**Task File**: `.kit/tasks/[folder]/[TASK-ID].md`
+**Handoff File**: `.kit/context/[TASK-ID]-HANDOFF-[agent-type].md`
 
 ### Overview
 [2-3 sentences + mission]
@@ -334,31 +334,31 @@ User will:
 3. Agent reads task file + handoff file
 4. Agent begins work
 
-**Complete example**: See `.claude/agents/TASK-STARTER-TEMPLATE.md`
+**Complete example**: See `.kit/templates/TASK-STARTER-TEMPLATE.md`
 
 ## Quick Reference Documentation
 
 **Tycho Procedures** (in order of usage):
 1. **Evaluation Workflow**: `.adversarial/docs/EVALUATION-WORKFLOW.md` (347 lines)
-2. **Task Starter Template**: `.claude/agents/TASK-STARTER-TEMPLATE.md` (NEW STANDARD)
-3. **Task Creation**: `delegation/templates/TASK-TEMPLATE.md`
-4. **Agent Assignment**: `.agent-context/agent-handoffs.json` updates
-5. **Commit Protocol**: `.agent-context/workflows/COMMIT-PROTOCOL.md`
-6. **Procedural Index**: `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md`
+2. **Task Starter Template**: `.kit/templates/TASK-STARTER-TEMPLATE.md` (NEW STANDARD)
+3. **Task Creation**: `.kit/tasks/9-reference/templates/task-template.md`
+4. **Agent Assignment**: `.kit/context/agent-handoffs.json` updates
+5. **Commit Protocol**: `.kit/context/workflows/COMMIT-PROTOCOL.md`
+6. **Procedural Index**: `.kit/context/PROCEDURAL-KNOWLEDGE-INDEX.md`
 
 **Key Files to Maintain**:
-- `.agent-context/agent-handoffs.json` (current agent status, task assignments)
-- `.agent-context/current-state.json` (project state, metrics, phase tracking)
-- `delegation/tasks/` (task specifications in numbered folders: `2-todo/`, `3-in-progress/`, `5-done/`, etc.)
+- `.kit/context/agent-handoffs.json` (current agent status, task assignments)
+- `.kit/context/current-state.json` (project state, metrics, phase tracking)
+- `.kit/tasks/` (task specifications in numbered folders: `2-todo/`, `3-in-progress/`, `5-done/`, etc.)
 - `.adversarial/logs/` (evaluation results - read-only)
 
 **Evaluation Command** (run directly via Bash tool):
 ```bash
 # For files < 500 lines (use appropriate folder):
-adversarial evaluate delegation/tasks/2-todo/TASK-FILE.md
+adversarial evaluate .kit/tasks/2-todo/TASK-FILE.md
 
 # For large files (>500 lines) requiring confirmation:
-echo y | adversarial evaluate delegation/tasks/2-todo/TASK-FILE.md
+echo y | adversarial evaluate .kit/tasks/2-todo/TASK-FILE.md
 ```
 
 ## Allowed Operations
@@ -378,7 +378,7 @@ echo y | adversarial evaluate delegation/tasks/2-todo/TASK-FILE.md
 If you push code changes to GitHub (coordination commits, documentation updates, etc.):
 
 1. **Push your changes**: `git push origin <branch>`
-2. **Verify CI**: Run `./scripts/verify-ci.sh <branch>` to monitor GitHub Actions
+2. **Verify CI**: Run `./scripts/core/verify-ci.sh <branch>` to monitor GitHub Actions
 3. **Wait for result**: Check CI passes before marking coordination work complete
 4. **Handle failures**: If CI fails, fix issues and repeat
 
@@ -387,7 +387,7 @@ If you push code changes to GitHub (coordination commits, documentation updates,
 Run the verification script directly using Bash tool:
 
 ```bash
-./scripts/verify-ci.sh <branch-name>
+./scripts/core/verify-ci.sh <branch-name>
 ```
 
 Note: Tycho runs verification directly via Bash, not via ci-checker agent (which is for implementation agents).
@@ -396,7 +396,7 @@ Note: Tycho runs verification directly via Bash, not via ci-checker agent (which
 
 **Soft Block**: Fix CI failures before completing task, but use judgment for timeout situations.
 
-**Reference**: See `.agent-context/workflows/COMMIT-PROTOCOL.md` for full protocol.
+**Reference**: See `.kit/context/workflows/COMMIT-PROTOCOL.md` for full protocol.
 
 ## Restrictions
 - Should not modify evaluation logs (read-only outputs from `.adversarial/logs/`)

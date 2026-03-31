@@ -16,7 +16,7 @@
 evaluator_model: gpt-4o
 
 # Directory containing task specifications
-task_directory: delegation/tasks/
+task_directory: .kit/tasks/
 
 # Directory for evaluation logs
 log_directory: .adversarial/logs/

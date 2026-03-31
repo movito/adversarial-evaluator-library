@@ -192,20 +192,20 @@ model: gpt-4o
 
 prompt: |
   You are a security expert reviewing code for vulnerabilities.
-  
+
   Focus on:
   - OWASP Top 10 vulnerabilities
   - Input validation and sanitization
   - Authentication and authorization flaws
   - Secrets and credential exposure
   - Injection vulnerabilities (SQL, command, XSS)
-  
+
   For each issue found, provide:
   - Severity (CRITICAL/HIGH/MEDIUM/LOW)
   - Location (file:line)
   - Description of the vulnerability
   - Recommended fix
-  
+
   End with a verdict: APPROVED, NEEDS_REVISION, or REJECT
 
 output_suffix: SECURITY-REVIEW
@@ -320,17 +320,17 @@ Skip `review` for:
 
 **1. Planner creates task specification**
 ```bash
-# Create in delegation/tasks/2-todo/
-delegation/tasks/2-todo/TASK-XXXX-description.md
+# Create in .kit/tasks/2-todo/
+.kit/tasks/2-todo/TASK-XXXX-description.md
 ```
 
 **2. Planner runs evaluation directly via Bash tool**
 ```bash
 # For files < 500 lines:
-adversarial evaluate delegation/tasks/2-todo/TASK-XXXX-description.md
+adversarial evaluate .kit/tasks/2-todo/TASK-XXXX-description.md
 
 # For large files (>500 lines) requiring interactive confirmation:
-echo y | adversarial evaluate delegation/tasks/2-todo/TASK-XXXX-description.md
+echo y | adversarial evaluate .kit/tasks/2-todo/TASK-XXXX-description.md
 ```
 - This invokes Aider with GPT-4o model
 - GPT-4o analyzes plan using evaluation criteria
@@ -349,7 +349,7 @@ cat .adversarial/logs/TASK-XXXX-PLAN-EVALUATION.md
 - Address risk concerns
 
 **5. Planner updates task file based on recommendations**
-- Edit task specification in `delegation/tasks/2-todo/`
+- Edit task specification in `.kit/tasks/2-todo/`
 - Incorporate GPT-4o's suggestions
 - Improve clarity and completeness
 
@@ -436,7 +436,7 @@ adversarial review src/feature/new_module.py
 adversarial review src/feature/
 
 # Review with context from task spec:
-adversarial review src/feature/ --context delegation/tasks/3-in-progress/TASK-0001.md
+adversarial review src/feature/ --context .kit/tasks/3-in-progress/TASK-0001.md
 ```
 - This invokes Aider with GPT-4o model
 - GPT-4o analyzes code using review criteria
@@ -554,8 +554,8 @@ GPT-4o proofreads teaching content using these criteria:
 - Tone: Matches other teaching content?
 
 **Style Guide Integration:**
-- Automatically checks `.agent-context/documentation-style-guide.md` if present
-- Automatically checks `.agent-context/agentive-development-glossary.md` if present
+- Automatically checks `.kit/context/documentation-style-guide.md` if present
+- Automatically checks `.kit/context/agentive-development-glossary.md` if present
 - Evaluates against these standards
 
 **Does NOT evaluate for:**
@@ -856,19 +856,19 @@ Markdown with structured sections:
 - **CLI location**: `/Library/Frameworks/Python.framework/Versions/3.11/bin/adversarial`
 
 ### Related Documentation:
-- **Verification report**: `.agent-context/ADVERSARIAL-VERIFICATION.md` (280 lines)
-- **Workflow verification**: `delegation/handoffs/EVALUATOR-WORKFLOW-VERIFICATION-2025-10-24.md` (293 lines)
+- **Verification report**: `.kit/context/ADVERSARIAL-VERIFICATION.md` (280 lines)
+- **Workflow verification**: `.kit/context/EVALUATOR-WORKFLOW-VERIFICATION-2025-10-24.md` (293 lines)
 - **Evaluation logs**: `.adversarial/logs/TASK-*-PLAN-EVALUATION.md` (all evaluations)
 - **Proofreading logs**: `.adversarial/logs/*-PROOFREADING.md` (all proofreading)
 - **Evaluation wrapper script**: `.adversarial/scripts/evaluate_plan.sh`
 - **Proofreading wrapper script**: `.adversarial/scripts/proofread_content.sh`
 - **Bugfix docs**: `.adversarial/docs/BUGFIX-OUTPUT-CAPTURE.md` (tee output capture fix)
-- **ADR**: `docs/decisions/adr/ADR-0011-adversarial-workflow-integration.md`
+- **ADR**: `docs/adr/ADR-0011-adversarial-workflow-integration.md`
 
 ### Quick Reference:
-- **Procedural index**: `.agent-context/PROCEDURAL-KNOWLEDGE-INDEX.md` → Planner Procedures → Evaluation Workflow
-- **Style guide**: `.agent-context/documentation-style-guide.md` (used by proofreader)
-- **Glossary**: `.agent-context/agentive-development-glossary.md` (used by proofreader)
+- **Procedural index**: `.kit/context/PROCEDURAL-KNOWLEDGE-INDEX.md` → Planner Procedures → Evaluation Workflow
+- **Style guide**: `.kit/context/documentation-style-guide.md` (used by proofreader)
+- **Glossary**: `.kit/context/agentive-development-glossary.md` (used by proofreader)
 
 ---
 
@@ -876,7 +876,7 @@ Markdown with structured sections:
 
 ```bash
 # Plan Evaluation (for code/architecture)
-adversarial evaluate delegation/tasks/2-todo/TASK-FILE.md
+adversarial evaluate .kit/tasks/2-todo/TASK-FILE.md
 cat .adversarial/logs/TASK-*-PLAN-EVALUATION.md
 
 # Proofreading (for teaching content)
@@ -885,7 +885,7 @@ cat .adversarial/logs/concept-PROOFREADING.md
 
 # Code Review (for implemented code)
 adversarial review src/feature/module.py
-adversarial review src/feature/ --context delegation/tasks/3-in-progress/TASK-0001.md
+adversarial review src/feature/ --context .kit/tasks/3-in-progress/TASK-0001.md
 cat .adversarial/logs/module-CODE-REVIEW.md
 
 # Discovery & Custom Evaluators

@@ -150,7 +150,7 @@ class TestTaskParser:
     def test_parse_extracts_task_id_from_filename(self, tmp_task_file):
         """TaskParser should extract task ID from filename."""
         # Import will fail until implementation exists
-        from scripts.linear_sync_utils import parse_task_metadata
+        from scripts.optional.linear_sync_utils import parse_task_metadata
 
         # Act
         metadata = parse_task_metadata(tmp_task_file)
@@ -160,7 +160,7 @@ class TestTaskParser:
 
     def test_parse_extracts_title_from_heading(self, tmp_task_file):
         """TaskParser should extract title from first heading."""
-        from scripts.linear_sync_utils import parse_task_metadata
+        from scripts.optional.linear_sync_utils import parse_task_metadata
 
         # Act
         metadata = parse_task_metadata(tmp_task_file)
@@ -170,7 +170,7 @@ class TestTaskParser:
 
     def test_parse_extracts_status_field(self, tmp_task_file):
         """TaskParser should extract status from metadata."""
-        from scripts.linear_sync_utils import parse_task_metadata
+        from scripts.optional.linear_sync_utils import parse_task_metadata
 
         # Act
         metadata = parse_task_metadata(tmp_task_file)
@@ -180,7 +180,7 @@ class TestTaskParser:
 
     def test_parse_extracts_priority_field(self, tmp_task_file):
         """TaskParser should extract priority from metadata."""
-        from scripts.linear_sync_utils import parse_task_metadata
+        from scripts.optional.linear_sync_utils import parse_task_metadata
 
         # Act
         metadata = parse_task_metadata(tmp_task_file)
@@ -190,7 +190,7 @@ class TestTaskParser:
 
     def test_parse_raises_on_missing_title(self, tmp_path, task_content_no_title):
         """TaskParser should raise ValueError for missing title."""
-        from scripts.linear_sync_utils import parse_task_metadata
+        from scripts.optional.linear_sync_utils import parse_task_metadata
 
         # Arrange
         task_file = (
@@ -205,7 +205,7 @@ class TestTaskParser:
 
     def test_parse_handles_missing_status(self, tmp_path, task_content_no_status):
         """TaskParser should return None for status if field missing."""
-        from scripts.linear_sync_utils import parse_task_metadata
+        from scripts.optional.linear_sync_utils import parse_task_metadata
 
         # Arrange
         task_file = (
@@ -222,7 +222,7 @@ class TestTaskParser:
 
     def test_parse_empty_file_raises(self, tmp_path):
         """TaskParser should raise ValueError for empty file."""
-        from scripts.linear_sync_utils import parse_task_metadata
+        from scripts.optional.linear_sync_utils import parse_task_metadata
 
         # Arrange
         task_file = tmp_path / "delegation" / "tasks" / "2-todo" / "TASK-0000-empty.md"
@@ -244,7 +244,7 @@ class TestStatusDetermination:
 
     def test_is_linear_native_status_valid(self):
         """Valid Linear statuses should return True."""
-        from scripts.linear_sync_utils import is_linear_native_status
+        from scripts.optional.linear_sync_utils import is_linear_native_status
 
         valid_statuses = [
             "Backlog",
@@ -261,7 +261,7 @@ class TestStatusDetermination:
 
     def test_is_linear_native_status_invalid(self):
         """Invalid/legacy statuses should return False."""
-        from scripts.linear_sync_utils import is_linear_native_status
+        from scripts.optional.linear_sync_utils import is_linear_native_status
 
         invalid_statuses = ["draft", "planning", "in_progress", "completed", "ready"]
 
@@ -270,7 +270,7 @@ class TestStatusDetermination:
 
     def test_is_linear_native_status_case_sensitive(self):
         """Status check should be case-sensitive."""
-        from scripts.linear_sync_utils import is_linear_native_status
+        from scripts.optional.linear_sync_utils import is_linear_native_status
 
         # "Todo" is valid, "todo" is not
         assert is_linear_native_status("Todo") is True
@@ -279,7 +279,7 @@ class TestStatusDetermination:
 
     def test_determine_status_from_folder_backlog(self, tmp_path):
         """1-backlog folder should map to Backlog status."""
-        from scripts.linear_sync_utils import determine_status_from_path
+        from scripts.optional.linear_sync_utils import determine_status_from_path
 
         task_file = tmp_path / "delegation" / "tasks" / "1-backlog" / "TASK-0001.md"
 
@@ -287,7 +287,7 @@ class TestStatusDetermination:
 
     def test_determine_status_from_folder_todo(self, tmp_path):
         """2-todo folder should map to Todo status."""
-        from scripts.linear_sync_utils import determine_status_from_path
+        from scripts.optional.linear_sync_utils import determine_status_from_path
 
         task_file = tmp_path / "delegation" / "tasks" / "2-todo" / "TASK-0001.md"
 
@@ -295,7 +295,7 @@ class TestStatusDetermination:
 
     def test_determine_status_from_folder_in_progress(self, tmp_path):
         """3-in-progress folder should map to In Progress status."""
-        from scripts.linear_sync_utils import determine_status_from_path
+        from scripts.optional.linear_sync_utils import determine_status_from_path
 
         task_file = tmp_path / "delegation" / "tasks" / "3-in-progress" / "TASK-0001.md"
 
@@ -303,7 +303,7 @@ class TestStatusDetermination:
 
     def test_determine_status_from_folder_in_review(self, tmp_path):
         """4-in-review folder should map to In Review status."""
-        from scripts.linear_sync_utils import determine_status_from_path
+        from scripts.optional.linear_sync_utils import determine_status_from_path
 
         task_file = tmp_path / "delegation" / "tasks" / "4-in-review" / "TASK-0001.md"
 
@@ -311,7 +311,7 @@ class TestStatusDetermination:
 
     def test_determine_status_from_folder_done(self, tmp_path):
         """5-done folder should map to Done status."""
-        from scripts.linear_sync_utils import determine_status_from_path
+        from scripts.optional.linear_sync_utils import determine_status_from_path
 
         task_file = tmp_path / "delegation" / "tasks" / "5-done" / "TASK-0001.md"
 
@@ -319,7 +319,7 @@ class TestStatusDetermination:
 
     def test_determine_status_from_folder_canceled(self, tmp_path):
         """6-canceled folder should map to Canceled status."""
-        from scripts.linear_sync_utils import determine_status_from_path
+        from scripts.optional.linear_sync_utils import determine_status_from_path
 
         task_file = tmp_path / "delegation" / "tasks" / "6-canceled" / "TASK-0001.md"
 
@@ -327,7 +327,7 @@ class TestStatusDetermination:
 
     def test_determine_status_from_folder_blocked(self, tmp_path):
         """7-blocked folder should map to Blocked status."""
-        from scripts.linear_sync_utils import determine_status_from_path
+        from scripts.optional.linear_sync_utils import determine_status_from_path
 
         task_file = tmp_path / "delegation" / "tasks" / "7-blocked" / "TASK-0001.md"
 
@@ -335,7 +335,7 @@ class TestStatusDetermination:
 
     def test_determine_status_from_unknown_folder(self, tmp_path):
         """Unknown folder should return None."""
-        from scripts.linear_sync_utils import determine_status_from_path
+        from scripts.optional.linear_sync_utils import determine_status_from_path
 
         task_file = (
             tmp_path / "delegation" / "tasks" / "unknown-folder" / "TASK-0001.md"
@@ -345,7 +345,7 @@ class TestStatusDetermination:
 
     def test_final_status_field_takes_priority(self, tmp_task_file):
         """Status field should take priority over folder location."""
-        from scripts.linear_sync_utils import determine_final_status
+        from scripts.optional.linear_sync_utils import determine_final_status
 
         # File has Status: Todo, but is in 2-todo folder
         # Should use field value (Todo)
@@ -357,7 +357,7 @@ class TestStatusDetermination:
 
     def test_final_status_falls_back_to_folder(self, tmp_task_file):
         """Should fall back to folder when field is None."""
-        from scripts.linear_sync_utils import determine_final_status
+        from scripts.optional.linear_sync_utils import determine_final_status
 
         status_field = None  # No status field
 
@@ -368,7 +368,7 @@ class TestStatusDetermination:
 
     def test_final_status_defaults_to_backlog(self, tmp_path):
         """Should default to Backlog when no field or folder."""
-        from scripts.linear_sync_utils import determine_final_status
+        from scripts.optional.linear_sync_utils import determine_final_status
 
         task_file = tmp_path / "random" / "TASK-0001.md"
         status_field = None
@@ -388,7 +388,7 @@ class TestLegacyStatusMigration:
 
     def test_migrate_draft_to_backlog(self, tmp_task_file_legacy):
         """'draft' should migrate to 'Backlog'."""
-        from scripts.linear_sync_utils import migrate_legacy_status
+        from scripts.optional.linear_sync_utils import migrate_legacy_status
 
         # Act
         result = migrate_legacy_status(tmp_task_file_legacy, "draft")
@@ -401,7 +401,7 @@ class TestLegacyStatusMigration:
 
     def test_migrate_in_progress_to_linear(self, tmp_path):
         """'in_progress' should migrate to 'In Progress'."""
-        from scripts.linear_sync_utils import migrate_legacy_status
+        from scripts.optional.linear_sync_utils import migrate_legacy_status
 
         # Arrange
         task_file = tmp_path / "TASK-0001.md"
@@ -417,7 +417,7 @@ class TestLegacyStatusMigration:
 
     def test_migrate_completed_to_done(self, tmp_path):
         """'completed' should migrate to 'Done'."""
-        from scripts.linear_sync_utils import migrate_legacy_status
+        from scripts.optional.linear_sync_utils import migrate_legacy_status
 
         # Arrange
         task_file = tmp_path / "TASK-0001.md"
@@ -433,7 +433,7 @@ class TestLegacyStatusMigration:
 
     def test_migrate_unknown_status_returns_false(self, tmp_path):
         """Unknown status should not be migrated."""
-        from scripts.linear_sync_utils import migrate_legacy_status
+        from scripts.optional.linear_sync_utils import migrate_legacy_status
 
         # Arrange
         task_file = tmp_path / "TASK-0001.md"
@@ -447,7 +447,7 @@ class TestLegacyStatusMigration:
 
     def test_migrate_already_native_returns_false(self, tmp_task_file):
         """Already Linear-native status should not be changed."""
-        from scripts.linear_sync_utils import migrate_legacy_status
+        from scripts.optional.linear_sync_utils import migrate_legacy_status
 
         # File already has "Status: Todo" which is native
         result = migrate_legacy_status(tmp_task_file, "Todo")
@@ -466,19 +466,19 @@ class TestSyncExclusion:
 
     def test_should_sync_normal_folder(self, tmp_task_file):
         """Tasks in normal folders should be synced."""
-        from scripts.linear_sync_utils import should_sync_task
+        from scripts.optional.linear_sync_utils import should_sync_task
 
         assert should_sync_task(tmp_task_file) is True
 
     def test_should_not_sync_archive_folder(self, tmp_task_file_archive):
         """Tasks in 8-archive folder should NOT be synced."""
-        from scripts.linear_sync_utils import should_sync_task
+        from scripts.optional.linear_sync_utils import should_sync_task
 
         assert should_sync_task(tmp_task_file_archive) is False
 
     def test_should_not_sync_reference_folder(self, tmp_path, task_content_valid):
         """Tasks in 9-reference folder should NOT be synced."""
-        from scripts.linear_sync_utils import should_sync_task
+        from scripts.optional.linear_sync_utils import should_sync_task
 
         # Arrange
         task_file = tmp_path / "delegation" / "tasks" / "9-reference" / "TASK-0001.md"
@@ -500,15 +500,15 @@ class TestLinearClient:
 
     def test_client_initialization(self):
         """LinearClient should initialize with API key."""
-        from scripts.sync_tasks_to_linear import LinearClient
+        from scripts.optional.sync_tasks_to_linear import LinearClient
 
-        with patch("scripts.sync_tasks_to_linear.Client"):
+        with patch("scripts.optional.sync_tasks_to_linear.Client"):
             client = LinearClient("test-api-key")
             assert client is not None
 
     def test_find_issue_by_task_id(self):
         """Should find existing issue by task ID in title."""
-        from scripts.sync_tasks_to_linear import LinearClient
+        from scripts.optional.sync_tasks_to_linear import LinearClient
 
         # Arrange
         mock_client = MagicMock()
@@ -524,7 +524,9 @@ class TestLinearClient:
             }
         }
 
-        with patch("scripts.sync_tasks_to_linear.Client", return_value=mock_client):
+        with patch(
+            "scripts.optional.sync_tasks_to_linear.Client", return_value=mock_client
+        ):
             client = LinearClient("test-api-key")
             client.client = mock_client
 
@@ -537,13 +539,15 @@ class TestLinearClient:
 
     def test_find_issue_returns_none_when_not_found(self):
         """Should return None when issue not found."""
-        from scripts.sync_tasks_to_linear import LinearClient
+        from scripts.optional.sync_tasks_to_linear import LinearClient
 
         # Arrange
         mock_client = MagicMock()
         mock_client.execute.return_value = {"issues": {"nodes": []}}
 
-        with patch("scripts.sync_tasks_to_linear.Client", return_value=mock_client):
+        with patch(
+            "scripts.optional.sync_tasks_to_linear.Client", return_value=mock_client
+        ):
             client = LinearClient("test-api-key")
             client.client = mock_client
 
@@ -565,7 +569,7 @@ class TestSyncIntegration:
 
     def test_sync_creates_new_issue(self, tmp_task_file):
         """Sync should create new Linear issue for new task."""
-        from scripts.sync_tasks_to_linear import sync_task
+        from scripts.optional.sync_tasks_to_linear import sync_task
 
         # Arrange
         mock_client = MagicMock()
@@ -584,7 +588,7 @@ class TestSyncIntegration:
 
     def test_sync_updates_existing_issue(self, tmp_task_file):
         """Sync should update existing Linear issue."""
-        from scripts.sync_tasks_to_linear import sync_task
+        from scripts.optional.sync_tasks_to_linear import sync_task
 
         # Arrange
         mock_client = MagicMock()
@@ -603,7 +607,7 @@ class TestSyncIntegration:
 
     def test_sync_skips_archive_task(self, tmp_task_file_archive):
         """Sync should skip tasks in archive folder."""
-        from scripts.sync_tasks_to_linear import sync_task
+        from scripts.optional.sync_tasks_to_linear import sync_task
 
         # Arrange
         mock_client = MagicMock()
@@ -627,7 +631,7 @@ class TestGitHubUrl:
 
     def test_github_url_from_env_var(self, tmp_task_file, monkeypatch):
         """Should use GITHUB_REPO_URL env var when set."""
-        from scripts.linear_sync_utils import get_github_file_url
+        from scripts.optional.linear_sync_utils import get_github_file_url
 
         monkeypatch.setenv("GITHUB_REPO_URL", "https://github.com/org/repo")
 
@@ -637,7 +641,7 @@ class TestGitHubUrl:
 
     def test_github_url_auto_detect(self, tmp_task_file, monkeypatch):
         """Should auto-detect from git remote when env var not set."""
-        from scripts.linear_sync_utils import get_github_file_url
+        from scripts.optional.linear_sync_utils import get_github_file_url
 
         monkeypatch.delenv("GITHUB_REPO_URL", raising=False)
 
@@ -662,9 +666,9 @@ class TestTeamResolution:
 
     def test_resolve_team_id_with_uuid(self):
         """Should return UUID as-is when given a UUID."""
-        from scripts.sync_tasks_to_linear import LinearClient
+        from scripts.optional.sync_tasks_to_linear import LinearClient
 
-        with patch("scripts.sync_tasks_to_linear.Client"):
+        with patch("scripts.optional.sync_tasks_to_linear.Client"):
             client = LinearClient("test-api-key")
             uuid = "89b26800-e1e6-4998-bedf-04195e592cd9"
             result = client.resolve_team_id(uuid)
@@ -673,9 +677,9 @@ class TestTeamResolution:
 
     def test_resolve_team_id_with_key(self):
         """Should look up UUID when given a team KEY."""
-        from scripts.sync_tasks_to_linear import LinearClient
+        from scripts.optional.sync_tasks_to_linear import LinearClient
 
-        with patch("scripts.sync_tasks_to_linear.Client"):
+        with patch("scripts.optional.sync_tasks_to_linear.Client"):
             client = LinearClient("test-api-key")
             mock_gql_client = MagicMock()
             client.client = mock_gql_client
@@ -697,9 +701,9 @@ class TestTeamResolution:
 
     def test_resolve_team_id_with_none(self):
         """Should call get_default_team() when given None."""
-        from scripts.sync_tasks_to_linear import LinearClient
+        from scripts.optional.sync_tasks_to_linear import LinearClient
 
-        with patch("scripts.sync_tasks_to_linear.Client"):
+        with patch("scripts.optional.sync_tasks_to_linear.Client"):
             client = LinearClient("test-api-key")
             mock_gql_client = MagicMock()
             client.client = mock_gql_client
@@ -720,9 +724,9 @@ class TestTeamResolution:
 
     def test_resolve_team_id_unknown_key_raises(self):
         """Should raise ValueError when team KEY not found."""
-        from scripts.sync_tasks_to_linear import LinearClient
+        from scripts.optional.sync_tasks_to_linear import LinearClient
 
-        with patch("scripts.sync_tasks_to_linear.Client"):
+        with patch("scripts.optional.sync_tasks_to_linear.Client"):
             client = LinearClient("test-api-key")
             mock_gql_client = MagicMock()
             client.client = mock_gql_client
@@ -745,9 +749,9 @@ class TestTeamResolution:
 
     def test_resolve_team_id_empty_string_uses_default(self):
         """Should treat empty string as None and use default team."""
-        from scripts.sync_tasks_to_linear import LinearClient
+        from scripts.optional.sync_tasks_to_linear import LinearClient
 
-        with patch("scripts.sync_tasks_to_linear.Client"):
+        with patch("scripts.optional.sync_tasks_to_linear.Client"):
             client = LinearClient("test-api-key")
             mock_gql_client = MagicMock()
             client.client = mock_gql_client
