@@ -1,6 +1,6 @@
 # AEL-0013: Migrate to .kit/ Directory Layout
 
-**Status**: In Review
+**Status**: Done
 **Priority**: Medium
 **Type**: Infrastructure
 **Estimated Effort**: 2-3 hours
