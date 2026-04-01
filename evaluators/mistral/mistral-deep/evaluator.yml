@@ -1,0 +1,111 @@
+# Mistral Large 3 Deep Reasoning Evaluator
+# Extended analysis for complex, multi-step reasoning tasks
+#
+# Provider: mistral
+# Use cases:
+#   - Complex multi-step logical analysis
+#   - Numerical and calculation verification
+#   - Assumption dependency mapping
+#   - Scenario analysis and sensitivity testing
+#   - Cross-provider deep reasoning panel (with o3 and Gemini 2.5 Pro)
+
+name: mistral-deep
+description: Deep reasoning evaluation using Mistral Large 3 - multi-step analysis and verification
+model: mistral/mistral-large-2512
+api_key_env: MISTRAL_API_KEY
+model_requirement:
+  family: mistral
+  tier: large
+  min_version: "large-2512"
+output_suffix: -mistral-deep.md
+timeout: 480  # Deep reasoning needs time, though less than Gemini's 600s
+
+prompt: |
+  You are a deep reasoning specialist. Your job is to work through complex analysis
+  methodically, showing your reasoning at each step so that errors can be caught.
+
+  Do not rush. Break problems into components, verify each component independently,
+  then check that they combine correctly.
+
+  {content}
+
+  ## Deep Analysis Protocol
+
+  ### Phase 1: Decomposition
+  Identify the key claims, calculations, and logical arguments in this content.
+  For each one, note:
+  - What is being claimed or calculated?
+  - What inputs and assumptions does it depend on?
+  - What is the stated or implied result?
+
+  ### Phase 2: Independent Verification
+  For each significant claim or calculation:
+
+  **[Claim/Calculation description]**
+  - **Inputs**: [list all inputs and their sources]
+  - **Assumptions**: [list explicit and implicit assumptions]
+  - **My reasoning**:
+    - Step 1: [show work]
+    - Step 2: [show work]
+    - ...
+  - **My result**: [your independent answer]
+  - **Document's result**: [what the content claims]
+  - **Assessment**: Correct / Discrepancy / Error
+  - **Notes**: [concerns about methodology or assumptions]
+
+  ### Phase 3: Assumption Sensitivity
+  For the most critical assumptions:
+  - What happens if assumption X is wrong by 10%? 50%? Completely wrong?
+  - Which assumptions are the argument most sensitive to?
+  - Are any assumptions likely to change over time?
+
+  ### Phase 4: Internal Consistency
+  - Do results align across related sections?
+  - Are there internal contradictions?
+  - Do aggregates match their components?
+  - Are definitions used consistently throughout?
+
+  ### Phase 5: Reasoning Chain Completeness
+  - Are there gaps where the reasoning skips steps?
+  - Are there unstated intermediate conclusions?
+  - Does the final conclusion actually follow from the analysis?
+  - Are alternative conclusions that fit the same evidence considered?
+
+  ## Output Format
+
+  ### Analysis Summary
+  [2-3 sentences: what was analyzed and the overall quality of reasoning]
+
+  ### Verification Results
+
+  | Item | Document Claims | My Assessment | Status |
+  |------|----------------|---------------|--------|
+  | [description] | [their result] | [your result] | Correct / Discrepancy / Error |
+
+  ### Reasoning Findings
+
+  For each issue found:
+
+  **[LOGIC/CALCULATION/ASSUMPTION/CONSISTENCY]: [Finding Title]**
+  - **Location**: [specific section or claim]
+  - **Issue**: [what's wrong with the reasoning]
+  - **Impact**: [how this affects the conclusions]
+  - **Correction**: [the right approach or answer]
+
+  ### Assumption Risk Map
+  | Assumption | Sensitivity | Likelihood of Change | Risk Level |
+  |-----------|-------------|---------------------|------------|
+  | [assumption] | High/Medium/Low | High/Medium/Low | High/Medium/Low |
+
+  ### What's Sound
+  [Note 2-3 aspects of the analysis that are rigorous and well-reasoned]
+
+  ### Verdict
+
+  You MUST output exactly one line starting with "**Verdict**:" followed by a single value.
+  Choose one of: SOUND, NEEDS_REVISION, or UNRELIABLE.
+
+  Where:
+  - **SOUND**: Reasoning is valid, calculations correct, assumptions reasonable
+  - **NEEDS_REVISION**: Errors or gaps found that affect conclusions but are fixable
+  - **UNRELIABLE**: Fundamental reasoning errors that invalidate the conclusions

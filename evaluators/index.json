@@ -155,6 +155,30 @@
       "description": "Code-focused review for scripts and configs"
     },
     {
+      "name": "mistral-arch",
+      "provider": "mistral",
+      "path": "mistral/mistral-arch/evaluator.yml",
+      "model": "mistral/mistral-large-2512",
+      "category": "arch-review",
+      "description": "Architectural review using Mistral Large 3 - alternative provider perspective"
+    },
+    {
+      "name": "mistral-adversarial",
+      "provider": "mistral",
+      "path": "mistral/mistral-adversarial/evaluator.yml",
+      "model": "mistral/mistral-large-2512",
+      "category": "adversarial",
+      "description": "Adversarial review using Mistral Large 3 - independent third-provider stress-testing"
+    },
+    {
+      "name": "mistral-deep",
+      "provider": "mistral",
+      "path": "mistral/mistral-deep/evaluator.yml",
+      "model": "mistral/mistral-large-2512",
+      "category": "deep-reasoning",
+      "description": "Deep reasoning using Mistral Large 3 - multi-step analysis and verification"
+    },
+    {
       "name": "claude-adversarial",
       "provider": "anthropic",
       "path": "anthropic/claude-adversarial/evaluator.yml",
@@ -203,7 +227,7 @@
     },
     "mistral": {
       "api_key_env": "MISTRAL_API_KEY",
-      "evaluators": ["mistral-content", "mistral-fast", "codestral-code"]
+      "evaluators": ["mistral-content", "mistral-fast", "codestral-code", "mistral-arch", "mistral-adversarial", "mistral-deep"]
     }
   }
 }
