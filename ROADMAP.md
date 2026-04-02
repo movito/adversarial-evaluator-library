@@ -6,55 +6,62 @@ A **starter kit** of adversarial evaluators that demonstrates cognitive diversit
 
 **Not a goal**: Exhaustive coverage of every model and provider.
 
-## Current State (v1.0.0)
+## Current State (v0.5.3)
 
-**12 evaluators** across 3 providers:
-- OpenAI: 6 evaluators
-- Google: 3 evaluators
-- Mistral: 3 evaluators
+**25 evaluators** across **4 providers** and **7 categories**:
 
-**Coverage gaps**:
-- Anthropic/Claude: Missing entirely
-- Several categories have single-provider coverage
+| Provider | Evaluators | Models |
+|----------|-----------|--------|
+| OpenAI | 10 | gpt-5.2, o3, o1, o1-mini, gpt-4o, gpt-5-turbo |
+| Google | 6 | gemini-2.5-flash, gemini-2.5-pro, gemini-3.1-pro-preview |
+| Mistral | 6 | mistral-large-2411, mistral-large-2512, mistral-small-2503, codestral |
+| Anthropic | 3 | claude-opus-4-6, claude-sonnet-4-5, claude-haiku-4-5 |
 
-## Phases
+**Category coverage** (all categories have 2+ providers):
 
-### Phase 1: Fill Critical Gaps (Next)
+| Category | Providers | Count |
+|----------|-----------|-------|
+| code-review | OpenAI, Google, Mistral, Anthropic | 8 |
+| quick-check | OpenAI, Google, Mistral, Anthropic | 4 |
+| arch-review | OpenAI, Google, Mistral | 3 |
+| deep-reasoning | OpenAI, Google, Mistral | 3 |
+| adversarial | OpenAI, Mistral, Anthropic | 3 |
+| knowledge-synthesis | OpenAI, Google | 2 |
+| cognitive-diversity | OpenAI, Mistral | 2 |
 
-Add Anthropic as Tier 1 provider and ensure each category has 2+ providers.
+## Completed Milestones
 
-| Evaluator | Provider | Category | Priority |
-|-----------|----------|----------|----------|
-| `claude-adversarial` | Anthropic | adversarial | High |
-| `claude-code` | Anthropic | code-review | High |
-| `claude-quick` | Anthropic | quick-check | High |
-| `gemini-code` | Google | code-review | Medium |
-| `gpt5-diversity` | OpenAI | cognitive-diversity | Medium |
-| `gpt5-synthesis` | OpenAI | knowledge-synthesis | Medium |
+- **Phase 1** (v0.4.0–v0.5.0): Added Anthropic as Tier 1 provider (claude-adversarial, claude-code, claude-quick). All categories now have 2+ providers.
+- **Phase 1.5** (v0.5.1–v0.5.3): Evaluator config fixes, prompt injection guardrails, model migrations (gemini-3-pro → gemini-3.1-pro-preview).
+- **Mistral expansion** (v0.5.3+): Added mistral-arch, mistral-adversarial, mistral-deep using Mistral Large 3 (2512).
 
-**Target**: 18 evaluators, 4 providers
+## Next
 
-### Phase 2: Tier 2 Providers
+### Hardening & Quality
 
-Add Cohere for enterprise/RAG perspective.
+Stabilize the existing 25 evaluators before expanding further.
 
-| Evaluator | Provider | Category |
-|-----------|----------|----------|
-| `cohere-reasoning` | Cohere | deep-reasoning |
-| `cohere-synthesis` | Cohere | knowledge-synthesis |
+- Fix Mistral/aider whole-edit-format corruption (evaluator pipeline bug)
+- Update README badge to v0.5.3
+- Consider Unified Artifact Registry ([ADR-0007](docs/adr/ADR-0007-unified-artifact-registry.md)) for cross-project distribution
 
-**Target**: 19 evaluators, 5 providers
+### Coverage Gaps (Optional)
 
-### Phase 3: Specialists (Optional)
+Areas where a new evaluator would add meaningful diversity:
 
-Add emerging providers with specific strengths.
+| Gap | Candidate | Why |
+|-----|-----------|-----|
+| Anthropic arch-review | `claude-arch` | Anthropic missing from arch-review category |
+| Anthropic deep-reasoning | `claude-deep` | Anthropic missing from deep-reasoning |
+| Anthropic knowledge-synthesis | `claude-synthesis` | Category has only 2 providers |
+| Anthropic cognitive-diversity | `claude-diversity` | Category has only 2 providers |
+| Tier 2 provider | Cohere or DeepSeek | A 5th provider adds independent perspective |
 
-| Evaluator | Provider | Specialty |
-|-----------|----------|-----------|
-| `deepseek-code` | DeepSeek | Code analysis |
-| `llama-baseline` | Groq | Open source baseline |
+### Longer Term
 
-**Target**: ~22-25 evaluators
+- Unified Artifact Registry (ADR-0007, implementation in agentive-starter-kit)
+- Evaluator versioning and update notifications
+- Cost tracking and budget-tier recommendations
 
 ## Principles
 
