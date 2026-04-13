@@ -24,7 +24,7 @@ authors = [
 dependencies = [
     # Linear sync (optional at runtime - tests skip gracefully if not installed)
     "gql[requests]>=3.4.0",    # GraphQL client for Linear API
-    "python-dotenv>=1.0.0",    # Load .env files
+    "python-dotenv>=1.2.1",    # Load .env files
 ]
 
 [project.optional-dependencies]
