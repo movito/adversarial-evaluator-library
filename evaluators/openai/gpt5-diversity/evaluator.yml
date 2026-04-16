@@ -1,4 +1,4 @@
-# GPT-5 Turbo Cognitive Diversity Evaluator
+# GPT-5 Cognitive Diversity Evaluator
 # Alternative perspective review for blind-spot detection
 #
 # Provider: openai
@@ -10,8 +10,8 @@
 #   - Multi-viewpoint validation
 
 name: gpt5-diversity
-description: Cognitive diversity review using GPT-5 Turbo for alternative perspectives
-model: openai/gpt-5-turbo-2025-11-01
+description: Cognitive diversity review using GPT-5 for alternative perspectives
+model: gpt-5
 api_key_env: OPENAI_API_KEY
 model_requirement:
   family: gpt

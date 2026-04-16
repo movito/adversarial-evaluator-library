@@ -7,7 +7,7 @@
 #
 # See ADR-0005 for the interface contract specification.
 
-schema_version: "1.0.2"  # 1.0.2: Model refresh — Opus 4.7, Sonnet 4.6, o4-mini, gpt-5/nano, Small 4, Magistral (2026-04-16)
+schema_version: "1.0.3"  # 1.0.3: Fix invalid model IDs — remove gpt-5-turbo, update magistral-medium-2507→2509 (2026-04-17)
 
 providers:
   # ============================================================================
@@ -33,12 +33,6 @@ providers:
             version: "5"
             context_window: 128000
             released: 2025-08-07
-            status: active
-
-          - id: gpt-5-turbo-2025-11-01
-            version: "5"
-            context_window: 128000
-            released: 2025-11-01
             status: active
 
       standard:
@@ -327,12 +321,19 @@ providers:
         capability_level: 4
         typical_use: "Dedicated reasoning model"
         models:
+          - id: magistral-medium-2509
+            version: "medium-2509"
+            context_window: 128000
+            released: 2025-09-01
+            status: active
+            note: "Magistral Medium 1.2 — dedicated reasoning architecture"
+
           - id: magistral-medium-2507
             version: "medium-2507"
             context_window: 128000
             released: 2025-07-01
-            status: active
-            note: "Magistral Medium 1.2 — dedicated reasoning architecture"
+            status: deprecated
+            note: "Retired Nov 2025 — use magistral-medium-2509"
 
       small:
         capability_level: 3

@@ -1,4 +1,4 @@
-# GPT-5 Turbo Knowledge Synthesis Evaluator
+# GPT-5 Knowledge Synthesis Evaluator
 # Cross-reference and completeness validation
 #
 # Provider: openai
@@ -10,8 +10,8 @@
 #   - Research completeness verification
 
 name: gpt5-synthesis
-description: Knowledge synthesis using GPT-5 Turbo for cross-referencing and completeness
-model: openai/gpt-5-turbo-2025-11-01
+description: Knowledge synthesis using GPT-5 for cross-referencing and completeness
+model: gpt-5
 api_key_env: OPENAI_API_KEY
 model_requirement:
   family: gpt

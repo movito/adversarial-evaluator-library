@@ -50,7 +50,7 @@ Using OpenAI's model for cognitive diversity provides a different "thinking styl
 
 ```yaml
 api_key_env: OPENAI_API_KEY
-model: gpt-5-turbo-2025-11-01
+model: gpt-5
 ```
 
 ## Example Usage

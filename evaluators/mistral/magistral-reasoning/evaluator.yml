@@ -11,12 +11,12 @@
 
 name: magistral-reasoning
 description: Deep reasoning using Magistral Medium - Mistral's dedicated reasoning model
-model: mistral/magistral-medium-2507
+model: mistral/magistral-medium-2509
 api_key_env: MISTRAL_API_KEY
 model_requirement:
   family: magistral
   tier: medium
-  min_version: "medium-2507"
+  min_version: "medium-2509"
 output_suffix: -magistral-reasoning.md
 timeout: 480  # Reasoning models need extended time
 

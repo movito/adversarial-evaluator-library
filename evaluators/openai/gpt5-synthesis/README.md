@@ -50,7 +50,7 @@ GPT-5 Turbo provides strong analytical capabilities for synthesis tasks. For ver
 
 ```yaml
 api_key_env: OPENAI_API_KEY
-model: gpt-5-turbo-2025-11-01
+model: gpt-5
 ```
 
 ## Example Usage

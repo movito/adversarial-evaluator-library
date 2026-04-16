@@ -127,11 +127,11 @@ class TestRegistrySchema:
         with open(REGISTRY_PATH) as f:
             return yaml.safe_load(f)
 
-    def test_schema_version_is_1_0_2(self, registry):
-        """Registry should be at schema version 1.0.2 after model refresh."""
+    def test_schema_version_is_1_0_3(self, registry):
+        """Registry should be at schema version 1.0.3 after model ID fixes."""
         assert (
-            registry["schema_version"] == "1.0.2"
-        ), f"Expected schema_version 1.0.2, got: {registry['schema_version']}"
+            registry["schema_version"] == "1.0.3"
+        ), f"Expected schema_version 1.0.3, got: {registry['schema_version']}"
 
     def test_claude_opus_4_7_exists(self, registry):
         """Registry should contain Claude Opus 4.7."""

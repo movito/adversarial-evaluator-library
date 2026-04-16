@@ -85,12 +85,12 @@ adversarial library update --all --yes
 | `mistral-fast` | Mistral | mistral-small-2603 | quick-check | Fast Mistral review for large documents |
 | `gemini-deep` | Google | gemini-2.5-pro | deep-reasoning | Extended reasoning for complex analysis |
 | `o3-chain` | OpenAI | o3 | deep-reasoning | Chain-of-thought for numerical verification |
-| `magistral-reasoning` | Mistral | magistral-medium-2507 | deep-reasoning | Deep multi-step reasoning and assumption stress-testing |
+| `magistral-reasoning` | Mistral | magistral-medium-2509 | deep-reasoning | Deep multi-step reasoning and assumption stress-testing |
 | `claude-adversarial` | Anthropic | claude-opus-4-7 | adversarial | Adversarial review for critical analysis |
 | `gpt52-reasoning` | OpenAI | gpt-5.2 | adversarial | Deep adversarial reasoning for critical review |
 | `gemini-pro` | Google | gemini-3.1-pro-preview | knowledge-synthesis | Large-context knowledge synthesis (1M tokens) |
-| `gpt5-synthesis` | OpenAI | gpt-5-turbo | knowledge-synthesis | Knowledge synthesis for cross-referencing |
-| `gpt5-diversity` | OpenAI | gpt-5-turbo | cognitive-diversity | Alternative perspectives and assumption auditing |
+| `gpt5-synthesis` | OpenAI | gpt-5 | knowledge-synthesis | Knowledge synthesis for cross-referencing |
+| `gpt5-diversity` | OpenAI | gpt-5 | cognitive-diversity | Alternative perspectives and assumption auditing |
 | `mistral-content` | Mistral | mistral-large-2512 | cognitive-diversity | Content review with alternative provider perspective |
 | `claude-code` | Anthropic | claude-sonnet-4-6 | code-review | Security-focused code review |
 | `gemini-code` | Google | gemini-3.1-pro-preview | code-review | Code review for security and quality |
