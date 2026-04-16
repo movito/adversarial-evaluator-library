@@ -1,4 +1,4 @@
-# GPT-5 Knowledge Synthesis Evaluator
+# GPT-5.4 Knowledge Synthesis Evaluator
 # Cross-reference and completeness validation
 #
 # Provider: openai
@@ -10,13 +10,13 @@
 #   - Research completeness verification
 
 name: gpt5-synthesis
-description: Knowledge synthesis using GPT-5 for cross-referencing and completeness
-model: gpt-5
+description: Knowledge synthesis using GPT-5.4 for cross-referencing and completeness
+model: gpt-5.4
 api_key_env: OPENAI_API_KEY
 model_requirement:
   family: gpt
   tier: flagship
-  min_version: "5"
+  min_version: "5.4"
 output_suffix: -gpt5-synthesis.md
 timeout: 180  # Standard category timeout
 

@@ -1,4 +1,4 @@
-# GPT-5 Code Review Evaluator
+# GPT-5.4 Code Review Evaluator
 # Fast, comprehensive code quality review
 #
 # Provider: openai
@@ -10,13 +10,13 @@
 #   - General code quality checks
 
 name: gpt4o-code
-description: Fast code quality review using GPT-5
-model: gpt-5
+description: Fast code quality review using GPT-5.4
+model: gpt-5.4
 api_key_env: OPENAI_API_KEY
 model_requirement:
   family: gpt
   tier: flagship
-  min_version: "5"
+  min_version: "5.4"
 output_suffix: -gpt4o-code.md
 timeout: 180
 

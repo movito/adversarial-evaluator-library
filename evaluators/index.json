@@ -1,6 +1,6 @@
 {
-  "version": "1.6.0",
-  "updated": "2026-04-16",
+  "version": "1.7.0",
+  "updated": "2026-04-17",
   "evaluators": [
     {
       "name": "gemini-flash",
@@ -54,7 +54,7 @@
       "name": "gpt52-reasoning",
       "provider": "openai",
       "path": "openai/gpt52-reasoning/evaluator.yml",
-      "model": "gpt-5.2",
+      "model": "gpt-5.4",
       "category": "adversarial",
       "description": "Deep adversarial reasoning for critical review"
     },
@@ -70,7 +70,7 @@
       "name": "fast-check",
       "provider": "openai",
       "path": "openai/fast-check/evaluator.yml",
-      "model": "gpt-5-nano",
+      "model": "gpt-5.4-nano",
       "category": "quick-check",
       "description": "Fast validation for formatting and basic issues"
     },
@@ -94,7 +94,7 @@
       "name": "gpt4o-code",
       "provider": "openai",
       "path": "openai/gpt4o-code/evaluator.yml",
-      "model": "gpt-5",
+      "model": "gpt-5.4",
       "category": "code-review",
       "description": "Fast comprehensive code quality review"
     },
@@ -110,7 +110,7 @@
       "name": "gpt5-diversity",
       "provider": "openai",
       "path": "openai/gpt5-diversity/evaluator.yml",
-      "model": "gpt-5",
+      "model": "gpt-5.4",
       "category": "cognitive-diversity",
       "description": "Cognitive diversity review for alternative perspectives"
     },
@@ -118,7 +118,7 @@
       "name": "gpt5-synthesis",
       "provider": "openai",
       "path": "openai/gpt5-synthesis/evaluator.yml",
-      "model": "gpt-5",
+      "model": "gpt-5.4",
       "category": "knowledge-synthesis",
       "description": "Knowledge synthesis for cross-referencing and completeness"
     },
@@ -179,6 +179,22 @@
       "description": "Deep reasoning using Magistral Medium - Mistral's dedicated reasoning model"
     },
     {
+      "name": "gpt54-pro",
+      "provider": "openai",
+      "path": "openai/gpt54-pro/evaluator.yml",
+      "model": "gpt-5.4-pro",
+      "category": "deep-reasoning",
+      "description": "Extended reasoning using GPT-5.4 Pro for complex multi-step analysis"
+    },
+    {
+      "name": "gpt5-codex",
+      "provider": "openai",
+      "path": "openai/gpt5-codex/evaluator.yml",
+      "model": "gpt-5.3-codex",
+      "category": "code-review",
+      "description": "Code-specialized review using GPT-5.3 Codex for deep code understanding"
+    },
+    {
       "name": "claude-adversarial",
       "provider": "anthropic",
       "path": "anthropic/claude-adversarial/evaluator.yml",
@@ -231,7 +247,7 @@
     },
     "openai": {
       "api_key_env": "OPENAI_API_KEY",
-      "evaluators": ["gpt52-reasoning", "o3-chain", "fast-check", "arch-review", "o1-mini-code", "gpt4o-code", "code-reviewer", "gpt5-diversity", "gpt5-synthesis"]
+      "evaluators": ["gpt52-reasoning", "o3-chain", "fast-check", "arch-review", "o1-mini-code", "gpt4o-code", "code-reviewer", "gpt5-diversity", "gpt5-synthesis", "gpt54-pro", "gpt5-codex"]
     },
     "mistral": {
       "api_key_env": "MISTRAL_API_KEY",

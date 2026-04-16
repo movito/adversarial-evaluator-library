@@ -10,7 +10,7 @@
 
 Adversarial evaluation is the practice of using AI models to critically review documents, code, and specifications *before* they're finalized. Rather than waiting for bugs or issues to surface in production, adversarial evaluators stress-test your content by looking for gaps, inconsistencies, and potential problems.
 
-This library provides **23 pre-configured evaluators** across **4 providers** (Anthropic, Google, OpenAI, Mistral), organized into **7 categories**. Each evaluator is tuned for specific review tasks—from quick formatting checks to deep reasoning analysis.
+This library provides **25 pre-configured evaluators** across **4 providers** (Anthropic, Google, OpenAI, Mistral), organized into **7 categories**. Each evaluator is tuned for specific review tasks—from quick formatting checks to deep reasoning analysis.
 
 **Why use this library?**
 
@@ -80,22 +80,24 @@ adversarial library update --all --yes
 | Evaluator | Provider | Model | Category | Description |
 |-----------|----------|-------|----------|-------------|
 | `claude-quick` | Anthropic | claude-haiku-4-5 | quick-check | Fast validation using Claude Haiku 4.5 |
-| `fast-check` | OpenAI | gpt-5-nano | quick-check | Fast validation for formatting and basic issues |
+| `fast-check` | OpenAI | gpt-5.4-nano | quick-check | Fast validation for formatting and basic issues |
 | `gemini-flash` | Google | gemini-2.5-flash | quick-check | Fast, cost-effective document assessment |
 | `mistral-fast` | Mistral | mistral-small-2603 | quick-check | Fast Mistral review for large documents |
 | `gemini-deep` | Google | gemini-2.5-pro | deep-reasoning | Extended reasoning for complex analysis |
 | `o3-chain` | OpenAI | o3 | deep-reasoning | Chain-of-thought for numerical verification |
+| `gpt54-pro` | OpenAI | gpt-5.4-pro | deep-reasoning | Extended reasoning for complex multi-step analysis |
 | `magistral-reasoning` | Mistral | magistral-medium-2509 | deep-reasoning | Deep multi-step reasoning and assumption stress-testing |
 | `claude-adversarial` | Anthropic | claude-opus-4-7 | adversarial | Adversarial review for critical analysis |
-| `gpt52-reasoning` | OpenAI | gpt-5.2 | adversarial | Deep adversarial reasoning for critical review |
+| `gpt52-reasoning` | OpenAI | gpt-5.4 | adversarial | Deep adversarial reasoning for critical review |
 | `gemini-pro` | Google | gemini-3.1-pro-preview | knowledge-synthesis | Large-context knowledge synthesis (1M tokens) |
-| `gpt5-synthesis` | OpenAI | gpt-5 | knowledge-synthesis | Knowledge synthesis for cross-referencing |
-| `gpt5-diversity` | OpenAI | gpt-5 | cognitive-diversity | Alternative perspectives and assumption auditing |
+| `gpt5-synthesis` | OpenAI | gpt-5.4 | knowledge-synthesis | Knowledge synthesis for cross-referencing |
+| `gpt5-diversity` | OpenAI | gpt-5.4 | cognitive-diversity | Alternative perspectives and assumption auditing |
 | `mistral-content` | Mistral | mistral-large-2512 | cognitive-diversity | Content review with alternative provider perspective |
 | `claude-code` | Anthropic | claude-sonnet-4-6 | code-review | Security-focused code review |
 | `gemini-code` | Google | gemini-3.1-pro-preview | code-review | Code review for security and quality |
 | `o1-mini-code` | OpenAI | o4-mini | code-review | Cost-effective reasoning-based code review |
-| `gpt4o-code` | OpenAI | gpt-5 | code-review | Fast comprehensive code quality review |
+| `gpt4o-code` | OpenAI | gpt-5.4 | code-review | Fast comprehensive code quality review |
+| `gpt5-codex` | OpenAI | gpt-5.3-codex | code-review | Code-specialized review for deep code understanding |
 | `code-reviewer` | OpenAI | o3 | code-review | Adversarial correctness review — edge cases, boundary conditions |
 | `code-reviewer-fast` | Google | gemini-2.5-flash | code-review | Fast adversarial correctness check |
 | `codestral-code` | Mistral | codestral-latest | code-review | Code-focused review for scripts and configs |
@@ -117,7 +119,7 @@ Extended analysis for complex content requiring careful thought:
 - Technical specifications
 - Architecture documents
 - Complex logic verification
-- **Evaluators**: `gemini-deep`, `o3-chain`, `magistral-reasoning`
+- **Evaluators**: `gemini-deep`, `o3-chain`, `gpt54-pro`, `magistral-reasoning`
 
 ### adversarial
 Stress-testing and critical review to find edge cases:
@@ -153,7 +155,7 @@ Specialized code and configuration analysis:
 - Security vulnerability detection
 - Configuration validation
 - Script analysis
-- **Evaluators**: `claude-code`, `gemini-code`, `o1-mini-code`, `gpt4o-code`, `code-reviewer`, `code-reviewer-fast`, `codestral-code`
+- **Evaluators**: `claude-code`, `gemini-code`, `o1-mini-code`, `gpt4o-code`, `gpt5-codex`, `code-reviewer`, `code-reviewer-fast`, `codestral-code`
 
 ## Usage Examples
 
@@ -291,14 +293,16 @@ evaluators/
 │   ├── gemini-deep/
 │   ├── gemini-flash/
 │   └── gemini-pro/
-├── openai/              # OpenAI evaluators (9)
+├── openai/              # OpenAI evaluators (11)
 │   ├── arch-review/
 │   ├── code-reviewer/
 │   ├── fast-check/
 │   ├── gpt4o-code/
+│   ├── gpt5-codex/
 │   ├── gpt5-diversity/
 │   ├── gpt5-synthesis/
 │   ├── gpt52-reasoning/
+│   ├── gpt54-pro/
 │   ├── o1-mini-code/
 │   └── o3-chain/
 └── mistral/             # Mistral evaluators (4)

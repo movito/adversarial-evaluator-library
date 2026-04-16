@@ -7,7 +7,7 @@
 #
 # See ADR-0005 for the interface contract specification.
 
-schema_version: "1.0.3"  # 1.0.3: Fix invalid model IDs — remove gpt-5-turbo, update magistral-medium-2507→2509 (2026-04-17)
+schema_version: "1.0.4"  # 1.0.4: Add GPT-5.4 family, GPT-5.3 Codex (2026-04-17)
 
 providers:
   # ============================================================================
@@ -23,17 +23,37 @@ providers:
         capability_level: 5
         typical_use: "Most capable reasoning and analysis"
         models:
+          - id: gpt-5.4
+            version: "5.4"
+            context_window: 128000
+            released: 2026-03-05
+            status: active
+
+          - id: gpt-5.4-pro
+            version: "5.4-pro"
+            context_window: 128000
+            released: 2026-03-05
+            status: active
+            note: "Extended reasoning variant"
+
+          - id: gpt-5.3-codex
+            version: "5.3"
+            context_window: 128000
+            released: 2026-01-15
+            status: active
+            note: "Code-specialized model"
+
           - id: gpt-5.2
             version: "5.2"
             context_window: 128000
             released: 2025-09-01
-            status: active
+            status: legacy
 
           - id: gpt-5
             version: "5"
             context_window: 128000
             released: 2025-08-07
-            status: active
+            status: legacy
 
       standard:
         capability_level: 4
@@ -57,17 +77,29 @@ providers:
         capability_level: 3
         typical_use: "Fast, cost-effective"
         models:
+          - id: gpt-5.4-mini
+            version: "5.4-mini"
+            context_window: 128000
+            released: 2026-03-17
+            status: active
+
+          - id: gpt-5.4-nano
+            version: "5.4-nano"
+            context_window: 128000
+            released: 2026-03-17
+            status: active
+
           - id: gpt-5-mini
             version: "5-mini"
             context_window: 128000
             released: 2025-08-07
-            status: active
+            status: legacy
 
           - id: gpt-5-nano
             version: "5-nano"
             context_window: 128000
             released: 2025-08-07
-            status: active
+            status: legacy
 
           - id: gpt-4o-mini
             version: "4o-mini"
