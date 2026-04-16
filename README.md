@@ -21,39 +21,58 @@ This library provides **23 pre-configured evaluators** across **4 providers** (A
 
 ## Quick Start
 
-### 1. Clone and Install
+### Prerequisites
+
+Install [adversarial-workflow](https://github.com/movito/adversarial-workflow) (v0.9.3+):
 
 ```bash
-git clone https://github.com/movito/adversarial-evaluator-library.git
-cd adversarial-evaluator-library
-pip install -e .
+pip install adversarial-workflow
 ```
 
-### 2. Set Up API Keys
-
-Copy the environment template and add your API keys:
+### 1. Set Up API Keys
 
 ```bash
-cp .env.template .env
+export OPENAI_API_KEY=sk-...         # For OpenAI evaluators
+export ANTHROPIC_API_KEY=sk-ant-...  # For Anthropic evaluators
+export GEMINI_API_KEY=...            # For Google evaluators
+export MISTRAL_API_KEY=...           # For Mistral evaluators
 ```
 
-Edit `.env` with your keys:
+### 2. Browse and Install Evaluators
 
 ```bash
-ANTHROPIC_API_KEY=sk-ant-...  # For Anthropic evaluators
-OPENAI_API_KEY=sk-...         # For OpenAI evaluators
-GEMINI_API_KEY=...            # For Google evaluators
-MISTRAL_API_KEY=...           # For Mistral evaluators
+# See all available evaluators
+adversarial library list
+
+# Install specific evaluators
+adversarial library install openai/fast-check
+adversarial library install anthropic/claude-code
+
+# Install all evaluators in a category
+adversarial library install --category code-review
 ```
 
 ### 3. Run Your First Evaluation
 
 ```bash
 # Run a quick check on a document
-adversarial evaluate --evaluator fast-check your-document.md
+adversarial fast-check your-document.md
 
-# Or use the default evaluator
-adversarial evaluate your-document.md
+# Run a code review
+adversarial code-reviewer src/main.py
+```
+
+### Upgrading Evaluators
+
+```bash
+# Check for updates
+adversarial library check-updates
+
+# Update a specific evaluator
+adversarial library update fast-check
+
+# Update all installed evaluators
+adversarial library update --all --yes
 ```
 
 ## Available Evaluators
@@ -233,6 +252,14 @@ prompt: |
 - Knowledge-synthesis: ~$0.01-0.05
 
 ## Development
+
+### Setup (Contributors)
+
+```bash
+git clone https://github.com/movito/adversarial-evaluator-library.git
+cd adversarial-evaluator-library
+pip install -e ".[dev]"
+```
 
 ### Running Tests
 
