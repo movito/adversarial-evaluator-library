@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-04-16
+
+### Added
+
+- **`claude-arch` evaluator** (Anthropic Opus 4.7) — Architectural review from Anthropic's perspective, filling the cross-provider arch-review gap. Includes prompt-injection guard.
+- **`magistral-reasoning` evaluator** (Mistral Magistral Medium) — Deep reasoning using Mistral's dedicated reasoning model for multi-step logical analysis and assumption stress-testing. Includes prompt-injection guard.
+- **Magistral model family** in provider registry — `magistral-medium-2507` and `magistral-small-2507`
+- **Mistral Small 4** (`mistral-small-2603`) in provider registry — 6.5B active / 119B total MoE params
+
+### Changed
+
+- **Model upgrades across all 4 providers**:
+  - Anthropic: `claude-adversarial` Opus 4.6 → 4.7, `claude-code` Sonnet 4.5 → 4.6
+  - OpenAI: `arch-review` and `code-reviewer` o1 → o3, `o1-mini-code` o1-mini → o4-mini, `gpt4o-code` gpt-4o → gpt-5, `fast-check` gpt-4o-mini → gpt-5-nano
+  - Mistral: `mistral-content` Large 2411 → 2512, `mistral-fast` Small 2503 → 2603 (Small 4)
+- **Provider registry v1.0.2** — Added Claude Opus 4.7, Claude Sonnet 4.6, o4-mini, gpt-5, gpt-5-mini, gpt-5-nano, Mistral Small 4, Magistral family. Marked legacy: gpt-4o, gpt-4o-mini, o1-mini, Claude Opus 4.6, Claude Sonnet 4.5, Mistral Large 2411, Mistral Small 2503.
+- **23 evaluators across 4 providers** — Anthropic (4), Google (6), OpenAI (9), Mistral (4)
+- **Integration tests updated** — Aligned with new model versions and registry schema
+
+### Removed
+
+- **`o1-code-review` evaluator** — Retired as duplicate of `code-reviewer` (both used o1, now o3)
+
+### Fixed
+
+- **GPT-5 Turbo LiteLLM routing** (issue #20) — Added explicit `openai/` prefix for `gpt-5-turbo-2025-11-01` model IDs in `gpt5-diversity` and `gpt5-synthesis`
+- **`fast-check` tier mismatch** — Changed `tier: nano` → `tier: mini` (nano tier doesn't exist in registry)
+- **`gpt4o-code` tier mismatch** — Changed `tier: standard` → `tier: flagship` (gpt-5 is in flagship tier)
+- **Missing `flake8` dev dependency** — Added `flake8>=7.3.0` to pyproject.toml, fixing CI workflow
+
 ## [0.5.3] - 2026-03-08
 
 ### Fixed
@@ -126,7 +156,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI/CD workflow with pytest and pre-commit
 - Project structure based on Agentive Starter Kit
 
-[Unreleased]: https://github.com/movito/adversarial-evaluator-library/compare/v0.5.2...HEAD
+[Unreleased]: https://github.com/movito/adversarial-evaluator-library/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/movito/adversarial-evaluator-library/compare/v0.5.3...v0.6.0
+[0.5.3]: https://github.com/movito/adversarial-evaluator-library/compare/v0.5.2...v0.5.3
 [0.5.2]: https://github.com/movito/adversarial-evaluator-library/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/movito/adversarial-evaluator-library/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/movito/adversarial-evaluator-library/compare/v0.4.0...v0.5.0
