@@ -15,7 +15,7 @@ model: gpt-5
 api_key_env: OPENAI_API_KEY
 model_requirement:
   family: gpt
-  tier: standard
+  tier: flagship
   min_version: "5"
 output_suffix: -gpt4o-code.md
 timeout: 180

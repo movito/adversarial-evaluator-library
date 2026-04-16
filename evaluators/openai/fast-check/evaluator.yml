@@ -15,7 +15,7 @@ model: gpt-5-nano
 api_key_env: OPENAI_API_KEY
 model_requirement:
   family: gpt
-  tier: nano
+  tier: mini
   min_version: "5-nano"
 output_suffix: -fast-check.md
 timeout: 180  # Validated: typical 10-15s
