@@ -1,6 +1,6 @@
 {
-  "version": "1.5.0",
-  "updated": "2026-02-27",
+  "version": "1.6.0",
+  "updated": "2026-04-16",
   "evaluators": [
     {
       "name": "gemini-flash",
@@ -70,7 +70,7 @@
       "name": "fast-check",
       "provider": "openai",
       "path": "openai/fast-check/evaluator.yml",
-      "model": "gpt-4o-mini",
+      "model": "gpt-5-nano",
       "category": "quick-check",
       "description": "Fast validation for formatting and basic issues"
     },
@@ -78,23 +78,15 @@
       "name": "arch-review",
       "provider": "openai",
       "path": "openai/arch-review/evaluator.yml",
-      "model": "o1",
+      "model": "o3",
       "category": "arch-review",
-      "description": "Deep architectural review using OpenAI o1 reasoning"
-    },
-    {
-      "name": "o1-code-review",
-      "provider": "openai",
-      "path": "openai/o1-code-review/evaluator.yml",
-      "model": "o1",
-      "category": "code-review",
-      "description": "Deep reasoning code review for security and correctness"
+      "description": "Deep architectural review using OpenAI o3 reasoning"
     },
     {
       "name": "o1-mini-code",
       "provider": "openai",
       "path": "openai/o1-mini-code/evaluator.yml",
-      "model": "o1-mini",
+      "model": "o4-mini",
       "category": "code-review",
       "description": "Cost-effective reasoning-based code review"
     },
@@ -102,7 +94,7 @@
       "name": "gpt4o-code",
       "provider": "openai",
       "path": "openai/gpt4o-code/evaluator.yml",
-      "model": "gpt-4o",
+      "model": "gpt-5",
       "category": "code-review",
       "description": "Fast comprehensive code quality review"
     },
@@ -110,7 +102,7 @@
       "name": "code-reviewer",
       "provider": "openai",
       "path": "openai/code-reviewer/evaluator.yml",
-      "model": "o1",
+      "model": "o3",
       "category": "code-review",
       "description": "Adversarial correctness review — finds edge-case bugs that checklist reviews miss"
     },
@@ -134,7 +126,7 @@
       "name": "mistral-content",
       "provider": "mistral",
       "path": "mistral/mistral-content/evaluator.yml",
-      "model": "mistral/mistral-large-2411",
+      "model": "mistral/mistral-large-2512",
       "category": "cognitive-diversity",
       "description": "Content review with alternative provider perspective"
     },
@@ -142,7 +134,7 @@
       "name": "mistral-fast",
       "provider": "mistral",
       "path": "mistral/mistral-fast/evaluator.yml",
-      "model": "mistral/mistral-small-2503",
+      "model": "mistral/mistral-small-2603",
       "category": "quick-check",
       "description": "Fast Mistral review for large documents"
     },
@@ -179,20 +171,28 @@
       "description": "Deep reasoning using Mistral Large 3 - multi-step analysis and verification"
     },
     {
+      "name": "magistral-reasoning",
+      "provider": "mistral",
+      "path": "mistral/magistral-reasoning/evaluator.yml",
+      "model": "mistral/magistral-medium-2507",
+      "category": "deep-reasoning",
+      "description": "Deep reasoning using Magistral Medium - Mistral's dedicated reasoning model"
+    },
+    {
       "name": "claude-adversarial",
       "provider": "anthropic",
       "path": "anthropic/claude-adversarial/evaluator.yml",
-      "model": "anthropic/claude-opus-4-6",
+      "model": "anthropic/claude-opus-4-7",
       "category": "adversarial",
-      "description": "Adversarial review using Claude Opus 4.6 for critical analysis"
+      "description": "Adversarial review using Claude Opus 4.7 for critical analysis"
     },
     {
       "name": "claude-code",
       "provider": "anthropic",
       "path": "anthropic/claude-code/evaluator.yml",
-      "model": "anthropic/claude-sonnet-4-5",
+      "model": "anthropic/claude-sonnet-4-6",
       "category": "code-review",
-      "description": "Security-focused code review using Claude Sonnet 4.5"
+      "description": "Security-focused code review using Claude Sonnet 4.6"
     },
     {
       "name": "claude-quick",
@@ -201,6 +201,14 @@
       "model": "anthropic/claude-haiku-4-5",
       "category": "quick-check",
       "description": "Fast validation using Claude Haiku 4.5 for rapid checks"
+    },
+    {
+      "name": "claude-arch",
+      "provider": "anthropic",
+      "path": "anthropic/claude-arch/evaluator.yml",
+      "model": "anthropic/claude-opus-4-7",
+      "category": "arch-review",
+      "description": "Architectural review using Claude Opus 4.7 for structural quality analysis"
     }
   ],
   "categories": {
@@ -215,7 +223,7 @@
   "providers": {
     "anthropic": {
       "api_key_env": "ANTHROPIC_API_KEY",
-      "evaluators": ["claude-adversarial", "claude-code", "claude-quick"]
+      "evaluators": ["claude-adversarial", "claude-code", "claude-quick", "claude-arch"]
     },
     "google": {
       "api_key_env": "GEMINI_API_KEY",
@@ -223,11 +231,11 @@
     },
     "openai": {
       "api_key_env": "OPENAI_API_KEY",
-      "evaluators": ["gpt52-reasoning", "o3-chain", "fast-check", "arch-review", "o1-code-review", "o1-mini-code", "gpt4o-code", "code-reviewer", "gpt5-diversity", "gpt5-synthesis"]
+      "evaluators": ["gpt52-reasoning", "o3-chain", "fast-check", "arch-review", "o1-mini-code", "gpt4o-code", "code-reviewer", "gpt5-diversity", "gpt5-synthesis"]
     },
     "mistral": {
       "api_key_env": "MISTRAL_API_KEY",
-      "evaluators": ["mistral-content", "mistral-fast", "codestral-code", "mistral-arch", "mistral-adversarial", "mistral-deep"]
+      "evaluators": ["mistral-content", "mistral-fast", "codestral-code", "mistral-arch", "mistral-adversarial", "mistral-deep", "magistral-reasoning"]
     }
   }
 }

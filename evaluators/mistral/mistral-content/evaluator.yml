@@ -11,12 +11,12 @@
 
 name: mistral-content
 description: Content review using Mistral Large - alternative provider perspective
-model: mistral/mistral-large-2411
+model: mistral/mistral-large-2512
 api_key_env: MISTRAL_API_KEY
 model_requirement:
   family: mistral
   tier: large
-  min_version: "large-2411"
+  min_version: "large-2512"
 output_suffix: -mistral-content.md
 timeout: 400  # Extended for large documents
 

@@ -8,13 +8,13 @@
 #   - Quick cognitive diversity check
 
 name: mistral-fast
-description: Fast content review using Mistral Small
-model: mistral/mistral-small-2503
+description: Fast content review using Mistral Small 4
+model: mistral/mistral-small-2603
 api_key_env: MISTRAL_API_KEY
 model_requirement:
   family: mistral
   tier: small
-  min_version: "small-2503"
+  min_version: "small-2603"
 output_suffix: -mistral-fast.md
 timeout: 300
 

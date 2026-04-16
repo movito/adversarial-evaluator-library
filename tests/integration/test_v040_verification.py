@@ -32,8 +32,8 @@ EVALUATORS_DIR = REPO_ROOT / "evaluators"
 REGISTRY_PATH = REPO_ROOT / "providers" / "registry.yml"
 
 ANTHROPIC_EVALUATORS = [
-    ("anthropic/claude-adversarial", "anthropic/claude-opus-4-6", "4.6"),
-    ("anthropic/claude-code", "anthropic/claude-sonnet-4-5", "4.5"),
+    ("anthropic/claude-adversarial", "anthropic/claude-opus-4-7", "4.7"),
+    ("anthropic/claude-code", "anthropic/claude-sonnet-4-6", "4.6"),
     ("anthropic/claude-quick", "anthropic/claude-haiku-4-5", "4.5"),
 ]
 
@@ -127,27 +127,27 @@ class TestRegistrySchema:
         with open(REGISTRY_PATH) as f:
             return yaml.safe_load(f)
 
-    def test_schema_version_is_1_0_1(self, registry):
-        """Registry should be at schema version 1.0.1 after v0.4.0."""
+    def test_schema_version_is_1_0_2(self, registry):
+        """Registry should be at schema version 1.0.2 after model refresh."""
         assert (
-            registry["schema_version"] == "1.0.1"
-        ), f"Expected schema_version 1.0.1, got: {registry['schema_version']}"
+            registry["schema_version"] == "1.0.2"
+        ), f"Expected schema_version 1.0.2, got: {registry['schema_version']}"
 
-    def test_claude_opus_4_6_exists(self, registry):
-        """Registry should contain Claude Opus 4.6."""
+    def test_claude_opus_4_7_exists(self, registry):
+        """Registry should contain Claude Opus 4.7."""
         opus_models = registry["providers"]["claude"]["tiers"]["opus"]["models"]
         model_ids = [m["id"] for m in opus_models]
         assert (
-            "claude-opus-4-6" in model_ids
-        ), f"claude-opus-4-6 not in registry: {model_ids}"
+            "claude-opus-4-7" in model_ids
+        ), f"claude-opus-4-7 not in registry: {model_ids}"
 
-    def test_claude_sonnet_4_5_exists(self, registry):
-        """Registry should contain Claude Sonnet 4.5."""
+    def test_claude_sonnet_4_6_exists(self, registry):
+        """Registry should contain Claude Sonnet 4.6."""
         sonnet_models = registry["providers"]["claude"]["tiers"]["sonnet"]["models"]
         model_ids = [m["id"] for m in sonnet_models]
         assert (
-            "claude-sonnet-4-5" in model_ids
-        ), f"claude-sonnet-4-5 not in registry: {model_ids}"
+            "claude-sonnet-4-6" in model_ids
+        ), f"claude-sonnet-4-6 not in registry: {model_ids}"
 
     def test_claude_haiku_4_5_exists(self, registry):
         """Registry should contain Claude Haiku 4.5."""
@@ -391,13 +391,13 @@ def test_quick_smoke():
     config2 = EvaluatorConfig(
         name="smoke2",
         description="Smoke test 2",
-        model="anthropic/claude-opus-4-6",
+        model="anthropic/claude-opus-4-7",
         api_key_env="ANTHROPIC_API_KEY",
         prompt="Test",
         output_suffix="TEST",
     )
     model_id2, _ = resolver.resolve(config2)
-    assert model_id2 == "anthropic/claude-opus-4-6", f"FAIL: got {model_id2}"
+    assert model_id2 == "anthropic/claude-opus-4-7", f"FAIL: got {model_id2}"
 
     print("✅ v0.4.0 smoke test PASSED")
 

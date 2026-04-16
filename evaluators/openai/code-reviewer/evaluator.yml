@@ -1,4 +1,4 @@
-# OpenAI o1 Adversarial Code Reviewer
+# OpenAI o3 Adversarial Code Reviewer
 # Finds edge-case bugs that checklist reviews miss
 #
 # Provider: openai
@@ -15,12 +15,12 @@
 
 name: code-reviewer
 description: Adversarial correctness review — finds edge-case bugs that checklist reviews miss
-model: o1
+model: o3
 api_key_env: OPENAI_API_KEY
 model_requirement:
   family: o
   tier: flagship
-  min_version: "1"
+  min_version: "3"
 output_suffix: -code-reviewer.md
 timeout: 600
 

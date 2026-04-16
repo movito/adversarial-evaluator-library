@@ -7,7 +7,7 @@
 #
 # See ADR-0005 for the interface contract specification.
 
-schema_version: "1.0.1"  # 1.0.1: Added Claude 4.5/4.6 models (2026-02-08)
+schema_version: "1.0.2"  # 1.0.2: Model refresh — Opus 4.7, Sonnet 4.6, o4-mini, gpt-5/nano, Small 4, Magistral (2026-04-16)
 
 providers:
   # ============================================================================
@@ -29,6 +29,12 @@ providers:
             released: 2025-09-01
             status: active
 
+          - id: gpt-5
+            version: "5"
+            context_window: 128000
+            released: 2025-08-07
+            status: active
+
           - id: gpt-5-turbo-2025-11-01
             version: "5"
             context_window: 128000
@@ -43,7 +49,7 @@ providers:
             version: "4o"
             context_window: 128000
             released: 2024-05-13
-            status: active
+            status: legacy
             vertex_ai_id: gpt-4o
             azure_id: gpt-4o
 
@@ -51,17 +57,29 @@ providers:
             version: "4o"
             context_window: 128000
             released: 2024-08-06
-            status: active
+            status: legacy
 
       mini:
         capability_level: 3
         typical_use: "Fast, cost-effective"
         models:
+          - id: gpt-5-mini
+            version: "5-mini"
+            context_window: 128000
+            released: 2025-08-07
+            status: active
+
+          - id: gpt-5-nano
+            version: "5-nano"
+            context_window: 128000
+            released: 2025-08-07
+            status: active
+
           - id: gpt-4o-mini
             version: "4o-mini"
             context_window: 128000
             released: 2024-07-18
-            status: active
+            status: legacy
 
   # OpenAI reasoning models (o-series)
   o:
@@ -90,11 +108,17 @@ providers:
         capability_level: 4
         typical_use: "Reasoning at lower cost"
         models:
+          - id: o4-mini
+            version: "4"
+            context_window: 200000
+            released: 2025-04-01
+            status: active
+
           - id: o1-mini
             version: "1-mini"
             context_window: 128000
             released: 2024-09-12
-            status: active
+            status: legacy
 
   # ============================================================================
   # ANTHROPIC
@@ -109,11 +133,17 @@ providers:
         capability_level: 5
         typical_use: "Most capable, complex reasoning"
         models:
+          - id: claude-opus-4-7
+            version: "4.7"
+            context_window: 1000000
+            released: 2026-04-01
+            status: active
+
           - id: claude-opus-4-6
             version: "4.6"
-            context_window: 200000
+            context_window: 1000000
             released: 2026-02-04
-            status: active
+            status: legacy
             vertex_ai_id: claude-opus-4-6@20260204
 
           - id: claude-opus-4-5-20251101
@@ -135,11 +165,17 @@ providers:
         capability_level: 4
         typical_use: "Balanced performance/cost, coding"
         models:
+          - id: claude-sonnet-4-6
+            version: "4.6"
+            context_window: 1000000
+            released: 2026-03-01
+            status: active
+
           - id: claude-sonnet-4-5
             version: "4.5"
             context_window: 200000
             released: 2025-09-29
-            status: active
+            status: legacy
             vertex_ai_id: claude-sonnet-4-5@20250929
 
           - id: claude-4-sonnet-20260115
@@ -239,7 +275,8 @@ providers:
             version: "large-2411"
             context_window: 128000
             released: 2024-11-01
-            status: active
+            status: deprecated
+            note: "Retires May 31, 2026 — use mistral-large-2512"
             vertex_ai_id: mistral-large@2411
 
           - id: mistral-medium-3
@@ -253,24 +290,59 @@ providers:
         capability_level: 3
         typical_use: "Fast, efficient"
         models:
+          - id: mistral-small-2603
+            version: "small-2603"
+            context_window: 256000
+            released: 2026-03-01
+            status: active
+            note: "Mistral Small 4 — 6.5B active / 119B total params, MoE, unified reasoning/coding"
+
+          - id: mistral-small-2503
+            version: "small-2503"
+            context_window: 128000
+            released: 2025-03-01
+            status: legacy
+
           - id: mistral-small-2409
             version: "small-2409"
             context_window: 32000
             released: 2024-09-01
             status: deprecated
 
-          - id: mistral-small-2503
-            version: "small-2503"
-            context_window: 128000
-            released: 2025-03-01
-            status: active
-
           - id: mistral-small-3-1-25-03
             version: "small-3.1"
             context_window: 128000
             released: 2025-03-01
-            status: active
+            status: legacy
             vertex_ai_id: mistral-small-3-1-25-03
+
+  # Mistral reasoning models
+  magistral:
+    vendor: Mistral AI
+    vendor_url: https://mistral.ai
+    litellm_prefix: "mistral/"
+    auth_env_default: MISTRAL_API_KEY
+    tiers:
+      medium:
+        capability_level: 4
+        typical_use: "Dedicated reasoning model"
+        models:
+          - id: magistral-medium-2507
+            version: "medium-2507"
+            context_window: 128000
+            released: 2025-07-01
+            status: active
+            note: "Magistral Medium 1.2 — dedicated reasoning architecture"
+
+      small:
+        capability_level: 3
+        typical_use: "Cost-effective reasoning"
+        models:
+          - id: magistral-small-2507
+            version: "small-2507"
+            context_window: 128000
+            released: 2025-07-01
+            status: active
 
   # Mistral code-specialized models
   codestral:
