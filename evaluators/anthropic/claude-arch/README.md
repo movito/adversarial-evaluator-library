@@ -47,7 +47,7 @@ The evaluator produces:
 2. **Design Adherence** — ratings for independence, API quality, coupling, cohesion, pattern consistency
 3. **Architectural Findings** — categorized as STRUCTURAL, COUPLING, API, or PATTERN
 4. **Positive Architecture Decisions** — well-made choices to preserve
-5. **Growth Risk Assessment** — low/medium/high risk areas
+5. **Growth Risk Assessment** — low/medium/high-risk areas
 6. **Verdict**: APPROVED, REVISION_SUGGESTED, or RESTRUCTURE_NEEDED
 
 ## Prompt Design

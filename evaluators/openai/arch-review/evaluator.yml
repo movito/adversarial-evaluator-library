@@ -19,7 +19,7 @@ model_requirement:
   tier: flagship
   min_version: "3"
 output_suffix: -arch-review.md
-timeout: 600  # o1 reasoning can take longer for architectural analysis
+timeout: 600  # o3 reasoning can take longer for architectural analysis
 
 prompt: |
   You are a software architect reviewing code for structural quality and design adherence.
