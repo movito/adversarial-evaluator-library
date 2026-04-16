@@ -6,25 +6,25 @@ A **starter kit** of adversarial evaluators that demonstrates cognitive diversit
 
 **Not a goal**: Exhaustive coverage of every model and provider.
 
-## Current State (v0.5.3)
+## Current State (v0.6.0)
 
-**25 evaluators** across **4 providers** and **7 categories**:
+**26 evaluators** across **4 providers** and **7 categories**:
 
 | Provider | Evaluators | Models |
 |----------|-----------|--------|
-| OpenAI | 10 | gpt-5.2, o3, o1, o1-mini, gpt-4o, gpt-5-turbo |
+| OpenAI | 9 | gpt-5.2, o3, o4-mini, gpt-5, gpt-5-nano, gpt-5-turbo |
+| Mistral | 7 | mistral-large-2512, mistral-small-2603, magistral-medium-2507, codestral |
 | Google | 6 | gemini-2.5-flash, gemini-2.5-pro, gemini-3.1-pro-preview |
-| Mistral | 6 | mistral-large-2411, mistral-large-2512, mistral-small-2503, codestral |
-| Anthropic | 3 | claude-opus-4-6, claude-sonnet-4-5, claude-haiku-4-5 |
+| Anthropic | 4 | claude-opus-4-7, claude-sonnet-4-6, claude-haiku-4-5 |
 
 **Category coverage** (all categories have 2+ providers):
 
 | Category | Providers | Count |
 |----------|-----------|-------|
-| code-review | OpenAI, Google, Mistral, Anthropic | 8 |
+| code-review | OpenAI, Google, Mistral, Anthropic | 7 |
+| arch-review | OpenAI, Google, Mistral, Anthropic | 4 |
+| deep-reasoning | OpenAI, Google, Mistral | 4 |
 | quick-check | OpenAI, Google, Mistral, Anthropic | 4 |
-| arch-review | OpenAI, Google, Mistral | 3 |
-| deep-reasoning | OpenAI, Google, Mistral | 3 |
 | adversarial | OpenAI, Mistral, Anthropic | 3 |
 | knowledge-synthesis | OpenAI, Google | 2 |
 | cognitive-diversity | OpenAI, Mistral | 2 |
@@ -34,15 +34,21 @@ A **starter kit** of adversarial evaluators that demonstrates cognitive diversit
 - **Phase 1** (v0.4.0–v0.5.0): Added Anthropic as Tier 1 provider (claude-adversarial, claude-code, claude-quick). All categories now have 2+ providers.
 - **Phase 1.5** (v0.5.1–v0.5.3): Evaluator config fixes, prompt injection guardrails, model migrations (gemini-3-pro → gemini-3.1-pro-preview).
 - **Mistral expansion** (v0.5.3+): Added mistral-arch, mistral-adversarial, mistral-deep using Mistral Large 3 (2512).
+- **Model refresh** (v0.6.0): Comprehensive model update across all providers:
+  - Upgraded Anthropic to Opus 4.7 + Sonnet 4.6, added claude-arch (arch-review)
+  - Upgraded OpenAI reasoning from o1→o3, o1-mini→o4-mini, gpt-4o→gpt-5, gpt-4o-mini→gpt-5-nano
+  - Retired duplicate o1-code-review evaluator
+  - Upgraded Mistral from Large 2411→2512, Small 2503→2603 (Small 4)
+  - Added magistral-reasoning using Mistral's dedicated reasoning model
+  - Fixed GPT-5 Turbo LiteLLM routing (issue #20)
 
 ## Next
 
 ### Hardening & Quality
 
-Stabilize the existing 25 evaluators before expanding further.
+Stabilize the existing 26 evaluators before expanding further.
 
 - Fix Mistral/aider whole-edit-format corruption (evaluator pipeline bug)
-- Update README badge to v0.5.3
 - Consider Unified Artifact Registry ([ADR-0007](docs/adr/ADR-0007-unified-artifact-registry.md)) for cross-project distribution
 
 ### Coverage Gaps (Optional)
@@ -51,8 +57,6 @@ Areas where a new evaluator would add meaningful diversity:
 
 | Gap | Candidate | Why |
 |-----|-----------|-----|
-| Anthropic arch-review | `claude-arch` | Anthropic missing from arch-review category |
-| Anthropic deep-reasoning | `claude-deep` | Anthropic missing from deep-reasoning |
 | Anthropic knowledge-synthesis | `claude-synthesis` | Category has only 2 providers |
 | Anthropic cognitive-diversity | `claude-diversity` | Category has only 2 providers |
 | Tier 2 provider | Cohere or DeepSeek | A 5th provider adds independent perspective |

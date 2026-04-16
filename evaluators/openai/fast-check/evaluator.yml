@@ -1,4 +1,4 @@
-# GPT-4o-mini Fast Check Evaluator
+# GPT-5 Nano Fast Check Evaluator
 # Quick validation for formatting and basic issues
 #
 # Provider: openai
@@ -10,13 +10,13 @@
 #   - Pre-submission sanity check
 
 name: fast-check
-description: Fast validation using GPT-4o-mini
-model: gpt-4o-mini
+description: Fast validation using GPT-5 Nano
+model: gpt-5-nano
 api_key_env: OPENAI_API_KEY
 model_requirement:
   family: gpt
-  tier: mini
-  min_version: "4o-mini"
+  tier: nano
+  min_version: "5-nano"
 output_suffix: -fast-check.md
 timeout: 180  # Validated: typical 10-15s
 
