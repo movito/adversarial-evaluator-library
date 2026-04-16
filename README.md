@@ -23,7 +23,7 @@ This library provides **23 pre-configured evaluators** across **4 providers** (A
 
 ### Prerequisites
 
-Install [adversarial-workflow](https://github.com/movito/adversarial-workflow) (v0.9.3+):
+Install [adversarial-workflow](https://github.com/movito/adversarial-workflow) (v1.0.0+):
 
 ```bash
 pip install adversarial-workflow
