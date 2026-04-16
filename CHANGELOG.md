@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.1] - 2026-04-17
+
+### Fixed
+
+- **`magistral-reasoning` invalid model ID** — `magistral-medium-2507` was retired Nov 2025; updated to `magistral-medium-2509` (Magistral Medium 1.2)
+- **`gpt5-diversity` invalid model ID** — `gpt-5-turbo-2025-11-01` never existed in OpenAI's API; updated to `gpt-5`
+- **`gpt5-synthesis` invalid model ID** — Same fix as gpt5-diversity
+- **Provider registry phantom entry** — Removed non-existent `gpt-5-turbo-2025-11-01` from registry
+
+### Changed
+
+- **Provider registry v1.0.3** — Added `magistral-medium-2509`, marked `magistral-medium-2507` as deprecated
+- **Bumped `adversarial-workflow` dependency** to `>=1.0.0`
+
 ## [0.6.0] - 2026-04-16
 
 ### Added
@@ -156,7 +170,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI/CD workflow with pytest and pre-commit
 - Project structure based on Agentive Starter Kit
 
-[Unreleased]: https://github.com/movito/adversarial-evaluator-library/compare/v0.6.0...HEAD
+[Unreleased]: https://github.com/movito/adversarial-evaluator-library/compare/v0.6.1...HEAD
+[0.6.1]: https://github.com/movito/adversarial-evaluator-library/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/movito/adversarial-evaluator-library/compare/v0.5.3...v0.6.0
 [0.5.3]: https://github.com/movito/adversarial-evaluator-library/compare/v0.5.2...v0.5.3
 [0.5.2]: https://github.com/movito/adversarial-evaluator-library/compare/v0.5.1...v0.5.2
