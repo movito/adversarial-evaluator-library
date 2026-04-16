@@ -118,7 +118,7 @@
       "name": "gpt5-diversity",
       "provider": "openai",
       "path": "openai/gpt5-diversity/evaluator.yml",
-      "model": "gpt-5-turbo-2025-11-01",
+      "model": "openai/gpt-5-turbo-2025-11-01",
       "category": "cognitive-diversity",
       "description": "Cognitive diversity review for alternative perspectives"
     },
@@ -126,7 +126,7 @@
       "name": "gpt5-synthesis",
       "provider": "openai",
       "path": "openai/gpt5-synthesis/evaluator.yml",
-      "model": "gpt-5-turbo-2025-11-01",
+      "model": "openai/gpt-5-turbo-2025-11-01",
       "category": "knowledge-synthesis",
       "description": "Knowledge synthesis for cross-referencing and completeness"
     },
