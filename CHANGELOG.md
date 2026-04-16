@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-04-17
+
+### Added
+
+- **`gpt54-pro` evaluator** (OpenAI GPT-5.4 Pro) — Extended reasoning for complex multi-step analysis, risk assessment, and decision framework evaluation. Complements o3-chain with GPT-family extended reasoning.
+- **`gpt5-codex` evaluator** (OpenAI GPT-5.3 Codex) — Code-specialized review using OpenAI's purpose-built code model. Deep code comprehension, algorithm correctness, and complexity analysis.
+- **GPT-5.4 family** in provider registry — gpt-5.4, gpt-5.4-pro, gpt-5.4-mini, gpt-5.4-nano, gpt-5.3-codex
+
+### Changed
+
+- **5 evaluators upgraded to GPT-5.4**: `fast-check` (nano→5.4-nano), `gpt4o-code` (5→5.4), `gpt5-diversity` (5→5.4), `gpt5-synthesis` (5→5.4), `gpt52-reasoning` (5.2→5.4)
+- **Provider registry v1.0.4** — Added GPT-5.4 family, marked gpt-5/5.2/5-nano/5-mini as legacy
+- **25 evaluators across 4 providers** — Anthropic (4), Google (6), OpenAI (11), Mistral (4)
+
 ## [0.6.1] - 2026-04-17
 
 ### Fixed
@@ -170,7 +184,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI/CD workflow with pytest and pre-commit
 - Project structure based on Agentive Starter Kit
 
-[Unreleased]: https://github.com/movito/adversarial-evaluator-library/compare/v0.6.1...HEAD
+[Unreleased]: https://github.com/movito/adversarial-evaluator-library/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/movito/adversarial-evaluator-library/compare/v0.6.1...v0.7.0
 [0.6.1]: https://github.com/movito/adversarial-evaluator-library/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/movito/adversarial-evaluator-library/compare/v0.5.3...v0.6.0
 [0.5.3]: https://github.com/movito/adversarial-evaluator-library/compare/v0.5.2...v0.5.3
