@@ -135,6 +135,7 @@ adversarial-workflow/test_venv*/
 .adversarial/logs/
 .adversarial/artifacts/
 .adversarial/evaluators/
+.adversarial/inputs/
 
 # Audio processing work files (user projects)
 audio-processing/
