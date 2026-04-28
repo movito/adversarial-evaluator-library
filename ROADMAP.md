@@ -63,9 +63,9 @@ v0.10.0.
 
 Stabilize the existing evaluators before expanding further.
 
-- **[AEL-0014](.kit/tasks/2-todo/AEL-0014-mistral-aider-whole-edit-format-corruption.md)** — Fix Mistral/aider whole-edit-format source-file corruption
 - Lifecycle-metadata backfill for older evaluators (Anthropic, OpenAI o-series, Mistral non-codestral, Google non-flash/non-deep) so `status`/`released`/`version` are universal
 - Convert pinned `test_schema_version_is_*` test to a forward-compatible parse-and-compare check (currently breaks on every registry bump)
+- Clean up legacy `.adversarial/scripts/*.sh` + `EVALUATION-WORKFLOW.md` — they document an aider-based runner that was replaced by the LiteLLM runner in `adversarial-workflow` 1.0
 - Consider Unified Artifact Registry ([ADR-0007](docs/adr/ADR-0007-unified-artifact-registry.md)) for cross-project distribution
 
 ### Coverage Gaps (Optional)

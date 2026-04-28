@@ -1,6 +1,8 @@
 # AEL-0014: Fix Mistral/aider whole-edit-format source-file corruption
 
-**Status**: Todo
+**Status**: Canceled
+**Canceled Reason**: Aider has been removed from the evaluator pipeline. `adversarial-workflow` v1.0.1 uses LiteLLM directly (deps: `aiohttp, litellm, python-dotenv, pyyaml` — no aider). The corruption path no longer exists. Legacy `aider` references remain in `.adversarial/scripts/*.sh` and `.adversarial/docs/EVALUATION-WORKFLOW.md`, but those are stale shell scripts from the older workflow, not the current pipeline.
+**Canceled Date**: 2026-04-28
 **Priority**: high
 **Assigned To**: unassigned
 **Created**: 2026-04-28
