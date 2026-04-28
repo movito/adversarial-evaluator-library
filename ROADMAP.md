@@ -6,28 +6,39 @@ A **starter kit** of adversarial evaluators that demonstrates cognitive diversit
 
 **Not a goal**: Exhaustive coverage of every model and provider.
 
-## Current State (v0.6.0)
+## Current State (v0.10.0)
 
-**26 evaluators** across **4 providers** and **7 categories**:
+**37 evaluator entries** (28 active, 9 deprecated-but-callable) across
+**4 providers** and **7 categories**:
 
-| Provider | Evaluators | Models |
-|----------|-----------|--------|
-| OpenAI | 9 | gpt-5.2, o3, o4-mini, gpt-5, gpt-5-nano, gpt-5-turbo |
-| Mistral | 7 | mistral-large-2512, mistral-small-2603, magistral-medium-2507, codestral |
-| Google | 6 | gemini-2.5-flash, gemini-2.5-pro, gemini-3.1-pro-preview |
-| Anthropic | 4 | claude-opus-4-7, claude-sonnet-4-6, claude-haiku-4-5 |
+| Provider  | Active | Deprecated | Models |
+|-----------|--------|------------|--------|
+| OpenAI    | 11     | 4          | gpt-5.5, gpt-5.5-pro, gpt-5.4, gpt-5.4-nano, gpt-5.3-codex, o3, o4-mini |
+| Mistral   | 7      | 1          | codestral-2, mistral-large-2512, mistral-small-2603, magistral-medium-2509 |
+| Google    | 6      | 4          | gemini-3-flash-preview, gemini-3.1-pro-preview |
+| Anthropic | 4      | 0          | claude-opus-4-7, claude-sonnet-4-6, claude-haiku-4-5 |
 
 **Category coverage** (all categories have 2+ providers):
 
-| Category | Providers | Count |
-|----------|-----------|-------|
-| code-review | OpenAI, Google, Mistral, Anthropic | 7 |
+| Category | Providers | Active Count |
+|----------|-----------|--------------|
+| code-review | OpenAI, Google, Mistral, Anthropic | 8 |
 | arch-review | OpenAI, Google, Mistral, Anthropic | 4 |
 | deep-reasoning | OpenAI, Google, Mistral | 4 |
 | quick-check | OpenAI, Google, Mistral, Anthropic | 4 |
 | adversarial | OpenAI, Mistral, Anthropic | 3 |
 | knowledge-synthesis | OpenAI, Google | 2 |
 | cognitive-diversity | OpenAI, Mistral | 2 |
+
+**Versioning policy** (since v0.8.0): Evaluators are an immutable contract
+once published. Behavior changes ship as **new** evaluators (`-v2` or
+model-keyed names); predecessors are marked `deprecated` with
+`replaced_by` metadata, then retired in a later release. See
+`.claude/skills/evaluator-versioning/SKILL.md`.
+
+All active evaluators pin **explicit model IDs** — no floating tags. The
+last floating-tag dependency (`mistral/codestral-latest`) was removed in
+v0.10.0.
 
 ## Completed Milestones
 
@@ -41,14 +52,20 @@ A **starter kit** of adversarial evaluators that demonstrates cognitive diversit
   - Upgraded Mistral from Large 2411→2512, Small 2503→2603 (Small 4)
   - Added magistral-reasoning using Mistral's dedicated reasoning model
   - Fixed GPT-5 Turbo LiteLLM routing (issue #20)
+- **GPT-5.4 upgrades** (v0.7.0): Five evaluators bumped to GPT-5.4; new `gpt54-pro` and `gpt5-codex` evaluators added.
+- **Versioning policy** (v0.8.0): Introduced immutable-contract evaluator versioning (`.claude/skills/evaluator-versioning/SKILL.md`). New `gpt55-*` family (pro, adversarial, diversity, synthesis) replaces the GPT-5.4 / GPT-5.2 cohort. Deprecation metadata added to `index.json` and `evaluator.yml`.
+- **Gemini Flash 3 family** (v0.9.0): New `gemini-flash-v2`, `code-reviewer-fast-v2`, `arch-review-fast-v2` on `gemini-3-flash-preview`. Predecessors deprecated.
+- **Codestral 2 + Gemini 3.1 Pro** (v0.10.0): New `codestral-code-v2` (`mistral/codestral-2`, 128K context) and `gemini-deep-v2` (`gemini-3.1-pro-preview`). Closes the last floating-tag dependency.
 
 ## Next
 
 ### Hardening & Quality
 
-Stabilize the existing 26 evaluators before expanding further.
+Stabilize the existing evaluators before expanding further.
 
-- Fix Mistral/aider whole-edit-format corruption (evaluator pipeline bug)
+- **[AEL-0014](.kit/tasks/2-todo/AEL-0014-mistral-aider-whole-edit-format-corruption.md)** — Fix Mistral/aider whole-edit-format source-file corruption
+- Lifecycle-metadata backfill for older evaluators (Anthropic, OpenAI o-series, Mistral non-codestral, Google non-flash/non-deep) so `status`/`released`/`version` are universal
+- Convert pinned `test_schema_version_is_*` test to a forward-compatible parse-and-compare check (currently breaks on every registry bump)
 - Consider Unified Artifact Registry ([ADR-0007](docs/adr/ADR-0007-unified-artifact-registry.md)) for cross-project distribution
 
 ### Coverage Gaps (Optional)
