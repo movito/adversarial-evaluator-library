@@ -7,6 +7,86 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-04-28
+
+### Added
+
+- **`codestral-code-v2` evaluator** (Mistral `codestral-2`) — Code-focused review using the explicit Codestral 2 model with 128K context. Replaces `codestral-code` (which ran on the floating `codestral-latest` tag, ~32K context). Prompt and output schema preserved verbatim.
+- **`gemini-deep-v2` evaluator** (Google `gemini-3.1-pro-preview`) — Extended reasoning evaluation. Replaces `gemini-deep`. Aligns the deep-reasoning Pro evaluator with sibling `gemini-pro` and `gemini-code`, all of which now run on Gemini 3.1 Pro. Prompt preserved verbatim.
+
+### Deprecated
+
+- **`codestral-code`** → replaced by `codestral-code-v2`. Continues to function; will be retired in a future release. Pinning to an explicit model ID closes the floating-tag risk where `codestral-latest` could change without notice.
+- **`gemini-deep`** → replaced by `gemini-deep-v2`. The `gemini-2.5-pro` model is now `legacy` in the registry.
+
+### Changed
+
+- **Provider registry v1.0.7** — Marked `codestral-latest` as `legacy` (kept above `codestral-2` previously; reordered so `codestral-2` is now the primary entry). Marked `gemini-2.5-pro` as `legacy` (still callable; superseded by `gemini-3.1-pro-preview`).
+- **`evaluators/index.json` v1.10.0** — Added 2 new entries with full lifecycle metadata; added deprecation metadata to the 2 superseded entries.
+- **36 evaluators across 4 providers** — Anthropic (4), Google (10 — 6 active + 4 deprecated), OpenAI (15), Mistral (8 — 7 active + 1 deprecated). Active total: 32.
+
+### Notes
+
+- `gemini-3.1-pro-preview` remains in preview at Google. When promoted to a stable ID, a v3 evaluator will be released and the v2 cohort deprecated.
+- This release closes the only remaining floating-tag dependency (`codestral-latest`). All active evaluators now pin explicit model IDs.
+
+## [0.9.0] - 2026-04-28
+
+### Added
+
+- **`gemini-flash-v2` evaluator** (Google `gemini-3-flash-preview`) — Fast document assessment. Replaces `gemini-flash`. Prompt and output schema preserved verbatim.
+- **`code-reviewer-fast-v2` evaluator** (Google `gemini-3-flash-preview`) — Fast adversarial correctness check for code changes. Replaces `code-reviewer-fast`. Prompt preserved verbatim.
+- **`arch-review-fast-v2` evaluator** (Google `gemini-3-flash-preview`) — Fast architectural review. Replaces `arch-review-fast`. Prompt preserved verbatim.
+- **Gemini 3 Flash family** in provider registry (`gemini-3-flash-preview`, `gemini-3.1-flash-lite-preview`).
+
+### Deprecated
+
+- **`gemini-flash`** → replaced by `gemini-flash-v2`. Continues to function; will be retired in a future release.
+- **`code-reviewer-fast`** → replaced by `code-reviewer-fast-v2`.
+- **`arch-review-fast`** → replaced by `arch-review-fast-v2`.
+
+### Changed
+
+- **Provider registry v1.0.6** — Added `gemini-3-flash-preview` (1M context) and `gemini-3.1-flash-lite-preview` (1M context) under `gemini.flash`. Marked `gemini-2.5-flash` as `legacy` (still callable; superseded).
+- **`evaluators/index.json` v1.9.0** — Added 3 new entries with full lifecycle metadata; added deprecation metadata to the 3 superseded entries.
+- **34 evaluators across 4 providers** — Anthropic (4), Google (9 — 6 active + 3 deprecated), OpenAI (15), Mistral (7). Active total: 30.
+
+### Notes
+
+- `gemini-3-flash-preview` is in preview at Google. This matches the existing precedent of `gemini-pro` and `gemini-code` running on `gemini-3.1-pro-preview`. When Google promotes Flash 3 to a stable model ID, v3 evaluators will be released and the v2 cohort deprecated.
+- Pattern A naming (`-v2` suffix) used because the existing names are capability-keyed, not model-keyed. Per `.claude/skills/evaluator-versioning/SKILL.md`.
+- `gemini-deep` remains on `gemini-2.5-pro` and is not part of this release. Aligning it to `gemini-3.1-pro-preview` (matching its sibling Gemini Pro evaluators) is tracked for 0.10.0.
+
+## [0.8.0] - 2026-04-28
+
+### Added
+
+- **`gpt55-pro` evaluator** (OpenAI GPT-5.5 Pro) — Extended reasoning for complex multi-step analysis. Replaces `gpt54-pro`. Prompt and output schema preserved verbatim.
+- **`gpt55-adversarial` evaluator** (OpenAI GPT-5.5) — Deep adversarial document review. Replaces `gpt52-reasoning`. Renamed to align the name with the actual model and category.
+- **`gpt55-diversity` evaluator** (OpenAI GPT-5.5) — Cognitive diversity / alternative perspectives. Replaces `gpt5-diversity`.
+- **`gpt55-synthesis` evaluator** (OpenAI GPT-5.5) — Knowledge synthesis and cross-referencing. Replaces `gpt5-synthesis`.
+- **GPT-5.5 family** in provider registry (`gpt-5.5`, `gpt-5.5-pro`).
+- **Evaluator versioning policy** (`.claude/skills/evaluator-versioning/SKILL.md`) — Lifecycle policy treating evaluators as an immutable contract: behavior changes ship as new evaluators; old ones are deprecated with `replaced_by`, then retired.
+- **Lifecycle metadata** in `index.json` and `evaluator.yml` for the 8 affected entries: `status`, `released`, `deprecated_at`, `replaced_by`, `replaces`, `version`. Also added `lifecycle_states` reference block to `index.json`.
+
+### Deprecated
+
+- **`gpt54-pro`** → replaced by `gpt55-pro`. Continues to function; will be retired in a future release.
+- **`gpt52-reasoning`** → replaced by `gpt55-adversarial`. The legacy name had been silently running on `gpt-5.4` since 0.7.0; the new evaluator both upgrades the model and corrects the name.
+- **`gpt5-diversity`** → replaced by `gpt55-diversity`.
+- **`gpt5-synthesis`** → replaced by `gpt55-synthesis`.
+
+### Changed
+
+- **Provider registry v1.0.5** — Added `gpt-5.5` (1,050K context) and `gpt-5.5-pro` (1,050K context) under `gpt.flagship`. Marked `gpt-5.4` and `gpt-5.4-pro` as `legacy` (still callable; superseded).
+- **`high-stakes-panel.yml`, `adversarial-trio.yml`, `quick-then-deep.yml` compositions** — Updated to reference `gpt55-adversarial` instead of the deprecated `gpt52-reasoning`.
+- **31 evaluators across 4 providers** — Anthropic (4), Google (6), OpenAI (15 — 11 active + 4 deprecated), Mistral (7). Active total: 27.
+
+### Notes
+
+- `gpt-5.4-nano` (used by `fast-check`) and `gpt-5.3-codex` (used by `gpt5-codex`) remain on their current models. OpenAI has not released `gpt-5.5-mini`, `gpt-5.5-nano`, or `gpt-5.5-codex` as of 2026-04-28.
+- Older evaluator entries (Anthropic, Google, Mistral, OpenAI o-series) do not yet carry `status`/`released`/`version` metadata. Backfill is non-blocking and tracked for a future minor release.
+
 ## [0.7.0] - 2026-04-17
 
 ### Added

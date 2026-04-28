@@ -58,12 +58,12 @@ The evaluator produces:
 | Foundational modules (data models, core abstractions) | Yes |
 | Pre-merge review of architectural components | Yes |
 | After major refactors | Yes |
-| Quick PR review | No, use arch-review-fast |
+| Quick PR review | No, use arch-review-fast-v2 |
 | Security-focused review | No, use o1-code-review |
 | Line-level bug finding | No, use gpt4o-code |
 
 ## See Also
 
-- [arch-review-fast](../../google/arch-review-fast/) - Faster/cheaper alternative using Gemini
+- [arch-review-fast-v2](../../google/arch-review-fast-v2/) - Faster/cheaper alternative using Gemini 3 Flash
 - [o1-code-review](../o1-code-review/) - Line-level security and correctness review
 - [gpt4o-code](../gpt4o-code/) - Fast general code review

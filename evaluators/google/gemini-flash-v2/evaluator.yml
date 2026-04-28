@@ -1,0 +1,42 @@
+# Gemini 3 Flash Fast Evaluator
+# Fast, cost-effective evaluator for quick document assessment
+#
+# Provider: google
+# Use cases:
+#   - Quick document reviews and assessments
+#   - Fast preliminary evaluations
+#   - Cost-effective bulk processing
+#   - Initial quality checks
+#
+# Replaces gemini-flash (gemini-2.5-flash) with the Gemini 3 Flash family.
+# The model `gemini-3-flash-preview` is in preview at Google; this matches
+# the existing precedent of `gemini-pro` running on `gemini-3.1-pro-preview`.
+
+name: gemini-flash-v2
+description: Fast evaluation using Gemini 3 Flash
+model: gemini/gemini-3-flash-preview
+api_key_env: GEMINI_API_KEY
+model_requirement:
+  family: gemini
+  tier: flash
+  min_version: "3"
+output_suffix: -gemini-flash-v2.md
+timeout: 180  # Fast model, 3 minutes sufficient
+status: active
+released: "2026-04-28"
+version: "1.0.0"
+replaces: gemini-flash
+
+prompt: |
+  You are a fast document evaluator optimized for quick assessment.
+
+  Review the following content:
+
+  {content}
+
+  Provide a concise evaluation covering:
+  1. Key points and structure
+  2. Obvious gaps or issues
+  3. Quick recommendations
+
+  Keep response focused and actionable.

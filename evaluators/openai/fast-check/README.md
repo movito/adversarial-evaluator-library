@@ -36,7 +36,7 @@ Quick validation for formatting and basic issues.
 Use as first stage in multi-evaluator pipeline:
 1. `fast-check` - Catch obvious issues
 2. Fix any issues found
-3. `gpt52-reasoning` or `gemini-deep` - Deep analysis
+3. `gpt55-adversarial` or `gemini-deep-v2` - Deep analysis
 
 ## Configuration
 
@@ -46,5 +46,5 @@ api_key_env: OPENAI_API_KEY
 
 ## Related Evaluators
 
-- `gemini-flash` - Alternative fast evaluator (Google)
-- `gpt52-reasoning` - Deep review after fast-check passes
+- `gemini-flash-v2` - Alternative fast evaluator (Google)
+- `gpt55-adversarial` - Deep review after fast-check passes

@@ -30,7 +30,7 @@ human review. It complements bots by finding semantic issues that line-level ana
 | Bug fix with edge cases | ✅ Yes |
 | Refactoring (no new logic) | ❌ Skip |
 | Docs-only changes | ❌ Skip |
-| Quick style fix | ❌ No (use code-reviewer-fast) |
+| Quick style fix | ❌ No (use code-reviewer-fast-v2) |
 
 ## Model
 
@@ -76,6 +76,6 @@ The evaluator produces:
 
 ## See Also
 
-- [code-reviewer-fast](../../google/code-reviewer-fast/) — Fast variant using Gemini Flash
+- [code-reviewer-fast-v2](../../google/code-reviewer-fast-v2/) — Fast variant using Gemini 3 Flash
 - [o1-code-review](../o1-code-review/) — Security-focused code review
 - [gemini-code](../../google/gemini-code/) — General security + quality review

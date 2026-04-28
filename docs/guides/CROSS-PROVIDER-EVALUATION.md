@@ -31,7 +31,7 @@ MISTRAL_API_KEY=...             # For Mistral evaluators
 # Install evaluators from different providers
 adversarial library install openai/fast-check --yes
 adversarial library install anthropic/claude-quick --yes
-adversarial library install google/gemini-flash --yes
+adversarial library install google/gemini-flash-v2 --yes
 ```
 
 ### 3. Run Cross-Provider Evaluation
@@ -40,7 +40,7 @@ adversarial library install google/gemini-flash --yes
 # Get perspectives from multiple providers
 adversarial evaluate --evaluator fast-check document.md      # OpenAI
 adversarial evaluate --evaluator claude-quick document.md    # Anthropic
-adversarial evaluate --evaluator gemini-flash document.md    # Google
+adversarial evaluate --evaluator gemini-flash-v2 document.md    # Google
 ```
 
 ## Using Claude Evaluators with Non-Claude Agents
@@ -106,11 +106,11 @@ Use **all providers** for maximum coverage:
 # Install all quick-check evaluators
 adversarial library install openai/fast-check --yes
 adversarial library install anthropic/claude-quick --yes
-adversarial library install google/gemini-flash --yes
+adversarial library install google/gemini-flash-v2 --yes
 adversarial library install mistral/mistral-fast --yes
 
 # Run all four
-for e in fast-check claude-quick gemini-flash mistral-fast; do
+for e in fast-check claude-quick gemini-flash-v2 mistral-fast; do
   adversarial evaluate --evaluator $e critical-document.md
 done
 ```
@@ -121,7 +121,7 @@ done
 |----------|-------|----------|---------|
 | OpenAI | fast-check (~$0.0002) | gpt4o-code (~$0.01) | o1-code-review (~$0.05) |
 | Anthropic | claude-quick (~$0.001) | claude-code (~$0.005) | claude-adversarial (~$0.015) |
-| Google | gemini-flash (~$0.001) | gemini-pro (~$0.005) | gemini-deep (~$0.01) |
+| Google | gemini-flash-v2 (~$0.001) | gemini-pro (~$0.005) | gemini-deep-v2 (~$0.01) |
 | Mistral | mistral-fast (~$0.0005) | mistral-content (~$0.005) | - |
 
 **Cross-provider quick check (4 evaluators)**: ~$0.003 total

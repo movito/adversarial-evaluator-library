@@ -6,7 +6,7 @@ Deep reasoning evaluation using Mistral Large 3 - multi-step analysis and verifi
 
 This evaluator uses Mistral Large 3 (`mistral-large-2512`, 256K context) for methodical, step-by-step reasoning through complex analysis. It independently verifies calculations, maps assumption dependencies, tests sensitivity, and checks internal consistency.
 
-Provides a third independent perspective alongside `o3-chain` (OpenAI) and `gemini-deep` (Google) for deep reasoning tasks.
+Provides a third independent perspective alongside `o3-chain` (OpenAI) and `gemini-deep-v2` (Google) for deep reasoning tasks.
 
 ## Use Cases
 
@@ -15,7 +15,7 @@ Provides a third independent perspective alongside `o3-chain` (OpenAI) and `gemi
 - **Assumption mapping**: Surface implicit assumptions and test their sensitivity
 - **Scenario analysis**: What happens when key assumptions change?
 - **Internal consistency checking**: Do aggregates match components? Are definitions stable?
-- **Cross-provider reasoning panel**: Pair with `o3-chain` and `gemini-deep`
+- **Cross-provider reasoning panel**: Pair with `o3-chain` and `gemini-deep-v2`
 
 ## Model
 
@@ -26,7 +26,7 @@ Provides a third independent perspective alongside `o3-chain` (OpenAI) and `gemi
 
 ## Cost Estimate
 
-~$0.03-0.10 per evaluation depending on content complexity. Comparable to `o3-chain`, cheaper than `gemini-deep` for most documents (Gemini Pro pricing at scale).
+~$0.03-0.10 per evaluation depending on content complexity. Comparable to `o3-chain`, cheaper than `gemini-deep-v2` for most documents (Gemini Pro pricing at scale).
 
 ## Example Usage
 
@@ -36,7 +36,7 @@ adversarial evaluate --evaluator mistral-deep docs/financial-model.md
 
 # Cross-provider deep reasoning panel
 adversarial evaluate --evaluator o3-chain docs/analysis.md
-adversarial evaluate --evaluator gemini-deep docs/analysis.md
+adversarial evaluate --evaluator gemini-deep-v2 docs/analysis.md
 adversarial evaluate --evaluator mistral-deep docs/analysis.md
 ```
 
@@ -76,6 +76,6 @@ The evaluator produces:
 ## See Also
 
 - [o3-chain](../../openai/o3-chain/) — Chain-of-thought reasoning (OpenAI o3)
-- [gemini-deep](../../google/gemini-deep/) — Extended reasoning (Google Gemini 2.5 Pro)
+- [gemini-deep-v2](../../google/gemini-deep-v2/) — Extended reasoning (Google Gemini 3.1 Pro Preview)
 - [mistral-adversarial](../mistral-adversarial/) — Adversarial review (Mistral Large 3)
 - [mistral-arch](../mistral-arch/) — Architectural review (Mistral Large 3)

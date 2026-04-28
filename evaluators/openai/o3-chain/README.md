@@ -39,6 +39,6 @@ api_key_env: OPENAI_API_KEY
 
 ## Related Evaluators
 
-- `gpt52-reasoning` - For adversarial argument review
+- `gpt55-adversarial` - For adversarial argument review
 - `fast-check` - For quick validation
-- `codestral-code` - For code/script verification
+- `codestral-code-v2` - For code/script verification

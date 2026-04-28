@@ -1,5 +1,7 @@
 # arch-review-fast
 
+> **DEPRECATED (2026-04-28)** — superseded by [`arch-review-fast-v2`](../arch-review-fast-v2/), which runs on `gemini-3-flash-preview`. This evaluator remains callable until retirement; new work should target `arch-review-fast-v2`.
+
 Fast architectural review using Gemini 2.5 Flash extended reasoning.
 
 ## Overview

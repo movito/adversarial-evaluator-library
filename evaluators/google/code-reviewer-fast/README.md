@@ -1,5 +1,7 @@
 # code-reviewer-fast
 
+> **DEPRECATED (2026-04-28)** — superseded by [`code-reviewer-fast-v2`](../code-reviewer-fast-v2/), which runs on `gemini-3-flash-preview`. This evaluator remains callable until retirement; new work should target `code-reviewer-fast-v2`.
+
 Fast adversarial correctness check using Gemini Flash.
 
 ## Overview

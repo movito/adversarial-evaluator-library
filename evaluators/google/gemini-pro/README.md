@@ -28,8 +28,8 @@ Large-context evaluator for synthesizing research across documents.
 - Research quality validation
 
 **Not ideal for:**
-- Quick checks (use gemini-flash)
-- Deep reasoning on small docs (use gemini-deep)
+- Quick checks (use gemini-flash-v2)
+- Deep reasoning on small docs (use gemini-deep-v2)
 - Adversarial review (use claude-adversarial or o3-chain)
 
 ## Configuration
@@ -51,5 +51,5 @@ adversarial evaluate evaluators/google/gemini-pro/evaluator.yml combined.md
 
 ## Related Evaluators
 
-- `gemini-flash` - For quick preliminary checks
-- `gemini-deep` - For extended reasoning on complex content
+- `gemini-flash-v2` - For quick preliminary checks
+- `gemini-deep-v2` - For extended reasoning on complex content

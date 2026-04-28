@@ -10,9 +10,9 @@ name: adversarial-trio
 description: Three model families for cognitive diversity
 
 evaluators:
-  - openai/gpt52-reasoning   # OpenAI family
+  - openai/gpt55-adversarial   # OpenAI family
   - mistral/mistral-content  # Mistral family (European)
-  - google/gemini-deep       # Google family
+  - google/gemini-deep-v2       # Google family
 
 rationale: |
   Each model family has different:
@@ -37,7 +37,7 @@ synthesis_approach: |
 
 example_usage: |
   # Run all three
-  for eval in openai/gpt52-reasoning mistral/mistral-content google/gemini-deep; do
+  for eval in openai/gpt55-adversarial mistral/mistral-content google/gemini-deep-v2; do
     adversarial evaluate evaluators/$eval/evaluator.yml important-doc.md
   done
 

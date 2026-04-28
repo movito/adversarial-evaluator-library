@@ -1,0 +1,44 @@
+# Gemini Deep Think Extended Reasoning Evaluator (v2)
+# Extended reasoning evaluator for complex analysis
+#
+# Provider: google
+# Use cases:
+#   - Complex analysis requiring deep reasoning
+#   - Multi-step logical evaluation
+#   - Critical thinking and assumption testing
+#   - Counter-argument development
+#
+# Replaces gemini-deep (gemini-2.5-pro) with the Gemini 3.1 Pro family,
+# aligning with sibling Pro evaluators gemini-pro and gemini-code.
+
+name: gemini-deep-v2
+description: Extended reasoning evaluation using Gemini 3.1 Pro
+model: gemini/gemini-3.1-pro-preview
+api_key_env: GEMINI_API_KEY
+model_requirement:
+  family: gemini
+  tier: pro
+  min_version: "3.1"
+output_suffix: -gemini-deep-v2.md
+timeout: 600  # Extended for deep thinking (10 minutes)
+status: active
+released: "2026-04-28"
+version: "1.0.0"
+replaces: gemini-deep
+
+prompt: |
+  You are a deep reasoning evaluator. Take time to think through complex issues.
+
+  Analyze the following content thoroughly:
+
+  {content}
+
+  ## Deep Analysis Required
+
+  1. **Logical Structure**: Evaluate the reasoning chain and identify any gaps
+  2. **Assumptions**: What unstated assumptions underpin the arguments?
+  3. **Counter-arguments**: What objections could be raised?
+  4. **Implications**: What are the second-order effects of the conclusions?
+  5. **Confidence Assessment**: How certain are the claims, and what would change your assessment?
+
+  Provide detailed analysis with explicit reasoning steps.

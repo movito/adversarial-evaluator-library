@@ -24,6 +24,10 @@ model_requirement:
   min_version: "5.4-pro"
 output_suffix: -gpt54-pro.md
 timeout: 600  # Pro models use extended reasoning, allow more time
+status: deprecated
+deprecated_at: "2026-04-28"
+replaced_by: gpt55-pro
+version: "1.0.0"
 
 prompt: |
   You are a deep reasoning specialist using extended thinking to analyze complex content.

@@ -18,9 +18,9 @@ Use evaluators from different families to minimize shared blind spots:
 
 | Family | Provider | Training Emphasis | Evaluators |
 |--------|----------|-------------------|------------|
-| OpenAI | OpenAI | US-centric, reasoning-heavy | gpt52-reasoning, o3-chain, fast-check |
-| Mistral | Mistral AI | European, multilingual | mistral-content, mistral-fast, codestral-code |
-| Google | Google | Large-scale web data | gemini-flash, gemini-pro, gemini-deep |
+| OpenAI | OpenAI | US-centric, reasoning-heavy | gpt55-adversarial, o3-chain, fast-check |
+| Mistral | Mistral AI | European, multilingual | mistral-content, mistral-fast, codestral-code-v2 |
+| Google | Google | Large-scale web data | gemini-flash-v2, gemini-pro, gemini-deep-v2 |
 | Anthropic | Anthropic | Constitutional AI, safety | (Your Claude instance) |
 
 ## Practical Application

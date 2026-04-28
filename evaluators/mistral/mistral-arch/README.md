@@ -6,7 +6,7 @@ Architectural review using Mistral Large - alternative provider perspective on d
 
 This evaluator uses Mistral's most capable model (`mistral-large-2512` / Mistral Large 3, 256K context) to perform architectural-level code review. It focuses on structural quality — coupling, cohesion, API design, pattern consistency, and growth readiness — rather than line-level bugs or style.
 
-As a European-headquartered provider, Mistral brings cognitive diversity to architectural review panels. Pairing this evaluator with `arch-review` (OpenAI o1) or `arch-review-fast` (Gemini Flash) in a composition gives genuinely independent structural assessments.
+As a European-headquartered provider, Mistral brings cognitive diversity to architectural review panels. Pairing this evaluator with `arch-review` (OpenAI o3) or `arch-review-fast-v2` (Gemini 3 Flash) in a composition gives genuinely independent structural assessments.
 
 ## Use Cases
 
@@ -58,16 +58,16 @@ The evaluator produces:
 
 | Scenario | Use mistral-arch? |
 |----------|-------------------|
-| Cross-provider architectural panel | Yes — pair with arch-review or arch-review-fast |
+| Cross-provider architectural panel | Yes — pair with arch-review or arch-review-fast-v2 |
 | Independent arch review (alternative to OpenAI/Google) | Yes |
 | Cost-conscious arch review (cheaper than o1) | Yes |
 | Deepest possible reasoning (o1 chain-of-thought) | No, use arch-review |
-| Fastest possible arch check | No, use arch-review-fast |
-| Line-level security review | No, use codestral-code or claude-code |
+| Fastest possible arch check | No, use arch-review-fast-v2 |
+| Line-level security review | No, use codestral-code-v2 or claude-code |
 
 ## See Also
 
 - [arch-review](../../openai/arch-review/) — Deep reasoning arch review (OpenAI o1)
-- [arch-review-fast](../../google/arch-review-fast/) — Fast arch review (Gemini Flash)
-- [codestral-code](../codestral-code/) — Line-level code review (Mistral Codestral)
+- [arch-review-fast-v2](../../google/arch-review-fast-v2/) — Fast arch review (Gemini 3 Flash)
+- [codestral-code-v2](../codestral-code-v2/) — Line-level code review (Mistral Codestral)
 - [mistral-content](../mistral-content/) — Document/content review (Mistral Large)

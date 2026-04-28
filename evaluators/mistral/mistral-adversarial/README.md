@@ -10,7 +10,7 @@ The primary value of this evaluator is **provider diversity for adversarial pane
 
 ## Use Cases
 
-- **Cross-provider adversarial panel**: Pair with `gpt52-reasoning` and `claude-adversarial` for maximum blind-spot coverage
+- **Cross-provider adversarial panel**: Pair with `gpt55-adversarial` and `claude-adversarial` for maximum blind-spot coverage
 - **Critical argument stress-testing**: Challenge claims, find logical gaps
 - **High-stakes deliverable review**: Final check before publication or implementation
 - **Red-teaming**: Surface risks and unintended consequences
@@ -25,7 +25,7 @@ The primary value of this evaluator is **provider diversity for adversarial pane
 
 ## Cost Estimate
 
-~$0.02-0.08 per review depending on document size. Comparable to `gpt52-reasoning`, significantly cheaper than `claude-adversarial` (Opus pricing).
+~$0.02-0.08 per review depending on document size. Comparable to `gpt55-adversarial`, significantly cheaper than `claude-adversarial` (Opus pricing).
 
 ## Example Usage
 
@@ -34,7 +34,7 @@ The primary value of this evaluator is **provider diversity for adversarial pane
 adversarial evaluate --evaluator mistral-adversarial docs/proposal.md
 
 # Three-provider adversarial panel (maximum coverage)
-adversarial evaluate --evaluator gpt52-reasoning docs/proposal.md
+adversarial evaluate --evaluator gpt55-adversarial docs/proposal.md
 adversarial evaluate --evaluator claude-adversarial docs/proposal.md
 adversarial evaluate --evaluator mistral-adversarial docs/proposal.md
 # Consensus issues (found by 2+ models) are high-confidence findings
@@ -67,13 +67,13 @@ Includes a prompt injection guard to treat reviewed content as untrusted data.
 | Cross-provider adversarial panel | Yes — completes the three-provider set |
 | Independent adversarial review | Yes |
 | Cost-conscious adversarial review | Yes — cheaper than Claude Opus |
-| Deepest possible adversarial (single model) | No, use claude-adversarial or gpt52-reasoning |
+| Deepest possible adversarial (single model) | No, use claude-adversarial or gpt55-adversarial |
 | Quick check | No, use mistral-fast |
-| Code review | No, use codestral-code |
+| Code review | No, use codestral-code-v2 |
 
 ## See Also
 
-- [gpt52-reasoning](../../openai/gpt52-reasoning/) — Adversarial review (OpenAI GPT-5.2)
+- [gpt55-adversarial](../../openai/gpt55-adversarial/) — Adversarial review (OpenAI GPT-5.5)
 - [claude-adversarial](../../anthropic/claude-adversarial/) — Adversarial review (Anthropic Opus 4.6)
 - [mistral-deep](../mistral-deep/) — Deep reasoning (Mistral Large 3)
 - [mistral-content](../mistral-content/) — Content/cognitive-diversity review (Mistral Large)

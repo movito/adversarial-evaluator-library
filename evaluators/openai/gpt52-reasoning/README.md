@@ -1,5 +1,7 @@
 # GPT-5.2 Deep Reasoning Evaluator
 
+> **DEPRECATED (2026-04-28).** Replaced by [`gpt55-adversarial`](../gpt55-adversarial/), which uses `gpt-5.5` and corrects the legacy name (this evaluator had been silently running on `gpt-5.4` since 0.7.0). The prompt and verdict vocabulary are unchanged. This evaluator continues to function and will be retired in a future release.
+
 Primary adversarial evaluator for critical document review.
 
 ## Use Cases

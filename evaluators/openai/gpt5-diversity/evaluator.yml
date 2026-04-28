@@ -19,6 +19,10 @@ model_requirement:
   min_version: "5.4"
 output_suffix: -gpt5-diversity.md
 timeout: 180  # Standard category timeout
+status: deprecated
+deprecated_at: "2026-04-28"
+replaced_by: gpt55-diversity
+version: "1.1.0"
 
 prompt: |
   You are a cognitive diversity specialist. Your role is to provide alternative perspectives

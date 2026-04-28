@@ -79,5 +79,5 @@ Optimized for quick scanning with brief, actionable feedback.
 
 - `fast-check` - OpenAI equivalent (GPT-4o-mini)
 - `mistral-fast` - Mistral equivalent
-- `gemini-flash` - Google equivalent
+- `gemini-flash-v2` - Google equivalent
 - `claude-code` - Detailed Anthropic code review

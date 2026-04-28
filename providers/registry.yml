@@ -7,7 +7,7 @@
 #
 # See ADR-0005 for the interface contract specification.
 
-schema_version: "1.0.4"  # 1.0.4: Add GPT-5.4 family, GPT-5.3 Codex (2026-04-17)
+schema_version: "1.0.7"  # 1.0.7: Mark codestral-latest as legacy (codestral-2 already present); mark gemini-2.5-pro as legacy (2026-04-28)
 
 providers:
   # ============================================================================
@@ -23,25 +23,40 @@ providers:
         capability_level: 5
         typical_use: "Most capable reasoning and analysis"
         models:
+          - id: gpt-5.5
+            version: "5.5"
+            context_window: 1050000
+            released: 2026-04-23
+            status: active
+            note: "Codename Spud; ~60% fewer hallucinations than 5.4; 128K max output"
+
+          - id: gpt-5.5-pro
+            version: "5.5-pro"
+            context_window: 1050000
+            released: 2026-04-24
+            status: active
+            note: "Extended reasoning variant of 5.5"
+
           - id: gpt-5.4
             version: "5.4"
             context_window: 128000
             released: 2026-03-05
-            status: active
+            status: legacy
+            note: "Superseded by gpt-5.5"
 
           - id: gpt-5.4-pro
             version: "5.4-pro"
             context_window: 128000
             released: 2026-03-05
-            status: active
-            note: "Extended reasoning variant"
+            status: legacy
+            note: "Superseded by gpt-5.5-pro"
 
           - id: gpt-5.3-codex
             version: "5.3"
             context_window: 128000
             released: 2026-01-15
             status: active
-            note: "Code-specialized model"
+            note: "Code-specialized model — no 5.5 codex variant exists yet"
 
           - id: gpt-5.2
             version: "5.2"
@@ -248,7 +263,8 @@ providers:
             version: "2.5"
             context_window: 1000000
             released: 2025-06-01
-            status: active
+            status: legacy
+            note: "Superseded by gemini-3.1-pro-preview"
             vertex_ai_id: gemini-2.5-pro
 
           - id: gemini-3-pro
@@ -269,11 +285,26 @@ providers:
         capability_level: 4
         typical_use: "Fast, cost-effective, extended thinking"
         models:
+          - id: gemini-3-flash-preview
+            version: "3"
+            context_window: 1000000
+            released: 2026-04-15
+            status: active
+            note: "Preview model — will be replaced when Google promotes Flash 3 to a stable ID"
+
+          - id: gemini-3.1-flash-lite-preview
+            version: "3.1-lite"
+            context_window: 1000000
+            released: 2026-04-01
+            status: active
+            note: "Lite tier preview — smaller/cheaper than gemini-3-flash-preview"
+
           - id: gemini-2.5-flash
             version: "2.5"
             context_window: 1000000
             released: 2025-06-01
-            status: active
+            status: legacy
+            note: "Superseded by gemini-3-flash-preview"
             vertex_ai_id: gemini-2.5-flash
 
 
@@ -388,18 +419,19 @@ providers:
         capability_level: 4
         typical_use: "Code generation and review"
         models:
-          - id: codestral-latest
-            version: "latest"
-            context_window: 32000
-            released: 2024-05-29
-            status: active
-
           - id: codestral-2
             version: "2"
             context_window: 128000
             released: 2025-11-01
             status: active
             vertex_ai_id: codestral-2
+
+          - id: codestral-latest
+            version: "latest"
+            context_window: 32000
+            released: 2024-05-29
+            status: legacy
+            note: "Floating tag; superseded by explicit codestral-2"
 
   # ============================================================================
   # META (via Vertex AI, Together AI, etc.)

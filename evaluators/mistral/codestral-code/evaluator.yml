@@ -18,6 +18,10 @@ model_requirement:
   min_version: "latest"
 output_suffix: -codestral-code.md
 timeout: 300
+status: deprecated
+deprecated_at: "2026-04-28"
+replaced_by: codestral-code-v2
+version: "1.0.0"
 
 prompt: |
   You are a code review specialist.

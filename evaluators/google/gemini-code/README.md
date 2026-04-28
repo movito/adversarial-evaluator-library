@@ -28,9 +28,9 @@ Code-focused security and quality review using Google's Gemini 3.1 Pro.
 - Large context analysis (leverages Gemini's context window)
 
 **Not ideal for:**
-- Quick checks (use gemini-flash)
+- Quick checks (use gemini-flash-v2)
 - Document review (use gemini-pro)
-- Deep reasoning chains (use gemini-deep)
+- Deep reasoning chains (use gemini-deep-v2)
 
 ## Vulnerability Detection
 
@@ -45,7 +45,7 @@ This evaluator checks for:
 
 ## Cognitive Diversity Note
 
-This evaluator provides Google's perspective on code security. Combine with claude-code (Anthropic) or o1-code-review (OpenAI) for multi-provider coverage that catches different vulnerability patterns.
+This evaluator provides Google's perspective on code security. Combine with claude-code (Anthropic) or codestral-code-v2 (Mistral) for multi-provider coverage that catches different vulnerability patterns.
 
 ## Configuration
 
@@ -74,5 +74,5 @@ Each finding includes file:line reference, issue description, and specific remed
 
 - `claude-code` - Anthropic code review
 - `o1-code-review` - OpenAI deep reasoning code review
-- `codestral-code` - Mistral code-focused review
-- `gemini-flash` - Fast Google validation
+- `codestral-code-v2` - Mistral code-focused review
+- `gemini-flash-v2` - Fast Google validation

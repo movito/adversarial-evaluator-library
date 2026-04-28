@@ -18,7 +18,7 @@ stages:
         → Continue to deep review
 
   - name: deep-review
-    evaluator: openai/gpt52-reasoning
+    evaluator: openai/gpt55-adversarial
     condition: "Only if quick-check found issues"
 
 workflow: |
@@ -36,4 +36,4 @@ example_usage: |
   grep -l "PASSED" .adversarial/logs/*fast-check* && echo "Clean!" || echo "Needs deep review"
 
   # Step 3: If needed, run deep review
-  adversarial evaluate evaluators/openai/gpt52-reasoning/evaluator.yml doc.md
+  adversarial evaluate evaluators/openai/gpt55-adversarial/evaluator.yml doc.md

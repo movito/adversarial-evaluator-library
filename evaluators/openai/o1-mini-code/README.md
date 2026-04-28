@@ -67,4 +67,4 @@ The evaluator produces:
 
 - [o1-code-review](../o1-code-review/) - Deep security analysis
 - [gpt4o-code](../gpt4o-code/) - Fast general review
-- [codestral-code](../../mistral/codestral-code/) - Mistral code review
+- [codestral-code-v2](../../mistral/codestral-code-v2/) - Mistral code review

@@ -19,6 +19,10 @@ model_requirement:
   min_version: "2.5"
 output_suffix: -arch-review-fast.md
 timeout: 180  # Flash is faster than o1
+status: deprecated
+deprecated_at: "2026-04-28"
+replaced_by: arch-review-fast-v2
+version: "1.0.0"
 
 prompt: |
   You are a software architect performing a focused architectural review.

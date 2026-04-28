@@ -18,6 +18,10 @@ model_requirement:
   min_version: "2.5"
 output_suffix: -gemini-flash.md
 timeout: 180  # Fast model, 3 minutes sufficient
+status: deprecated
+deprecated_at: "2026-04-28"
+replaced_by: gemini-flash-v2
+version: "1.0.0"
 
 prompt: |
   You are a fast document evaluator optimized for quick assessment.

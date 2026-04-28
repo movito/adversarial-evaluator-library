@@ -45,7 +45,7 @@ This evaluator checks for common vulnerability classes:
 
 ## Cognitive Diversity Note
 
-This evaluator provides Anthropic's perspective on code security. For comprehensive coverage, combine with o1-code-review (OpenAI) or codestral-code (Mistral) to catch different vulnerability patterns.
+This evaluator provides Anthropic's perspective on code security. For comprehensive coverage, combine with o1-code-review (OpenAI) or codestral-code-v2 (Mistral) to catch different vulnerability patterns.
 
 ## Configuration
 
@@ -73,6 +73,6 @@ Each finding includes file:line reference, issue description, and specific remed
 ## Related Evaluators
 
 - `o1-code-review` - OpenAI deep reasoning code review
-- `codestral-code` - Mistral code-focused review
+- `codestral-code-v2` - Mistral code-focused review
 - `gpt4o-code` - Fast OpenAI code review
 - `claude-quick` - Fast Anthropic validation

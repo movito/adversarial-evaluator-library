@@ -9,9 +9,9 @@ name: high-stakes-panel
 description: Multi-model adversarial review for critical documents
 
 evaluators:
-  - openai/gpt52-reasoning   # Primary adversarial review
+  - openai/gpt55-adversarial   # Primary adversarial review
   - mistral/mistral-content  # European/alternative perspective
-  - google/gemini-deep       # Extended reasoning check
+  - google/gemini-deep-v2       # Extended reasoning check
 
 workflow: |
   1. Run all three evaluators (can be parallel)
@@ -42,9 +42,9 @@ synthesis_prompt: |
 
 example_usage: |
   # Run panel (sequential)
-  adversarial evaluate evaluators/openai/gpt52-reasoning/evaluator.yml doc.md
+  adversarial evaluate evaluators/openai/gpt55-adversarial/evaluator.yml doc.md
   adversarial evaluate evaluators/mistral/mistral-content/evaluator.yml doc.md
-  adversarial evaluate evaluators/google/gemini-deep/evaluator.yml doc.md
+  adversarial evaluate evaluators/google/gemini-deep-v2/evaluator.yml doc.md
 
   # Review outputs
   ls .adversarial/logs/*doc*

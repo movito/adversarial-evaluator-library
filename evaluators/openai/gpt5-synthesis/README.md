@@ -1,5 +1,7 @@
 # GPT-5 Turbo Knowledge Synthesis Evaluator
 
+> **DEPRECATED (2026-04-28).** Replaced by [`gpt55-synthesis`](../gpt55-synthesis/), which uses `gpt-5.5` with a 1,050K context window and ~60% fewer hallucinations. The prompt and output schema are unchanged. This evaluator continues to function and will be retired in a future release.
+
 Cross-reference and completeness validation using GPT-5 Turbo for comprehensive knowledge synthesis.
 
 ## Use Cases

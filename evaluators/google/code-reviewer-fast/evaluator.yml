@@ -22,6 +22,10 @@ model_requirement:
   min_version: "2.5"
 output_suffix: -code-reviewer-fast.md
 timeout: 180
+status: deprecated
+deprecated_at: "2026-04-28"
+replaced_by: code-reviewer-fast-v2
+version: "1.0.0"
 
 prompt: |
   You are an adversarial code reviewer. Your job is to find bugs — edge cases, boundary

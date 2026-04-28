@@ -1,5 +1,7 @@
 # Gemini Deep Think Evaluator
 
+> **DEPRECATED (2026-04-28)** — superseded by [`gemini-deep-v2`](../gemini-deep-v2/), which runs on `gemini-3.1-pro-preview` (aligning with sibling Gemini Pro evaluators). This evaluator remains callable until retirement; new work should target `gemini-deep-v2`.
+
 Extended reasoning evaluator for complex analysis and deep thinking.
 
 ## Use Cases
@@ -27,7 +29,7 @@ Extended reasoning evaluator for complex analysis and deep thinking.
 - Policy document stress-testing
 
 **Not ideal for:**
-- Quick checks (use gemini-flash)
+- Quick checks (use gemini-flash-v2)
 - Very large documents (use gemini-pro)
 - Factual verification (use o3-chain)
 
@@ -39,6 +41,6 @@ api_key_env: GEMINI_API_KEY
 
 ## Related Evaluators
 
-- `gpt52-reasoning` - Alternative deep reasoning (OpenAI)
+- `gpt55-adversarial` - Alternative deep reasoning (OpenAI)
 - `o3-chain` - Chain-of-thought verification
-- `gemini-flash` - Quick preliminary check
+- `gemini-flash-v2` - Quick preliminary check

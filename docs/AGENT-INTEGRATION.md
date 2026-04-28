@@ -28,12 +28,12 @@ adversarial evaluate evaluators/openai/fast-check/evaluator.yml <file>
 
 **Deep review:**
 ```bash
-adversarial evaluate evaluators/openai/gpt52-reasoning/evaluator.yml <file>
+adversarial evaluate evaluators/openai/gpt55-adversarial/evaluator.yml <file>
 ```
 
 **Read results:**
 ```bash
-cat .adversarial/logs/<filename>-gpt52-reasoning.md
+cat .adversarial/logs/<filename>-gpt55-adversarial.md
 ```
 ```
 
@@ -67,7 +67,7 @@ Guide agents on which evaluator to use:
 | Situation | Evaluator | Rationale |
 |-----------|-----------|-----------|
 | Quick sanity check | `fast-check` | Speed, low cost |
-| Policy documents | `gpt52-reasoning` | Deep reasoning |
+| Policy documents | `gpt55-adversarial` | Deep reasoning |
 | European context | `mistral-content` | Training emphasis |
 | Complex logic | `o3-chain` | Chain-of-thought |
 | High-stakes | Run multiple | Cognitive diversity |
@@ -79,7 +79,7 @@ For important reviews, run multiple evaluators:
 
 ```bash
 # Run panel
-adversarial evaluate evaluators/openai/gpt52-reasoning/evaluator.yml doc.md
+adversarial evaluate evaluators/openai/gpt55-adversarial/evaluator.yml doc.md
 adversarial evaluate evaluators/mistral/mistral-content/evaluator.yml doc.md
 
 # Synthesize (agent does this)
@@ -96,7 +96,7 @@ Evaluator outputs go to `.adversarial/logs/`:
 ls -lt .adversarial/logs/ | head -10
 
 # Read specific result
-cat .adversarial/logs/document-gpt52-reasoning.md
+cat .adversarial/logs/document-gpt55-adversarial.md
 ```
 
 ## Error Handling
@@ -109,7 +109,7 @@ If evaluation fails:
 echo $OPENAI_API_KEY | head -c 10
 
 # Retry with different evaluator
-adversarial evaluate evaluators/google/gemini-flash/evaluator.yml doc.md
+adversarial evaluate evaluators/google/gemini-flash-v2/evaluator.yml doc.md
 ```
 
 ## Best Practices

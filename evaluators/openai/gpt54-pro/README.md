@@ -1,5 +1,7 @@
 # GPT-5.4 Pro Deep Reasoning Evaluator
 
+> **DEPRECATED (2026-04-28).** Replaced by [`gpt55-pro`](../gpt55-pro/), which uses `gpt-5.5-pro` with a 1,050K context window and ~60% fewer hallucinations. The prompt and output schema are unchanged. This evaluator continues to function and will be retired in a future release.
+
 Extended reasoning evaluator using OpenAI's GPT-5.4 Pro for complex multi-step analysis.
 
 ## Overview

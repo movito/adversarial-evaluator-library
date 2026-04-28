@@ -6,7 +6,7 @@ Architectural review using Claude Opus 4.7 for structural quality analysis.
 
 This evaluator uses Claude Opus 4.7 (`claude-opus-4-7`), Anthropic's most capable model, for deep architectural analysis. It evaluates code structure, coupling, cohesion, API surface quality, and growth readiness.
 
-Fills the arch-review coverage gap for Anthropic, joining `arch-review` (OpenAI o3), `arch-review-fast` (Google Gemini Flash), and `mistral-arch` (Mistral Large 3) for full 4-provider architectural review coverage.
+Fills the arch-review coverage gap for Anthropic, joining `arch-review` (OpenAI o3), `arch-review-fast-v2` (Google Gemini 3 Flash), and `mistral-arch` (Mistral Large 3) for full 4-provider architectural review coverage.
 
 ## Use Cases
 
@@ -14,7 +14,7 @@ Fills the arch-review coverage gap for Anthropic, joining `arch-review` (OpenAI 
 - **Coupling and cohesion analysis**: Evaluate component boundaries and dependencies
 - **API surface quality**: Check public API intuitiveness, consistency, and minimality
 - **Growth readiness assessment**: Will the structure hold at 2-3x complexity?
-- **Cross-provider architectural panel**: Pair with `arch-review`, `arch-review-fast`, or `mistral-arch`
+- **Cross-provider architectural panel**: Pair with `arch-review`, `arch-review-fast-v2`, or `mistral-arch`
 
 ## Model
 
@@ -67,13 +67,13 @@ Includes prompt injection guardrails (content treated as untrusted data). 5-phas
 | Deep architectural analysis | Yes |
 | Cross-provider arch-review panel | Yes |
 | Anthropic perspective on structure | Yes |
-| Fast architectural check | No, use arch-review-fast |
+| Fast architectural check | No, use arch-review-fast-v2 |
 | Code-level bug finding | No, use claude-code |
 | Adversarial stress-testing | No, use claude-adversarial |
 
 ## See Also
 
 - [arch-review](../../openai/arch-review/) — Deep architectural review (OpenAI o3)
-- [arch-review-fast](../../google/arch-review-fast/) — Fast arch review (Gemini 2.5 Flash)
+- [arch-review-fast-v2](../../google/arch-review-fast-v2/) — Fast arch review (Gemini 3 Flash)
 - [mistral-arch](../../mistral/mistral-arch/) — Architectural review (Mistral Large 3)
 - [claude-adversarial](../claude-adversarial/) — Adversarial review (Claude Opus 4.7)

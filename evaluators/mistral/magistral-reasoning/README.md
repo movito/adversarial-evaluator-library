@@ -6,7 +6,7 @@ Deep reasoning using Magistral Medium - Mistral's dedicated reasoning model.
 
 This evaluator uses Magistral Medium (`magistral-medium-2507`), Mistral's purpose-built reasoning model, for methodical multi-step analysis. Unlike Mistral Large 3 (a general-purpose model applied to reasoning), Magistral is architecturally optimized for chain-of-thought reasoning tasks.
 
-Adds a genuinely different reasoning architecture to the deep-reasoning panel alongside `o3-chain` (OpenAI), `gemini-deep` (Google), and `mistral-deep` (Mistral Large 3).
+Adds a genuinely different reasoning architecture to the deep-reasoning panel alongside `o3-chain` (OpenAI), `gemini-deep-v2` (Google), and `mistral-deep` (Mistral Large 3).
 
 ## Use Cases
 
@@ -14,7 +14,7 @@ Adds a genuinely different reasoning architecture to the deep-reasoning panel al
 - **Calculation verification**: Independent step-by-step reworking of numerical claims
 - **Assumption stress-testing**: Sensitivity analysis on key assumptions
 - **Scenario analysis**: What-if testing when assumptions shift
-- **Cross-provider reasoning panel**: Pair with `o3-chain`, `gemini-deep`, and `mistral-deep`
+- **Cross-provider reasoning panel**: Pair with `o3-chain`, `gemini-deep-v2`, and `mistral-deep`
 
 ## Model
 
@@ -35,7 +35,7 @@ adversarial evaluate --evaluator magistral-reasoning docs/analysis.md
 
 # Cross-provider reasoning panel
 adversarial evaluate --evaluator o3-chain docs/analysis.md
-adversarial evaluate --evaluator gemini-deep docs/analysis.md
+adversarial evaluate --evaluator gemini-deep-v2 docs/analysis.md
 adversarial evaluate --evaluator magistral-reasoning docs/analysis.md
 ```
 
@@ -63,5 +63,5 @@ The evaluator produces:
 ## See Also
 
 - [o3-chain](../../openai/o3-chain/) — Chain-of-thought reasoning (OpenAI o3)
-- [gemini-deep](../../google/gemini-deep/) — Extended reasoning (Google Gemini 2.5 Pro)
+- [gemini-deep-v2](../../google/gemini-deep-v2/) — Extended reasoning (Google Gemini 3.1 Pro Preview)
 - [mistral-deep](../mistral-deep/) — Deep reasoning (Mistral Large 3)

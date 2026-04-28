@@ -2,6 +2,13 @@
 
 All notable changes to the gpt5-diversity evaluator will be documented in this file.
 
+## [1.1.0] - 2026-04-28
+
+### Deprecated
+- `gpt5-diversity` is deprecated in favor of `gpt55-diversity` (GPT-5.5).
+- The new evaluator preserves the prompt and output schema verbatim — only the underlying model changes (`gpt-5.4` → `gpt-5.5`).
+- This evaluator continues to function and will be retired in a future release. Migrate consumers to `gpt55-diversity`.
+
 ## [1.0.0] - 2026-02-02
 
 ### Added

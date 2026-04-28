@@ -1,5 +1,7 @@
 # Codestral Code Review Evaluator
 
+> **DEPRECATED (2026-04-28)** — superseded by [`codestral-code-v2`](../codestral-code-v2/), which runs on the explicit `mistral/codestral-2` model with 128K context. This evaluator remains callable until retirement; new work should target `codestral-code-v2`.
+
 Code-focused review using Mistral's code-specialized model.
 
 ## Use Cases

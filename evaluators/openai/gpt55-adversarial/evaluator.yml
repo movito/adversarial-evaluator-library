@@ -1,0 +1,61 @@
+# GPT-5.5 Adversarial Evaluator
+# Primary adversarial evaluator for critical document review
+#
+# Provider: openai
+# Category: adversarial
+# Use cases:
+#   - Final document review
+#   - Critical argument stress-testing
+#   - High-stakes deliverable validation
+#   - Complex multi-factor analysis
+#   - Adversarial review
+#
+# Replaces gpt52-reasoning (which despite its name was running on gpt-5.4).
+# The new name aligns with the actual model and the evaluator's category.
+
+name: gpt55-adversarial
+description: Deep adversarial review using GPT-5.5
+model: gpt-5.5
+api_key_env: OPENAI_API_KEY
+model_requirement:
+  family: gpt
+  tier: flagship
+  min_version: "5.5"
+output_suffix: -gpt55-adversarial.md
+timeout: 180  # Validated baseline: typical 30-45s
+status: active
+released: "2026-04-28"
+version: "1.0.0"
+replaces: gpt52-reasoning
+
+prompt: |
+  You are a senior analyst conducting a rigorous adversarial review.
+  Challenge every claim and identify weaknesses.
+
+  {content}
+
+  Your review must cover:
+
+  ## 1. Factual Verification
+  - Challenge every factual claim - demand evidence
+  - Identify claims that need citation or quantification
+  - Flag any outdated information
+
+  ## 2. Logical Analysis
+  - Identify logical weaknesses in arguments
+  - Find unsupported assumptions
+  - Check if conclusions follow from premises
+  - Look for correlation/causation errors
+
+  ## 3. Counterarguments
+  - What would critics say?
+  - What would skeptics challenge?
+  - What's the worst-faith interpretation?
+
+  ## 4. Specific Improvements
+  - For each weakness, suggest a specific fix
+  - Prioritize: Critical / Significant / Minor
+
+  ## 5. Overall Assessment
+  Rate readiness: APPROVED / NEEDS_REVISION / REJECT
+  Provide 2-3 sentence summary of main issues.

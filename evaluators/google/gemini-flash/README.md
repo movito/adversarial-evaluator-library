@@ -1,5 +1,7 @@
 # Gemini Flash Evaluator
 
+> **DEPRECATED (2026-04-28)** — superseded by [`gemini-flash-v2`](../gemini-flash-v2/), which runs on `gemini-3-flash-preview`. This evaluator remains callable until retirement; new work should target `gemini-flash-v2`.
+
 Fast, cost-effective evaluator for quick document assessment.
 
 ## Use Cases

@@ -37,7 +37,7 @@ Mistral models are trained on different data distributions than OpenAI or Anthro
 
 **Not ideal for:**
 - Very quick checks (use mistral-fast)
-- Code review (use codestral-code)
+- Code review (use codestral-code-v2)
 
 ## Configuration
 
@@ -48,5 +48,5 @@ api_key_env: MISTRAL_API_KEY
 ## Related Evaluators
 
 - `mistral-fast` - Quick version for larger documents
-- `gpt52-reasoning` - OpenAI alternative perspective
-- `codestral-code` - Code-focused Mistral evaluator
+- `gpt55-adversarial` - OpenAI alternative perspective
+- `codestral-code-v2` - Code-focused Mistral evaluator

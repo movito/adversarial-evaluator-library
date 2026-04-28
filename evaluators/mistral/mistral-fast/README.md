@@ -37,5 +37,5 @@ api_key_env: MISTRAL_API_KEY
 ## Related Evaluators
 
 - `mistral-content` - Full-featured Mistral review
-- `gemini-flash` - Alternative fast evaluator
+- `gemini-flash-v2` - Alternative fast evaluator
 - `fast-check` - OpenAI fast evaluator

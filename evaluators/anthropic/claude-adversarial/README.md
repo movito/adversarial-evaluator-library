@@ -34,7 +34,7 @@ Rigorous adversarial review using Claude Opus 4.6 for critical analysis and stre
 
 ## Cognitive Diversity Note
 
-This evaluator provides Anthropic's perspective on adversarial analysis. Use alongside OpenAI's gpt52-reasoning for maximum blind-spot coverage through multi-provider review.
+This evaluator provides Anthropic's perspective on adversarial analysis. Use alongside OpenAI's gpt55-adversarial for maximum blind-spot coverage through multi-provider review.
 
 ## Configuration
 
@@ -61,6 +61,6 @@ Each finding includes location, issue description, and remediation steps.
 
 ## Related Evaluators
 
-- `gpt52-reasoning` - OpenAI alternative for adversarial review
+- `gpt55-adversarial` - OpenAI alternative for adversarial review
 - `claude-code` - Code-focused review (same provider)
 - `o3-chain` - For step-by-step logical verification

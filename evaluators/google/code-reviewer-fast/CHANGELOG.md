@@ -2,6 +2,12 @@
 
 All notable changes to this evaluator will be documented in this file.
 
+## [Deprecated] - 2026-04-28
+
+- Marked `deprecated`; superseded by `code-reviewer-fast-v2` (running on `gemini-3-flash-preview`)
+- Behavior unchanged; remains callable until retirement
+- Per the evaluator versioning policy, retirement date will be announced ahead of removal
+
 ## [1.0.0] - 2026-02-27
 
 ### Added

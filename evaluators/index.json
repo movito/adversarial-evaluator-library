@@ -1,6 +1,6 @@
 {
-  "version": "1.7.0",
-  "updated": "2026-04-17",
+  "version": "1.10.0",
+  "updated": "2026-04-28",
   "evaluators": [
     {
       "name": "gemini-flash",
@@ -8,7 +8,11 @@
       "path": "google/gemini-flash/evaluator.yml",
       "model": "gemini/gemini-2.5-flash",
       "category": "quick-check",
-      "description": "Fast, cost-effective document assessment"
+      "description": "Fast, cost-effective document assessment",
+      "status": "deprecated",
+      "deprecated_at": "2026-04-28",
+      "replaced_by": "gemini-flash-v2",
+      "version": "1.0.0"
     },
     {
       "name": "gemini-pro",
@@ -24,7 +28,11 @@
       "path": "google/gemini-deep/evaluator.yml",
       "model": "gemini/gemini-2.5-pro",
       "category": "deep-reasoning",
-      "description": "Extended reasoning for complex analysis"
+      "description": "Extended reasoning for complex analysis",
+      "status": "deprecated",
+      "deprecated_at": "2026-04-28",
+      "replaced_by": "gemini-deep-v2",
+      "version": "1.0.0"
     },
     {
       "name": "gemini-code",
@@ -40,7 +48,11 @@
       "path": "google/code-reviewer-fast/evaluator.yml",
       "model": "gemini/gemini-2.5-flash",
       "category": "code-review",
-      "description": "Fast adversarial correctness check using Gemini Flash"
+      "description": "Fast adversarial correctness check using Gemini Flash",
+      "status": "deprecated",
+      "deprecated_at": "2026-04-28",
+      "replaced_by": "code-reviewer-fast-v2",
+      "version": "1.0.0"
     },
     {
       "name": "arch-review-fast",
@@ -48,7 +60,11 @@
       "path": "google/arch-review-fast/evaluator.yml",
       "model": "gemini/gemini-2.5-flash",
       "category": "arch-review",
-      "description": "Fast architectural review using Gemini 2.5 Flash extended reasoning"
+      "description": "Fast architectural review using Gemini 2.5 Flash extended reasoning",
+      "status": "deprecated",
+      "deprecated_at": "2026-04-28",
+      "replaced_by": "arch-review-fast-v2",
+      "version": "1.0.0"
     },
     {
       "name": "gpt52-reasoning",
@@ -56,7 +72,11 @@
       "path": "openai/gpt52-reasoning/evaluator.yml",
       "model": "gpt-5.4",
       "category": "adversarial",
-      "description": "Deep adversarial reasoning for critical review"
+      "description": "Deep adversarial reasoning for critical review",
+      "status": "deprecated",
+      "deprecated_at": "2026-04-28",
+      "replaced_by": "gpt55-adversarial",
+      "version": "1.1.0"
     },
     {
       "name": "o3-chain",
@@ -112,7 +132,11 @@
       "path": "openai/gpt5-diversity/evaluator.yml",
       "model": "gpt-5.4",
       "category": "cognitive-diversity",
-      "description": "Cognitive diversity review for alternative perspectives"
+      "description": "Cognitive diversity review for alternative perspectives",
+      "status": "deprecated",
+      "deprecated_at": "2026-04-28",
+      "replaced_by": "gpt55-diversity",
+      "version": "1.1.0"
     },
     {
       "name": "gpt5-synthesis",
@@ -120,7 +144,11 @@
       "path": "openai/gpt5-synthesis/evaluator.yml",
       "model": "gpt-5.4",
       "category": "knowledge-synthesis",
-      "description": "Knowledge synthesis for cross-referencing and completeness"
+      "description": "Knowledge synthesis for cross-referencing and completeness",
+      "status": "deprecated",
+      "deprecated_at": "2026-04-28",
+      "replaced_by": "gpt55-synthesis",
+      "version": "1.1.0"
     },
     {
       "name": "mistral-content",
@@ -144,7 +172,11 @@
       "path": "mistral/codestral-code/evaluator.yml",
       "model": "mistral/codestral-latest",
       "category": "code-review",
-      "description": "Code-focused review for scripts and configs"
+      "description": "Code-focused review for scripts and configs",
+      "status": "deprecated",
+      "deprecated_at": "2026-04-28",
+      "replaced_by": "codestral-code-v2",
+      "version": "1.0.0"
     },
     {
       "name": "mistral-arch",
@@ -184,7 +216,11 @@
       "path": "openai/gpt54-pro/evaluator.yml",
       "model": "gpt-5.4-pro",
       "category": "deep-reasoning",
-      "description": "Extended reasoning using GPT-5.4 Pro for complex multi-step analysis"
+      "description": "Extended reasoning using GPT-5.4 Pro for complex multi-step analysis",
+      "status": "deprecated",
+      "deprecated_at": "2026-04-28",
+      "replaced_by": "gpt55-pro",
+      "version": "1.1.0"
     },
     {
       "name": "gpt5-codex",
@@ -225,6 +261,114 @@
       "model": "anthropic/claude-opus-4-7",
       "category": "arch-review",
       "description": "Architectural review using Claude Opus 4.7 for structural quality analysis"
+    },
+    {
+      "name": "gpt55-pro",
+      "provider": "openai",
+      "path": "openai/gpt55-pro/evaluator.yml",
+      "model": "gpt-5.5-pro",
+      "category": "deep-reasoning",
+      "description": "Extended reasoning using GPT-5.5 Pro for complex multi-step analysis",
+      "status": "active",
+      "released": "2026-04-28",
+      "version": "1.0.0",
+      "replaces": "gpt54-pro"
+    },
+    {
+      "name": "gpt55-adversarial",
+      "provider": "openai",
+      "path": "openai/gpt55-adversarial/evaluator.yml",
+      "model": "gpt-5.5",
+      "category": "adversarial",
+      "description": "Deep adversarial review using GPT-5.5",
+      "status": "active",
+      "released": "2026-04-28",
+      "version": "1.0.0",
+      "replaces": "gpt52-reasoning"
+    },
+    {
+      "name": "gpt55-diversity",
+      "provider": "openai",
+      "path": "openai/gpt55-diversity/evaluator.yml",
+      "model": "gpt-5.5",
+      "category": "cognitive-diversity",
+      "description": "Cognitive diversity review using GPT-5.5 for alternative perspectives",
+      "status": "active",
+      "released": "2026-04-28",
+      "version": "1.0.0",
+      "replaces": "gpt5-diversity"
+    },
+    {
+      "name": "gpt55-synthesis",
+      "provider": "openai",
+      "path": "openai/gpt55-synthesis/evaluator.yml",
+      "model": "gpt-5.5",
+      "category": "knowledge-synthesis",
+      "description": "Knowledge synthesis using GPT-5.5 for cross-referencing and completeness",
+      "status": "active",
+      "released": "2026-04-28",
+      "version": "1.0.0",
+      "replaces": "gpt5-synthesis"
+    },
+    {
+      "name": "gemini-flash-v2",
+      "provider": "google",
+      "path": "google/gemini-flash-v2/evaluator.yml",
+      "model": "gemini/gemini-3-flash-preview",
+      "category": "quick-check",
+      "description": "Fast evaluation using Gemini 3 Flash",
+      "status": "active",
+      "released": "2026-04-28",
+      "version": "1.0.0",
+      "replaces": "gemini-flash"
+    },
+    {
+      "name": "code-reviewer-fast-v2",
+      "provider": "google",
+      "path": "google/code-reviewer-fast-v2/evaluator.yml",
+      "model": "gemini/gemini-3-flash-preview",
+      "category": "code-review",
+      "description": "Fast adversarial correctness check using Gemini 3 Flash",
+      "status": "active",
+      "released": "2026-04-28",
+      "version": "1.0.0",
+      "replaces": "code-reviewer-fast"
+    },
+    {
+      "name": "arch-review-fast-v2",
+      "provider": "google",
+      "path": "google/arch-review-fast-v2/evaluator.yml",
+      "model": "gemini/gemini-3-flash-preview",
+      "category": "arch-review",
+      "description": "Fast architectural review using Gemini 3 Flash extended reasoning",
+      "status": "active",
+      "released": "2026-04-28",
+      "version": "1.0.0",
+      "replaces": "arch-review-fast"
+    },
+    {
+      "name": "codestral-code-v2",
+      "provider": "mistral",
+      "path": "mistral/codestral-code-v2/evaluator.yml",
+      "model": "mistral/codestral-2",
+      "category": "code-review",
+      "description": "Code-focused review using Mistral Codestral 2 (128K context)",
+      "status": "active",
+      "released": "2026-04-28",
+      "version": "1.0.0",
+      "replaces": "codestral-code"
+    },
+    {
+      "name": "gemini-deep-v2",
+      "provider": "google",
+      "path": "google/gemini-deep-v2/evaluator.yml",
+      "model": "gemini/gemini-3.1-pro-preview",
+      "category": "deep-reasoning",
+      "description": "Extended reasoning evaluation using Gemini 3.1 Pro",
+      "status": "active",
+      "released": "2026-04-28",
+      "version": "1.0.0",
+      "replaces": "gemini-deep"
     }
   ],
   "categories": {
@@ -236,6 +380,12 @@
     "code-review": "Code and configuration analysis",
     "arch-review": "Structural and architectural code analysis"
   },
+  "lifecycle_states": {
+    "preview": "Newly added, may still change. Max one minor release.",
+    "active": "Stable, recommended (default).",
+    "deprecated": "Still functions, replacement available, scheduled for retirement.",
+    "retired": "Removed from this index. Folder may persist for git history."
+  },
   "providers": {
     "anthropic": {
       "api_key_env": "ANTHROPIC_API_KEY",
@@ -243,15 +393,15 @@
     },
     "google": {
       "api_key_env": "GEMINI_API_KEY",
-      "evaluators": ["gemini-flash", "gemini-pro", "gemini-deep", "gemini-code", "code-reviewer-fast", "arch-review-fast"]
+      "evaluators": ["gemini-flash-v2", "code-reviewer-fast-v2", "arch-review-fast-v2", "gemini-deep-v2", "gemini-pro", "gemini-code", "gemini-flash", "code-reviewer-fast", "arch-review-fast", "gemini-deep"]
     },
     "openai": {
       "api_key_env": "OPENAI_API_KEY",
-      "evaluators": ["gpt52-reasoning", "o3-chain", "fast-check", "arch-review", "o1-mini-code", "gpt4o-code", "code-reviewer", "gpt5-diversity", "gpt5-synthesis", "gpt54-pro", "gpt5-codex"]
+      "evaluators": ["gpt55-pro", "gpt55-adversarial", "gpt55-diversity", "gpt55-synthesis", "o3-chain", "fast-check", "arch-review", "o1-mini-code", "gpt4o-code", "code-reviewer", "gpt5-codex", "gpt54-pro", "gpt52-reasoning", "gpt5-diversity", "gpt5-synthesis"]
     },
     "mistral": {
       "api_key_env": "MISTRAL_API_KEY",
-      "evaluators": ["mistral-content", "mistral-fast", "codestral-code", "mistral-arch", "mistral-adversarial", "mistral-deep", "magistral-reasoning"]
+      "evaluators": ["codestral-code-v2", "mistral-content", "mistral-fast", "mistral-arch", "mistral-adversarial", "mistral-deep", "magistral-reasoning", "codestral-code"]
     }
   }
 }
